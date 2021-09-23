@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=EmbryoAnaylsis
+Icon=/home/n200/A70417/embryogui_20201203/doctor.png
+Exec=gnome-terminal --working-directory /home/itri-maia/embryogui_20201203 -e "bash -c '/home/itri-maia/embryogui_20201203/open_test.sh;$SHELL'"
+Categories=Application

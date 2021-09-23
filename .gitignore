@@ -1,0 +1,13 @@
+data/*
+data (副本)/
+dish2/
+MTL-0245-11C8-666B-fp05/*
+output/
+history/*
+video/*
+*.jpg
+*.sqlite
+*.zip
+model_data/*
+*.hdf5
+event_info*
