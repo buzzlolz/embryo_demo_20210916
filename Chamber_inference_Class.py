@@ -9,7 +9,7 @@ import cv2
 import argparse
 import pandas as pd
 import csv
-from mask_rcnn_inf import img_inference_cell,load_cell_mask_model,load_frag_model,img_inference_frag
+from mask_rcnn_inf import load_frag_model,img_inference_frag,load_pn_count_model
 
 from keras.applications.inception_v3 import InceptionV3, preprocess_input
 
@@ -112,15 +112,20 @@ class Chamber_Inference(QtCore.QThread):
         if chamber_id not in list(self.queue_chamber_id.queue):
             self.queue_chamber_id.put(chamber_id)
 
-    def load_sqlite_model(self):
-        # net = load_model('./model_data/20201212_inception_stage1-8.hdf5',compile=False)
-        net = load_model('./model_data/20201102_incv3_sqlite_013-0.036.hdf5',compile=False)
-        return net
+    # def load_sqlite_model(self):
+    #     # net = load_model('./model_data/20201212_inception_stage1-8.hdf5',compile=False)
+    #     net = load_model('./model_data/20201102_incv3_sqlite_013-0.036.hdf5',compile=False)
+    #     return net
 
     def load_stage_pn_morula_blas_model(self):
         # net = load_model('./model_data/20201212_inception_stage1-8.hdf5',compile=False)
         net = load_model('./model_data/20210111_stage_pn_morula_blas.hdf5',compile=False)
         return net
+
+
+    
+
+    
 
 
 
@@ -749,9 +754,12 @@ class Chamber_Inference(QtCore.QThread):
         self.frag_model = load_frag_model()
         # self.frag_model._make_predict_function()
         self.graph_list.append(tf.get_default_graph())
+
+        self.pn_count_model = load_pn_count_model()
         
-        # sqlite_model=load_sqlite_model()
-        # return blas_cd_model,yolo_ini,cell_mask_model
+        self.graph_list.append(tf.get_default_graph())
+        
+        
 
 
     def one_chamber_run(self,cham_id):

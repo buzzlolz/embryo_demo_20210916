@@ -72,7 +72,7 @@ class ExtractSqliteThread(QtCore.QThread):
         self.client = client
         self.b_stop = False
         
-        dir_path = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/sql_data/'        
+        dir_path = '/home/n200/D-slot/20201221_ivf_data/'         
         self.extract_sqlite = Extract_Sqlite(dir_path + self.patient_id, self.chamber_id, self.client)
                 
     def run(self):       
@@ -127,6 +127,9 @@ class TabSelectChamber(QtWidgets.QWidget):
         super(TabSelectChamber, self).__init__(parent=parent)        
         self.main_widget = main_widget
         self.logger = logger
+
+
+        self.mnt_history_path = './history/'
         
         self.threads = []
         self.extract_thread = []
@@ -607,9 +610,9 @@ class TabSelectChamber(QtWidgets.QWidget):
         
     def GetCurrentPatientIDs(self):
         pids_history = []
-        history_dirs = os.listdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history')        
+        history_dirs = os.listdir(self.mnt_history_path)        
         for dd in history_dirs:
-            if os.path.isdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history' + dd):
+            if os.path.isdir(self.mnt_history_path + dd):
                 pids_history.append(dd)
          
         pids = []

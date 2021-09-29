@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from EmbryoBoxInfo import EmbryoHistoryInfoTableBox
 from Ui_Function import * 
 
+
 class TabHistoryChamber(QtWidgets.QWidget):
     def __init__(self, logger, machine_infos, widget_selChamber, main_widget, parent=None):
         super(TabHistoryChamber, self).__init__(parent=parent)
@@ -22,7 +23,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
         self.well_number = int(machine_infos[0][2])        
         self.selChamber_tab = widget_selChamber
         self.init()
-        
+        self.mnt_history_path = './history/'
+
+
     def init(self):        
         #Setting area
         self.frame_setting = QtWidgets.QFrame(self)        
@@ -123,9 +126,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
     def FileLoad(self, event):        
         #Set chamber id        
         chamber_ids = []
-        history_dirs = os.listdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history/' + str(self.selector_pid.currentText()) + '/' +  str(self.selector_files.currentText()) + '/csv/')        
+        history_dirs = os.listdir(self.mnt_history_path + str(self.selector_pid.currentText()) + '/' +  str(self.selector_files.currentText()) + '/csv/')        
         for dd in history_dirs:
-            if os.path.isdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history/' + str(self.selector_pid.currentText()) + '/' +  str(self.selector_files.currentText()) + '/csv/' + dd):
+            if os.path.isdir(self.mnt_history_path + str(self.selector_pid.currentText()) + '/' +  str(self.selector_files.currentText()) + '/csv/' + dd):
                 dir_names = dd.split('cham')
                 if len(dir_names) > 0:
                     chamber_ids.append(dir_names[1])       
@@ -139,9 +142,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
         
     def SearchPatientID(self):
         pids_history = []
-        history_dirs = os.listdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history/')        
+        history_dirs = os.listdir(self.mnt_history_path)        
         for dd in history_dirs:
-            if os.path.isdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history/' + dd):
+            if os.path.isdir(self.mnt_history_path + dd):
                 pids_history.append(dd)
                 
         self.selector_pid.clear()

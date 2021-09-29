@@ -14,7 +14,8 @@ import sqlite3
 
 logging.basicConfig(level=logging.WARNING)
 
-
+history_dir = './history'
+sql_data_path ='/home/n200/D-slot/20201221_ivf_data/'  
 
 #load timelapse image and save as a video
 # def img_to_video(chamber_id,well_id):
@@ -69,7 +70,7 @@ def load_video_path_with_7fp(patient_id,chamber_id,dish_id,fp_id):
 
 
 def get_history_patient_id_list():
-    history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     history_patient_id_list= os.listdir(history_dir)
 
     return history_patient_id_list
@@ -408,7 +409,7 @@ def clear_cham_dish_data_csv(cham_id):
 
 #return history page patient_id->save time list
 def history_getid_timelist(patient_id):
-    history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
 
     id_list = os.listdir(history_dir)
     # print(id_list)
@@ -493,7 +494,7 @@ def get_avg_fragment_percent(csv_path):
 #return history page  dish_id,status,info,stage,duration_time
 
 def search_history_csv(patient_id,patient_time):
-    history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     id_dir = os.path.join(history_dir,patient_id)
     time_dir = os.path.join(id_dir,patient_time)
     time_dir = os.path.join(time_dir,'csv')
@@ -780,7 +781,7 @@ def search_history_csv(patient_id,patient_time):
 
 #move select chamber to history folder    
 def move_select_cham_dish_folder(patient_id, time, chamber_id):
-    history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     patient_csv_folder='./patient_id_save/'
     ori_img_folder = './data/crop_img/'
     csv_dir='./csv/'
@@ -843,7 +844,7 @@ def move_select_cham_dish_folder(patient_id, time, chamber_id):
 
 #write history page change pgs status to history folder csv 
 def write_his_status_pgs(patient_id,patient_time,dish_id,status=None,pgs=None):
-    history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     id_dir = os.path.join(history_dir,patient_id)
     time_dir = os.path.join(id_dir,patient_time)
     time_dir = os.path.join(time_dir,'csv')
@@ -913,7 +914,7 @@ def write_his_status_pgs(patient_id,patient_time,dish_id,status=None,pgs=None):
 #write history page info change to history csvfile
 
 def write_his_all_element(patient_id,patient_time,dish_id,status=None,t2=None,t3=None,t4=None,t5=None,t6=None,t7=None,t8=None,morula=None,blas=None,comp=None,pn_fading=None,icm=None,te=None,pgs=None,prob=None):
-    history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     id_dir = os.path.join(history_dir,patient_id)
     time_dir = os.path.join(id_dir,patient_time)
     time_dir = os.path.join(time_dir,'csv')
@@ -1364,7 +1365,7 @@ def xgboost_inf_write_blas_morula_pnfading(patient_id, patient_time, chamber_id,
 
 
 
-    history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
+    # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     xgboost_model_path = './model_data/xgboost_score/model_all_input1223.pkl'
     id_dir = os.path.join(history_dir,patient_id)
     time_dir = os.path.join(id_dir,patient_time)
@@ -1439,7 +1440,7 @@ def xgboost_inf_write_blas_morula_pnfading(patient_id, patient_time, chamber_id,
 def search_embryologist_xlsx(folder_name,dish_id):
 
     print('start dish_id',dish_id)
-    sql_data_path ='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/sql_data'
+    
     csv_path = './TimelapseAnnotations_20201218_1419.csv'
     dict_list =['PN Fading','t2','t3','t4','t5','t6','t7','t8','Morula','Blastocyst']
     dict_list_return=['pn','t2','t3','t4','t5','t6','t7','t8','morula','blas']

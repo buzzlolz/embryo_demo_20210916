@@ -15,7 +15,8 @@ class ImportSqliteDialog(QtWidgets.QDialog):
     def __init__(self, main_parent, parent=None):       
         super(ImportSqliteDialog, self).__init__(parent=parent)        
         self.setWindowTitle('Import data')
-        self.setStyleSheet("QWidget{background-color:#ddf5c2;}")        
+        self.setStyleSheet("QWidget{background-color:#ddf5c2;}")     
+        self.mnt_sqlite_path = '/home/n200/D-slot/20201221_ivf_data/'   
         
         self.parent = main_parent
         self.setGeometry(500, 200, 600, 200)
@@ -59,7 +60,7 @@ class ImportSqliteDialog(QtWidgets.QDialog):
         
     def add_item(self):
         curr_pids = self.parent.GetCurrentPatientIDs()
-        dirs = os.listdir('/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/sql_data/')
+        dirs = os.listdir(self.mnt_sqlite_path)
         for d in dirs:
             if d not in curr_pids:        
                 self.selector_pid.addItem(str(d))           

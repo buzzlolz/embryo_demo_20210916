@@ -25,8 +25,57 @@ class Extract_Sqlite():
         self.cham_id=cham_id
         self.b_stop=False
         self.socket_client= socket_client
+        self.check_env_folder()
 
         # self.sqlite_folder_path,self.cham_id,self.socket_client
+
+
+    def check_env_folder(self):
+        
+        if not Path("./csv").exists():
+            os.mkdir("./csv")
+        if not Path('./video').exists():
+            os.mkdir('./video')
+
+        if not Path("./data/").exists():
+            os.mkdir("./data/")
+        if not Path('./data/ori_img').exists():
+            os.mkdir('./data/ori_img')
+        if not Path('./data/crop_img').exists():
+            os.mkdir('./data/crop_img')
+        if not Path('./history/').exists():
+            os.mkdir('./history/')
+        
+
+
+
+        
+        for chamber in range(1,13):
+            if not Path('./data/ori_img/cham'+str(chamber)).exists():
+                os.mkdir('./data/ori_img/cham'+str(chamber))
+                for dish in range(1,16):
+                    if not Path('./data/ori_img/cham'+str(chamber)+'/dish'+str(dish)).exists():
+                        # print('mkdir','./data/ori_img/cham'+str(chamber)+'/dish'+str(dish))
+                        os.mkdir('./data/ori_img/cham'+str(chamber)+'/dish'+str(dish))
+        for chamber in range(1,13):
+            if not Path('./data/crop_img/cham'+str(chamber)).exists():
+                os.mkdir('./data/crop_img/cham'+str(chamber))
+                for dish in range(1,16):
+                    if not Path('./data/crop_img/cham'+str(chamber)+'/dish'+str(dish)).exists():
+                        # print('mkdir','./data/ori_img/cham'+str(chamber)+'/dish'+str(dish))
+                        os.mkdir('./data/crop_img/cham'+str(chamber)+'/dish'+str(dish))
+        for chamber in range(1,13):
+            if not Path('./csv/cham'+str(chamber)).exists():
+                os.mkdir('./csv/cham'+str(chamber))
+                for dish in range(1,16):
+                    if not Path('./csv/cham'+str(chamber)+'/dish'+str(dish)).exists():
+                        # print('mkdir','./data/ori_img/cham'+str(chamber)+'/dish'+str(dish))
+                        os.mkdir('./csv/cham'+str(chamber)+'/dish'+str(dish))
+            
+        # if not Path("csv/data_img/").exists():
+        #     os.mkdir("csv/data_img/")
+        # if not Path("csv/stage_result/").exists():
+        #     os.mkdir("csv/stage_result/")
 
 
 
