@@ -21,7 +21,7 @@ from Class_Extract_Sqlite import Extract_Sqlite
 from Chamber_inference_Class import Chamber_Inference
 
 
-from DateWithTime import DateWithTime
+# from DateWithTime import DateWithTime
 
 
 class TimeCountThread(QtCore.QThread):
@@ -133,6 +133,7 @@ class TabSelectChamber(QtWidgets.QWidget):
 
 
         self.mnt_history_path = './history/'
+        self.maunal_timeset_check = False
         
         self.threads = []
         self.extract_thread = []
@@ -241,7 +242,12 @@ class TabSelectChamber(QtWidgets.QWidget):
         button_calendar.setStyleSheet('background-color:lightblue;')
         button_calendar.setIcon(QtGui.QIcon('CalenderIcon.png'))
         button_calendar.setIconSize(QtCore.QSize(130,130))
-        button_calendar.clicked.connect(lambda: self.SelectDate(str(3*row + col + 1)))             
+        button_calendar.clicked.connect(lambda: self.SelectDate(str(3*row + col + 1),self.maunal_timeset_check))             
+
+
+        checkbox_hourminsec_mode = QtWidgets.QCheckBox('set manual',group_chamber)
+        checkbox_hourminsec_mode.setGeometry(395,100,120,35)
+        checkbox_hourminsec_mode.stateChanged.connect(self.ClickSetmanualCheckbox)
                
         label_durationTime = QtWidgets.QLabel('Duration Time:', group_chamber)
         label_durationTime.setFont(QtGui.QFont('Arial', 12))
@@ -270,7 +276,16 @@ class TabSelectChamber(QtWidgets.QWidget):
         progress.setProperty("value", 0)
         #progress.setValue(50)
                        
-        return widget_chamber, group_chamber        
+        return widget_chamber, group_chamber   
+
+    def  ClickSetmanualCheckbox(self,state):
+        if state ==QtCore.Qt.Checked:
+            self.maunal_timeset_check=True
+            print('Check')
+        else:
+            self.maunal_timeset_check=False
+            print('uncheck')
+
     
     def DisableOrEnableAllElementByChamberID(self, chamber_id, set):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
@@ -287,13 +302,14 @@ class TabSelectChamber(QtWidgets.QWidget):
             listsMySelectCellDish[j].setDisabled(set)
 
     #Calendar diagon
-    def SelectDate(self, chamber_id):
+    def SelectDate(self, chamber_id,timeset_checkbox_bool):
+        status=''
+        if timeset_checkbox_bool:
+            status='manual set'
+        else:
+            status='select'
 
-        # calendar = DateWithTime('select', chamber_id, self)
-        # calendar.show()
-        # calendar.exec_() 
-
-        calendar = Calendar('select', chamber_id, self)
+        calendar = Calendar(status, chamber_id,self)
         calendar.show()
         calendar.exec_()    
         

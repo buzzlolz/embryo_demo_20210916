@@ -42780,3 +42780,40 @@
 2021-09-30 10:24:10,484 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
 2021-09-30 10:24:10,484 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
 2021-09-30 10:24:10,485 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 10:57:19,271 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 10:57:19,274 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 10:57:19,304 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 10:57:19,304 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 10:57:19,305 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:08:24,433 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 11:08:24,436 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:08:24,471 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 11:08:24,472 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 11:08:24,473 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:09:13,199 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 11:09:13,201 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:09:13,230 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 11:09:13,231 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 11:09:13,231 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:09:39,225 [INFO] UnixSocketServer:run: Stop server
+2021-09-30 11:09:39,227 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-09-30 11:09:47,985 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 11:09:47,988 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:09:48,020 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 11:09:48,021 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 11:09:48,021 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:24:37,854 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 11:24:37,856 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:24:37,892 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 11:24:37,893 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 11:24:37,894 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:25:20,607 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 11:25:20,610 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 11:25:20,649 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 11:25:20,650 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 11:25:20,651 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 14:36:39,140 [INFO] UnixSocketServer:run: Starting up server
+2021-09-30 14:36:39,143 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-09-30 14:36:39,173 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-09-30 14:36:39,174 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-12FE-2655.ini
+2021-09-30 14:36:39,174 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini

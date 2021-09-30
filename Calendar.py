@@ -30,7 +30,7 @@ class AnotherWindow(QWidget):
         super().__init__()
   
         # setting title
-        self.setWindowTitle("Python ")
+        self.setWindowTitle("hms set ")
   
         # setting geometry
         self.setGeometry(1450, 200, 230, 50)
@@ -102,7 +102,9 @@ class Calendar(QtWidgets.QDialog):
         self.setGeometry(1000, 200, 400, 200)
         self.initUI()
         self.w = None
-        self.show_new_window()
+        if self.tab=='manual set':
+
+            self.show_new_window()
 
     def initUI(self):
         self.calendar = QtWidgets.QCalendarWidget(self)
@@ -126,16 +128,24 @@ class Calendar(QtWidgets.QDialog):
     def printDateInfo(self, qDate):
         
         date = '{0}{1}{2}'.format(qDate.year(), str(qDate.month()).zfill(2), str(qDate.day()).zfill(2))
-        time_get = self.w.final_time
-        print(time_get)
+        
 
         # date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
         if self.tab == 'select':            
+            date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
+            listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
+            listsMyQLineEdit[1].setText(date)
+            
+            print (date)
+        if self.tab == 'manual set':
+            time_get = self.w.final_time
+            print(time_get)
             date = date + '_' + time_get
             listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
             listsMyQLineEdit[1].setText(date)
-            print(time_get)
-            print (date)
+
+
+
         if self.tab == 'history':
             date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
             if self.item == 'start':
