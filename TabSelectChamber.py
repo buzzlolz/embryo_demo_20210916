@@ -21,6 +21,9 @@ from Class_Extract_Sqlite import Extract_Sqlite
 from Chamber_inference_Class import Chamber_Inference
 
 
+from DateWithTime import DateWithTime
+
+
 class TimeCountThread(QtCore.QThread):
     #update = QtCore.pyqtSignal()
     def __init__(self, edit_time, chamber_id, parent=None):
@@ -285,6 +288,11 @@ class TabSelectChamber(QtWidgets.QWidget):
 
     #Calendar diagon
     def SelectDate(self, chamber_id):
+
+        # calendar = DateWithTime('select', chamber_id, self)
+        # calendar.show()
+        # calendar.exec_() 
+
         calendar = Calendar('select', chamber_id, self)
         calendar.show()
         calendar.exec_()    
