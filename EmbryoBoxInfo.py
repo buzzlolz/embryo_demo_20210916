@@ -32,6 +32,7 @@ class EmbryoInfoTable(QtWidgets.QTableWidget):
         self.selector_icm = None
         self.selector_te = None
         
+        
         for i in range(row):    
             #Column 0      
             item_data = QtWidgets.QTableWidgetItem(self.labels[i])
@@ -147,6 +148,9 @@ class EmbryoInfoTable(QtWidgets.QTableWidget):
         if self.chid != 0 and self.wid != 0 and self.selector_icm != None and self.selector_te != None:
             write_analy_csv_icm_te(self.chid, self.wid, str(self.selector_icm.currentText()), str(self.selector_te.currentText()))
   
+
+
+
       
 class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
     def __init__(self, well_id, parent=None):
@@ -422,3 +426,153 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         
         
             
+
+
+
+
+class EmbryoNewInfoTable(QtWidgets.QTableWidget):
+    def __init__(self, row, column, labels, parent=None):
+        super(EmbryoNewInfoTable, self).__init__(row * 2+1, column, parent)        
+        self.setStyleSheet('background-color:white; font-size: 12pt;')         
+        self.verticalScrollBar().setStyleSheet("QScrollBar:vertical {Background-color:lightgray;}")          
+        self.verticalHeader().setVisible(False)
+        self.horizontalHeader().setVisible(False)
+        self.labels = labels
+        self.column_labels = ['div time' , 'div score','frag','frag score','total score']
+        self.row_labels = [ 'System', 'Manual']
+        self.row_labels_ = ['', 'Time', 'ICM']
+        self.chid = 0
+        self.wid = 0      
+        self.selector_icm = None
+        self.selector_te = None
+
+
+        for test in range(len(self.column_labels)):
+
+            item_data_title = QtWidgets.QTableWidgetItem(self.column_labels[test])
+            item_data_title.setBackground(QtGui.QColor(218,241,252))
+            item_data_title.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data_title.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.setItem(0, test+2, item_data_title)
+        for r  in range(2):
+            item_data_title=QtWidgets.QTableWidgetItem()
+            item_data_title.setBackground(QtGui.QColor(218,241,252))
+            item_data_title.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data_title.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.setItem(0, r, item_data_title)
+            
+        for i in range(row):    
+            #Column 0      
+            item_data = QtWidgets.QTableWidgetItem(self.labels[i])
+            item_data.setBackground(QtGui.QColor(218,241,252))
+            item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.setItem(i * 2+1, 0, item_data)      
+            
+            for j in range(2):
+                self.setRowHeight(2*i , 37)
+                #Column 1                 
+                # if 'Morula' in self.labels and 'Blastocyst' in self.labels and (i == row - 1):
+                #     item_data = QtWidgets.QTableWidgetItem(self.row_labels_[j])
+                #     item_data.setBackground(QtGui.QColor(218,241,252))
+                #     item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                #     item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                #     self.setItem(2*i + j+1, 1, item_data)  
+                # else:
+                item_data = QtWidgets.QTableWidgetItem(self.row_labels[j])
+                item_data.setBackground(QtGui.QColor(218,241,252))
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(2*i + j+1, 1, item_data)  
+                
+            #Row 1   
+            # for j in range(5):
+            #     item_data = QtWidgets.QTableWidgetItem(self.column_labels[j])
+            #     item_data.setBackground(QtGui.QColor(218,241,252))
+            #     item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            #     item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+            #     self.setItem(3*i, 2 + j, item_data)    
+            
+            self.setSpan(2*i+1, 0, 2, 1)             
+        self.setColumnWidth(0, 100)
+
+    def AddRow(self, row, embryo_label_anaylsis, embryo_label_view):              
+        #Column 3               
+        if 'ICM' in embryo_label_anaylsis.infos:            
+            for i, info in enumerate(embryo_label_anaylsis.infos):                
+                if 'ICM' in info or 'TE' in info: 
+                    widget = QtWidgets.QWidget() 
+                    print(info)
+                    #Analysis
+                    if 'ICM' in info:  
+                        print('b=' + info)
+                        self.selector_icm = QtWidgets.QComboBox(widget)                                 
+                        self.selector_icm.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
+                        self.selector_icm.setGeometry(20, 5, 50, 30)   
+                        for a in ['A', 'B', 'C']:
+                            self.selector_icm.addItem(a)
+                        self.SetIcmTe()
+                        self.selector_icm.currentIndexChanged.connect(self.WriteInfoToCsv)                        
+                    else:
+                        self.selector_te = QtWidgets.QComboBox(widget)                         
+                        self.selector_te.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
+                        self.selector_te.setGeometry(20, 5, 50, 30)   
+                        for a in ['A', 'B', 'C']:
+                            self.selector_te.addItem(a)
+                        self.SetIcmTe()
+                        self.selector_te.currentIndexChanged.connect(self.WriteInfoToCsv)
+                    self.setCellWidget(row * 4 + i + 1, 2, widget)
+                    
+                    #View
+                    item_data = QtWidgets.QTableWidgetItem('-')
+                    item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                    self.setItem(row * 4 + i + 1, 3, item_data)                   
+                    
+                else:
+                    #Time
+                    #Analysis
+                    item_data = QtWidgets.QTableWidgetItem(info)
+                    item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                    self.setItem(row * 4 + i + 1, 2, item_data)
+                    #View
+                    item_data = QtWidgets.QTableWidgetItem(embryo_label_view.infos[i])
+                    item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                    self.setItem(row * 4 + i + 1, 3, item_data)                   
+            
+        else:
+            for i, info in enumerate(embryo_label_anaylsis.infos):
+                #Analysis
+                item_data = QtWidgets.QTableWidgetItem(info)
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(row * 4 + i + 1, 2, item_data)
+                
+                #View
+                item_data = QtWidgets.QTableWidgetItem(embryo_label_view.infos[i])
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(row * 4 + i + 1, 3, item_data)
+                                         
+            
+    def DeleteRow(self, row_number):
+        self.removeRow(row_number)  
+        
+    def SetChamberIdPid(self, chid, wid):
+        self.chid = int(chid)
+        self.wid = int(wid)
+        
+    def SetIcmTe(self):
+        icm, te = read_analy_csv_icm_te(self.chid, self.wid)       
+        if icm != '' and self.selector_icm != None:
+            idxs = [i for i,d in enumerate(['A', 'B', 'C']) if d.lower() in icm or d.upper() in icm]
+            if idxs != []:
+                self.selector_icm.setCurrentIndex(idxs[0])
+        if te != '' and self.selector_te != None:
+            idxs = [i for i,d in enumerate(['A', 'B', 'C']) if d.lower() in te or d.upper() in te]
+            if idxs != []:
+                self.selector_te.setCurrentIndex(idxs[0])
+        
+    def WriteInfoToCsv(self):
+        if self.chid != 0 and self.wid != 0 and self.selector_icm != None and self.selector_te != None:
+            write_analy_csv_icm_te(self.chid, self.wid, str(self.selector_icm.currentText()), str(self.selector_te.currentText()))
+  

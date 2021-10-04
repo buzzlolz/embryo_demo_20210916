@@ -17,6 +17,10 @@ logging.basicConfig(level=logging.WARNING)
 history_dir = './history'
 sql_data_path ='/home/n200/D-slot/20201221_ivf_data/'  
 
+
+
+
+
 #load timelapse image and save as a video
 # def img_to_video(chamber_id,well_id):
 #     csv_dir = './csv/'
@@ -47,6 +51,10 @@ sql_data_path ='/home/n200/D-slot/20201221_ivf_data/'
 #     videoWriter.release()      
 # 
 #    
+
+
+
+
 
 # get time lapse video path
 def load_video_path_with_7fp(patient_id,chamber_id,dish_id,fp_id):

@@ -10,7 +10,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5 import QtMultimedia, QtMultimediaWidgets
         
 #from PlotCanvas import PlotCanvas
-from EmbryoBoxInfo import EmbryoImageLabel, EmbryoInfoTable
+from EmbryoBoxInfo import EmbryoImageLabel, EmbryoInfoTable,EmbryoNewInfoTable
 from Ui_Function import * 
 
 
@@ -97,25 +97,28 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_table_right = QtWidgets.QLabel('Stage 2:')
         label_table_right.setFont(QtGui.QFont('Arial', 12))
         label_table_right.setFixedHeight(25)
-        self.table_img_left = EmbryoInfoTable(5, 4, ['2pn', '2cell', '3cell', '4cell', '5cell'], self)
-        self.table_img_left.setFixedSize(QtCore.QSize(420, 850))   
+        # self.table_img_left = EmbryoInfoTable(5, 4, ['2pn', '2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
+        self.table_img_left = EmbryoNewInfoTable(10, 7, ['pn', '2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
+        
+        self.table_img_left.setFixedSize(QtCore.QSize(710, 710))   
         self.table_img_left.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        self.table_img_right = EmbryoInfoTable(5, 4, ['6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
-        self.table_img_right.setGeometry(1155, 40, 420, 850)
-        self.table_img_right.setFocusPolicy(QtCore.Qt.ClickFocus) 
+        # self.table_img_left.setGeometry(700, 40, 701, 850)
+        # self.table_img_right = EmbryoInfoTable(5, 4, ['6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
+        # self.table_img_right.setGeometry(1155, 40, 420, 850)
+        # self.table_img_right.setFocusPolicy(QtCore.Qt.ClickFocus) 
         
         layout = QtWidgets.QGridLayout(self) 
-        layout.addWidget(label_table_left, 0, 0, 1, 2, QtCore.Qt.AlignHCenter)  
-        layout.addWidget(self.table_img_left, 1, 0, 10, 2, QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
+        # layout.addWidget(label_table_left, 0, 0, 1, 2, QtCore.Qt.AlignHCenter)  
+        layout.addWidget(self.table_img_left, 1, 3, 9, 4, QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
         layout.addWidget(label_video, 0, 2, 1, 4, QtCore.Qt.AlignHCenter)        
-        layout.addWidget(self.frame_video, 1, 2, 6, 4, QtCore.Qt.AlignLeft)#HCenter)
-        layout.addWidget(self.playButton, 7, 2, 1, 1)          
-        layout.addWidget(self.selector_fp, 7, 3, 1, 1) 
-        layout.addWidget(self.slider, 7, 4, 1, 2)
-        layout.addWidget(label_table_right, 0, 6, 1, 2, QtCore.Qt.AlignHCenter)
+        layout.addWidget(self.frame_video, 0, 0, 6, 4, QtCore.Qt.AlignLeft)#HCenter)
+        layout.addWidget(self.playButton, 7, 0, 1, 1)          
+        layout.addWidget(self.selector_fp, 7, 1, 1, 1) 
+        layout.addWidget(self.slider, 7, 2, 1, 2)
+        # layout.addWidget(label_table_right, 0, 6, 1, 2, QtCore.Qt.AlignHCenter)
         #layout.addWidget(self.table_img_right, 1, 6, 10, 2, QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
-        layout.addWidget(label_info, 8, 2, 1, 4, QtCore.Qt.AlignHCenter)
-        layout.addWidget(self.edit_info, 9, 2, 1, 4)
+        # layout.addWidget(label_info, 8, 2, 1, 4, QtCore.Qt.AlignHCenter)
+        # layout.addWidget(self.edit_info, 9, 2, 1, 4)
     
     def keyPressEvent(self, event):    
         position = self.position_val
@@ -289,14 +292,14 @@ class TabEmbryoResults(QtWidgets.QWidget):
                                              
                   
             #Insert data 
-            self.table_img_right.SetChamberIdPid(chamber_id, dish_id)
+            # self.table_img_right.SetChamberIdPid(chamber_id, dish_id)
             if n < 4:
                 label_r_view = EmbryoImageLabel(150, 150, ['-', str(time_), '-'])
                 label_r_analysis = EmbryoImageLabel(150, 150, [str(grade), str(time), str(score)])                           
             else:
                 label_r_view = EmbryoImageLabel(150, 150, [str(time_), '-', '-'])
                 label_r_analysis = EmbryoImageLabel(150, 150, [str(time), "ICM", "TE"])
-            self.table_img_right.AddRow(n, label_r_analysis, label_r_view) 
+            # self.table_img_right.AddRow(n, label_r_analysis, label_r_view) 
                         
         #Insert info data
         if count != 0:

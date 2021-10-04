@@ -25,24 +25,18 @@ from TabMachineSelection import TabMachineSelection
 
 
 
-class Emb_System_Thread(QThread):
 
-    def __init__(self):
-        super(Emb_System_Thread,self).__init__()
-
-    def run(self):
-        inf_add_mask.sys_run()
 
 
 class Window(QtWidgets.QWidget):
     def __init__(self):
         super(Window, self).__init__()
-        self.setGeometry(0, 0 , 1600, 1050)
+        self.setGeometry(0, 0 , 1800, 1050)
         self.setWindowTitle('Embryo Analysis System')
         self.setStyleSheet("QWidget{background-color:#ff90b1;}")
        
         self.tabs = QtWidgets.QTabWidget(self) 
-        self.tabs.setFixedSize(QtCore.QSize(1600, 1050))          
+        self.tabs.setFixedSize(QtCore.QSize(1800, 1050))          
         
         self.widget_selChamber = TabSelectChamber(logger, self)
         self.widget_selMachine = TabMachineSelection(logger, self.widget_selChamber, self)

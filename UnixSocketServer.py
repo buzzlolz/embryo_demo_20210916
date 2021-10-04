@@ -33,7 +33,7 @@ class UnixSocketServer(QtCore.QThread):
         self.sock.listen(5)
         self.sock.settimeout(2)        
         while not self.b_stop:
-            print('waiting for a query')
+            # print('waiting for a query')
             query = {}
             try:
                 #Receive
@@ -46,7 +46,7 @@ class UnixSocketServer(QtCore.QThread):
                 rsp ={"response":"ok"}               
                 connection.sendall(json.dumps(rsp).encode())                
             except:
-                print('[Warning]Unix socket server error msg=' +  str(sys.exc_info()[1]))
+                # print('[Warning]Unix socket server error msg=' +  str(sys.exc_info()[1]))
                 if 'timed out' not in str(sys.exc_info()[1]):
                     self.logger.error('Socket error msg=' + str(sys.exc_info()[1]))    
             

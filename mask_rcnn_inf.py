@@ -294,6 +294,61 @@ def img_inference_cell(mask_model,img_path):
     
 
 
+
+def img_inference_pn_count(mask_model,img_path):
+
+    
+    # Index of the class in the list is its ID. For example, to get ID of
+    # the teddy bear class, use: class_names.index('teddy bear')
+    class_names = ['BG', 'cytoplasm','pn','ZP']
+    # Load a random image from the images folder
+
+    image = skimage.io.imread(img_path)
+
+
+    #plt.show("./7_00000417_DISH1_1120000_00059.jpg")
+    all_d_time=0
+    # a=datetime.now() 
+    # Run detection
+    
+    # t_start=time.time()
+    results = mask_model.detect([image], verbose=1)
+    # t_end = time.time()
+    #print("mask rcnn result::",results['mask'])
+    
+    # d_time=t_end-t_start
+    # all_d_time=all_d_time+d_time
+
+
+    # print("duration time:",all_d_time/1)
+        
+    # b=datetime.now() 
+    # Visualize results
+    # print("shijian",(b-a).seconds)
+    r = results[0]
+    # print(r)
+    # print(r['masks'])
+    # print("class id",r['class_ids'])
+    cell_count=len(r['scores'])
+    pn_count = (r['class_ids']==2).sum()
+    print(pn_count)
+    # print("len r['scores']",len(r['scores']))
+
+
+    #image save and show
+
+    # image_name = img_path.split('/')[-1]
+    # # visualize.save_mask_result(image, image_name,r['rois'], r['masks'], r['class_ids'], 
+    # #                             class_names, r['scores'])
+    # visualize.display_instances(image,image_name,r['rois'], r['masks'], r['class_ids'], r['scores'],
+    #                             class_names)
+
+
+
+    return pn_count
+    
+
+
 if __name__=='__main__':
     
     img_path="C:/A70417/Mask_RCNN/data_0617/6_00000496_6_DISH7_1163000_00050.jpg"

@@ -9,7 +9,7 @@ import cv2
 import argparse
 import pandas as pd
 import csv
-from mask_rcnn_inf import load_frag_model,img_inference_frag,load_pn_count_model
+from mask_rcnn_inf import load_frag_model,img_inference_frag,load_pn_count_model,img_inference_pn_count
 
 from keras.applications.inception_v3 import InceptionV3, preprocess_input
 
@@ -46,7 +46,7 @@ class Chamber_Inference(QtCore.QThread):
         self.cancel_chamber_ids = []
         self.current_analysis_chamber_id = 0
         
-        # self.load_models()
+        self.load_models()
 
         # global cell_mask_model 
         # global yolo_ini
@@ -359,7 +359,8 @@ class Chamber_Inference(QtCore.QThread):
                 'check':[],
                 'status':[],
                 'cell_stage':[],
-                'frag_percentage':[]
+                'frag_percentage':[],
+                'pn_number':[]
             }
             df = pd.DataFrame(dic)
             df=df.append({'file_name':filename,"check":'F'},ignore_index=True)
@@ -423,7 +424,31 @@ class Chamber_Inference(QtCore.QThread):
             # print("filename:",filename)
 
             df.to_csv(csv_path,index=0)
-        
+    
+    def predict_result_csvwrite(self,img_path,cell_stage,frag_percentage,pn_number,csv_path):
+        # # filename = str(filename).split('\\')[-1]
+        # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
+        # # print("csv_path:",csv_path)
+        # filename = str(img_path).split('/')[-1]
+
+        filename = os.path.basename(img_path)
+
+        if os.path.exists(csv_path):
+            df=pd.read_csv(csv_path)
+            
+
+            df.loc[df['file_name'].values==str(filename),'cell_stage']=cell_stage
+            df.loc[df['file_name'].values==str(filename),'frag_percentage']=str(frag_percentage)
+            df.loc[df['file_name'].values==str(filename),'pn_number']=str(pn_number)
+
+            print("frag_precentage :",frag_percentage)
+            # print("filename:",filename)
+
+            df.to_csv(csv_path,index=0)
+
+
+    
+   
     def get_undo_img_list(self,csv_path):
         img_list = []
         # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
@@ -929,12 +954,22 @@ class Chamber_Inference(QtCore.QThread):
                             
             
                             cell_number=self.sqlite_cell_classification_getcell(self.sqlite_model,crop_img_path)
-                            self.cell_stage_csvwrite(crop_img_path,cell_number,csv_path)
+                            # self.cell_stage_csvwrite(crop_img_path,cell_number,csv_path)
 
                         with self.graph_list[1].as_default():
     
                             frag_percentage=img_inference_frag(self.frag_model,crop_img_path)
-                            self.frag_percentage_csvwrite(crop_img_path,frag_percentage,csv_path)
+                            # self.frag_percentage_csvwrite(crop_img_path,frag_percentage,csv_path)
+                        
+                        with self.graph_list[2].as_default():
+                            if cell_number=='pn':
+                                pn_number=img_inference_pn_count(self.pn_count_model,img_path)
+                            else :
+                                pn_number = ''
+
+                            # self.frag_percentage_csvwrite(crop_img_path,frag_percentage,csv_path)
+                            print(pn_number)
+                        self.predict_result_csvwrite(crop_img_path,cell_number,frag_percentage,pn_number,csv_path)
 
                         schedule_percentage+=each_img_schedule_percent
                         # print('schedule percent:',schedule_percentage)
