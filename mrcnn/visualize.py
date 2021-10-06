@@ -108,15 +108,15 @@ def frag_percentage_count(image,  boxes, masks, class_ids, scores, class_names, 
     if mode != 1:
         for index, value in enumerate(useful_mask_indices):
             masked_image = apply_only_mask(masked_image, masks[:, :, value], colors[index])
-    print("masked_image shape:",masked_image.shape)
-    print("small image shape :",masked_image.shape[0])
+    # print("masked_image shape:",masked_image.shape)
+    # print("small image shape :",masked_image.shape[0])
     radius = min(masked_image.shape[0],masked_image.shape[1])/2*0.8
 
     cell_area =  count_cell_area(radius)
-    print("cell_area:",cell_area)
+    # print("cell_area:",cell_area)
 
     fragment_area = len((np.where(masked_image[:,:,0]!=0))[1])
-    print("fragment_area",fragment_area)
+    # print("fragment_area",fragment_area)
 
     frag_percentage = round(fragment_area/cell_area,4)*100
     # print("mask pre area:",len(fragment_area[1]))

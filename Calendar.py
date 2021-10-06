@@ -15,76 +15,76 @@ from PyQt5 import QtCore, QtWidgets
 #from PyQt5.QtCore import QDate
 
 from PyQt5.QtWidgets import QTimeEdit,QLabel
-class AnotherWindow(QWidget):
-    """
-    This "window" is a QWidget. If it has no parent, it
-    will appear as a free-floating window as we want.
-    """
-    # def __init__(self):
-    #     super().__init__()
-    #     layout = QVBoxLayout()
-    #     self.label = QLabel("Another Window % d" % randint(0,100))
-    #     layout.addWidget(self.label)
-    #     self.setLayout(layout)
-    def __init__(self):
-        super().__init__()
+# class AnotherWindow(QWidget):
+#     """
+#     This "window" is a QWidget. If it has no parent, it
+#     will appear as a free-floating window as we want.
+#     """
+#     # def __init__(self):
+#     #     super().__init__()
+#     #     layout = QVBoxLayout()
+#     #     self.label = QLabel("Another Window % d" % randint(0,100))
+#     #     layout.addWidget(self.label)
+#     #     self.setLayout(layout)
+#     def __init__(self):
+#         super().__init__()
   
-        # setting title
-        self.setWindowTitle("hms set ")
+#         # setting title
+#         self.setWindowTitle("hms set ")
   
-        # setting geometry
-        self.setGeometry(1450, 200, 230, 50)
-        self.setStyleSheet("background-color:#ff90b1;")
-        self.button_ok = QtWidgets.QPushButton(self)
-        self.button_ok.setGeometry(160, 0, 40, 40)
-        self.button_ok.setText('OK')
-        self.button_ok.setStyleSheet('background-color:lightblue;')
-        self.button_ok.clicked.connect(self.select_finish)
-        self.final_time = ''
+#         # setting geometry
+#         self.setGeometry(1450, 200, 230, 50)
+#         self.setStyleSheet("background-color:#ff90b1;")
+#         self.button_ok = QtWidgets.QPushButton(self)
+#         self.button_ok.setGeometry(160, 0, 40, 40)
+#         self.button_ok.setText('OK')
+#         self.button_ok.setStyleSheet('background-color:lightblue;')
+#         self.button_ok.clicked.connect(self.select_finish)
+#         self.final_time = ''
   
-        # calling method
-        self.UiComponents()
+#         # calling method
+#         self.UiComponents()
   
-        # showing all the widgets
-        self.show()
+#         # showing all the widgets
+#         self.show()
   
-    # method for components
-    def UiComponents(self):
+#     # method for components
+#     def UiComponents(self):
   
-        # creating a QDateEdit widget
-        # self.date.setDisplayFormat('hh:mm:ss.zzz')
-        self.date = QTimeEdit(self)
-        self.date.setDisplayFormat('hh:mm:ss')
-        # setting geometry of the date edit
-        self.date.setGeometry(0, 0, 150, 40)
+#         # creating a QDateEdit widget
+#         # self.date.setDisplayFormat('hh:mm:ss.zzz')
+#         self.date = QTimeEdit(self)
+#         self.date.setDisplayFormat('hh:mm:ss')
+#         # setting geometry of the date edit
+#         self.date.setGeometry(0, 0, 150, 40)
   
-        # creating a label
-        # label = QLabel("GeeksforGeeks", self)
+#         # creating a label
+#         # label = QLabel("GeeksforGeeks", self)
   
-        # setting geometry
-        # label.setGeometry(100, 150, 200, 60)
+#         # setting geometry
+#         # label.setGeometry(100, 150, 200, 60)
   
-        # making label multiline
-        # label.setWordWrap(True)
+#         # making label multiline
+#         # label.setWordWrap(True)
   
-        # adding action to the date when enter key is pressed
-        self.button_ok.clicked.connect(self.select_finish)
+#         # adding action to the date when enter key is pressed
+#         self.button_ok.clicked.connect(self.select_finish)
   
-        # method called by date edit
-        # def date_method():
+#         # method called by date edit
+#         # def date_method():
   
-        #     # getting the date
-        #     value = date.time()
+#         #     # getting the date
+#         #     value = date.time()
   
-        #     # setting text to the label
-        #     # label.setText("Selected Date : " + str(value))
+#         #     # setting text to the label
+#         #     # label.setText("Selected Date : " + str(value))
 
-        #     print(value)
-    def select_finish(self):
-        self.final_time = self.date.time()
-        self.final_time=self.final_time.toString("hhmmss")
-        print(self.final_time)
-        self.close()
+#         #     print(value)
+#     def select_finish(self):
+#         self.final_time = self.date.time()
+#         self.final_time=self.final_time.toString("hhmmss")
+#         print(self.final_time)
+#         self.close()
 
 
 
@@ -102,9 +102,9 @@ class Calendar(QtWidgets.QDialog):
         self.setGeometry(1000, 200, 400, 200)
         self.initUI()
         self.w = None
-        if self.tab=='manual set':
+        # if self.tab=='manual set':
 
-            self.show_new_window()
+        #     self.show_new_window()
 
     def initUI(self):
         self.calendar = QtWidgets.QCalendarWidget(self)
@@ -120,10 +120,10 @@ class Calendar(QtWidgets.QDialog):
 
         # self.calendar.clicked.connect(self.show_new_window)
 
-    def show_new_window(self):
-        if self.w is None:
-            self.w = AnotherWindow()
-        self.w.show()
+    # def show_new_window(self):
+    #     if self.w is None:
+    #         self.w = AnotherWindow()
+    #     self.w.show()
 
     def printDateInfo(self, qDate):
         
@@ -137,12 +137,12 @@ class Calendar(QtWidgets.QDialog):
             listsMyQLineEdit[1].setText(date)
             
             print (date)
-        if self.tab == 'manual set':
-            time_get = self.w.final_time
-            print(time_get)
-            date = date + '_' + time_get
-            listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
-            listsMyQLineEdit[1].setText(date)
+        # if self.tab == 'manual set':
+        #     time_get = self.w.final_time
+        #     print(time_get)
+        #     date = date + '_' + time_get
+        #     listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
+        #     listsMyQLineEdit[1].setText(date)
 
 
 

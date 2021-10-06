@@ -46,7 +46,7 @@ class Chamber_Inference(QtCore.QThread):
         self.cancel_chamber_ids = []
         self.current_analysis_chamber_id = 0
         
-        self.load_models()
+        # self.load_models()
 
         # global cell_mask_model 
         # global yolo_ini
@@ -260,8 +260,8 @@ class Chamber_Inference(QtCore.QThread):
     def check_emb_isboundary(self,yolo_shape,top,left,bottom,right):
         CenterX = (left+right)/2
         CenterY = (top+bottom)/2
-        print("CenterX:",CenterX)
-        print("CenterY:",CenterY)
+        # print("CenterX:",CenterX)
+        # print("CenterY:",CenterY)
         if CenterX<yolo_shape[0]/3 or CenterX>(yolo_shape[0]/3)*2 or CenterY<yolo_shape[1]/3 or CenterY>(yolo_shape[1]/3)*2:
             print('out of boundary')
         
@@ -293,7 +293,7 @@ class Chamber_Inference(QtCore.QThread):
 
         for img_path in image_dir.glob("*.*"):
 
-            print(img_path)
+            # print(img_path)
             img = cv2.imread(str(img_path))
             #cv2.imshow('test',img)
             #cv2.waitKey(0)
@@ -312,7 +312,7 @@ class Chamber_Inference(QtCore.QThread):
             # print(img_path)
             img_path=os.path.join(folder_path,img_name)
             
-            print('img path yolo:',img_path)
+            # print('img path yolo:',img_path)
             img = cv2.imread(str(img_path))
             #cv2.imshow('test',img)
             #cv2.waitKey(0)
@@ -420,7 +420,7 @@ class Chamber_Inference(QtCore.QThread):
             
             df.loc[df['file_name'].values==str(filename),'frag_percentage']=str(frag_percentage)
 
-            print("frag_precentage :",frag_percentage)
+            # print("frag_precentage :",frag_percentage)
             # print("filename:",filename)
 
             df.to_csv(csv_path,index=0)
@@ -441,7 +441,7 @@ class Chamber_Inference(QtCore.QThread):
             df.loc[df['file_name'].values==str(filename),'frag_percentage']=str(frag_percentage)
             df.loc[df['file_name'].values==str(filename),'pn_number']=str(pn_number)
 
-            print("frag_precentage :",frag_percentage)
+            # print("frag_precentage :",frag_percentage)
             # print("filename:",filename)
 
             df.to_csv(csv_path,index=0)
@@ -454,7 +454,7 @@ class Chamber_Inference(QtCore.QThread):
         # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
         print("csv_path:",csv_path)
         df=pd.read_csv(csv_path)
-        print(df)
+        # print(df)
 
         if os.path.exists(csv_path):
             df=pd.read_csv(csv_path)
@@ -462,7 +462,7 @@ class Chamber_Inference(QtCore.QThread):
             img_list=df.file_name[df['cell_stage'].isna()]
             
             # img_list=df.file_name[df['check']=='F']
-            print("img_list",img_list)
+            # print("img_list",img_list)
             return img_list
             
 
@@ -594,7 +594,7 @@ class Chamber_Inference(QtCore.QThread):
 
         csv_path = os.path.join(csv_dir,folder_path)
         csv_path = os.path.join(csv_path,csv_name)
-        print("get stage csv path:",csv_path)
+        # print("get stage csv path:",csv_path)
         img_folder_dir= os.path.join(img_dir,folder_path)
         each_stage_list=[]
         each_img_list=[]
@@ -849,7 +849,7 @@ class Chamber_Inference(QtCore.QThread):
             if self.o_stop:
                 break
 
-            print('dish_folder_path',dish_folder_path)
+            # print('dish_folder_path',dish_folder_path)
 
             if len(os.listdir(dish_folder_path))!=0:
                 schedule_percentage=0
@@ -879,7 +879,7 @@ class Chamber_Inference(QtCore.QThread):
 
                 
                 img_list_todo = self.get_undo_img_list(csv_path)
-                print('img_list_todo',img_list_todo)
+                # print('img_list_todo',img_list_todo)
                 logging.debug("list to do : %s"%(img_list_todo))
                 
 

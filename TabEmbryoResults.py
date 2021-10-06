@@ -45,10 +45,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.edit_info.setFocusPolicy(QtCore.Qt.ClickFocus) 
         self.edit_info.textChanged.connect(self.edit_info_changed)               
         
-        #Video frame
-        label_video = QtWidgets.QLabel('Video:')
-        label_video.setFont(QtGui.QFont('Arial', 12))
-        label_video.setFixedHeight(20)
+        # #Video frame
+        # label_video = QtWidgets.QLabel('Video:')
+        # label_video.setFont(QtGui.QFont('Arial', 12))
+        # label_video.setFixedHeight(20)
         self.frame_video = QtWidgets.QFrame(self)        
         self.frame_video.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_video.setFixedSize(QtCore.QSize(700, 600))  
@@ -110,7 +110,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         layout = QtWidgets.QGridLayout(self) 
         # layout.addWidget(label_table_left, 0, 0, 1, 2, QtCore.Qt.AlignHCenter)  
         layout.addWidget(self.table_img_left, 1, 3, 9, 4, QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
-        layout.addWidget(label_video, 0, 2, 1, 4, QtCore.Qt.AlignHCenter)        
+        # layout.addWidget(label_video, 0, 2, 1, 4, QtCore.Qt.AlignHCenter)        
         layout.addWidget(self.frame_video, 0, 0, 6, 4, QtCore.Qt.AlignLeft)#HCenter)
         layout.addWidget(self.playButton, 7, 0, 1, 1)          
         layout.addWidget(self.selector_fp, 7, 1, 1, 1) 
@@ -197,6 +197,121 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
     def setPosition(self, position):
         self.player.setPosition(position)        
+
+
+    def LoadEmbryoDataPnNew(self, patient_id, chamber_id, dish_id):
+        print ('LoadEmbryoData')
+        #_, filename_dic, timespend_dic, percent_dic = get_each_stage_result(chid, wid)
+         
+        #{'Xlsx': {'pn': 7.469999999999999, 't2': 9.629999999999999, 't3': 25.129999999999995, 't4': 26.129999999999995, 't5': 42.47, 't6': 44.129999999999995, 't7': 45.300000000000004, 't8': 51.300000000000004, 'morula': 83.46000000000001, 'blas': nan}, 'Predict': {'pn': 0.0, 't2': 5.83, 't3': 20.67, 't4': 22.33, 't5': nan, 't6': 33.0, 't7': 47.5, 't8': 48.33, 'morula': 76.17, 'blas': 79.17, 'comp': nan}, 'Fragment': {'pn': 0.5311904761904762, 't2': 1.1187142857142856, 't3': 3.8090625, 't4': 1.9507042253521132, 't5': 3.500714285714285, 't6': 1.88358024691358, 't7': 2.2823333333333333, 't8': 2.1847499999999997, 'morula': 1.927297297297297, 'blas': 2.9246296296296292}, 'Cham_id': '6', 'Dish_id': '5', 'Patient_id': 'MTL-0245-13A1-9874', 'Dict_key': ['pn', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 'morula', 'blas']}
+        dict_msg = get_xlsx_predict_division_time(patient_id, chamber_id, dish_id)
+        print(dict_msg)
+        total_score = 0
+        count = 0   
+        
+        #Left table               
+        for n in range(5):
+            #Analysis            
+            grade = '-'
+            score = '-'
+            time = '-'
+            #Find grade time
+            if n == 0:
+                if "pn" in dict_msg["Predict"] and str(dict_msg["Predict"]["pn"]) != 'nan' and str(dict_msg["Predict"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["pn"]):
+                    time = str(int(dict_msg["Predict"]["pn"] * 100.0) / 100.0) 
+                if "pn" in dict_msg["Fragment"] and str(dict_msg["Fragment"]["pn"]) != 'nan' and str(dict_msg["Fragment"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]["pn"]):  
+                    grade = self.MapGradeValue(int(dict_msg["Fragment"]["pn"]))
+                    score = 100 - (4 * int(dict_msg["Fragment"]["pn"]))
+                print('score',score)                 
+                if score != '-':
+                    total_score = total_score + score
+                    count += 1
+            if n >= 1:
+                if 't' + str(n + 1) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(n + 1)]) != 'nan' and str(dict_msg["Predict"]['t' + str(n + 1)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(n + 1)]):
+                    time = str(int(dict_msg["Predict"]['t' + str(n + 1)] * 100.0) / 100.0)  
+                if 't' + str(n + 1) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(n + 1)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(n + 1)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(n + 1)]):  
+                    grade = self.MapGradeValue(math.ceil(dict_msg["Fragment"]['t' + str(n + 1)]))
+                    score = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(n + 1)]))               
+                if score != '-':
+                    total_score = total_score + score
+                    count += 1            
+            label_l_analysis = EmbryoImageLabel(150, 150, [str(grade), str(time), str(score)]) 
+            
+            #View              
+            time = '-'
+            #Find grade time
+            if n == 0 and "pn" in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]["pn"]) != 'nan' and str(dict_msg["Xlsx"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]["pn"]):
+                time = str(int(dict_msg["Xlsx"]["pn"] * 100.0) / 100.0)                
+            if n >= 1 and 't' + str(n + 1) in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]['t' + str(n + 1)]) != 'nan' and str(dict_msg["Xlsx"]['t' + str(n + 1)]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]['t' + str(n + 1)]):   
+                time = str(int(dict_msg["Xlsx"]['t' + str(n + 1)] * 100.0) / 100.0)                                     
+            label_l_view = EmbryoImageLabel(150, 150, ['-', str(time), '-']) 
+            print()  
+            
+            #Insert data      
+            self.table_img_left.AddRow(n, label_l_analysis, label_l_view)  
+                         
+        #Right table
+        for n in range(5):
+            grade = '-'   
+            score = '-'
+            time = '-'            
+            #Find grade time            
+            if n < 3: 
+                if 't' + str(n + 6) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(n + 6)]) != 'nan' and str(dict_msg["Predict"]['t' + str(n + 6)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(n + 6)]):
+                    time = str(int(dict_msg["Predict"]['t' + str(n + 6)] * 100.0) / 100.0)                    
+                if 't' + str(n + 6) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(n + 6)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(n + 6)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(n + 6)]):
+                    grade = self.MapGradeValue(math.ceil(dict_msg["Fragment"]['t' + str(n + 6)]))
+                    score = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(n + 6)]))                
+                if score != '-':
+                    total_score = total_score + score
+                    count += 1
+                    
+            if n == 3:
+                if "morula" in dict_msg["Predict"] and str(dict_msg["Predict"]["morula"]) != 'nan' and str(dict_msg["Predict"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["morula"]):                             
+                    time = str(int(dict_msg["Predict"]["morula"] * 100.0) / 100.0)
+                if "morula" in dict_msg["Fragment"] and str(dict_msg["Fragment"]["morula"]) != 'nan' and str(dict_msg["Fragment"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]["morula"]):       
+                    grade = self.MapGradeValue(math.ceil(dict_msg["Fragment"]["morula"]))
+                    score = 100 - (4 * math.ceil(dict_msg["Fragment"]["morula"]))
+                   
+            if n == 4:
+                if "blas" in dict_msg["Predict"] and str(dict_msg["Predict"]["blas"]) != 'nan' and str(dict_msg["Predict"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["blas"]):                                       
+                    time = str(int(dict_msg["Predict"]["blas"] * 100.0) / 100.0)
+                                       
+            #View           
+            time_ = '-'
+            #Find grade time
+            if n < 3: 
+                if 't' + str(n + 6) in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]['t' + str(n + 6)]) != 'nan' and str(dict_msg["Xlsx"]['t' + str(n + 6)]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]['t' + str(n + 6)]):                
+                    time_ = str(int(dict_msg["Xlsx"]['t' + str(n + 6)] * 100.0) / 100.0)
+                                    
+            if n == 3:
+                if "morula" in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]["morula"]) != 'nan' and str(dict_msg["Xlsx"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]["morula"]):
+                    time_ = str(int(dict_msg["Xlsx"]["morula"] * 100.0) / 100.0)
+                   
+            if n == 4:
+                if "blas" in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]["blas"]) != 'nan' and str(dict_msg["Xlsx"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]["blas"]):                                 
+                    time_ = str(int(dict_msg["Xlsx"]["blas"] * 100.0) / 100.0)
+                                             
+                  
+            #Insert data 
+            # self.table_img_right.SetChamberIdPid(chamber_id, dish_id)
+            if n < 4:
+                label_r_view = EmbryoImageLabel(150, 150, ['-', str(time_), '-'])
+                label_r_analysis = EmbryoImageLabel(150, 150, [str(grade), str(time), str(score)])                           
+            else:
+                label_r_view = EmbryoImageLabel(150, 150, [str(time_), '-', '-'])
+                label_r_analysis = EmbryoImageLabel(150, 150, [str(time), "ICM", "TE"])
+            # self.table_img_right.AddRow(n, label_r_analysis, label_r_view) 
+                        
+        #Insert info data
+        if count != 0:
+            val = str(int((float(total_score) / float(count)) * 100) / 100)
+        else:
+            val = 0
+                
+        self.edit_info.clear()
+        self.edit_info.insertPlainText('Overall Scoring: {}\n'.format(val))
+        self.edit_info.insertPlainText('Event:')
      
     def LoadEmbryoData(self, patient_id, chamber_id, dish_id):
         print ('LoadEmbryoData')

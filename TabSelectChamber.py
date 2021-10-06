@@ -155,13 +155,48 @@ class TabSelectChamber(QtWidgets.QWidget):
                
     def initUI(self):        
         self.frame_chamber = QtWidgets.QFrame(self) 
-        self.frame_chamber.setGeometry(10, 10, 1580, 800)   
+        self.frame_chamber.setGeometry(10, 10, 1800, 960)   
         self.frame_chamber.setFrameShape(QtWidgets.QFrame.StyledPanel)        
         self.layout_chamber = QtWidgets.QGridLayout(self.frame_chamber)           
+        # self.AddOnlineOfflineMode()
+        
         
     def GetPatientID(self, chamber_id):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
         return str(listsMyQLineEdit[0].text())    
+
+    def AddOnlineOfflineModeCheckbox(self):
+        
+        Mode_widget = QtWidgets.QWidget()
+        Mode_widget.setFixedSize(QtCore.QSize(800, 30))
+        # label_mode = QtWidgets.QLabel('Mode Select:', a)
+        # label_mode.setFont(QtGui.QFont('Arial', 12))
+        # label_mode.setGeometry(10, 0, 140, 10)
+
+
+        label_mode = QtWidgets.QLabel('Mode Select:', Mode_widget)
+        label_mode.setFont(QtGui.QFont('Arial', 12))
+        label_mode.setGeometry(0, 0, 140, 30) 
+
+        
+        qbutton_online = QtWidgets.QRadioButton('online',Mode_widget)
+        qbutton_online.setGeometry(150, 0, 150, 30)
+        qbutton_online.setFont(QtGui.QFont('Arial', 12)) 
+        qbutton_online.toggled.connect(lambda:self.ClickSetmanualCheckbox(False))
+
+        qbutton_offline = QtWidgets.QRadioButton('offline',Mode_widget)
+        qbutton_offline.setGeometry(300, 0, 150, 30) 
+        qbutton_offline.setFont(QtGui.QFont('Arial', 12))
+        qbutton_offline.toggled.connect(lambda:self.ClickSetmanualCheckbox(True))
+
+
+        
+
+
+        qbuttongroup_mode = QtWidgets.QButtonGroup(Mode_widget)
+        qbuttongroup_mode.addButton(qbutton_online, 1)
+        qbuttongroup_mode.addButton(qbutton_offline, 2)
+        self.layout_chamber.addWidget(Mode_widget, 0, 0,1,3)
           
     def AddWells(self, chamber_number, well_number):
         #Clear
@@ -174,6 +209,11 @@ class TabSelectChamber(QtWidgets.QWidget):
         self.chamber_wells = []       
         self.edit_well_time = []   
         self.chambers = []
+
+        self.AddOnlineOfflineModeCheckbox()
+        
+
+
         
         count = 0      
         for frame_row in range(3):            
@@ -191,12 +231,13 @@ class TabSelectChamber(QtWidgets.QWidget):
                         if count_well >= well_number:
                             continue
                         dish = SelectCellDish(count + 1, count_well + 1, self.main_widget, group_chamber)
-                        dish.setGeometry(5 + 50 * c + 12 * c, 190 + well_row * 50 + 12 * well_row, 60, 60)
+                        dish.setGeometry(5 + 65 * c + 12 * c, 240 + well_row * 50 + 12 * well_row, 60, 60)
                         count_well += 1                      
                         select_dishs.append(dish)                        
                         
                 self.chamber_wells.append(select_dishs)
-                self.layout_chamber.addWidget(widget_chamber, frame_row, i)
+                print('frame row col number',frame_row+1,i)
+                self.layout_chamber.addWidget(widget_chamber, frame_row+1, i)
                 
                 self.chambers.append(group_chamber)
                 count += 1
@@ -208,7 +249,8 @@ class TabSelectChamber(QtWidgets.QWidget):
         widget_chamber = QtWidgets.QWidget()
         group_chamber = QtWidgets.QGroupBox(widget_chamber)                
         #group_chamber.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        group_chamber.setFixedSize(QtCore.QSize(510, 350))
+        group_chamber.setFixedSize(QtCore.QSize(550, 420))
+        group_chamber.setGeometry(10, 30, 550, 420) 
         #group_chamber.setGeometry(10 + i*440 + 5*i, 0 + 200*frame_row + 5*frame_row, 440, 200)
         
         label_choose = QtWidgets.QLabel('Chamber Number:' + str(3*row + col + 1), group_chamber)
@@ -245,13 +287,31 @@ class TabSelectChamber(QtWidgets.QWidget):
         button_calendar.clicked.connect(lambda: self.SelectDate(str(3*row + col + 1),self.maunal_timeset_check))             
 
 
-        checkbox_hourminsec_mode = QtWidgets.QCheckBox('set manual',group_chamber)
-        checkbox_hourminsec_mode.setGeometry(395,100,120,35)
-        checkbox_hourminsec_mode.stateChanged.connect(self.ClickSetmanualCheckbox)
+        # checkbox_hourminsec_mode = QtWidgets.QCheckBox('set manual',group_chamber)
+        # checkbox_hourminsec_mode.setGeometry(395,100,120,35)
+        # checkbox_hourminsec_mode.stateChanged.connect(self.ClickSetmanualCheckbox)
                
         label_durationTime = QtWidgets.QLabel('Duration Time:', group_chamber)
         label_durationTime.setFont(QtGui.QFont('Arial', 12))
-        label_durationTime.setGeometry(10, 140, 140, 35)        
+        label_durationTime.setGeometry(10, 140, 140, 35)  
+
+        label_startTime= QtWidgets.QLabel('Offset Time:', group_chamber)
+        label_startTime.setFont(QtGui.QFont('Arial', 12))
+        label_startTime.setGeometry(10, 195, 140, 35) 
+        # label_startTime.setVisible(False)
+
+        qtime_startTime = QtWidgets.QTimeEdit(group_chamber)
+        qtime_startTime.setDisplayFormat('hh:mm:ss')
+        # setting geometry of the date edit
+        qtime_startTime.setGeometry(200, 195, 150, 30)
+        qtime_startTime.setVisible(True)
+        
+        # qbuttongroup_mode.setGeometry(160, 195, 140, 35) 
+
+        
+
+         
+
         edit_wellDurationTime = QtWidgets.QLineEdit(group_chamber)
         edit_wellDurationTime.setGeometry(150, 140, 90, 35)
         edit_wellDurationTime.setStyleSheet('background-color:#b2fbe5;')         
@@ -271,20 +331,27 @@ class TabSelectChamber(QtWidgets.QWidget):
         button_export.clicked.connect(lambda:  self.SaveToHistory(str(3*row + col + 1)))   
         
         progress = QtWidgets.QProgressBar(group_chamber)
-        progress.setGeometry(10, 320, 430, 25)
+        progress.setGeometry(10, 370, 520, 25)
         progress.setMaximum(100)
         progress.setProperty("value", 0)
         #progress.setValue(50)
                        
         return widget_chamber, group_chamber   
 
-    def  ClickSetmanualCheckbox(self,state):
-        if state ==QtCore.Qt.Checked:
-            self.maunal_timeset_check=True
-            print('Check')
-        else:
-            self.maunal_timeset_check=False
-            print('uncheck')
+    def  ClickSetmanualCheckbox(self,bool_show):
+        for i in range(6):
+            listsMyQButton=self.chambers[i].findChildren(QtWidgets.QTimeEdit)
+            for j in range(len(listsMyQButton)):
+                listsMyQButton[j].setEnabled(bool_show)
+
+    # def ImportData(self, cid):
+    #     listsMyQButton = self.chambers[int(cid) - 1].findChildren(QtWidgets.QPushButton)
+    #     if str(listsMyQButton[0].text()) == 'Import':
+    #         self.import_dialog.cid = cid
+    #         self.import_dialog.show()
+    #     if str(listsMyQButton[0].text()) == 'Clear':
+    #         print('clear')            
+    #         self.StopExtractAndAnalysis(cid)
 
     
     def DisableOrEnableAllElementByChamberID(self, chamber_id, set):
@@ -303,12 +370,12 @@ class TabSelectChamber(QtWidgets.QWidget):
 
     #Calendar diagon
     def SelectDate(self, chamber_id,timeset_checkbox_bool):
-        status=''
-        if timeset_checkbox_bool:
-            status='manual set'
-        else:
-            status='select'
-
+        # status=''
+        # if timeset_checkbox_bool:
+        #     status='manual set'
+        # else:
+        #     status='select'
+        status='select'
         calendar = Calendar(status, chamber_id,self)
         calendar.show()
         calendar.exec_()    
@@ -325,6 +392,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         sel_machine = [m for m in self.machine_infos if m[0] == machine]       
         if sel_machine != []:
             print('reset')
+            # self.AddOnlineOfflineMode()
             self.AddWells(sel_machine[0][1], sel_machine[0][2])   
             
     def ProcessUnixsocketMsg(self, query):
@@ -342,6 +410,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         chamber_id = query["chamber_id"]
         well_id = query["dish_id"]
         isboundary = query["check_isboundary"]
+        
         if isboundary:
             self.chamber_wells[int(chamber_id) - 1][int(well_id) - 1].setEnable('d')
         else:

@@ -119,28 +119,28 @@ class ShapesConfig_pn_model(Config):
 
 
 
-def load_cell_mask_model():
+# def load_cell_mask_model():
 
-    inference_config = InferenceConfig()
+#     inference_config = InferenceConfig()
 
-    # Recreate the model in inference mode
-    model = modellib.MaskRCNN(mode="inference", 
-                            config=inference_config,
-                            model_dir=MODEL_DIR)
+#     # Recreate the model in inference mode
+#     model = modellib.MaskRCNN(mode="inference", 
+#                             config=inference_config,
+#                             model_dir=MODEL_DIR)
 
 
-    # Get path to saved weights
-    # Either set a specific path or find last trained weights
-    # model_path = os.path.join(ROOT_DIR, ".h5 file name here")
-    #model_path = model.find_last()
-    # model_path='./logs/shapes20200407T1436/mask_rcnn_shapes_0025.h5'
-    model_path='./model_data/cell_count_model/mask_rcnn_shapes_0100.h5'
+#     # Get path to saved weights
+#     # Either set a specific path or find last trained weights
+#     # model_path = os.path.join(ROOT_DIR, ".h5 file name here")
+#     #model_path = model.find_last()
+#     # model_path='./logs/shapes20200407T1436/mask_rcnn_shapes_0025.h5'
+#     model_path='./model_data/cell_count_model/mask_rcnn_shapes_0100.h5'
 
-    # Load trained weights
-    print("Loading weights from ", model_path)
-    model.load_weights(model_path, by_name=True)
+#     # Load trained weights
+#     print("Loading weights from ", model_path)
+#     model.load_weights(model_path, by_name=True)
 
-    return model
+#     return model
 
 
 def load_frag_model():
@@ -207,19 +207,19 @@ def img_inference_frag(frag_model,img_path):
 
 
     #plt.show("./7_00000417_DISH1_1120000_00059.jpg")
-    all_d_time=0
+    # all_d_time=0
 
 
 
     # Run detection
     
-    t_start=time.time()
+    # t_start=time.time()
     results = frag_model.detect([image], verbose=1)
-    t_end = time.time()
+    # t_end = time.time()
     #print("mask rcnn result::",results['mask'])
     
-    d_time=t_end-t_start
-    all_d_time=all_d_time+d_time
+    # d_time=t_end-t_start
+    # all_d_time=all_d_time+d_time
 
 
         
