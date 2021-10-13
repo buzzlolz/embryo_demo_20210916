@@ -12077,3 +12077,1712 @@
 2021-10-06 16:08:50,101 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
 2021-10-06 16:08:50,101 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
 2021-10-06 16:08:50,102 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-06 17:08:27,099 [INFO] UnixSocketServer:run: Starting up server
+2021-10-06 17:08:27,101 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-06 17:08:27,143 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-06 17:08:27,144 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-06 17:08:27,145 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 10:03:32,251 [INFO] UnixSocketServer:run: Stop server
+2021-10-07 10:03:32,751 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-07 14:06:32,794 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:06:32,797 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:06:32,833 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:06:32,834 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:06:32,835 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:07:35,552 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:07:35,555 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:07:35,593 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:07:35,594 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:07:35,594 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:07:56,137 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:07:56,140 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:07:56,179 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:07:56,180 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:07:56,181 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:08:18,352 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:08:18,354 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:08:18,399 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:08:18,399 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:08:18,400 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:08:38,840 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:08:38,843 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:08:38,880 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:08:38,881 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:08:38,882 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:08:57,337 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:08:57,340 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:08:57,381 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:08:57,382 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:08:57,382 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:09:55,809 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:09:55,812 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:09:55,851 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:09:55,852 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:09:55,852 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:10:14,210 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:10:14,213 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:10:14,254 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:10:14,255 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:10:14,255 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:10:34,367 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:10:34,370 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:10:34,406 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:10:34,407 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:10:34,408 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:11:25,422 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:11:25,425 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:11:25,464 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:11:25,465 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:11:25,465 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:11:43,735 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:11:43,738 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:11:43,779 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:11:43,780 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:11:43,781 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:13:06,062 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:13:06,064 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:13:06,104 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:13:06,104 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:13:06,105 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:14:24,890 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:14:24,892 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:14:24,930 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:14:24,931 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:14:24,932 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:15:02,924 [INFO] UnixSocketServer:run: Stop server
+2021-10-07 14:15:02,929 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-07 14:16:18,995 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:16:18,998 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:16:19,035 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:16:19,036 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:16:19,036 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:16:45,542 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:16:45,546 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:16:45,600 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:16:45,601 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:16:45,602 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:18:36,792 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:18:36,795 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:18:36,835 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:18:36,836 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:18:36,837 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:19:23,248 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:19:23,251 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:19:23,286 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:19:23,287 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:19:23,288 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:19:57,733 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:19:57,736 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:19:57,773 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:19:57,774 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:19:57,775 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:20:18,218 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 14:20:18,220 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 14:20:18,257 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 14:20:18,258 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 14:20:18,258 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:18:48,369 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 15:18:48,372 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:18:48,409 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 15:18:48,410 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 15:18:48,411 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:18:52,375 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-07 15:19:15,800 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 15:19:59,549 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:19:59,584 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 15:19:59,585 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 15:19:59,586 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:20:03,554 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-07 15:21:32,047 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 15:22:16,194 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:22:16,231 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 15:22:16,231 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 15:22:16,232 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:22:22,201 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-07 15:22:34,864 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 0}
+2021-10-07 15:22:34,864 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 0}
+2021-10-07 15:22:34,865 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:39,702 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 1}
+2021-10-07 15:22:39,703 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 1}
+2021-10-07 15:22:39,703 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:42,525 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 3}
+2021-10-07 15:22:42,525 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 3}
+2021-10-07 15:22:42,526 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:45,475 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 4}
+2021-10-07 15:22:45,475 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 4}
+2021-10-07 15:22:45,475 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:48,036 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 6}
+2021-10-07 15:22:48,037 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 6}
+2021-10-07 15:22:48,037 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:50,749 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 7}
+2021-10-07 15:22:50,749 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 7}
+2021-10-07 15:22:50,749 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:53,263 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 9}
+2021-10-07 15:22:53,263 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 9}
+2021-10-07 15:22:53,263 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:56,117 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 10}
+2021-10-07 15:22:56,117 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 10}
+2021-10-07 15:22:56,118 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:22:59,366 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 12}
+2021-10-07 15:22:59,366 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 12}
+2021-10-07 15:22:59,367 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:02,073 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 13}
+2021-10-07 15:23:02,074 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 13}
+2021-10-07 15:23:02,074 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:04,784 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 14}
+2021-10-07 15:23:04,785 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 14}
+2021-10-07 15:23:04,785 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:07,217 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 16}
+2021-10-07 15:23:07,218 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 16}
+2021-10-07 15:23:07,218 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:10,108 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 17}
+2021-10-07 15:23:10,108 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 17}
+2021-10-07 15:23:10,109 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:12,948 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 19}
+2021-10-07 15:23:12,949 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 19}
+2021-10-07 15:23:12,949 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:15,888 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 20}
+2021-10-07 15:23:15,888 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 20}
+2021-10-07 15:23:15,889 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:18,561 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 22}
+2021-10-07 15:23:18,561 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 22}
+2021-10-07 15:23:18,562 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:20,994 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 23}
+2021-10-07 15:23:20,995 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 23}
+2021-10-07 15:23:20,995 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:23,954 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 25}
+2021-10-07 15:23:23,955 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 25}
+2021-10-07 15:23:23,955 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:26,716 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 26}
+2021-10-07 15:23:26,716 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 26}
+2021-10-07 15:23:26,717 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:29,845 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 28}
+2021-10-07 15:23:29,846 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 28}
+2021-10-07 15:23:29,846 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:32,078 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 29}
+2021-10-07 15:23:32,079 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 29}
+2021-10-07 15:23:32,079 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:34,592 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 31}
+2021-10-07 15:23:34,592 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 31}
+2021-10-07 15:23:34,592 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:37,171 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 32}
+2021-10-07 15:23:37,172 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 32}
+2021-10-07 15:23:37,172 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:39,978 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 34}
+2021-10-07 15:23:39,978 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 34}
+2021-10-07 15:23:39,979 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:42,564 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 35}
+2021-10-07 15:23:42,564 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 35}
+2021-10-07 15:23:42,565 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:45,270 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 37}
+2021-10-07 15:23:45,270 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 37}
+2021-10-07 15:23:45,270 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:47,704 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 38}
+2021-10-07 15:23:47,705 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 38}
+2021-10-07 15:23:47,705 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:50,547 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 40}
+2021-10-07 15:23:50,548 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 40}
+2021-10-07 15:23:50,548 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:53,544 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 41}
+2021-10-07 15:23:53,544 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 41}
+2021-10-07 15:23:53,545 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:56,378 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 43}
+2021-10-07 15:23:56,378 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 43}
+2021-10-07 15:23:56,379 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:23:59,615 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 44}
+2021-10-07 15:23:59,615 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 44}
+2021-10-07 15:23:59,616 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:02,190 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 46}
+2021-10-07 15:24:02,190 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 46}
+2021-10-07 15:24:02,190 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:05,233 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 47}
+2021-10-07 15:24:05,234 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 47}
+2021-10-07 15:24:05,234 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:08,054 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 49}
+2021-10-07 15:24:08,055 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 49}
+2021-10-07 15:24:08,055 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:10,740 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 50}
+2021-10-07 15:24:10,740 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 50}
+2021-10-07 15:24:10,740 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:13,453 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 51}
+2021-10-07 15:24:13,453 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 51}
+2021-10-07 15:24:13,453 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:16,569 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 53}
+2021-10-07 15:24:16,569 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 53}
+2021-10-07 15:24:16,569 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:19,146 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 54}
+2021-10-07 15:24:19,146 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 54}
+2021-10-07 15:24:19,146 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:22,175 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 56}
+2021-10-07 15:24:22,176 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 56}
+2021-10-07 15:24:22,176 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:24,893 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 57}
+2021-10-07 15:24:24,894 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 57}
+2021-10-07 15:24:24,894 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:28,029 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 59}
+2021-10-07 15:24:28,029 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 59}
+2021-10-07 15:24:28,030 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:30,665 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 60}
+2021-10-07 15:24:30,666 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 60}
+2021-10-07 15:24:30,666 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:33,296 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 62}
+2021-10-07 15:24:33,296 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 62}
+2021-10-07 15:24:33,297 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:36,103 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 63}
+2021-10-07 15:24:36,104 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 63}
+2021-10-07 15:24:36,104 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:38,748 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 65}
+2021-10-07 15:24:38,748 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 65}
+2021-10-07 15:24:38,748 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:41,374 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 66}
+2021-10-07 15:24:41,374 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 66}
+2021-10-07 15:24:41,374 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:44,112 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 68}
+2021-10-07 15:24:44,113 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 68}
+2021-10-07 15:24:44,113 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:46,898 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 69}
+2021-10-07 15:24:46,898 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 69}
+2021-10-07 15:24:46,899 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:49,308 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 71}
+2021-10-07 15:24:49,308 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 71}
+2021-10-07 15:24:49,308 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:51,876 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 72}
+2021-10-07 15:24:51,876 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 72}
+2021-10-07 15:24:51,876 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:54,715 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 74}
+2021-10-07 15:24:54,715 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 74}
+2021-10-07 15:24:54,716 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:24:57,527 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 75}
+2021-10-07 15:24:57,527 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 75}
+2021-10-07 15:24:57,527 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:00,110 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 77}
+2021-10-07 15:25:00,110 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 77}
+2021-10-07 15:25:00,110 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:03,332 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 78}
+2021-10-07 15:25:03,333 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 78}
+2021-10-07 15:25:03,333 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:06,125 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 80}
+2021-10-07 15:25:06,126 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 80}
+2021-10-07 15:25:06,126 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:09,243 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 81}
+2021-10-07 15:25:09,244 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 81}
+2021-10-07 15:25:09,244 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:11,940 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 83}
+2021-10-07 15:25:11,940 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 83}
+2021-10-07 15:25:11,941 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:14,339 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 84}
+2021-10-07 15:25:14,339 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 84}
+2021-10-07 15:25:14,339 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:17,182 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 86}
+2021-10-07 15:25:17,182 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 86}
+2021-10-07 15:25:17,182 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:19,870 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 87}
+2021-10-07 15:25:19,870 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 87}
+2021-10-07 15:25:19,870 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:22,482 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 89}
+2021-10-07 15:25:22,483 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 89}
+2021-10-07 15:25:22,483 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:24,941 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 90}
+2021-10-07 15:25:24,941 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 90}
+2021-10-07 15:25:24,941 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:27,495 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 92}
+2021-10-07 15:25:27,495 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 92}
+2021-10-07 15:25:27,495 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:30,331 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 93}
+2021-10-07 15:25:30,331 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 93}
+2021-10-07 15:25:30,332 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:32,814 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 94}
+2021-10-07 15:25:32,815 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 94}
+2021-10-07 15:25:32,815 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:35,454 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 96}
+2021-10-07 15:25:35,455 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 96}
+2021-10-07 15:25:35,455 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:37,727 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 97}
+2021-10-07 15:25:37,728 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 97}
+2021-10-07 15:25:37,728 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:40,559 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 99}
+2021-10-07 15:25:40,560 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 99}
+2021-10-07 15:25:40,560 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:41,588 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-07 15:25:41,588 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-07 15:25:41,589 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:45,815 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-07 15:25:45,816 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-07 15:25:45,816 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:50,062 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-07 15:25:50,062 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-07 15:25:50,063 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:54,309 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-07 15:25:54,309 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-07 15:25:54,309 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:25:59,465 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-07 15:25:59,465 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-07 15:25:59,465 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:03,797 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-07 15:26:03,797 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-07 15:26:03,797 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:07,964 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-07 15:26:07,964 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-07 15:26:07,965 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:12,105 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-07 15:26:12,105 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-07 15:26:12,106 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:16,256 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-07 15:26:16,256 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-07 15:26:16,256 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:20,551 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-07 15:26:20,551 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-07 15:26:20,551 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:24,984 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-07 15:26:24,985 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-07 15:26:24,985 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:29,314 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-07 15:26:29,315 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-07 15:26:29,315 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:33,530 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-07 15:26:33,531 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-07 15:26:33,531 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:37,700 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-07 15:26:37,701 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-07 15:26:37,701 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:37,702 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-07 15:26:37,703 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-07 15:26:37,703 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:26:37,704 [INFO] Chamber_inference_Class:run: Finish run chamber id=2
+2021-10-07 15:49:00,954 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 15:49:45,667 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:49:45,701 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 15:49:45,702 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 15:49:45,702 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:49:49,672 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-07 15:49:53,870 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-07 15:49:53,870 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-07 15:49:53,871 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:49:57,944 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-07 15:49:57,944 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-07 15:49:57,945 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:02,014 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-07 15:50:02,014 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-07 15:50:02,014 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:07,311 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-07 15:50:07,311 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-07 15:50:07,311 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:11,537 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-07 15:50:11,537 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-07 15:50:11,538 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:15,602 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-07 15:50:15,602 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-07 15:50:15,603 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:19,613 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-07 15:50:19,614 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-07 15:50:19,614 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:23,714 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-07 15:50:23,714 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-07 15:50:23,714 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:27,844 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-07 15:50:27,844 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-07 15:50:27,844 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:32,007 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-07 15:50:32,007 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-07 15:50:32,007 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:36,100 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-07 15:50:36,100 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-07 15:50:36,100 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:40,190 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-07 15:50:40,190 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-07 15:50:40,190 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:44,274 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-07 15:50:44,275 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-07 15:50:44,275 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:48,260 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-07 15:50:48,260 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-07 15:50:48,261 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:48,261 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-07 15:50:48,262 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-07 15:50:48,262 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:50:48,263 [INFO] Chamber_inference_Class:run: Finish run chamber id=2
+2021-10-07 15:51:43,287 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 15:52:27,859 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:52:27,900 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 15:52:27,901 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 15:52:27,901 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 15:52:31,864 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-07 15:52:36,035 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-07 15:52:36,035 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-07 15:52:36,036 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:52:40,213 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-07 15:52:40,213 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-07 15:52:40,213 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:52:44,363 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-07 15:52:44,363 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-07 15:52:44,363 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:52:49,442 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-07 15:52:49,443 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-07 15:52:49,443 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:52:53,682 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-07 15:52:53,682 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-07 15:52:53,682 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:52:57,967 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-07 15:52:57,967 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-07 15:52:57,967 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:53:02,078 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-07 15:53:02,078 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-07 15:53:02,078 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:53:06,365 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-07 15:53:06,365 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-07 15:53:06,366 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:53:10,688 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-07 15:53:10,688 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-07 15:53:10,688 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 15:53:14,783 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-07 15:53:14,783 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-07 15:53:14,784 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-07 16:09:35,894 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:09:35,898 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:09:35,940 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:09:35,940 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:09:35,941 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:10:44,149 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:10:44,151 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:10:44,188 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:10:44,189 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:10:44,190 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:11:12,414 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:11:12,416 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:11:12,463 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:11:12,464 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:11:12,464 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:11:48,659 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:11:48,662 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:11:48,702 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:11:48,703 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:11:48,704 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:12:25,326 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:12:25,328 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:12:25,368 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:12:25,369 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:12:25,370 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:45:11,510 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:45:11,515 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:45:11,561 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:45:11,562 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:45:11,562 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:47:01,759 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:47:01,762 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:47:01,806 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:47:01,807 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:47:01,808 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:47:44,087 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:47:44,089 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:47:44,130 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:47:44,131 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:47:44,131 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:56:33,620 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-07 16:56:34,594 [INFO] UnixSocketServer:run: Stop server
+2021-10-07 16:57:00,191 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:57:00,194 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:57:00,233 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:57:00,234 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:57:00,235 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:57:27,078 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:57:27,080 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:57:27,117 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:57:27,118 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:57:27,119 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:58:03,314 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:58:03,317 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:58:03,355 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:58:03,356 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:58:03,356 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:58:23,585 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 16:58:23,587 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 16:58:23,626 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 16:58:23,627 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 16:58:23,628 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:02:01,760 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 17:02:01,762 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:02:01,801 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 17:02:01,802 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 17:02:01,803 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:02:39,988 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 17:02:39,990 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:02:40,028 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 17:02:40,029 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 17:02:40,029 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:03:14,311 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 17:03:14,313 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:03:14,351 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 17:03:14,351 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 17:03:14,352 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:03:56,558 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 17:03:56,560 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:03:56,599 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 17:03:56,600 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 17:03:56,601 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:04:25,308 [INFO] UnixSocketServer:run: Starting up server
+2021-10-07 17:04:25,311 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:04:25,363 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-07 17:04:25,364 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-07 17:04:25,364 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-07 17:16:15,025 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-07 17:16:16,000 [INFO] UnixSocketServer:run: Stop server
+2021-10-08 09:26:26,671 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:26:26,674 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:26:26,716 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:26:26,716 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:26:26,717 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:42:36,827 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:42:36,829 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:42:36,866 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:42:36,867 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:42:36,868 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:44:24,518 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:44:24,521 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:44:24,561 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:44:24,562 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:44:24,563 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:44:40,463 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:44:40,466 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:44:40,504 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:44:40,505 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:44:40,505 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:45:38,837 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:45:38,839 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:45:38,875 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:45:38,876 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:45:38,877 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:45:51,756 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:45:51,759 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:45:51,797 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:45:51,797 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:45:51,798 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:46:05,966 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:46:05,969 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:46:06,010 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:46:06,011 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:46:06,012 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:46:27,952 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:46:27,955 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:46:27,995 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:46:27,996 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:46:27,997 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:46:58,493 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:46:58,496 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:46:58,531 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:46:58,532 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:46:58,533 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:59:53,555 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 09:59:53,558 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 09:59:53,594 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 09:59:53,595 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 09:59:53,595 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:02:06,167 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:02:06,170 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:02:06,213 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:02:06,214 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:02:06,215 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:02:30,955 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:02:30,958 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:02:30,996 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:02:30,997 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:02:30,998 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:10:59,722 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:10:59,725 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:10:59,765 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:10:59,766 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:10:59,767 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:14:16,202 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:14:16,205 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:14:16,254 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:14:16,254 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:14:16,255 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:14:52,536 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:14:52,539 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:14:52,576 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:14:52,578 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:14:52,579 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:15:21,020 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:15:21,023 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:15:21,066 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:15:21,067 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:15:21,067 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:16:09,352 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:16:09,354 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:16:09,391 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:16:09,392 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:16:09,392 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:16:25,644 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:16:25,647 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:16:25,686 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:16:25,687 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:16:25,688 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:16:57,034 [INFO] UnixSocketServer:run: Starting up server
+2021-10-08 10:16:57,037 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 10:16:57,075 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-08 10:16:57,076 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-08 10:16:57,076 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-08 17:21:32,071 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-08 17:21:36,067 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-08 17:21:36,067 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-08 17:21:36,068 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:21:40,127 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-08 17:21:40,128 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-08 17:21:40,128 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:21:45,061 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-08 17:21:45,061 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-08 17:21:45,062 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:21:49,305 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-08 17:21:49,305 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-08 17:21:49,305 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:21:53,352 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-08 17:21:53,352 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-08 17:21:53,353 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:21:57,350 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-08 17:21:57,350 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-08 17:21:57,350 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:01,304 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-08 17:22:01,304 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-08 17:22:01,304 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:05,470 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-08 17:22:05,470 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-08 17:22:05,470 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:09,498 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-08 17:22:09,498 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-08 17:22:09,498 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:13,795 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-08 17:22:13,795 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-08 17:22:13,795 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:17,989 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-08 17:22:17,989 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-08 17:22:17,989 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:21,897 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-08 17:22:21,897 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-08 17:22:21,897 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:26,091 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-08 17:22:26,092 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-08 17:22:26,092 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:30,036 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-08 17:22:30,036 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-08 17:22:30,037 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:30,037 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-08 17:22:30,038 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-08 17:22:30,038 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-08 17:22:30,039 [INFO] Chamber_inference_Class:run: Finish run chamber id=2
+2021-10-12 09:12:21,914 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:12:21,918 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:12:21,962 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:12:21,962 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:12:21,963 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:13:22,517 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:13:22,520 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:13:22,557 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:13:22,557 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:13:22,558 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:13:22,768 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:44:52,813 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:44:52,816 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:44:52,854 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:44:52,855 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:44:52,856 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:44:53,078 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:45:13,665 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:45:13,667 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:45:13,704 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:45:13,705 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:45:13,706 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:45:13,921 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:45:38,387 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:45:38,391 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:45:38,432 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:45:38,433 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:45:38,433 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:45:38,661 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:50:17,005 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:50:17,007 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:50:17,053 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:50:17,054 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:50:17,055 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:50:17,264 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:54:53,543 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:54:53,546 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:54:53,583 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:54:53,584 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:54:53,585 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:55:13,293 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:55:13,295 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:55:13,333 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:55:13,334 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:55:13,335 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:55:13,563 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:55:37,317 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 09:55:37,322 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:55:37,368 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 09:55:37,369 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 09:55:37,370 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 09:55:37,668 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:05:11,655 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:05:11,658 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:05:11,695 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:05:11,696 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:05:11,696 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:05:11,901 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:23:16,807 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:23:16,810 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:23:16,860 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:23:16,861 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:23:16,862 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:23:17,091 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:45:21,041 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:45:21,044 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:45:21,083 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:45:21,084 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:45:21,085 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:45:59,175 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:45:59,177 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:45:59,216 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:45:59,217 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:45:59,218 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:45:59,463 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:46:47,742 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:46:47,745 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:46:47,785 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:46:47,786 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:46:47,787 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:48:56,579 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:48:56,581 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:48:56,624 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:48:56,625 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:48:56,626 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:48:56,852 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:50:05,825 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:50:05,828 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:50:05,872 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:50:05,873 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:50:05,874 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:50:06,169 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:50:32,663 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:50:32,665 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:50:32,702 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:50:32,703 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:50:32,704 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:50:32,948 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:52:21,274 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:52:21,279 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:52:21,322 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:52:21,323 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:52:21,324 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:52:21,560 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:52:49,812 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:52:49,814 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:52:49,853 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:52:49,853 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:52:49,854 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:52:50,148 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:53:18,299 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:53:18,305 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:53:18,350 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:53:18,351 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:53:18,352 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:53:18,649 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:53:52,782 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:53:52,784 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:53:52,822 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:53:52,822 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:53:52,823 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:53:53,060 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:54:21,224 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:54:21,227 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:54:21,276 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:54:21,277 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:54:21,278 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:54:21,502 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:54:37,750 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:54:37,752 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:54:37,791 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:54:37,792 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:54:37,792 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:54:38,018 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:01,037 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:55:01,039 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:01,081 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:55:01,081 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:55:01,082 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:01,391 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:15,510 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:55:15,512 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:15,551 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:55:15,552 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:55:15,553 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:15,798 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:31,707 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:55:31,710 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:31,751 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:55:31,752 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:55:31,752 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:55:31,983 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:56:12,792 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 10:56:12,795 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:56:12,837 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 10:56:12,838 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 10:56:12,839 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 10:56:13,070 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:19:02,734 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:19:02,737 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:19:02,776 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:19:02,777 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:19:02,778 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:19:02,997 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:20:11,226 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:20:11,228 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:20:11,269 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:20:11,270 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:20:11,271 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:20:11,564 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:20:27,929 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:20:27,931 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:20:27,976 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:20:27,977 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:20:27,978 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:20:28,198 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:21:28,248 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:21:28,250 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:21:28,288 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:21:28,289 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:21:28,290 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:21:28,511 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:22:52,865 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:22:52,868 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:22:52,906 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:22:52,906 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:22:52,907 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:22:53,121 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:23:23,048 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:23:23,050 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:23:23,092 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:23:23,093 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:23:23,094 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:23:23,313 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:24:41,433 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 11:24:41,435 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:24:41,472 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 11:24:41,473 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 11:24:41,474 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 11:24:41,685 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:40:34,260 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:40:34,263 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:40:34,303 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:40:34,304 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:40:34,305 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:40:34,541 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:41:26,316 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:41:26,319 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:41:26,361 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:41:26,362 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:41:26,363 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:41:26,584 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:41:56,800 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:41:56,802 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:41:56,842 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:41:56,843 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:41:56,844 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:41:57,060 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:42:21,165 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:42:21,167 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:42:21,203 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:42:21,204 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:42:21,205 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:42:21,417 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:43:02,025 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:43:02,027 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:43:02,065 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:43:02,065 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:43:02,066 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:43:02,325 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:43:32,679 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:43:32,682 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:43:32,725 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:43:32,726 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:43:32,727 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:43:32,950 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:44:04,253 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:44:04,256 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:44:04,295 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:44:04,296 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:44:04,296 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:44:04,510 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:44:56,565 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:44:56,568 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:44:56,605 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:44:56,606 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:44:56,607 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:44:56,828 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:45:42,887 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:45:42,894 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:45:42,935 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:45:42,936 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:45:42,937 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:45:43,152 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:46:04,007 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 13:46:04,009 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:46:04,064 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 13:46:04,065 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 13:46:04,066 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 13:46:04,284 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:00:03,121 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:00:03,127 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:00:03,161 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:00:03,162 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:00:03,163 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:00:54,443 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:00:54,445 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:00:54,484 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:00:54,484 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:00:54,485 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:00:54,718 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:01:20,750 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:01:20,753 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:01:20,798 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:01:20,799 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:01:20,799 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:01:21,022 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:03:09,489 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:03:09,493 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:03:09,536 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:03:09,536 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:03:09,537 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:03:09,740 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:04:53,950 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:04:53,953 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:04:53,992 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:04:53,993 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:04:53,994 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:04:54,232 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:05:15,975 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:05:15,978 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:05:16,016 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:05:16,017 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:05:16,018 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:05:16,253 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:05:38,196 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:05:38,199 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:05:38,238 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:05:38,238 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:05:38,239 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:05:38,457 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:06:48,658 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:06:48,661 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:06:48,699 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:06:48,700 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:06:48,701 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:06:48,928 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:07:59,085 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:07:59,087 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:07:59,125 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:07:59,126 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:07:59,126 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:07:59,344 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:08:35,420 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:08:35,423 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:08:35,462 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:08:35,463 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:08:35,464 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:08:35,682 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:08:49,680 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:08:49,686 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:08:49,719 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:08:49,720 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:08:49,721 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:08:49,944 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:09:06,061 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:09:06,063 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:09:06,110 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:09:06,110 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:09:06,111 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:09:06,390 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:09:37,153 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:09:37,156 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:09:37,199 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:09:37,200 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:09:37,200 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:09:37,421 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:03,434 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:10:03,436 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:03,487 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:10:03,488 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:10:03,489 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:03,687 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:19,751 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:10:19,753 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:19,795 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:10:19,796 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:10:19,797 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:20,095 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:32,063 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:10:32,067 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:32,111 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:10:32,112 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:10:32,113 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:32,346 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:52,348 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:10:52,350 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:52,387 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:10:52,388 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:10:52,389 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:10:52,607 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:11:12,632 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:11:12,635 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:11:12,672 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:11:12,673 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:11:12,674 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:11:12,905 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:11:40,908 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:11:40,911 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:11:40,948 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:11:40,949 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:11:40,949 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:12:08,609 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:12:08,612 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:12:08,654 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:12:08,655 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:12:08,656 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:12:08,899 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:12:36,942 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:12:36,945 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:12:36,997 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:12:36,998 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:12:36,999 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:12:37,225 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:13:21,256 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:13:21,262 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:13:21,303 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:13:21,304 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:13:21,305 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:13:21,524 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:14:15,727 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:14:15,733 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:14:15,776 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:14:15,776 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:14:15,777 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:14:36,195 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:14:36,201 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:14:36,233 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:14:36,234 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:14:36,235 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:14:36,466 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:16:48,816 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:16:48,818 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:16:48,859 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:16:48,860 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:16:48,861 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:16:49,086 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:17:01,076 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:17:01,078 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:17:01,116 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:17:01,117 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:17:01,118 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:17:01,326 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:17:19,887 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:17:19,890 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:17:19,944 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:17:19,946 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:17:19,947 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:17:20,185 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:18:52,223 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:18:52,226 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:18:52,282 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:18:52,283 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:18:52,284 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:18:52,494 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:19:38,643 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:19:38,647 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:19:38,685 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:19:38,686 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:19:38,687 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:19:38,912 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:19:52,619 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:19:52,621 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:19:52,659 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:19:52,660 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:19:52,661 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:19:52,879 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:20:19,243 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:20:19,246 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:20:19,296 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:20:19,297 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:20:19,297 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:20:19,526 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:20:45,527 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:20:45,530 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:20:45,569 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:20:45,570 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:20:45,571 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:20:45,836 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:21:07,950 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:21:07,952 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:21:07,989 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:21:07,990 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:21:07,991 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:21:08,204 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:21:24,418 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:21:24,421 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:21:24,462 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:21:24,462 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:21:24,463 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:21:24,691 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:22:11,003 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:22:11,006 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:22:11,050 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:22:11,050 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:22:11,051 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:22:11,270 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:23:09,785 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:23:09,787 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:23:09,823 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:23:09,824 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:23:09,825 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:23:10,030 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:23:34,409 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:23:34,412 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:23:34,461 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:23:34,462 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:23:34,463 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:23:34,703 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:24:08,707 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:24:08,716 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:24:08,750 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:24:08,751 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:24:08,752 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:24:09,041 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:24:51,079 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:24:51,082 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:24:51,122 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:24:51,123 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:24:51,124 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:24:51,344 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:25:41,533 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:25:41,535 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:25:41,573 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:25:41,574 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:25:41,574 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:25:41,785 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:26:26,091 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:26:26,095 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:26:26,136 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:26:26,136 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:26:26,137 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:26:26,369 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:26:46,329 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:26:46,332 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:26:46,377 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:26:46,378 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:26:46,379 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:26:46,592 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:27:02,928 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:27:02,931 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:27:02,976 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:27:02,977 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:27:02,978 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:27:03,202 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:27:23,209 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 14:27:23,211 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:27:23,248 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 14:27:23,249 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 14:27:23,250 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 14:27:23,547 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:09:35,978 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:09:35,987 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:09:36,025 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:09:36,026 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:09:36,026 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:09:36,254 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:18:14,874 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:18:14,880 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:18:14,916 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:18:14,917 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:18:14,918 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:18:15,140 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:15,216 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:19:15,223 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:15,262 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:19:15,263 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:19:15,264 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:15,494 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:36,249 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:19:36,255 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:36,293 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:19:36,294 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:19:36,295 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:36,516 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:52,723 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:19:52,729 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:52,764 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:19:52,765 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:19:52,765 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:19:53,016 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:37:48,742 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:37:48,751 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:37:48,799 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:37:48,800 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:37:48,801 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:37:49,089 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:39:15,776 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:39:15,779 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:39:15,827 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:39:15,828 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:39:15,829 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:39:16,054 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:40:16,722 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:40:16,725 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:40:16,761 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:40:16,762 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:40:16,763 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:40:17,012 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:41:00,837 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:41:00,840 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:41:00,885 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:41:00,886 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:41:00,886 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:41:01,120 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:41:39,331 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:41:39,333 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:41:39,369 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:41:39,370 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:41:39,371 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:41:39,589 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:42:57,836 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:42:57,839 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:42:57,886 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:42:57,887 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:42:57,888 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:42:58,121 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:43:22,319 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:43:22,321 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:43:22,360 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:43:22,360 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:43:22,361 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:43:22,573 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:43:40,852 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:43:40,856 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:43:40,912 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:43:40,913 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:43:40,915 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:43:41,142 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:44:29,280 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:44:29,283 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:44:29,326 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:44:29,327 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:44:29,328 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:44:29,580 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:44:41,593 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:44:41,595 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:44:41,632 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:44:41,633 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:44:41,634 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:44:41,840 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:45:30,157 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:45:30,160 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:45:30,197 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:45:30,198 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:45:30,199 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:45:30,423 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:45:52,833 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:45:52,837 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:45:52,884 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:45:52,885 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:45:52,886 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:45:53,116 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:46:53,328 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:46:53,330 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:46:53,370 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:46:53,371 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:46:53,372 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:46:53,608 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:47:15,500 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 15:47:15,502 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:47:15,540 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 15:47:15,541 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 15:47:15,542 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 15:47:15,780 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 16:23:16,001 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 16:23:16,007 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 16:23:16,041 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 16:23:16,042 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 16:23:16,042 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 16:23:16,261 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 16:23:46,378 [INFO] UnixSocketServer:run: Starting up server
+2021-10-12 16:23:46,385 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 16:23:46,419 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-12 16:23:46,420 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-12 16:23:46,420 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-12 16:23:46,630 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:11:27,466 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:11:27,473 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:11:27,508 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:11:27,509 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:11:27,510 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:11:27,760 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:01,371 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:34:01,378 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:01,422 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:34:01,423 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:34:01,424 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:01,664 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:07,378 [INFO] UnixSocketServer:run: Stop server
+2021-10-13 10:34:07,384 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-13 10:34:15,321 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:34:15,327 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:15,361 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:34:15,362 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:34:15,363 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:15,585 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:25,333 [INFO] UnixSocketServer:run: Stop server
+2021-10-13 10:34:25,337 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-13 10:34:40,548 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:34:40,554 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:40,590 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:34:40,591 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:34:40,592 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:40,827 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:59,443 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:34:59,445 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:34:59,486 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:34:59,487 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:34:59,488 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:35:31,148 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:35:31,150 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:35:31,196 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:35:31,197 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:35:31,198 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:41:29,803 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:41:29,809 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:41:29,845 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:41:29,845 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:41:29,846 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:41:56,106 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:41:56,112 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:41:56,146 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:41:56,147 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:41:56,147 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:42:06,712 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:42:06,718 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:42:06,753 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:42:06,754 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:42:06,755 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:42:25,184 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 10:42:25,190 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 10:42:25,235 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 10:42:25,236 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 10:42:25,237 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 14:57:38,331 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 14:57:38,337 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 14:57:38,369 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 14:57:38,370 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 14:57:38,371 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 14:57:59,947 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 14:57:59,952 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 14:57:59,986 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 14:57:59,987 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 14:57:59,988 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 14:58:34,811 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 14:58:34,817 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 14:58:34,850 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 14:58:34,851 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 14:58:34,852 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:11:29,807 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:11:29,813 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:11:29,847 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:11:29,848 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:11:29,849 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:12:34,215 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:12:34,221 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:12:34,254 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:12:34,255 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:12:34,256 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:21:31,071 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:21:31,077 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:21:31,110 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:21:31,111 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:21:31,111 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:22:45,122 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:22:45,127 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:22:45,165 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:22:45,165 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:22:45,166 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:24:05,021 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:24:05,028 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:24:05,077 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:24:05,078 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:24:05,079 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:25:07,043 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:25:07,049 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:25:07,083 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:25:07,084 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:25:07,085 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:26:13,414 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:26:13,420 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:26:13,460 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:26:13,460 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:26:13,461 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:33:57,526 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:33:57,532 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:33:57,567 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:33:57,568 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:33:57,569 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:34:01,537 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 15:34:05,675 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 15:34:05,675 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 15:34:05,675 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:10,047 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 15:34:10,048 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 15:34:10,048 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:14,086 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 15:34:14,086 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 15:34:14,087 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:18,293 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 15:34:18,293 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 15:34:18,294 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:22,273 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 15:34:22,274 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 15:34:22,274 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:26,232 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 15:34:26,233 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 15:34:26,233 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:30,090 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 15:34:30,090 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 15:34:30,091 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:33,967 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 15:34:33,967 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 15:34:33,968 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:38,040 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 15:34:38,041 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 15:34:38,041 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:41,981 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 15:34:41,982 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 15:34:41,982 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:45,961 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-13 15:34:45,961 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-13 15:34:45,962 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:49,884 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-13 15:34:49,885 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-13 15:34:49,885 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:53,900 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-13 15:34:53,900 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-13 15:34:53,900 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:57,885 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-13 15:34:57,886 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-13 15:34:57,886 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:57,887 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-13 15:34:57,887 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-13 15:34:57,888 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:34:57,888 [INFO] Chamber_inference_Class:run: Finish run chamber id=2
+2021-10-13 15:57:57,338 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 15:57:57,344 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:57:57,377 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 15:57:57,378 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 15:57:57,379 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 15:58:00,347 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 15:58:04,393 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 15:58:04,393 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 15:58:04,393 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:08,609 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 15:58:08,610 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 15:58:08,610 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:12,741 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 15:58:12,741 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 15:58:12,741 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:16,795 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 15:58:16,795 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 15:58:16,795 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:21,832 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 15:58:21,832 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 15:58:21,833 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:25,745 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 15:58:25,746 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 15:58:25,746 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:29,577 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 15:58:29,577 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 15:58:29,577 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:33,534 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 15:58:33,534 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 15:58:33,535 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:37,439 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 15:58:37,440 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 15:58:37,440 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 15:58:41,281 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 15:58:41,282 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 15:58:41,282 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:28:01,046 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 16:28:01,053 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:28:01,089 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 16:28:01,090 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 16:28:01,091 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:34:02,017 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 16:34:02,024 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:34:02,058 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 16:34:02,059 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 16:34:02,060 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:34:06,027 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 16:34:10,147 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:34:10,147 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:34:10,147 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:14,171 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 16:34:14,171 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 16:34:14,171 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:18,150 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 16:34:18,150 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 16:34:18,150 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:22,167 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 16:34:22,167 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 16:34:22,167 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:26,179 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 16:34:26,179 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 16:34:26,180 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:30,201 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 16:34:30,201 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 16:34:30,201 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:34,184 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 16:34:34,184 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 16:34:34,185 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:38,182 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 16:34:38,183 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 16:34:38,183 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:42,258 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 16:34:42,258 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 16:34:42,258 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:34:46,061 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 16:34:46,062 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 16:34:46,062 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:35:05,903 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 16:35:05,909 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:35:05,946 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 16:35:05,947 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 16:35:05,948 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:41:21,282 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 16:41:25,796 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:41:25,796 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:41:25,796 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:44:30,025 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 16:44:30,034 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:44:30,075 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 16:44:30,075 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 16:44:30,076 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:44:36,041 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 16:44:40,091 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:44:40,092 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:44:40,092 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:45:16,012 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 16:45:16,018 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:45:16,053 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 16:45:16,054 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 16:45:16,054 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:45:19,021 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 16:45:23,190 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:45:23,190 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:45:23,190 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 16:46:07,688 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 16:46:07,695 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:46:07,735 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 16:46:07,736 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 16:46:07,737 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 16:52:19,056 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 16:52:23,385 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:52:23,386 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 16:52:23,386 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:00:58,564 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 17:00:58,571 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 17:00:58,604 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 17:00:58,605 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 17:00:58,606 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 17:01:04,577 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-10-13 17:01:04,578 [INFO] UnixSocketServer:run: Stop server
+2021-10-13 17:01:33,349 [INFO] UnixSocketServer:run: Starting up server
+2021-10-13 17:02:17,236 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 17:02:17,269 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-10-13 17:02:17,270 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1223-AE2B.ini
+2021-10-13 17:02:17,271 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-10-13 17:02:22,241 [INFO] Chamber_inference_Class:run: Run chamber id=2
+2021-10-13 17:02:26,288 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 17:02:26,288 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '1', 'percentage': 100}
+2021-10-13 17:02:26,288 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:40,769 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 0}
+2021-10-13 17:02:40,769 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 0}
+2021-10-13 17:02:40,770 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:43,544 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 1}
+2021-10-13 17:02:43,545 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 1}
+2021-10-13 17:02:43,545 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:45,938 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 3}
+2021-10-13 17:02:45,939 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 3}
+2021-10-13 17:02:45,939 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:48,621 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 4}
+2021-10-13 17:02:48,621 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 4}
+2021-10-13 17:02:48,621 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:51,124 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 6}
+2021-10-13 17:02:51,125 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 6}
+2021-10-13 17:02:51,125 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:53,783 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 7}
+2021-10-13 17:02:53,783 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 7}
+2021-10-13 17:02:53,783 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:56,449 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 9}
+2021-10-13 17:02:56,449 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 9}
+2021-10-13 17:02:56,450 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:02:58,809 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 10}
+2021-10-13 17:02:58,809 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 10}
+2021-10-13 17:02:58,810 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:01,472 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 12}
+2021-10-13 17:03:01,472 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 12}
+2021-10-13 17:03:01,472 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:03,707 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 13}
+2021-10-13 17:03:03,708 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 13}
+2021-10-13 17:03:03,708 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:06,071 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 14}
+2021-10-13 17:03:06,071 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 14}
+2021-10-13 17:03:06,071 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:08,299 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 16}
+2021-10-13 17:03:08,300 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 16}
+2021-10-13 17:03:08,300 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:10,856 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 17}
+2021-10-13 17:03:10,856 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 17}
+2021-10-13 17:03:10,858 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:11,225 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 17:03:11,225 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '2', 'percentage': 100}
+2021-10-13 17:03:11,226 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:15,289 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 17:03:15,289 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '3', 'percentage': 100}
+2021-10-13 17:03:15,290 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:19,458 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 17:03:19,459 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '4', 'percentage': 100}
+2021-10-13 17:03:19,459 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:23,414 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 17:03:23,414 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '5', 'percentage': 100}
+2021-10-13 17:03:23,415 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:27,714 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 17:03:27,714 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '6', 'percentage': 100}
+2021-10-13 17:03:27,714 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:31,953 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 17:03:31,953 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '7', 'percentage': 100}
+2021-10-13 17:03:31,953 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:36,181 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 17:03:36,181 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '8', 'percentage': 100}
+2021-10-13 17:03:36,182 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:40,481 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 17:03:40,482 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '9', 'percentage': 100}
+2021-10-13 17:03:40,482 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:44,552 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 17:03:44,552 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '10', 'percentage': 100}
+2021-10-13 17:03:44,552 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:48,691 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-13 17:03:48,692 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '11', 'percentage': 100}
+2021-10-13 17:03:48,692 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:52,867 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-13 17:03:52,868 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '12', 'percentage': 100}
+2021-10-13 17:03:52,868 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:03:56,963 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-13 17:03:56,964 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '13', 'percentage': 100}
+2021-10-13 17:03:56,964 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:04:00,933 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-13 17:04:00,933 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '14', 'percentage': 100}
+2021-10-13 17:04:00,934 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:04:00,934 [INFO] UnixSocketClient:Send: Send msg={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-13 17:04:00,935 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '2', 'dish_id': '15', 'percentage': 100}
+2021-10-13 17:04:00,935 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
+2021-10-13 17:04:00,935 [INFO] Chamber_inference_Class:run: Finish run chamber id=2

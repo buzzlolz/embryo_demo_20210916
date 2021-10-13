@@ -168,7 +168,7 @@ class TabSelectChamber(QtWidgets.QWidget):
     def AddOnlineOfflineModeCheckbox(self):
         
         Mode_widget = QtWidgets.QWidget()
-        Mode_widget.setFixedSize(QtCore.QSize(800, 30))
+        Mode_widget.setFixedSize(QtCore.QSize(800, 20))
         # label_mode = QtWidgets.QLabel('Mode Select:', a)
         # label_mode.setFont(QtGui.QFont('Arial', 12))
         # label_mode.setGeometry(10, 0, 140, 10)
@@ -176,16 +176,16 @@ class TabSelectChamber(QtWidgets.QWidget):
 
         label_mode = QtWidgets.QLabel('Mode Select:', Mode_widget)
         label_mode.setFont(QtGui.QFont('Arial', 12))
-        label_mode.setGeometry(0, 0, 140, 30) 
+        label_mode.setGeometry(0, 0, 140, 20) 
 
         
         qbutton_online = QtWidgets.QRadioButton('online',Mode_widget)
-        qbutton_online.setGeometry(150, 0, 150, 30)
+        qbutton_online.setGeometry(150, 0, 150, 20)
         qbutton_online.setFont(QtGui.QFont('Arial', 12)) 
         qbutton_online.toggled.connect(lambda:self.ClickSetmanualCheckbox(False))
 
         qbutton_offline = QtWidgets.QRadioButton('offline',Mode_widget)
-        qbutton_offline.setGeometry(300, 0, 150, 30) 
+        qbutton_offline.setGeometry(300, 0, 150, 20) 
         qbutton_offline.setFont(QtGui.QFont('Arial', 12))
         qbutton_offline.toggled.connect(lambda:self.ClickSetmanualCheckbox(True))
 
@@ -231,7 +231,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                         if count_well >= well_number:
                             continue
                         dish = SelectCellDish(count + 1, count_well + 1, self.main_widget, group_chamber)
-                        dish.setGeometry(5 + 65 * c + 12 * c, 240 + well_row * 50 + 12 * well_row, 60, 60)
+                        dish.setGeometry(5 + 65 * c + 12 * c, 290 + well_row * 50 + 12 * well_row, 60, 60)
                         count_well += 1                      
                         select_dishs.append(dish)                        
                         
@@ -249,8 +249,8 @@ class TabSelectChamber(QtWidgets.QWidget):
         widget_chamber = QtWidgets.QWidget()
         group_chamber = QtWidgets.QGroupBox(widget_chamber)                
         #group_chamber.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        group_chamber.setFixedSize(QtCore.QSize(550, 420))
-        group_chamber.setGeometry(10, 30, 550, 420) 
+        group_chamber.setFixedSize(QtCore.QSize(550, 520))
+        group_chamber.setGeometry(10, 0, 550, 420) 
         #group_chamber.setGeometry(10 + i*440 + 5*i, 0 + 200*frame_row + 5*frame_row, 440, 200)
         
         label_choose = QtWidgets.QLabel('Chamber Number:' + str(3*row + col + 1), group_chamber)
@@ -297,8 +297,11 @@ class TabSelectChamber(QtWidgets.QWidget):
 
         label_startTime= QtWidgets.QLabel('Offset Time:', group_chamber)
         label_startTime.setFont(QtGui.QFont('Arial', 12))
-        label_startTime.setGeometry(10, 195, 140, 35) 
-        # label_startTime.setVisible(False)
+        label_startTime.setGeometry(10, 195, 140, 35)
+
+
+
+        
 
         qtime_startTime = QtWidgets.QTimeEdit(group_chamber)
         qtime_startTime.setDisplayFormat('hh:mm:ss')
@@ -328,10 +331,21 @@ class TabSelectChamber(QtWidgets.QWidget):
         button_export.setGeometry(350, 140, 100, 40)
         button_export.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_export.setDisabled(True)
-        button_export.clicked.connect(lambda:  self.SaveToHistory(str(3*row + col + 1)))   
+        button_export.clicked.connect(lambda:  self.SaveToHistory(str(3*row + col + 1)))  
+
+
+        
+        label_age= QtWidgets.QLabel('Age:', group_chamber)
+        label_age.setFont(QtGui.QFont('Arial', 12))
+        label_age.setGeometry(10, 245, 60, 35) 
+
+
+        edit_age = QtWidgets.QLineEdit(group_chamber)
+        edit_age.setGeometry(80, 245, 80, 35)
+        edit_age.setStyleSheet('background-color:white;')  
         
         progress = QtWidgets.QProgressBar(group_chamber)
-        progress.setGeometry(10, 370, 520, 25)
+        progress.setGeometry(10, 420, 520, 25)
         progress.setMaximum(100)
         progress.setProperty("value", 0)
         #progress.setValue(50)
@@ -833,7 +847,8 @@ class TabSelectChamber(QtWidgets.QWidget):
         listsMyQLineEdit[0].setText('')
         listsMyQLineEdit[1].setText('')
         listsMyQLineEdit[2].setText('000:00:00')
-        
+        # print('listsMyQLineEdit[3]')
+        # listsMyQLineEdit[3].setText('')
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)      
         listsMyQButton[0].setText('Import')
         

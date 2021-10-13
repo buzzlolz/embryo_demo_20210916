@@ -21,6 +21,7 @@ from TabSelectChamber import TabSelectChamber
 from TabEmbryoResults import TabEmbryoResults
 from TabHistoryChamber import TabHistoryChamber
 from TabMachineSelection import TabMachineSelection
+# from TabHistoryShow import TabHistoryShow
 #import inf_add_mask
 
 
@@ -42,11 +43,13 @@ class Window(QtWidgets.QWidget):
         self.widget_selMachine = TabMachineSelection(logger, self.widget_selChamber, self)
         self.widget_embryoResults = TabEmbryoResults(logger, self.widget_selMachine, self)
         self.widget_historyResults = TabHistoryChamber(logger, self.widget_selMachine.machine_infos, self.widget_selChamber, self)
+        # self.widget_historyViewer = TabHistoryShow(logger, self.widget_selMachine, self)
         self.tabs.setIconSize(QtCore.QSize(35, 35)) 
         self.tabs.addTab(self.widget_selMachine, QtGui.QIcon('machine.png'), 'Machine Selection')
         self.tabs.addTab(self.widget_selChamber, QtGui.QIcon('logo.png'), 'Chamber Selection')
         self.tabs.addTab(self.widget_embryoResults, QtGui.QIcon('embryo.png'), 'Embryo Viewer')
-        self.tabs.addTab(self.widget_historyResults, QtGui.QIcon('history.png'), 'History') 
+        self.tabs.addTab(self.widget_historyResults, QtGui.QIcon('history.png'), 'History')
+        # self.tabs.addTab(self.widget_historyViewer, QtGui.QIcon('embryo.png'), 'History Viewer')  
 
         self.tabs.currentChanged.connect(self.onChange)
                 

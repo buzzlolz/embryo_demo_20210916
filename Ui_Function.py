@@ -77,6 +77,28 @@ def get_pn_max_number(pn_number_list):
 
     return max_pn_number
 
+#return  pn number
+def get_pn_number(csv_path):
+
+    df=pd.read_csv(csv_path,engine='python')
+    df = df.sort_values(by='file_name')
+    pn_number_list = (df['pn_number'].values)
+    pn_number_list = pn_number_list[np.logical_not(np.isnan(pn_number_list))].astype(int)
+    pn_number_list=pn_number_list[pn_number_list!=0]
+    
+    array_isnan = np.isnan(pn_number_list)
+
+    if (False in array_isnan):
+        max_pn_number = np.argmax(np.bincount(pn_number_list))
+    else:
+        max_pn_number = '0'
+
+    
+    
+    
+    
+    return str(max_pn_number)
+
 
 #return history page t2-t8 time list 
 def get_t2t8_dur_time(csv_path):
@@ -97,7 +119,7 @@ def get_t2t8_dur_time(csv_path):
     pn_number_list = pn_number_list[np.logical_not(np.isnan(pn_number_list))].astype(int)
    
     max_pn_number=get_pn_max_number(pn_number_list)
-    pn_start_index=np.where(pn_number_list==0)[0][0]
+    pn_start_index=np.where(pn_number_list!=0)[0][0]
     
     
     
@@ -493,6 +515,7 @@ def get_xlsx_predict_division_time(folder_name,chamber_id,dish_id):
     xlsx_predict_division_time_dic['Dish_id']=str(dish_id)
     xlsx_predict_division_time_dic['Patient_id']=str(folder_name)
     xlsx_predict_division_time_dic['Dict_key']=dict_list_return
+    xlsx_predict_division_time_dic['Pn_number']=''
     # print("xlsx dic:",xlsx_predict_division_time_dic['Xlsx'])
     csv_dir = './csv/'
     img_dir = './data/crop_img/'
@@ -505,6 +528,8 @@ def get_xlsx_predict_division_time(folder_name,chamber_id,dish_id):
 
     if os.path.isfile(csv_path):
         predict_division_dic=get_t2t8_dur_time(csv_path)
+        pn_max_number = get_pn_number(csv_path)
+        xlsx_predict_division_time_dic['Pn_number']=str(pn_max_number)
         write_analy_csv_t2_t8(chamber_id)
 
 
@@ -1777,6 +1802,9 @@ if __name__ == '__main__':
     # load_video_path_with_7fp('MTL-0245-13A1-9874',7,2,6)
     # write_embryo_viewer_timecsv(3,1,t2=3)
 
-    path='/home/n200/D-slot/20210916_embryo_system_demo_version/history/MTL-0245-1485-B5EC/20211005_101035/csv/cham2/dish3/cham2_dish3.csv'
+    path='/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham2/dish5/cham2_dish5.csv'
     dic=get_t2t8_dur_time(path)
     print(dic)
+    # paht='/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham2/dish11/cham2_dish11.csv'
+    # r = get_pn_number(paht)
+    # print(r)
