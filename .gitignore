@@ -12,3 +12,5 @@ model_data/*
 *.hdf5
 event_info*
 csv/*
+*.pyc
+*.log
