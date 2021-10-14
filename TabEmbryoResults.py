@@ -1,7 +1,8 @@
+
+  
 # -*- coding: utf-8 -*-
 """
 Created on Fri May 29 16:41:09 2020
-
 @author: minghung
 """
 
@@ -59,7 +60,8 @@ class TabEmbryoResults(QtWidgets.QWidget):
         
         self.viewer = QtMultimediaWidgets.QVideoWidget(self.frame_video)   
         #self.viewer.setMaximumSize(QtCore.QSize(600, 400))
-        self.player.setVideoOutput(self.viewer)        
+        self.player.setVideoOutput(self.viewer)     
+        self.viewer.setGeometry(0,0,700,600)   
         
         # layout_video = QtWidgets.QGridLayout(self.frame_video)        
         # layout_video.addWidget(self.viewer, 0, 0, 1, 2)
@@ -633,6 +635,3 @@ class TabEmbryoResults(QtWidgets.QWidget):
         except ValueError:
             return False
        
-    
-        
-        
