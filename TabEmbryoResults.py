@@ -376,10 +376,6 @@ class TabEmbryoResults(QtWidgets.QWidget):
                     time = str(int(dict_msg["Predict"]["blas"] * 100.0) / 100.0)
                     time_score = (int(dict_msg["Predict"]['blas'] * 100.0) / 100.0)/2
             
-            label_l_analysis = EmbryoImageLabel(150, 150, [str(time), str(time_score), str(frag), str(frag_score), str(total_score_time_frag)])
-
-
-            self.table_img_left.AddRow(index-2, label_l_analysis)
                              
             
          
