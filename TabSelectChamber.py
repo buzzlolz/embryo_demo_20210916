@@ -111,15 +111,17 @@ class ExportDialog(QtWidgets.QDialog):
 
 class ExportThread(QtCore.QThread):
     finished = QtCore.pyqtSignal(str, str)
-    def __init__(self, patient_id, chamber_id, date, parent=None):
+    def __init__(self, patient_id,timelapse_id, chamber_id, date, age , parent=None):
         super(ExportThread, self).__init__(parent=parent)  
         self.patient_id = patient_id
+        self.timelapse_id = timelapse_id
         self.chamber_id = chamber_id 
         self.date = date
+        self.age = age
         self.parent = parent
         
     def run(self):       
-        move_select_cham_dish_folder(self.patient_id, self.date, int(self.chamber_id))
+        move_select_cham_dish_folder(self.patient_id,self.timelapse_id, self.date, self.age , int(self.chamber_id))
         clear_cham_dish_data_csv(int(self.chamber_id))
         if self.parent != None:
             self.parent.export_dialog.close()
@@ -161,9 +163,9 @@ class TabSelectChamber(QtWidgets.QWidget):
         # self.AddOnlineOfflineMode()
         
         
-    def GetPatientID(self, chamber_id):
+    def GetTimeLapseID(self, chamber_id):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        return str(listsMyQLineEdit[0].text())    
+        return str(listsMyQLineEdit[1].text())    
 
     def AddOnlineOfflineModeCheckbox(self):
         
@@ -236,7 +238,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                         select_dishs.append(dish)                        
                         
                 self.chamber_wells.append(select_dishs)
-                print('frame row col number',frame_row+1,i)
+                # print('frame row col number',frame_row+1,i)
                 self.layout_chamber.addWidget(widget_chamber, frame_row+1, i)
                 
                 self.chambers.append(group_chamber)
@@ -256,31 +258,48 @@ class TabSelectChamber(QtWidgets.QWidget):
         label_choose = QtWidgets.QLabel('Chamber Number:' + str(3*row + col + 1), group_chamber)
         label_choose.setFont(QtGui.QFont('Arial', 12))
         label_choose.setGeometry(10, 10, 250, 40)              
+
+
+
+        label_patient_id= QtWidgets.QLabel('Patient ID:', group_chamber)
+        label_patient_id.setFont(QtGui.QFont('Arial', 12))
+        label_patient_id.setGeometry(10, 50, 120, 35) 
+
+
+        edit_patient_id = QtWidgets.QLineEdit(group_chamber)
+        edit_patient_id.setGeometry(140, 50, 120, 35)
+        edit_patient_id.setStyleSheet('background-color:white;')
+
+        button_info_save = QtWidgets.QPushButton('Save Info', group_chamber)
+        button_info_save.setGeometry(415, 20, 100, 30)
+        button_info_save.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
+        button_info_save.clicked.connect(lambda: self.PatientBoardInfoSave(str(3*row + col + 1)))
+
                 
-        label_pid = QtWidgets.QLabel('Patient ID:', group_chamber)
+        label_pid = QtWidgets.QLabel('Timelapse ID:', group_chamber)
         label_pid.setFont(QtGui.QFont('Arial', 12))
-        label_pid.setGeometry(10, 50, 100, 40)
+        label_pid.setGeometry(10, 90, 120, 40)
         
         edit_pid = QtWidgets.QLineEdit(group_chamber)
-        edit_pid.setGeometry(110, 50, 280, 40)
+        edit_pid.setGeometry(130, 90, 280, 40)
         edit_pid.setStyleSheet('background-color:white;')  
         edit_pid.setReadOnly(True)                       
         
         label_fertilizationTime = QtWidgets.QLabel('Fertilization Time:', group_chamber)
         label_fertilizationTime.setFont(QtGui.QFont('Arial', 12))
-        label_fertilizationTime.setGeometry(10, 95, 160, 35)        
+        label_fertilizationTime.setGeometry(10, 135, 160, 35)        
         edit_fertilizationTime = QtWidgets.QLineEdit(group_chamber)
-        edit_fertilizationTime.setGeometry(170, 95, 160, 35)
+        edit_fertilizationTime.setGeometry(170, 135, 160, 35)
         edit_fertilizationTime.setStyleSheet('background-color:white;')          
         #edit_fertilizationTime.setReadOnly(True)   
         
         button_import = QtWidgets.QPushButton('Import', group_chamber)
-        button_import.setGeometry(395, 50, 100, 40)
+        button_import.setGeometry(415, 90, 100, 40)
         button_import.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_import.clicked.connect(lambda: self.ImportData(str(3*row + col + 1)))
         
         button_calendar = QtWidgets.QPushButton(group_chamber)
-        button_calendar.setGeometry(350, 95, 40, 35)
+        button_calendar.setGeometry(350, 135, 40, 35)
         button_calendar.setStyleSheet('background-color:lightblue;')
         button_calendar.setIcon(QtGui.QIcon('CalenderIcon.png'))
         button_calendar.setIconSize(QtCore.QSize(130,130))
@@ -293,11 +312,19 @@ class TabSelectChamber(QtWidgets.QWidget):
                
         label_durationTime = QtWidgets.QLabel('Duration Time:', group_chamber)
         label_durationTime.setFont(QtGui.QFont('Arial', 12))
-        label_durationTime.setGeometry(10, 140, 140, 35)  
+        label_durationTime.setGeometry(10, 180, 140, 35)  
+
+
+        edit_wellDurationTime = QtWidgets.QLineEdit(group_chamber)
+        edit_wellDurationTime.setGeometry(150, 180, 90, 35)
+        edit_wellDurationTime.setStyleSheet('background-color:#b2fbe5;')         
+        edit_wellDurationTime.setText('000:00:00')
+        edit_wellDurationTime.setAlignment(QtCore.Qt.AlignRight)
+        edit_wellDurationTime.setReadOnly(True)
 
         label_startTime= QtWidgets.QLabel('Offset Time:', group_chamber)
         label_startTime.setFont(QtGui.QFont('Arial', 12))
-        label_startTime.setGeometry(10, 195, 140, 35)
+        label_startTime.setGeometry(10, 235, 100, 35)
 
 
 
@@ -306,43 +333,43 @@ class TabSelectChamber(QtWidgets.QWidget):
         qtime_startTime = QtWidgets.QTimeEdit(group_chamber)
         qtime_startTime.setDisplayFormat('hh:mm:ss')
         # setting geometry of the date edit
-        qtime_startTime.setGeometry(200, 195, 150, 30)
+        qtime_startTime.setGeometry(130, 235, 130, 30)
         qtime_startTime.setVisible(True)
         
         # qbuttongroup_mode.setGeometry(160, 195, 140, 35) 
 
+        label_age= QtWidgets.QLabel('Age:', group_chamber)
+        label_age.setFont(QtGui.QFont('Arial', 12))
+        label_age.setGeometry(270, 235, 45, 35) 
+
+
+        edit_age = QtWidgets.QLineEdit(group_chamber)
+        edit_age.setGeometry(320, 235, 80, 35)
+        edit_age.setStyleSheet('background-color:white;')  
+        
         
 
          
-
-        edit_wellDurationTime = QtWidgets.QLineEdit(group_chamber)
-        edit_wellDurationTime.setGeometry(150, 140, 90, 35)
-        edit_wellDurationTime.setStyleSheet('background-color:#b2fbe5;')         
-        edit_wellDurationTime.setText('000:00:00')
-        edit_wellDurationTime.setAlignment(QtCore.Qt.AlignRight)
-        edit_wellDurationTime.setReadOnly(True)
+        # button_test = QtWidgets.QPushButton('test', group_chamber)
+        # button_test.setGeometry(400, 235, 100, 40)
+        # button_test.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
+        # # button_start.setDisabled(True)
+        # button_test.clicked.connect(lambda: self.test(str(3*row + col + 1)))
+        
         button_start = QtWidgets.QPushButton('Start', group_chamber)
-        button_start.setGeometry(245, 140, 100, 40)
+        button_start.setGeometry(245, 180, 100, 40)
         button_start.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_start.setDisabled(True)
         button_start.clicked.connect(lambda: self.Start(str(3*row + col + 1)))
         
         button_export = QtWidgets.QPushButton('Export', group_chamber)
-        button_export.setGeometry(350, 140, 100, 40)
+        button_export.setGeometry(350, 180, 100, 40)
         button_export.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_export.setDisabled(True)
         button_export.clicked.connect(lambda:  self.SaveToHistory(str(3*row + col + 1)))  
 
 
         
-        label_age= QtWidgets.QLabel('Age:', group_chamber)
-        label_age.setFont(QtGui.QFont('Arial', 12))
-        label_age.setGeometry(10, 245, 60, 35) 
-
-
-        edit_age = QtWidgets.QLineEdit(group_chamber)
-        edit_age.setGeometry(80, 245, 80, 35)
-        edit_age.setStyleSheet('background-color:white;')  
         
         progress = QtWidgets.QProgressBar(group_chamber)
         progress.setGeometry(10, 420, 520, 25)
@@ -351,6 +378,57 @@ class TabSelectChamber(QtWidgets.QWidget):
         #progress.setValue(50)
                        
         return widget_chamber, group_chamber   
+
+    def PatientBoardInfoSave(self,chamber_id):
+        listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
+        pid = listsMyQLineEdit[0].text()
+        timelapseid = listsMyQLineEdit[1].text()
+        
+        fertilization_time = listsMyQLineEdit[2].text()
+        offset_time = listsMyQLineEdit[4].text()
+        age = listsMyQLineEdit[5].text()
+
+        path = './config/config_' + str(timelapseid) + '.ini'
+        self.logger.info('Read file=' + path)
+        cfg = RawConfigParser()
+
+        if not os.path.exists(path):
+            try:
+                cfg = RawConfigParser()
+                cfg.add_section('DishInfo')
+                cfg.add_section('DecisionInfo')
+                cfg.add_section('BoardPatientInfo')
+                cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
+                cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
+                cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
+                cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
+                cfg.set('BoardPatientInfo','Age',str(age))
+                with io.open(path, 'w') as f:
+                    cfg.write(f)
+
+
+            
+                print('no config exist')
+                
+            except:
+                print('config write error')
+        
+        else:
+            cfg = RawConfigParser()
+            cfg.read(path)
+            if not cfg.has_section('BoardPatientInfo'):
+                cfg.add_section('BoardPatientInfo')
+            cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
+            cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
+            cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
+            cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
+            cfg.set('BoardPatientInfo','Age',str(age))
+            with io.open(path, 'r+') as f:
+                    cfg.write(f)
+
+            
+                     
+
 
     def  ClickSetmanualCheckbox(self,bool_show):
         for i in range(6):
@@ -370,8 +448,10 @@ class TabSelectChamber(QtWidgets.QWidget):
     
     def DisableOrEnableAllElementByChamberID(self, chamber_id, set):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        for j in range(len(listsMyQLineEdit)):
-            listsMyQLineEdit[j].setDisabled(set)
+        # for j in range(len(listsMyQLineEdit)):
+        #     listsMyQLineEdit[j].setDisabled(set)
+        listsMyQLineEdit[1].setDisabled(set)
+        listsMyQLineEdit[3].setDisabled(set)
            
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton) 
         for j in range(len(listsMyQButton)):
@@ -404,7 +484,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         #Add new
         machine = self.selector_machine.currentText()        
         sel_machine = [m for m in self.machine_infos if m[0] == machine]       
-        if sel_machine != []:
+        if sel_machine != []: 
             print('reset')
             # self.AddOnlineOfflineMode()
             self.AddWells(sel_machine[0][1], sel_machine[0][2])   
@@ -452,19 +532,28 @@ class TabSelectChamber(QtWidgets.QWidget):
         print('load')    
         #Read chamber setting
         chamber_settings = self.ReadChamberConfig()
+        
+        print('chamber_settings:',chamber_settings)
         for cid, pid in chamber_settings.items():
             listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
-            listsMyQLineEdit[0].setText(pid)
-            listsMyQLineEdit[1].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
+            listsMyQLineEdit[1].setText(pid)
+            # listsMyQLineEdit[2].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
             
             listsMyQButton = self.chambers[int(cid) - 1].findChildren(QtWidgets.QPushButton) 
-            listsMyQButton[0].setText('Clear')                     
-            listsMyQButton[2].setDisabled(False)        
+            listsMyQButton[1].setText('Clear')                     
+            listsMyQButton[3].setDisabled(False)        
            
             #Read well setting
-            patient_setting, decision_setting, duration, timestamp = self.ReadPatientConfig(pid)
-            print(patient_setting)
-            print(len(self.chamber_wells[0]))
+            patient_setting, decision_setting, duration, timestamp , patientid, fertilizationtime, offsettime, age= self.ReadPatientConfig(pid)
+            
+            #board info fill in    
+            listsMyQLineEdit[0].setText(patientid)
+            listsMyQLineEdit[2].setText(fertilizationtime)
+            listsMyQLineEdit[4].setText(offsettime)
+            listsMyQLineEdit[5].setText(age)
+
+
+
             if patient_setting != {}:
                 for pcid, well_ids in patient_setting.items():                    
                     if pcid == cid:
@@ -480,9 +569,10 @@ class TabSelectChamber(QtWidgets.QWidget):
                 total_time_offset = int(time.time()) - int(timestamp)                  
                 duration = self.cal_time_offset(duration, total_time_offset)                               
               
-                listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
-                #listsMyQLineEdit[2].setText(duration)
-                listsMyQLineEdit[2].setText('000:00:00')                
+                
+
+                listsMyQLineEdit[3].setText('000:00:00')                
+                
                    
         print('read end')           
         
@@ -525,6 +615,11 @@ class TabSelectChamber(QtWidgets.QWidget):
             well_results = {}
             duration = ''
             timestamp = ''
+            patientid = ''
+            fertilizationtime = ''
+            offsettime = ''
+            age = ''
+
             for i in range(len(cfg.items('DishInfo'))):
                 if 'chamber_' + str(i + 1) in [item[0] for item in cfg.items('DishInfo')]:
                     settings = cfg.get('DishInfo','chamber_' + str(i + 1))
@@ -552,10 +647,23 @@ class TabSelectChamber(QtWidgets.QWidget):
                 if 'freeze' in [item[0] for item in cfg.items('DecisionInfo')]:
                     settings = cfg.get('DecisionInfo','freeze')                    
                     decision_results['freeze'] = settings.split(',')
-            return well_results, decision_results, duration, timestamp
+            
+            #borad information
+
+            for i in range(len(cfg.items('BoardPatientInfo'))):
+                if 'patientid' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    patientid = cfg.get('BoardPatientInfo','patientid')
+                if 'fertilizationtime' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    fertilizationtime = cfg.get('BoardPatientInfo','fertilizationtime')
+                if 'offsettime' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    offsettime = cfg.get('BoardPatientInfo','offsettime')
+                if 'age' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    age = cfg.get('BoardPatientInfo','age')
+            
+            return well_results, decision_results, duration, timestamp,patientid,fertilizationtime,offsettime,age
         except:
             print('error:' + str(sys.exc_info()[1]))
-            return {},{},'', ''            
+            return {},{},'', '' , '', '', '', ''         
         print('read p end')
         
     #write config file        
@@ -581,9 +689,17 @@ class TabSelectChamber(QtWidgets.QWidget):
             print('chamber config write error')           
             
     #write config file        
-    def WritePatientConfig(self, cid, pid, dish_list): 
-        path = './config/config_' + pid + '.ini'
+    def WritePatientConfig(self, cid, timelapse_id, dish_list): 
+        path = './config/config_' + timelapse_id + '.ini'
         self.logger.info('Read file=' + path)
+        listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
+        pid = listsMyQLineEdit[0].text()
+        timelapseid = listsMyQLineEdit[1].text()
+        
+        fertilization_time = listsMyQLineEdit[2].text()
+        offset_time = listsMyQLineEdit[4].text()
+        age = listsMyQLineEdit[5].text()
+
         if not os.path.exists(path):
             try:
             #if True:
@@ -600,16 +716,49 @@ class TabSelectChamber(QtWidgets.QWidget):
                 cfg.set('DecisionInfo', 'discard', '')
                 cfg.set('DecisionInfo', 'transfer', ','.join(dish_list))
                 cfg.set('DecisionInfo', 'freeze', '')
+                cfg.add_section('BoardPatientInfo')
+                
+                cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
+                cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
+                cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
+                cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
+                cfg.set('BoardPatientInfo','Age',str(age))
+                
+
                 with io.open(path, 'w') as f:
                     cfg.write(f)
             except:
                 print('config write error')
+        else:
+            cfg = RawConfigParser()
+            cfg.read(path)
+            if not cfg.has_section('DishInfo'):
+                cfg.add_section('DishInfo')
+            cfg.set('DishInfo', 'duration', '000:00:00') 
+            cfg.set('DishInfo', 'timestamp', str(int(time.time())))
+
+            if not cfg.has_section('DecisionInfo'):
+                cfg.add_section('DecisionInfo')
+            cfg.set('DecisionInfo', 'discard', '')
+            cfg.set('DecisionInfo', 'transfer', ','.join(dish_list))
+            cfg.set('DecisionInfo', 'freeze', '')
+
+
+            if not cfg.has_section('BoardPatientInfo'):
+                cfg.add_section('BoardPatientInfo')
+            cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
+            cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
+            cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
+            cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
+            cfg.set('BoardPatientInfo','Age',str(age))
+            with io.open(path, 'w') as f:
+                cfg.write(f)
                      
               
     #write config file        
     def WritePatientTimeToConfig(self, cid, pid): 
         listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
-        duration = str(listsMyQLineEdit[2].text())  
+        duration = str(listsMyQLineEdit[3].text())  
         if duration == None:
             return
         
@@ -634,39 +783,52 @@ class TabSelectChamber(QtWidgets.QWidget):
             pass
                 
     #Export to history
-    def SaveToHistory(self, chamber_id):   
-        self.export_dialog = ExportDialog(self)       
-        #Process data to history    
+    def SaveToHistory(self, chamber_id):  
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        pid = str(listsMyQLineEdit[0].text())
-        date = str(listsMyQLineEdit[1].text())
-        if pid != '' and date != '':
-            #move_select_cham_dish_folder(pid, date, int(chamber_id))
-            #clear_cham_dish_data_csv(int(chamber_id))
-            export_thread = ExportThread(pid, chamber_id, date, self)
-            export_thread.start()
-            self.export_dialog.exec_()
+        #patient id qline empty
+        if listsMyQLineEdit[0].text()=='':
+            QtWidgets.QMessageBox.warning(self,'error','Patient_id empty')
+        #age qline empty
+        elif listsMyQLineEdit[5].text()=='':
+            QtWidgets.QMessageBox.warning(self,'error','Age empty')
+        else:
+                
+            self.export_dialog = ExportDialog(self)       
+            #Process data to history    
+            
+            pid = str(listsMyQLineEdit[0].text())
+            timelapse_id = str(listsMyQLineEdit[1].text())
 
-        #Clear element
-        listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        listsMyQLineEdit[0].setText('')
-        listsMyQLineEdit[1].setText('')
-        listsMyQLineEdit[2].setText('000:00:00')
-        
-        listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)      
-        listsMyQButton[0].setText('Import')  
-        
-        listsMyQProgressBar = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QProgressBar) 
-        listsMyQProgressBar[0].setValue(0)
+            date = str(listsMyQLineEdit[2].text())
+            age = str(listsMyQLineEdit[5].text())
+            if pid != '' and date != '':
+                #move_select_cham_dish_folder(pid, date, int(chamber_id))
+                #clear_cham_dish_data_csv(int(chamber_id))
+                export_thread = ExportThread(pid,timelapse_id, chamber_id, date,age, self)
+                export_thread.start()
+                self.export_dialog.exec_()
+
+            #Clear element
+            listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
+            listsMyQLineEdit[0].setText('')
+            listsMyQLineEdit[1].setText('')
+            listsMyQLineEdit[2].setText('')
+            listsMyQLineEdit[3].setText('000:00:00')
             
-        for i in range(len(self.chamber_wells[0])):                    
-            self.chamber_wells[int(chamber_id) - 1][i].setEnable('c')  
+            listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)      
+            listsMyQButton[1].setText('Import')  
             
-        #pid config       
-        path = './config/config_' + pid + '.ini'        
-        self.WriteChamberConfig(chamber_id, '')
-        if os.path.isfile(path):
-            os.remove(path)
+            listsMyQProgressBar = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QProgressBar) 
+            listsMyQProgressBar[0].setValue(0)
+                
+            for i in range(len(self.chamber_wells[0])):                    
+                self.chamber_wells[int(chamber_id) - 1][i].setEnable('c')  
+                
+            #pid config       
+            path = './config/config_' + pid + '.ini'        
+            self.WriteChamberConfig(chamber_id, '')
+            if os.path.isfile(path):
+                os.remove(path)
             
     def Start(self, chamber_id):
         self.StartTimeCount(chamber_id)
@@ -679,7 +841,7 @@ class TabSelectChamber(QtWidgets.QWidget):
             idx = time_thread_cids.index(int(chamber_id))
             self.threads[idx].Continue()
         else:
-            cth = TimeCountThread(listsMyQLineEdit[2], chamber_id, self)       
+            cth = TimeCountThread(listsMyQLineEdit[3], chamber_id, self)       
             cth.start()
             self.threads.append(cth)  
         
@@ -725,17 +887,17 @@ class TabSelectChamber(QtWidgets.QWidget):
         pids = []
         for i in range(len(self.chambers)): 
             listsMyQLineEdit = self.chambers[i].findChildren(QtWidgets.QLineEdit)
-            if str(listsMyQLineEdit[0].text()) != '':
-                pids.append(str(listsMyQLineEdit[0].text()))        
+            if str(listsMyQLineEdit[1].text()) != '':
+                pids.append(str(listsMyQLineEdit[1].text()))        
         
         return pids_history + list(set(pids) - set(pids_history)) 
        
     def ImportData(self, cid):
         listsMyQButton = self.chambers[int(cid) - 1].findChildren(QtWidgets.QPushButton)
-        if str(listsMyQButton[0].text()) == 'Import':
+        if str(listsMyQButton[1].text()) == 'Import':
             self.import_dialog.cid = cid
             self.import_dialog.show()
-        if str(listsMyQButton[0].text()) == 'Clear':
+        if str(listsMyQButton[1].text()) == 'Clear':
             print('clear')            
             self.StopExtractAndAnalysis(cid)
     
@@ -748,10 +910,10 @@ class TabSelectChamber(QtWidgets.QWidget):
             
         #Button
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)
-        listsMyQButton[0].setText('Clear')  
+        listsMyQButton[1].setText('Clear')  
             
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        listsMyQLineEdit[0].setText(patient_id)
+        listsMyQLineEdit[1].setText(patient_id)
         self.DisableOrEnableAllElementByChamberID(chamber_id, True)
         
         thread = ExtractSqliteThread(str(patient_id), str(chamber_id), self.unix_socket_client, self)
@@ -785,7 +947,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         self.DisableOrEnableAllElementByChamberID(chamber_id, False)    
         #duration
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)        
-        listsMyQLineEdit[1].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
+        listsMyQLineEdit[2].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
         #listsMyQLineEdit[2].setText('000:00:00')
         
         #Remove extract thread       
@@ -843,14 +1005,14 @@ class TabSelectChamber(QtWidgets.QWidget):
         print('chid' + str(chamber_id))            
         #Gui element
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        patient_id = str(listsMyQLineEdit[0].text())       
+        patient_id = str(listsMyQLineEdit[1].text())       
         listsMyQLineEdit[0].setText('')
         listsMyQLineEdit[1].setText('')
-        listsMyQLineEdit[2].setText('000:00:00')
+        listsMyQLineEdit[2].setText('')
         # print('listsMyQLineEdit[3]')
-        # listsMyQLineEdit[3].setText('')
+        listsMyQLineEdit[3].setText('000:00:00')
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)      
-        listsMyQButton[0].setText('Import')
+        listsMyQButton[1].setText('Import')
         
         listsMyQProgressBar = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QProgressBar) 
         listsMyQProgressBar[0].setValue(0)
@@ -872,10 +1034,14 @@ class TabSelectChamber(QtWidgets.QWidget):
         for j in range(len(listsMySelectCellDish)):
             listsMySelectCellDish[j].setDisabled(False)
         
+       
+
+        
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton) 
         #listsMyQButton[0].setDisabled(False)
-        listsMyQButton[2].setDisabled(True)
-        listsMyQButton[3].setDisabled(False)
+        
+        listsMyQButton[3].setDisabled(True)
+        listsMyQButton[4].setDisabled(False)
         
         #Stop time counter
         for th in self.threads:

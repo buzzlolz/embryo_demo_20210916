@@ -41,7 +41,7 @@ class SelectCellDish(QtWidgets.QPushButton):
             reply = QtWidgets.QMessageBox.information(self.main_widget, 'View Embryo','Video and Image Show', QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Close, QtWidgets.QMessageBox.Close)
             if reply == QtWidgets.QMessageBox.Ok:                
                 self.main_widget.tabs.setCurrentIndex(2)
-                patient_id = self.main_widget.tabs.widget(1).GetPatientID(self.chamber_id)
+                patient_id = self.main_widget.tabs.widget(1).GetTimeLapseID(self.chamber_id)
                 self.main_widget.tabs.widget(2).initSource(patient_id, self.chamber_id, self.well_id)                
             else:
                 pass           

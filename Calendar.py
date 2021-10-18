@@ -134,7 +134,7 @@ class Calendar(QtWidgets.QDialog):
         if self.tab == 'select':            
             date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
             listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
-            listsMyQLineEdit[1].setText(date)
+            listsMyQLineEdit[2].setText(date)
             
             print (date)
         # if self.tab == 'manual set':

@@ -11,6 +11,8 @@ import pickle
 import logging
 import copy
 import sqlite3
+from configparser import RawConfigParser
+import io
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -335,10 +337,30 @@ def write_analy_csv_t2_t8(cham_id):
 #----------------------------------------------Chamber select page use-----------------------------------------
 
 
+def write_patient_config( patient_his_folder,patient_id,timelapse_id,time,age,chamber_id): 
+    path = os.path.join(patient_his_folder,'config_'+timelapse_id+'_'+time+'.ini')
+    # path = './config/config_' + pid + '.ini'
+    
+    if not os.path.exists(path):
+        try:
+        #if True:
+            cfg = RawConfigParser()
+            cfg.add_section('PitentInfo')
+            cfg.set('PitentInfo','PatientId',str(patient_id))
+            cfg.set('PitentInfo','TimelapseId',str(timelapse_id))
+            cfg.set('PitentInfo','FertilizationTime',str(time))
+            cfg.set('PitentInfo','ChamberId',str(chamber_id))
+            cfg.set('PitentInfo','Age',str(age))
+           
+            with io.open(path, 'w') as f:
+                cfg.write(f)
+        except:
+            print('config write error')
+                     
 
 
 #move select chamber to history folder    
-def move_select_cham_dish_folder(patient_id, time, chamber_id):
+def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id):
     # history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     patient_csv_folder='./patient_id_save/'
     ori_img_folder = './data/crop_img/'
@@ -350,13 +372,14 @@ def move_select_cham_dish_folder(patient_id, time, chamber_id):
 
     # write_analy_csv_1248fragpercent(chamber_id)#write fragment 1 2 4 8 to csv first
     write_analy_csv_t2_t8(chamber_id)
+    
 
     #mkdir  patiend id folder
     patient_his_folder = os.path.join(history_dir,patient_id)
     if not os.path.isdir(patient_his_folder):
         os.mkdir(patient_his_folder)
     #mkdir time stamp folder
-    patient_his_time_folder=os.path.join(patient_his_folder,time)
+    patient_his_time_folder=os.path.join(patient_his_folder,timelapse_id)
     if not os.path.isdir(patient_his_time_folder):
         os.mkdir(patient_his_time_folder)
     patient_his_time_data_folder=os.path.join(patient_his_time_folder,"data")
@@ -376,6 +399,7 @@ def move_select_cham_dish_folder(patient_id, time, chamber_id):
     #     df=pd.read_csv(csv_path)
 
     #     chamber_id=df['chamber'][0]
+    write_patient_config(patient_his_folder,patient_id,timelapse_id,time, age ,chamber_id)
 
     move_video_to_history(patient_his_time_folder,patient_id)
 
