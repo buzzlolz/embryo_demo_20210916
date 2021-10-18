@@ -732,6 +732,11 @@ class TabSelectChamber(QtWidgets.QWidget):
         else:
             cfg = RawConfigParser()
             cfg.read(path)
+            for i in range(6):
+                if str(cid) == str(i + 1):
+                    cfg.set('DishInfo', 'chamber_' + str(i + 1), ','.join(dish_list)) 
+                else:
+                    cfg.set('DishInfo', 'chamber_' + str(i + 1), '') 
             if not cfg.has_section('DishInfo'):
                 cfg.add_section('DishInfo')
             cfg.set('DishInfo', 'duration', '000:00:00') 
