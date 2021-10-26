@@ -446,6 +446,14 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
         self.selector_icm = None
         self.selector_te = None
 
+        #init table space part with ''
+        for i in range(1,row*2+1):
+            for j in range(2,column):
+                item_data_space=QtWidgets.QTableWidgetItem('')
+                item_data_space.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                self.setItem(i, j, item_data_space) 
+
+
         #first line space part
         for space_ind  in range(2):
             item_data_title=QtWidgets.QTableWidgetItem()
@@ -462,7 +470,15 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
             item_data_title.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
             item_data_title.setFlags(QtCore.Qt.ItemIsEnabled)
             self.setItem(0, space_ind+2, item_data_title)
-        
+
+            #system row cant be modified
+            for label_ind in range(len(labels)):
+                item_data = QtWidgets.QTableWidgetItem()
+                item_data.setBackground(QtGui.QColor(241,252,218))
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(label_ind * 2+1, space_ind+2, item_data)  
+            
             
         for i in range(row):    
             #Column 0      
@@ -474,7 +490,7 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
             
             
             for j in range(2):
-                self.setRowHeight(2*i , 37)
+                self.setRowHeight(2*i , 25)
                 #Column 1                 
                 # if 'Morula' in self.labels and 'Blastocyst' in self.labels and (i == row - 1):
                 #     item_data = QtWidgets.QTableWidgetItem(self.row_labels_[j])
@@ -488,6 +504,7 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
                 item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
                 item_data.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(2*i + j+1, 1, item_data)  
+
                 
             #Row 1   
             # for j in range(5):
@@ -495,12 +512,20 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
             #     item_data.setBackground(QtGui.QColor(218,241,252))
             #     item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
             #     item_data.setFlags(QtCore.Qt.ItemIsEnabled)
-            #     self.setItem(3*i, 2 + j, item_data)    
+            #     self.setItem(3*i, 2 + j, item_data)   
+            # 
+             
             
-            self.setSpan(2*i+1, 0, 2, 1)             
+            self.setSpan(2*i+1, 0, 2, 1)    
+        
+
+        
+
+
+
         self.setColumnWidth(0, 100)
 
-    def AddRow(self, row, embryo_label_anaylsis):   
+    def AddSystemRow(self, row, embryo_label_anaylsis):   
         # print('embryo_label_anaylsis info:',embryo_label_anaylsis.infos)           
 
         for i, info in enumerate(embryo_label_anaylsis.infos):
@@ -508,9 +533,20 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
                 #Analysis
                 item_data = QtWidgets.QTableWidgetItem(info)
                 item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setBackground(QtGui.QColor(241,252,218))
                 item_data.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(row*2+1,2+i, item_data)
+
+    def AddManualRow(self, row, embryo_label_anaylsis):   
+        # print('embryo_label_anaylsis info:',embryo_label_anaylsis.infos)           
+
+        for i, info in enumerate(embryo_label_anaylsis.infos):
                 
+                #Analysis
+                item_data = QtWidgets.QTableWidgetItem(info)
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                # item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(row*2+2,2+i, item_data)
                
                                          
             
@@ -551,21 +587,31 @@ class EmbryoPnTable(QtWidgets.QTableWidget):
         self.wid = 0      
         self.selector_icm = None
         self.selector_te = None
+         
+        
+        #init table with ''
+
+        for i in range(1,row*2+1):
+            for j in range(2,column):
+                item_data_space=QtWidgets.QTableWidgetItem('')
+                item_data_space.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                self.setItem(i, j, item_data_space) 
 
 
-        for test in range(len(self.column_labels)):
 
-            item_data_title = QtWidgets.QTableWidgetItem(self.column_labels[test])
+        for i in range(len(self.column_labels)):
+
+            item_data_title = QtWidgets.QTableWidgetItem(self.column_labels[i])
             item_data_title.setBackground(QtGui.QColor(218,241,252))
             item_data_title.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
             item_data_title.setFlags(QtCore.Qt.ItemIsEnabled)
-            self.setItem(0, test+2, item_data_title)
-        for r  in range(2):
+            self.setItem(0, i+2, item_data_title)
+        for i  in range(2):
             item_data_title=QtWidgets.QTableWidgetItem()
             item_data_title.setBackground(QtGui.QColor(218,241,252))
             item_data_title.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
             item_data_title.setFlags(QtCore.Qt.ItemIsEnabled)
-            self.setItem(0, r, item_data_title)
+            self.setItem(0, i, item_data_title)
             
         for i in range(row):    
             #Column 0      
@@ -576,37 +622,59 @@ class EmbryoPnTable(QtWidgets.QTableWidget):
             self.setItem(i * 2+1, 0, item_data)      
             
             for j in range(2):
-                self.setRowHeight(2*i , 37)
-                #Column 1                 
-                # if 'Morula' in self.labels and 'Blastocyst' in self.labels and (i == row - 1):
-                #     item_data = QtWidgets.QTableWidgetItem(self.row_labels_[j])
-                #     item_data.setBackground(QtGui.QColor(218,241,252))
-                #     item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-                #     item_data.setFlags(QtCore.Qt.ItemIsEnabled)
-                #     self.setItem(2*i + j+1, 1, item_data)  
-                # else:
+                self.setRowHeight(2*i , 25)
+                
                 item_data = QtWidgets.QTableWidgetItem(self.row_labels[j])
                 item_data.setBackground(QtGui.QColor(218,241,252))
                 item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
                 item_data.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(2*i + j+1, 1, item_data)  
                 
-            #Row 1   
-            # for j in range(5):
-            #     item_data = QtWidgets.QTableWidgetItem(self.column_labels[j])
-            #     item_data.setBackground(QtGui.QColor(218,241,252))
-            #     item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-            #     item_data.setFlags(QtCore.Qt.ItemIsEnabled)
-            #     self.setItem(3*i, 2 + j, item_data)    
             
-            self.setSpan(2*i+1, 0, 2, 1)             
+            
+            self.setSpan(2*i+1, 0, 2, 1)  
+        #make system row cant be modify
+        for i in range(2,5):    
+            item_data_disable = QtWidgets.QTableWidgetItem()
+        
+            item_data_disable.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data_disable.setBackground(QtGui.QColor(241,252,218))
+            item_data_disable.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.setItem(1,i, item_data_disable)  
+
+
+
+       
         self.setColumnWidth(0, 100)
 
-    def AddRow(self, pn_time, pn_score,pn_number):    
+    def AddRow(self, pn_time, pn_score,pn_number):   
+
+        item_data_pn_time=QtWidgets.QTableWidgetItem(pn_time)
+        item_data_pn_score=QtWidgets.QTableWidgetItem(pn_score)
+        item_data_pn_number=QtWidgets.QTableWidgetItem(pn_number)
+        item_data_pn_time.setFlags(QtCore.Qt.ItemIsEnabled)
+        item_data_pn_score.setFlags(QtCore.Qt.ItemIsEnabled)
+        item_data_pn_number.setFlags(QtCore.Qt.ItemIsEnabled)
+        item_data_pn_time.setBackground(QtGui.QColor(241,252,218))
+        item_data_pn_score.setBackground(QtGui.QColor(241,252,218))
+        item_data_pn_number.setBackground(QtGui.QColor(241,252,218))
+
+
+        self.setItem(1,2, item_data_pn_time)
+        self.setItem(1,3, item_data_pn_score)
+        self.setItem(1,4, item_data_pn_number)
+    
+    def AddManualRow(self, embryo_label_anaylsis):   
+        # print('embryo_label_anaylsis info:',embryo_label_anaylsis.infos)           
         
-        self.setItem(1,2, QtWidgets.QTableWidgetItem(pn_time))
-        self.setItem(1,3, QtWidgets.QTableWidgetItem(pn_score))
-        self.setItem(1,4, QtWidgets.QTableWidgetItem(pn_number))
+        for i, info in enumerate(embryo_label_anaylsis.infos):
+                print('embryo_label_info:',info)
+                #Analysis
+                item_data = QtWidgets.QTableWidgetItem(info)
+                # item_data.setBackground(QtGui.QColor(241,252,218))
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                # item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(2,2+i, item_data)
 
         
             

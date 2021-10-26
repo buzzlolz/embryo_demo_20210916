@@ -13,6 +13,7 @@ import copy
 import sqlite3
 from configparser import RawConfigParser
 import io
+import json
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -265,26 +266,26 @@ def write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic):
 
 #call by function move_select_cham_dish_folder ->write csv->cham->dish->analy.csv t2-t8 time
 
-def write_analy_csv_t2_t8_init(cham_id):
-    chamber_path = './csv/cham'+str(cham_id)+'/'
+# def write_analy_csv_t2_t8_init(cham_id):
+#     chamber_path = './csv/cham'+str(cham_id)+'/'
 
-    dish_folder_list = os.listdir(chamber_path)
-    percent_dic =dict()
+#     dish_folder_list = os.listdir(chamber_path)
+#     percent_dic =dict()
 
-    for dish_folder in dish_folder_list:
-        dish_folder_path = os.path.join(chamber_path,dish_folder)
-        dish_id =dish_folder.replace('dish','')
-        if os.path.isdir(dish_folder_path):
-            # csv_list = os.listdir(dish_folder_path)
+#     for dish_folder in dish_folder_list:
+#         dish_folder_path = os.path.join(chamber_path,dish_folder)
+#         dish_id =dish_folder.replace('dish','')
+#         if os.path.isdir(dish_folder_path):
+#             # csv_list = os.listdir(dish_folder_path)
 
-            ori_csvname = 'cham'+str(cham_id)+'_'+str(dish_folder)+'.csv'
-            oricsv_path = os.path.join(dish_folder_path,ori_csvname)
-            print('oricsvpath',oricsv_path)
-            if os.path.isfile(oricsv_path):
-                t2t8_time_dic=get_t2t8_dur_time(oricsv_path)
-                print('t2t8timelist:',t2t8_time_dic)
+#             ori_csvname = 'cham'+str(cham_id)+'_'+str(dish_folder)+'.csv'
+#             oricsv_path = os.path.join(dish_folder_path,ori_csvname)
+#             print('oricsvpath',oricsv_path)
+#             if os.path.isfile(oricsv_path):
+#                 t2t8_time_dic=get_t2t8_dur_time(oricsv_path)
+#                 print('t2t8timelist:',t2t8_time_dic)
 
-                write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic)
+#                 write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic)
 
 
 
@@ -295,27 +296,26 @@ def write_analy_csv_t2_t8_init(cham_id):
 
 #call by move_select_cham_dish_folder ->write csv-cham-dish  analy csv t2-t8 time
 
-def write_analy_csv_t2_t8(cham_id):
-    chamber_path = './csv/cham'+str(cham_id)+'/'
+def write_analy_csv_t2_t8(cham_id,dish_id,t2t8_time_dic):
+    cham_dish_path = './csv/cham'+str(cham_id)+'/dish'+str(dish_id)
 
-    dish_folder_list = os.listdir(chamber_path)
-    percent_dic =dict()
+    # dish_folder_list = os.listdir(chamber_path)
+    # cham_dish_path ='cham'+str(cham_id)+'/dish'+str(dish_id)
 
-    for dish_folder in dish_folder_list:
-        dish_folder_path = os.path.join(chamber_path,dish_folder)
-        dish_id =dish_folder.replace('dish','')
-        if os.path.isdir(dish_folder_path):
-            # csv_list = os.listdir(dish_folder_path)
+    # for dish_folder in dish_folder_list:
+    #     dish_folder_path = os.path.join(chamber_path,dish_folder)
+    #     dish_id =dish_folder.replace('dish','')
+    if os.path.isdir(cham_dish_path):
+        # csv_list = os.listdir(dish_folder_path)
 
-            ori_csvname = 'cham'+str(cham_id)+'_'+str(dish_folder)+'.csv'
-            oricsv_path = os.path.join(dish_folder_path,ori_csvname)
-            print('oricsvpath',oricsv_path)
-            if os.path.isfile(oricsv_path):
-                t2t8_time_dic=get_t2t8_dur_time(oricsv_path)
-                print('t2t8timelist:',t2t8_time_dic)
+        ori_csvname = 'cham'+str(cham_id)+'_'+'dish_'+str(dish_id)+'.csv'
+        oricsv_path = os.path.join(cham_dish_path,ori_csvname)
+        print('oricsvpath',oricsv_path)
+        if os.path.isfile(oricsv_path):
+            # t2t8_time_dic=get_t2t8_dur_time(oricsv_path)
+            # print('t2t8timelist:',t2t8_time_dic)
 
-                write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic)
-
+            write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic)
 
 
 
@@ -365,13 +365,32 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id
     patient_csv_folder='./patient_id_save/'
     ori_img_folder = './data/crop_img/'
     csv_dir='./csv/'
+
+
+
+    
     # img_dir = './data/crop_img/'
     # chamber_idlist = []
     # chamber_id =-1
     # dish_idlist=[]
 
     # write_analy_csv_1248fragpercent(chamber_id)#write fragment 1 2 4 8 to csv first
-    write_analy_csv_t2_t8(chamber_id)
+
+    
+    csv_cham_folder_path =os.path.join(csv_dir,'cham'+str(chamber_id))
+    dish_folder_list = os.listdir(csv_cham_folder_path)
+    for dish_folder_name in dish_folder_list:
+        dish_folder_path  =os.path.join(csv_cham_folder_path,dish_folder_name)
+        dish_id_csv = dish_folder_name.replace('dish','')
+        csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(dish_id_csv)+'.csv'
+        csv_path = os.path.join(dish_folder_path,csv_name)
+
+        predict_division_dic=get_t2t8_dur_time(csv_path)
+
+        write_analy_csv_t2_t8(chamber_id,dish_id_csv,predict_division_dic)
+
+
+    
     
 
     #mkdir  patiend id folder
@@ -554,7 +573,7 @@ def get_xlsx_predict_division_time(folder_name,chamber_id,dish_id):
         predict_division_dic=get_t2t8_dur_time(csv_path)
         pn_max_number = get_pn_number(csv_path)
         xlsx_predict_division_time_dic['Pn_number']=str(pn_max_number)
-        write_analy_csv_t2_t8(chamber_id)
+        write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
 
 
         
@@ -595,7 +614,142 @@ def read_analy_csv_icm_te(cham_id, dish_id):
     else:
         return '', ''
 
+#embryo viewer page table manual info write to csv
+def write_table_manual_info_csv(cham_id,dish_id,dic_manual_info):
+    print('test')
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
+    with open(json_path,'w') as f:
+        json.dump(dic_manual_info, f)
+    
+    # print('dic',dic_manual_info)
+    # df = pd.DataFrame([dic_manual_info])
+    # # df=df.append({'t2':t2,'t3':t3,'t4':t4,'t5':t5,'t6':t6,'t7':t7,'t8':t8,'Morula':morula,'Blas':blas,'comp':comp,'PN_Fading':pn_fading,'ICM':icm,'TE':te,'PGS':pgs},ignore_index=True)
+        
+    
+    # # print('save viewer info to manual csv',df)
+    # df.to_csv(csv_path,index=0)
 
+
+
+
+
+
+
+
+#embryo viewer read table manual info
+def read_table_manual_info_csv(cham_id,dish_id):
+    print('test')
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
+    dic_rtn = {
+        'PN_Fading':'',
+        't2':'',
+        't3':'',
+        't4':'',
+        't5':'',
+        't6':'',
+        't7':'',
+        't8':'',
+        'Morula':'',
+        'Blas':'',
+        
+    }
+
+    if not os.path.isfile(json_path):
+        
+        return dic_rtn
+    else:
+        output_dic={}
+        with open(json_path, 'r') as f:
+            output_dic = json.load(f)
+        return output_dic
+
+        # df = pd.read_csv(csv_path)
+        # dic_rtn['PN_Fading']=df['PN_Fading'].values[0]
+        # dic_rtn['t2']=df['t2'].values[0]
+        # dic_rtn['t3']=df['t3'].values[0]
+        # dic_rtn['t4']=df['t4'].values[0]
+        # dic_rtn['t5']=df['t5'].values[0]
+        # dic_rtn['t6']=df['t6'].values[0]
+        # dic_rtn['t7']=df['t7'].values[0]
+        # dic_rtn['t8']=df['t8'].values[0]
+        # dic_rtn['Morula']=df['Morula'].values[0]
+        # dic_rtn['Blas']=df['Blas'].values[0]
+    
+        # print('dic',dic_rtn)
+
+        # return dic_rtn
+   
+
+
+
+
+def write_EmbryoViewer_combobox_qradio_info(cham_id,dish_id,save_pn,save_location,save_morphological,save_divisiontime,save_ICM,save_TE):
+    print('r')
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_othersinfo.json'
+    dic = {
+        'cbo_PN':[],
+        'cbo_Loction':[],
+        'rdo_Morphological':[],
+        'rdo_divisiontime':[],
+        'cbo_ICM':[],
+        'cbo_TE':[]
+ 
+    }
+    dic['cbo_PN']=save_pn
+    dic['cbo_Loction']=save_location
+    dic['rdo_Morphological']=save_morphological
+    dic['rdo_divisiontime']=save_divisiontime
+    dic['cbo_ICM']=save_ICM
+    dic['cbo_TE']=save_TE
+    with open(json_path, 'w') as f:
+        json.dump(dic, f)
+
+    # df = pd.DataFrame(dic)
+    # df=df.append({'cbo_PN':save_pn,"cbo_Loction":save_location,'rdo_Morphological':save_morphological,'rdo_divisiontime':save_divisiontime,'cbo_ICM':save_ICM,'cbo_TE':save_TE},ignore_index=True)
+    # df.to_csv(csv_path,index=0)
+
+
+
+def read_EmbryoViewer_combobox_qradio_info(cham_id,dish_id):
+    print('r')
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_othersinfo.json'
+    dic = {
+        'cbo_PN':'',
+        'cbo_Loction':'',
+        'rdo_Morphological':'',
+        'rdo_divisiontime':'',
+        'cbo_ICM':'',
+        'cbo_TE':''
+ 
+    }
+    if not os.path.isfile(json_path):
+        return dic
+    
+    else:
+        output_dic={}
+        with open(json_path, 'r', encoding='utf-8') as f:
+            output_dic = json.load(f)
+        # print(output)
+        return output_dic
+
+    # if os.path.isfile(csv_path):
+    #     df = pd.read_csv(csv_path)
+    #     dic['cbo_PN']=df['cbo_PN'].values[0]
+    #     dic['cbo_Loction']=df['cbo_Loction'].values[0]
+    #     dic['rdo_Morphological']=df['rdo_Morphological'].values[0]
+    #     dic['rdo_divisiontime']=df['rdo_divisiontime'].values[0]
+    #     dic['cbo_ICM']=df['cbo_ICM'].values[0]
+    #     dic['cbo_TE']=df['cbo_TE'].values[0]
+    #     print('get fromcsv info',dic)
+
+    #     print('test rdo_Morphological',df['rdo_Morphological'].values[0])
+    #     print('test rdo_Morphological',df['rdo_Morphological'].values[0][0])
+    #     # print('test rdo_Morphological',df['rdo_Morphological'].values[0].tolist()[0])
+    
+    
+
+
+   
 
 
     
