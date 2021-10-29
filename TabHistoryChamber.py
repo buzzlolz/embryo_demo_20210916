@@ -111,11 +111,11 @@ class TabHistoryChamber(QtWidgets.QWidget):
         vert_lay = QtWidgets.QGridLayout(parent)         
         self.embryo_info_array = []
         for j in range(4):
-            for i in range(4):
+            
                 #if len(self.embryo_info_array) < self.well_number:
                 embryo_info = EmbryoHistoryInfoTableBox(len(self.embryo_info_array) + 1)                  
                 self.embryo_info_array.append(embryo_info)  
-                vert_lay.addWidget(embryo_info, i, j , 1, 1)              
+                vert_lay.addWidget(embryo_info, j, 0 , 1, 1)              
         vert_lay.setSpacing(1)
         
     def SelectDate(self, item):        
@@ -126,6 +126,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
     def FileLoad(self, event):        
         #Set chamber id        
         chamber_ids = []
+
         history_dirs = os.listdir(self.mnt_history_path + str(self.selector_pid.currentText()) + '/' +  str(self.selector_files.currentText()) + '/csv/')        
         for dd in history_dirs:
             if os.path.isdir(self.mnt_history_path + str(self.selector_pid.currentText()) + '/' +  str(self.selector_files.currentText()) + '/csv/' + dd):

@@ -157,8 +157,8 @@ class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
         super(EmbryoHistoryInfoTableBox, self).__init__(parent)
         self.well_id = well_id
         self.table = EmbryoHistoryInfoTable(well_id, self)  
-        self.table.setGeometry(0, 0, 510, 435)        
-        self.setFixedSize(515, 440)
+        self.table.setGeometry(0, 0, 1800, 500)        
+        self.setFixedSize(1800, 500)
         
     def SetItem(self, row, col, value, readonly):
         #print(row, col)
@@ -205,13 +205,15 @@ class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
         
 class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
     def __init__(self, well_id, parent=None):
-        self.titles = ['Status', 'Division Time', 'Score']
+
+        self.wells_id = ['well %s'%str(i) for i in range(1,17)]
+        
         #self.cell_names = ['2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',]
-        self.cell_names = ['PN_Fading', '2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',  'Morula', 'Blastocyst_ICM', 'Blastocyst_TE', 'Event', 'Final score', 'Decision', 'PGS']        
+        self.division_status = ['PN_Fading', '2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',  'Morula', 'Blastocyst', 'ICM','TE', 'Event', 'Final score','PGS']        
         self.decisions = ['', 'Transfer', 'Discard', 'Freeze']
         self.dec_bcolors = ['white','lightgreen', '#ff968a', '#abdee6']
         self.pgs = ['', 'Mosaicism', 'Aneuploidy', 'Euploidy']
-        super(EmbryoHistoryInfoTable, self).__init__(len(self.cell_names) + 2, len(self.titles), parent)        
+        super(EmbryoHistoryInfoTable, self).__init__(len(self.wells_id) + 2, len(self.division_status), parent)        
         
         self.setStyleSheet('background-color:white; font-size: 13pt;')         
         self.verticalScrollBar().setStyleSheet("QScrollBar:vertical {Background-color:lightgray;}")      
@@ -222,47 +224,48 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         self.chamber_id = 0
         self.well_id = well_id
        
-        self.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        self.horizontalHeader().setSectionResizeMode(1)
+        # self.horizontalHeader().setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        # self.horizontalHeader().setSectionResizeMode(1)
+        self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Interactive)
        
-        self.setRowCount(len(self.cell_names) + 2)
-        self.setColumnCount(len(self.titles) + 2)
-        for i in range(len(self.cell_names) + 1):
+        self.setRowCount(len(self.wells_id) + 2)
+        self.setColumnCount(len(self.division_status) + 1)
+        for i in range(len(self.division_status) + 1):
             self.setRowHeight(i, 25)
-        self.setRowHeight(len(self.cell_names) + 1, 30)
-        self.setRowHeight(len(self.cell_names) + 2, 30)            
+        self.setRowHeight(len(self.division_status) + 1, 30)
+        self.setRowHeight(len(self.division_status) + 2, 30)            
         
-        for i in range(len(self.titles) + 2):
-            self.setColumnWidth(i, 75) 
+        for i in range(len(self.wells_id) + 2):
+            self.setColumnWidth(i, 30) 
           
-        #Span
-        for i in range(len(self.cell_names) + 2):
-            #if i != len(self.cell_names) + 1 and i != len(self.cell_names) + 2:
-            self.setSpan(i, 0, 1, 2)
-            self.setSpan(i, 2, 1, 2)
-            self.setColumnWidth(i, 10) 
-        self.setSpan(0, 0, 1, len(self.titles) + 2)
+        # #Span
+        # for i in range(len(self.division_status) + 2):
+        #     #if i != len(self.cell_names) + 1 and i != len(self.cell_names) + 2:
+        #     self.setSpan(i, 0, 1, 2)
+        #     self.setSpan(i, 2, 1, 2)
+        #     self.setColumnWidth(i, 10) 
+        self.setSpan(0, 0, 1, len(self.division_status) + 2)
         
-        #Blas.
-        self.setSpan(len(self.cell_names) - 4, 2, 2, 2)
+        # #Blas.
+        # self.setSpan(len(self.division_status) - 4, 2, 2, 2)
         
-        #Event
-        self.setSpan(len(self.cell_names) - 2, 2, 1, 3)
+        # #Event
+        # self.setSpan(len(self.division_status) - 2, 2, 1, 3)
         
-        #Finial score, decision, pgs        
-        self.setSpan(len(self.cell_names) - 1, 2, 1, 3)
-        self.setSpan(len(self.cell_names), 2, 1, 3)
-        self.setSpan(len(self.cell_names) + 1, 2, 1, 3)        
+        # #Finial score, decision, pgs        
+        # self.setSpan(len(self.division_status) - 1, 2, 1, 3)
+        # self.setSpan(len(self.division_status), 2, 1, 3)
+        # self.setSpan(len(self.division_status) + 1, 2, 1, 3)        
         
         self.initContent()
         #self.cellChanged.connect(self.CellClicked)
         
 
     def initContent(self):     
-        header = self.horizontalHeader()
-        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
-        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)    
+        # header = self.horizontalHeader()
+        # header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        # header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+        # header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)    
         #Header
         item_data = QtWidgets.QTableWidgetItem('Well ' + str(self.well_id))
         item_data.setTextAlignment(QtCore.Qt.AlignHCenter)
@@ -271,68 +274,67 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         self.setItem(0, 0, item_data)   
         
         #Title
-        for i in range(len(self.titles)):                        
-            if i == 1:
-                self.setColumnWidth(i, 150)
-            else:
-                self.setColumnWidth(i, 50) 
-            item_data = QtWidgets.QTableWidgetItem(self.titles[i])
+        for i in range(len(self.division_status)):                        
+            
+            self.setColumnWidth(i, 100) 
+            item_data = QtWidgets.QTableWidgetItem(self.division_status[i])
             item_data.setTextAlignment(QtCore.Qt.AlignHCenter)
             item_data.setFlags(QtCore.Qt.ItemIsEnabled)
-            self.setItem(1, i*2, item_data)            
-        for i in range(len(self.cell_names)):
-            item_data = QtWidgets.QTableWidgetItem(self.cell_names[i])
+            self.setItem(1, i+1, item_data)            
+        for i in range(len(self.wells_id)): 
+            
+            item_data = QtWidgets.QTableWidgetItem(self.wells_id[i])
             item_data.setTextAlignment(QtCore.Qt.AlignHCenter)    
             item_data.setFlags(QtCore.Qt.ItemIsEnabled)
             self.setItem(i + 2, 0, item_data)  
             
-        #Blas. icm te
-        frameWidget = QtWidgets.QWidget()               
-        self.selector_icm = QtWidgets.QComboBox(frameWidget)                                 
-        self.selector_icm.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
-        self.selector_icm.setGeometry(20, 2, 50, 25)       
-        for a in ['', 'A', 'B', 'C']:
-            self.selector_icm.addItem(a)                        
-        self.setCellWidget(len(self.cell_names) - 4, 4, frameWidget)  
+        # #Blas. icm te
+        # frameWidget = QtWidgets.QWidget()               
+        # self.selector_icm = QtWidgets.QComboBox(frameWidget)                                 
+        # self.selector_icm.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
+        # self.selector_icm.setGeometry(20, 2, 50, 25)       
+        # for a in ['', 'A', 'B', 'C']:
+        #     self.selector_icm.addItem(a)                        
+        # self.setCellWidget(len(self.division_status) - 4, 4, frameWidget)  
         
-        frameWidget = QtWidgets.QWidget()               
-        self.selector_te = QtWidgets.QComboBox(frameWidget)                                 
-        self.selector_te.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
-        self.selector_te.setGeometry(20, 2, 50, 25)       
-        for a in ['', 'A', 'B', 'C']:
-            self.selector_te.addItem(a)
+        # frameWidget = QtWidgets.QWidget()               
+        # self.selector_te = QtWidgets.QComboBox(frameWidget)                                 
+        # self.selector_te.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
+        # self.selector_te.setGeometry(20, 2, 50, 25)       
+        # for a in ['', 'A', 'B', 'C']:
+        #     self.selector_te.addItem(a)
         
-        self.selector_icm.currentIndexChanged.connect(self.WriteInfoToCsv)
-        self.selector_te.currentIndexChanged.connect(self.WriteInfoToCsv)              
-        self.setCellWidget(len(self.cell_names) - 3, 4, frameWidget)  
+        # self.selector_icm.currentIndexChanged.connect(self.WriteInfoToCsv)
+        # self.selector_te.currentIndexChanged.connect(self.WriteInfoToCsv)              
+        # self.setCellWidget(len(self.division_status) - 3, 4, frameWidget)  
         
-        #Decision row
-        frameWidget = QtWidgets.QWidget()               
-        self.selector_decision = QtWidgets.QComboBox(frameWidget)         
-        self.selector_decision.setStyleSheet("background-color:lightgreen;selection-background-color: darkblue")#.format(self.dec_bcolors[0]))    
-        self.selector_decision.setGeometry(50, 2 ,150, 25) 
+        # #Decision row
+        # frameWidget = QtWidgets.QWidget()               
+        # self.selector_decision = QtWidgets.QComboBox(frameWidget)         
+        # self.selector_decision.setStyleSheet("background-color:lightgreen;selection-background-color: darkblue")#.format(self.dec_bcolors[0]))    
+        # self.selector_decision.setGeometry(50, 2 ,150, 25) 
         
-        self.label_decision_prob = QtWidgets.QLabel(frameWidget)         
-        self.label_decision_prob.setGeometry(220, 2 ,100, 25) 
-        self.label_decision_prob.setText('0%')
+        # self.label_decision_prob = QtWidgets.QLabel(frameWidget)         
+        # self.label_decision_prob.setGeometry(220, 2 ,100, 25) 
+        # self.label_decision_prob.setText('0%')
         
-        for i in range(len(self.decisions)):            
-            self.selector_decision.addItem(self.decisions[i]) 
-            self.selector_decision.model().item(i).setBackground(QtGui.QColor(self.dec_bcolors[i]))   
-            #self.selector_decision.model().item(i).setForeground(QtGui.QColor(self.dec_wcolors[i])) 
-        self.selector_decision.currentIndexChanged.connect(self.combo_changed_decision)         
-        self.setCellWidget(len(self.cell_names), 2, frameWidget)       
+        # for i in range(len(self.decisions)):            
+        #     self.selector_decision.addItem(self.decisions[i]) 
+        #     self.selector_decision.model().item(i).setBackground(QtGui.QColor(self.dec_bcolors[i]))   
+        #     #self.selector_decision.model().item(i).setForeground(QtGui.QColor(self.dec_wcolors[i])) 
+        # self.selector_decision.currentIndexChanged.connect(self.combo_changed_decision)         
+        # self.setCellWidget(len(self.division_status), 2, frameWidget)       
         
-        #PGS row
-        frameWidget = QtWidgets.QWidget()
-        self.selector_pgs = QtWidgets.QComboBox(frameWidget)         
-        self.selector_pgs.setStyleSheet("background-color:lightgreen;selection-background-color: darkblue")#.format(self.dec_bcolors[0]))    
-        self.selector_pgs.setGeometry(50, 2 ,150, 25)        
-        for i in range(len(self.pgs)):            
-            self.selector_pgs.addItem(self.pgs[i]) 
-            self.selector_pgs.model().item(i).setBackground(QtGui.QColor(self.dec_bcolors[i])) 
-        self.selector_pgs.currentIndexChanged.connect(self.combo_changed_pgs)            
-        self.setCellWidget(len(self.cell_names) + 1, 2, frameWidget)
+        # #PGS row
+        # frameWidget = QtWidgets.QWidget()
+        # self.selector_pgs = QtWidgets.QComboBox(frameWidget)         
+        # self.selector_pgs.setStyleSheet("background-color:lightgreen;selection-background-color: darkblue")#.format(self.dec_bcolors[0]))    
+        # self.selector_pgs.setGeometry(50, 2 ,150, 25)        
+        # for i in range(len(self.pgs)):            
+        #     self.selector_pgs.addItem(self.pgs[i]) 
+        #     self.selector_pgs.model().item(i).setBackground(QtGui.QColor(self.dec_bcolors[i])) 
+        # self.selector_pgs.currentIndexChanged.connect(self.combo_changed_pgs)            
+        # self.setCellWidget(len(self.division_status) + 1, 2, frameWidget)
                    
     def SetIcmTe(self):
         icm, te = read_analy_csv_icm_te(self.chamber_id, self.well_id)   
@@ -373,7 +375,7 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         te=None
         pgs=None
         prob=None
-        for r in range(len(self.cell_names) - 2):
+        for r in range(len(self.division_status) - 2):
             
             key = str(self.item(r + 2, 0).text())
             print(r + 2, key)
@@ -438,7 +440,7 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
         self.verticalHeader().setVisible(False)
         self.horizontalHeader().setVisible(False)
         self.labels = labels
-        self.column_labels = ['div time' , 'div score','frag','frag score','total score']
+        self.column_labels = ['div time' , 'div score','frag','frag score','sub score']
         self.row_labels = [ 'System', 'Manual']
         self.row_labels_ = ['', 'Time', 'ICM']
         self.chid = 0
@@ -668,7 +670,7 @@ class EmbryoPnTable(QtWidgets.QTableWidget):
         # print('embryo_label_anaylsis info:',embryo_label_anaylsis.infos)           
         
         for i, info in enumerate(embryo_label_anaylsis.infos):
-                print('embryo_label_info:',info)
+                
                 #Analysis
                 item_data = QtWidgets.QTableWidgetItem(info)
                 # item_data.setBackground(QtGui.QColor(241,252,218))

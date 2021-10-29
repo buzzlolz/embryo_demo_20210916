@@ -108,7 +108,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         for j in range(4):
             for i in range(4):
                 #if len(self.embryo_info_array) < self.well_number:
-                embryo_info = EmbryoHistoryInfoTableBox(len(self.embryo_info_array) + 1)                  
+                embryo_info = EmbryoHistoryInfoTableBox(len(self.embryo_info_array) + 2)                  
                 self.embryo_info_array.append(embryo_info)  
                 vert_lay.addWidget(embryo_info, i, j , 1, 1)              
         vert_lay.setSpacing(1)

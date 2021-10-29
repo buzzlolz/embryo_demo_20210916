@@ -56,7 +56,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         self.table_pn = EmbryoPnTable(1, 5, ['pn_Fading'], self)
         self.table_pn.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        self.table_pn.setGeometry(800,10,502,100)   
+        self.table_pn.setGeometry(800,10,502,87)   
 
 
         #save sheet manual row information
@@ -134,11 +134,11 @@ class TabEmbryoResults(QtWidgets.QWidget):
         # label_table_right.setFont(QtGui.QFont('Arial', 12))
         # label_table_right.setFixedHeight(25)
         # self.table_img_left = EmbryoInfoTable(5, 4, ['2pn', '2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
-        self.table_img_left = EmbryoNewInfoTable(9, 7, ['2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
+        self.table_img_left = EmbryoNewInfoTable(10, 7, ['2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst','Total Score'], self)
         
-        self.table_img_left.setFixedSize(QtCore.QSize(702, 635))   
+        # self.table_img_left.setFixedSize(QtCore.QSize(702, 635))   
         self.table_img_left.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        self.table_img_left.setGeometry(800,109,702,635)
+        self.table_img_left.setGeometry(800,109,702,583)
 
         #pn option radio buttons -------------------
         label_combobox_pn = QtWidgets.QLabel('PN :',self)
@@ -480,7 +480,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         for i in range(len(lines)):
             if i > 1:
                 text.append(lines[i])
-        print (text)        
+                
         with open('event_info_' + self.patient_id + '_' + self.well_id + '.txt', 'w') as f:
             f.write(' '.join(text))        
 
@@ -520,10 +520,17 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         dict_manual_msg  = read_table_manual_info_csv(chamber_id, dish_id)
 
-        print(dict_msg)
-        print('manual dic:',dict_manual_msg)
+        offset_time = get_patient_offset_time_from_ini(patient_id)
+        hour=0
+        minute=0
+        second=0
+        if offset_time!='':
+            hour,minute,second = int(offset_time.split(':')[0]),int(offset_time.split(':')[1]),int(offset_time.split(':')[2])
+        print('hour minute second',hour,minute,second)
+        
         total_score = 0
-        count = 0   
+        offset_time_to_hours = hour+round(minute/60,2)+round(second/3600,2)
+        
 
 
         #------------------------------- system time----------------------
@@ -536,7 +543,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
 
         if "pn" in dict_msg["Predict"] and str(dict_msg["Predict"]["pn"]) != 'nan' and str(dict_msg["Predict"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["pn"]):
-            pn_time = str(int(float(dict_msg["Predict"]["pn"]) * 100.0) / 100.0)
+            pn_time = str(int((float(dict_msg["Predict"]["pn"])+offset_time_to_hours) * 100.0) / 100.0)
         
         self.table_pn.AddRow( pn_time, pn_score,pn_number)
 
@@ -544,16 +551,16 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         #2cell ~blas table t2-t8
         for index in range(2,9):
-            time = '-'
-            time_score='-'
-            frag='-'
-            frag_score='-'
+            time = ''
+            time_score=''
+            frag=''
+            frag_score=''
             total_score_time_frag=0
             
 
 
             if 't' + str(index) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(index)]) != 'nan' and str(dict_msg["Predict"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(index)]):
-                time = str(int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)
+                time = str(int(float((dict_msg["Predict"]['t' + str(index)])+offset_time_to_hours) * 100.0) / 100.0)
                 time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
                 total_score_time_frag=total_score_time_frag +time_score
                 
@@ -572,19 +579,19 @@ class TabEmbryoResults(QtWidgets.QWidget):
         #morula blas table
     
         for index in range(9,11):
-            time = '-'
-            time_score='-'
-            frag='-'
-            frag_score='-'
+            time = ''
+            time_score=''
+            frag=''
+            frag_score=''
             total_score_time_frag=0
             if index == 9:
                 if "morula" in dict_msg["Predict"] and str(dict_msg["Predict"]["morula"]) != 'nan' and str(dict_msg["Predict"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["morula"]):     
-                    time = str(int(dict_msg["Predict"]['morula'] * 100.0) / 100.0)  
+                    time = str(int(float(dict_msg["Predict"]['morula']+offset_time_to_hours) * 100.0) / 100.0)  
                     time_score = (int(dict_msg["Predict"]['morula'] * 100.0) / 100.0)/2
                     
             if index == 10:
                 if "blas" in dict_msg["Predict"] and str(dict_msg["Predict"]["blas"]) != 'nan' and str(dict_msg["Predict"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["blas"]):                                       
-                    time = str(int(dict_msg["Predict"]["blas"] * 100.0) / 100.0)
+                    time = str(int(float(dict_msg["Predict"]['blas']+offset_time_to_hours) * 100.0) / 100.0)  
                     time_score = (int(dict_msg["Predict"]['blas'] * 100.0) / 100.0)/2
                 
             
@@ -716,7 +723,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         
         if dic_cbo_rdo_button_info['rdo_Morphological']!='':
             for i in range(len(dic_cbo_rdo_button_info['rdo_Morphological'])):
-                print('rdo_Morphological',len(dic_cbo_rdo_button_info['rdo_Morphological'][0]))
+                
                 cbo_Morphological_index=self.combobox_morphological_choices.index(dic_cbo_rdo_button_info['rdo_Morphological'][i])
                 self.qradio_morphological_choices[cbo_Morphological_index].setChecked(True)
         
@@ -743,118 +750,6 @@ class TabEmbryoResults(QtWidgets.QWidget):
             
         
 
-
-
-            
-         
-
-        
-        # #Left table               
-        # for n in range(5):
-        #     #Analysis            
-        #     grade = '-'
-        #     score = '-'
-        #     time = '-'
-        #     #Find grade time
-        #     if n == 0:
-        #         if "pn" in dict_msg["Predict"] and str(dict_msg["Predict"]["pn"]) != 'nan' and str(dict_msg["Predict"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["pn"]):
-        #             time = str(int(dict_msg["Predict"]["pn"] * 100.0) / 100.0) 
-        #         if "pn" in dict_msg["Fragment"] and str(dict_msg["Fragment"]["pn"]) != 'nan' and str(dict_msg["Fragment"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]["pn"]):  
-        #             grade = self.MapGradeValue(int(dict_msg["Fragment"]["pn"]))
-        #             score = 100 - (4 * int(dict_msg["Fragment"]["pn"]))
-        #         print('score',score)                 
-        #         if score != '-':
-        #             total_score = total_score + score
-        #             count += 1
-        #     if n >= 1:
-        #         if 't' + str(n + 1) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(n + 1)]) != 'nan' and str(dict_msg["Predict"]['t' + str(n + 1)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(n + 1)]):
-        #             time = str(int(dict_msg["Predict"]['t' + str(n + 1)] * 100.0) / 100.0)  
-        #         if 't' + str(n + 1) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(n + 1)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(n + 1)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(n + 1)]):  
-        #             grade = self.MapGradeValue(math.ceil(dict_msg["Fragment"]['t' + str(n + 1)]))
-        #             score = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(n + 1)]))               
-        #         if score != '-':
-        #             total_score = total_score + score
-        #             count += 1            
-        #     label_l_analysis = EmbryoImageLabel(150, 150, [str(grade), str(time), str(score)]) 
-        #     # print('label_l_analysis:',label_l_analysis)
-            
-        #     #View              
-        #     time = '-'
-        #     #Find grade time
-        #     if n == 0 and "pn" in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]["pn"]) != 'nan' and str(dict_msg["Xlsx"]["pn"]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]["pn"]):
-        #         time = str(int(dict_msg["Xlsx"]["pn"] * 100.0) / 100.0)                
-        #     if n >= 1 and 't' + str(n + 1) in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]['t' + str(n + 1)]) != 'nan' and str(dict_msg["Xlsx"]['t' + str(n + 1)]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]['t' + str(n + 1)]):   
-        #         time = str(int(dict_msg["Xlsx"]['t' + str(n + 1)] * 100.0) / 100.0)                                     
-        #     label_l_view = EmbryoImageLabel(150, 150, ['-', str(time), '-']) 
-        #     print()  
-            
-        #     #Insert data      
-        #     self.table_img_left.AddRow(n, label_l_analysis, label_l_view)  
-                         
-        # #Right table
-        # for n in range(5):
-        #     grade = '-'   
-        #     score = '-'
-        #     time = '-'            
-        #     #Find grade time            
-        #     if n < 3: 
-        #         if 't' + str(n + 6) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(n + 6)]) != 'nan' and str(dict_msg["Predict"]['t' + str(n + 6)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(n + 6)]):
-        #             time = str(int(dict_msg["Predict"]['t' + str(n + 6)] * 100.0) / 100.0)                    
-        #         if 't' + str(n + 6) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(n + 6)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(n + 6)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(n + 6)]):
-        #             grade = self.MapGradeValue(math.ceil(dict_msg["Fragment"]['t' + str(n + 6)]))
-        #             score = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(n + 6)]))                
-        #         if score != '-':
-        #             total_score = total_score + score
-        #             count += 1
-                    
-        #     if n == 3:
-        #         if "morula" in dict_msg["Predict"] and str(dict_msg["Predict"]["morula"]) != 'nan' and str(dict_msg["Predict"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["morula"]):                             
-        #             time = str(int(dict_msg["Predict"]["morula"] * 100.0) / 100.0)
-        #         if "morula" in dict_msg["Fragment"] and str(dict_msg["Fragment"]["morula"]) != 'nan' and str(dict_msg["Fragment"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]["morula"]):       
-        #             grade = self.MapGradeValue(math.ceil(dict_msg["Fragment"]["morula"]))
-        #             score = 100 - (4 * math.ceil(dict_msg["Fragment"]["morula"]))
-                   
-        #     if n == 4:
-        #         if "blas" in dict_msg["Predict"] and str(dict_msg["Predict"]["blas"]) != 'nan' and str(dict_msg["Predict"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["blas"]):                                       
-        #             time = str(int(dict_msg["Predict"]["blas"] * 100.0) / 100.0)
-                                       
-        #     #View           
-        #     time_ = '-'
-        #     #Find grade time
-        #     if n < 3: 
-        #         if 't' + str(n + 6) in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]['t' + str(n + 6)]) != 'nan' and str(dict_msg["Xlsx"]['t' + str(n + 6)]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]['t' + str(n + 6)]):                
-        #             time_ = str(int(dict_msg["Xlsx"]['t' + str(n + 6)] * 100.0) / 100.0)
-                                    
-        #     if n == 3:
-        #         if "morula" in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]["morula"]) != 'nan' and str(dict_msg["Xlsx"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]["morula"]):
-        #             time_ = str(int(dict_msg["Xlsx"]["morula"] * 100.0) / 100.0)
-                   
-        #     if n == 4:
-        #         if "blas" in dict_msg["Xlsx"] and str(dict_msg["Xlsx"]["blas"]) != 'nan' and str(dict_msg["Xlsx"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Xlsx"]["blas"]):                                 
-        #             time_ = str(int(dict_msg["Xlsx"]["blas"] * 100.0) / 100.0)
-                                             
-                  
-        #     #Insert data 
-        #     # self.table_img_right.SetChamberIdPid(chamber_id, dish_id)
-        #     if n < 4:
-        #         label_r_view = EmbryoImageLabel(150, 150, ['-', str(time_), '-'])
-        #         label_r_analysis = EmbryoImageLabel(150, 150, [str(grade), str(time), str(score)])                           
-        #     else:
-        #         label_r_view = EmbryoImageLabel(150, 150, [str(time_), '-', '-'])
-        #         label_r_analysis = EmbryoImageLabel(150, 150, [str(time), "ICM", "TE"])
-        #     # self.table_img_right.AddRow(n, label_r_analysis, label_r_view) 
-
-        
-                        
-        #Insert info data
-        # if count != 0:
-        #     val = str(int((float(total_score) / float(count)) * 100) / 100)
-        # else:
-        #     val = 0
-                
-        # self.edit_info.clear()
-        # self.edit_info.insertPlainText('Overall Scoring: {}\n'.format(val))
-        # self.edit_info.insertPlainText('Event:')
      
     # def LoadEmbryoData(self, patient_id, chamber_id, dish_id):
     #     print ('LoadEmbryoData')

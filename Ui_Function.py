@@ -192,6 +192,7 @@ def get_t2t8_dur_time(csv_path):
 def write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic):
     csv_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_analy.csv'
     # if os.path.exists(csv_path):
+    print('ana csv dir',csv_path)
     # df=pd.read_csv(csv_path)
 
     if os.path.exists(csv_path):
@@ -209,11 +210,12 @@ def write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic):
         df['Blas']=t2t8_time_dic['blas']
         df['comp']=t2t8_time_dic['comp']
        
-        # print('rewirte df:',df)
+        
         
 
         df.to_csv(csv_path,index=0)
     else:
+        print('no analysis write a new one')
         dic = {
                 'chamber':[],
                 'dish':[],
@@ -308,12 +310,13 @@ def write_analy_csv_t2_t8(cham_id,dish_id,t2t8_time_dic):
     if os.path.isdir(cham_dish_path):
         # csv_list = os.listdir(dish_folder_path)
 
-        ori_csvname = 'cham'+str(cham_id)+'_'+'dish_'+str(dish_id)+'.csv'
+        ori_csvname = 'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'.csv'
         oricsv_path = os.path.join(cham_dish_path,ori_csvname)
-        print('oricsvpath',oricsv_path)
+        
+        
         if os.path.isfile(oricsv_path):
             # t2t8_time_dic=get_t2t8_dur_time(oricsv_path)
-            # print('t2t8timelist:',t2t8_time_dic)
+            
 
             write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic)
 
@@ -360,7 +363,7 @@ def write_patient_config( patient_his_folder,patient_id,timelapse_id,time,age,ch
 
 
 #move select chamber to history folder    
-def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id):
+def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age , chamber_id):
     # history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     patient_csv_folder='./patient_id_save/'
     ori_img_folder = './data/crop_img/'
@@ -381,13 +384,17 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id
     dish_folder_list = os.listdir(csv_cham_folder_path)
     for dish_folder_name in dish_folder_list:
         dish_folder_path  =os.path.join(csv_cham_folder_path,dish_folder_name)
-        dish_id_csv = dish_folder_name.replace('dish','')
-        csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(dish_id_csv)+'.csv'
+        dish_id= dish_folder_name.replace('dish','')
+        csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'.csv'
         csv_path = os.path.join(dish_folder_path,csv_name)
+        if os.path.isfile(csv_path):
+            predict_division_dic=get_t2t8_dur_time(csv_path)
+            print('out csv paht',csv_path)
 
-        predict_division_dic=get_t2t8_dur_time(csv_path)
+            write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
+            print('alread write cham dish analy')
 
-        write_analy_csv_t2_t8(chamber_id,dish_id_csv,predict_division_dic)
+            # combine_manual_system_division_time(chamber_id,dish_id)
 
 
     
@@ -398,17 +405,22 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id
     if not os.path.isdir(patient_his_folder):
         os.mkdir(patient_his_folder)
     #mkdir time stamp folder
-    patient_his_time_folder=os.path.join(patient_his_folder,timelapse_id)
-    if not os.path.isdir(patient_his_time_folder):
-        os.mkdir(patient_his_time_folder)
-    patient_his_time_data_folder=os.path.join(patient_his_time_folder,"data")
+
+    
+    patient_his_timelapse_folder=os.path.join(patient_his_folder,timelapse_id)
+    if not os.path.isdir(patient_his_timelapse_folder):
+        os.mkdir(patient_his_timelapse_folder)
+    patient_his_timelapse_fertilizationtime_folder =os.path.join(patient_his_timelapse_folder,fertilizationtime)
+    if not os.path.isdir(patient_his_timelapse_fertilizationtime_folder):
+        os.mkdir(patient_his_timelapse_fertilizationtime_folder)
+    patient_his_time_data_folder=os.path.join(patient_his_timelapse_fertilizationtime_folder,"data")
     if not os.path.isdir(patient_his_time_data_folder):
         os.mkdir(patient_his_time_data_folder)
-    patient_his_time_csv_folder=os.path.join(patient_his_time_folder,"csv")
+    patient_his_time_csv_folder=os.path.join(patient_his_timelapse_fertilizationtime_folder,"csv")
     if not os.path.isdir(patient_his_time_csv_folder):
         os.mkdir(patient_his_time_csv_folder)
 
-    patient_his_time_video_folder=os.path.join(patient_his_time_folder,"video")
+    patient_his_time_video_folder=os.path.join(patient_his_timelapse_fertilizationtime_folder,"video")
     if not os.path.isdir(patient_his_time_video_folder):
         os.mkdir(patient_his_time_video_folder)
 
@@ -418,9 +430,9 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id
     #     df=pd.read_csv(csv_path)
 
     #     chamber_id=df['chamber'][0]
-    write_patient_config(patient_his_folder,patient_id,timelapse_id,time, age ,chamber_id)
+    write_patient_config(patient_his_folder,patient_id,timelapse_id,fertilizationtime, age ,chamber_id)
 
-    move_video_to_history(patient_his_time_folder,patient_id)
+    move_video_to_history(patient_his_timelapse_fertilizationtime_folder,patient_id)
 
     
     ori_data_chamber_path = os.path.join(ori_img_folder,"cham"+str(chamber_id))
@@ -439,7 +451,7 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, time, age , chamber_id
     # xgboost_inf_write(patient_id,time,chamber_id)
     for dish_folder in os.listdir(ori_data_chamber_path):
         dish_id = dish_folder.replace('dish','')
-        xgboost_inf_write_blas_morula_pnfading(patient_id,time,chamber_id,dish_id)
+        xgboost_inf_write_blas_morula_pnfading(patient_id,timelapse_id,fertilizationtime,chamber_id,dish_id)
 
 
 
@@ -488,23 +500,46 @@ def clear_cham_dish_data_csv(cham_id):
             if name.endswith('.jpg'):
                 file_path = os.path.join(root, name)
                 os.remove(file_path) 
-                print("remove :",file_path)
+                # print("remove :",file_path)
     
     for root,folders,files in os.walk(crop_folder_needdel):
         for name in files:
             if name.endswith('.jpg'):
                 file_path = os.path.join(root, name)
                 os.remove(file_path) 
-                print("remove :",file_path)
+                # print("remove :",file_path)
 
     for root,folders,files in os.walk(csv_folder_needdel):
         for name in files:
-            if name.endswith('.csv'):
+            if name.endswith('.csv') or name.endswith('.json'):
                 file_path = os.path.join(root, name)
                 os.remove(file_path) 
-                print("remove :",file_path)
+                # print("remove :",file_path)
+            
 
 
+
+def combine_manual_system_division_time(chamber_id,dish_id):
+    system_division_time_csvpath ='./csv/cham'+str(chamber_id)+'/dish'+str(dish_id)+'/'+'cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'_analy.csv'
+    manual_division_time_jsonpath = './csv/cham'+str(chamber_id)+'/dish'+str(dish_id)+'/'+'cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
+    combine_csv = './csv/cham'+str(chamber_id)+'/dish'+str(dish_id)+'/'+'cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'_combine.csv'
+    
+    dic_key = ['PN_Fading','t2','t3','t4','t5','t6','t7','t8','Morula','Blas']
+
+    manual_divsion_time = {}
+    
+    
+    df_system_division_time = pd.read_csv(system_division_time_csvpath)
+
+    if os.path.isfile(manual_division_time_jsonpath):
+
+        with open(manual_division_time_jsonpath ) as f:
+            manual_divsion_time=json.load(f)
+        for key in dic_key:
+            if manual_divsion_time[key]!='':
+                df_system_division_time[key]=manual_divsion_time[key]
+    df_system_division_time.to_csv(combine_csv,index=0)
+            
 
 
 
@@ -524,7 +559,7 @@ def load_video_path_with_7fp(patient_id,chamber_id,dish_id,fp_id):
         video_list = os.listdir(video_folder_path)
         if len(video_list)!=0:
             for video_name in video_list:
-                print('video_name',video_name)
+                
                 if video_name[video_name.find('.avi')-1]==str(fp_id):
                     video_path=os.path.join(video_folder_path,video_name)
                 
@@ -602,6 +637,23 @@ def get_xlsx_predict_division_time(folder_name,chamber_id,dish_id):
 
 
 
+#embryo viewer get offset_time from config-ini file
+def get_patient_offset_time_from_ini(patient_id):
+    init_path = './config/config_' + str(patient_id) + '.ini'
+    offset_time =''
+    if os.path.isfile(init_path):
+        cfg = RawConfigParser()
+        cfg.read(init_path)
+        if  cfg.has_section('BoardPatientInfo'):
+            if 'offsettime' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    offset_time = cfg.get('BoardPatientInfo','offsettime')
+    return offset_time
+        
+        
+
+   
+
+
 
 #embryo viewer load default icm te
 def read_analy_csv_icm_te(cham_id, dish_id):
@@ -616,7 +668,7 @@ def read_analy_csv_icm_te(cham_id, dish_id):
 
 #embryo viewer page table manual info write to csv
 def write_table_manual_info_csv(cham_id,dish_id,dic_manual_info):
-    print('test')
+    
     json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
     with open(json_path,'w') as f:
         json.dump(dic_manual_info, f)
@@ -638,7 +690,7 @@ def write_table_manual_info_csv(cham_id,dish_id,dic_manual_info):
 
 #embryo viewer read table manual info
 def read_table_manual_info_csv(cham_id,dish_id):
-    print('test')
+    
     json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
     dic_rtn = {
         'PN_Fading':'',
@@ -684,7 +736,7 @@ def read_table_manual_info_csv(cham_id,dish_id):
 
 
 def write_EmbryoViewer_combobox_qradio_info(cham_id,dish_id,save_pn,save_location,save_morphological,save_divisiontime,save_ICM,save_TE):
-    print('r')
+    
     json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_othersinfo.json'
     dic = {
         'cbo_PN':[],
@@ -711,7 +763,7 @@ def write_EmbryoViewer_combobox_qradio_info(cham_id,dish_id,save_pn,save_locatio
 
 
 def read_EmbryoViewer_combobox_qradio_info(cham_id,dish_id):
-    print('r')
+    
     json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_othersinfo.json'
     dic = {
         'cbo_PN':'',
@@ -910,6 +962,11 @@ def write_embryo_viewer_timecsv(chamber_id,dish_id,status=None,t2=None,t3=None,t
 
 
 
+
+
+
+
+
 def get_history_patient_id_list():
     # history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     history_patient_id_list= os.listdir(history_dir)
@@ -921,14 +978,21 @@ def get_history_patient_id_list():
 #return history page patient_id->save time list
 def history_getid_timelist(patient_id):
     # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
-
-    id_list = os.listdir(history_dir)
+    print('history patient id:',patient_id)
+    patient_id_dir = os.path.join(history_dir,patient_id)
+    return_id_list = []
+    timelapse_id_list = os.listdir(patient_id_dir)
     # print(id_list)
-    if patient_id in id_list:
-        patient_id_dir =os.path.join(history_dir,patient_id) 
-        id_time_list =os.listdir(patient_id_dir)
-        #print(id_time_list)
-        return id_time_list
+    for timelapse_id in timelapse_id_list:
+        timelapse_id_dir = os.path.join(patient_id_dir,timelapse_id)
+        if os.path.isdir(timelapse_id_dir):
+            fertilizationtime_list=os.listdir(timelapse_id_dir)
+            for fertilizationtime in fertilizationtime_list:
+                return_id_list.append(timelapse_id+'->'+fertilizationtime)
+        # patient_id_dir =os.path.join(history_dir,patient_id) 
+        # id_time_list =os.listdir(patient_id_dir)
+        # #print(id_time_list)
+        return return_id_list
 
 
 
@@ -1242,7 +1306,7 @@ def write_his_all_element(patient_id,patient_time,dish_id,status=None,t2=None,t3
 
 def search_embryologist_xlsx(folder_name,dish_id):
 
-    print('start dish_id',dish_id)
+    # print('start dish_id',dish_id)
     
     csv_path = './TimelapseAnnotations_20201218_1419.csv'
     dict_list =['PN Fading','t2','t3','t4','t5','t6','t7','t8','Morula','Blastocyst']
@@ -1291,8 +1355,8 @@ def search_embryologist_xlsx(folder_name,dish_id):
         for i,key in enumerate(dict_list):
 
             stage_time = df[key][(df['Time-lapse #']==folder_name) &(df['Dish position'].values==int(dish_id)) ].values
-            print('dish_id',dish_id)
-            print("stage_time",stage_time)
+            # print('dish_id',dish_id)
+            # print("stage_time",stage_time)
             
             if len(stage_time)!=0:
                 stage_time=float(stage_time[0])-dish_start_time
@@ -1317,19 +1381,22 @@ def search_embryologist_xlsx(folder_name,dish_id):
 
 
 # history page after change info do xgboost again ->write success percentage      
-def xgboost_inf_write_blas_morula_pnfading(patient_id, patient_time, chamber_id,dish_id):
+def xgboost_inf_write_blas_morula_pnfading(patient_id,timelapse_id, fertilizationtime, chamber_id,dish_id):
 
 
 
     # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     xgboost_model_path = './model_data/xgboost_score/model_all_input1223.pkl'
     id_dir = os.path.join(history_dir,patient_id)
-    time_dir = os.path.join(id_dir,patient_time)
-    time_dir = os.path.join(time_dir,'csv')
+    timelapse_dir = os.path.join(id_dir,timelapse_id)
+
+
+    fertilizationtime_dir = os.path.join(timelapse_dir,fertilizationtime)
+    csv_dir = os.path.join(fertilizationtime_dir,'csv')
     DishList_dic = dict()
 
 
-    chamber_dir=os.path.join(time_dir,'cham'+str(chamber_id))
+    chamber_dir=os.path.join(csv_dir,'cham'+str(chamber_id))
     dish_path = os.path.join(chamber_dir,'dish'+str(dish_id))
 
 
@@ -1980,9 +2047,11 @@ if __name__ == '__main__':
     # load_video_path_with_7fp('MTL-0245-13A1-9874',7,2,6)
     # write_embryo_viewer_timecsv(3,1,t2=3)
 
-    path='/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham2/dish5/cham2_dish5.csv'
-    dic=get_t2t8_dur_time(path)
-    print(dic)
+    # path='/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham2/dish5/cham2_dish5.csv'
+    # dic=get_t2t8_dur_time(path)
+    # print(dic)
     # paht='/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham2/dish11/cham2_dish11.csv'
     # r = get_pn_number(paht)
     # print(r)
+
+    combine_manual_system_division_time(1,2)
