@@ -432,7 +432,7 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
     #     chamber_id=df['chamber'][0]
     write_patient_config(patient_his_folder,patient_id,timelapse_id,fertilizationtime, age ,chamber_id)
 
-    move_video_to_history(patient_his_timelapse_fertilizationtime_folder,patient_id)
+    move_video_to_history(patient_his_timelapse_fertilizationtime_folder,timelapse_id)
 
     
     ori_data_chamber_path = os.path.join(ori_img_folder,"cham"+str(chamber_id))
@@ -456,7 +456,7 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
 
 
 
-def move_video_to_history(patient_his_time_folder,patient_id):
+def move_video_to_history(patient_his_time_folder,timelapse_id):
 
 
     # history_dir = './history'
@@ -466,7 +466,7 @@ def move_video_to_history(patient_his_time_folder,patient_id):
     
 
     for video_patient_id in os.listdir(video_dir):
-        if video_patient_id==patient_id:
+        if video_patient_id==timelapse_id:
             video_patient_id_path =os.path.join(video_dir,video_patient_id)
             cham_list = os.listdir(video_patient_id_path)
             # print(cham_list)
@@ -978,11 +978,11 @@ def get_history_patient_id_list():
 #return history page patient_id->save time list
 def history_getid_timelist(patient_id):
     # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
-    print('history patient id:',patient_id)
+    # print('history patient id:',patient_id)
     patient_id_dir = os.path.join(history_dir,patient_id)
     return_id_list = []
     timelapse_id_list = os.listdir(patient_id_dir)
-    # print(id_list)
+    # print(timelapse_id_list)
     for timelapse_id in timelapse_id_list:
         timelapse_id_dir = os.path.join(patient_id_dir,timelapse_id)
         if os.path.isdir(timelapse_id_dir):
@@ -992,27 +992,35 @@ def history_getid_timelist(patient_id):
         # patient_id_dir =os.path.join(history_dir,patient_id) 
         # id_time_list =os.listdir(patient_id_dir)
         # #print(id_time_list)
-        return return_id_list
+    return return_id_list
 
 
 
 
 #return history page  dish_id,status,info,stage,duration_time
 
-def search_history_csv(patient_id,patient_time):
+def search_history_csv(patient_id,timelapse_id,fertilizationTime):
     # history_dir='/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
-    id_dir = os.path.join(history_dir,patient_id)
-    time_dir = os.path.join(id_dir,patient_time)
-    time_dir = os.path.join(time_dir,'csv')
+    patientID_dir = os.path.join(history_dir,patient_id)
+    timelapseID_dir = os.path.join(patientID_dir,timelapse_id)
+    fertilizationTime_dir = os.path.join(timelapseID_dir,fertilizationTime)
+    csv_folder_dir = os.path.join(fertilizationTime_dir,'csv')
+    chamber_list = os.listdir(csv_folder_dir)
+
+
+
+    # id_dir = os.path.join(history_dir,patient_id)
+    # time_dir = os.path.join(id_dir,patient_time)
+    # time_dir = os.path.join(time_dir,'csv')
     DishList_dic = dict()
     
     
     total_DishList=[]
 
-    chamber_list = os.listdir(time_dir)
+    # chamber_list = os.listdir(time_dir)
     # print(id_list)
     for chamber in chamber_list:
-        chamber_dir = os.path.join(time_dir,chamber)
+        chamber_dir = os.path.join(csv_folder_dir,chamber)
         dish_list =os.listdir(chamber_dir)
         for dish_name in dish_list:
         # for i in range(len(dish_list)):
@@ -1024,15 +1032,19 @@ def search_history_csv(patient_id,patient_time):
             # print(csv_name)
             all_element_dic=dict()
 
+            
+
 
             if csv_namelist :
                 csv_name=chamber+'_'+dish_name+'.csv'
                 csv_path=os.path.join(dish_dir,csv_name)
-                analy_csv_name=chamber+'_'+dish_name+'_analy.csv'
+                analy_csv_name=chamber+'_'+dish_name+'_combine.csv'
                 analy_csv_path=os.path.join(dish_dir,analy_csv_name)
+
+                othersInfo_json_path  =os.path.join(dish_dir, chamber+'_'+dish_name+'_othersinfo.json')
                 if os.path.isfile(analy_csv_path):
                     df=pd.read_csv(analy_csv_path)
-                    DishID_Stage_dic['DishId']=df['dish'].values[0]
+                    DishID_Stage_dic['DishId']=dish_id
                     dict_total_element=dict()
                     dict_total_element['Status']=df['Status'].values[0]
                     dict_total_element['t2']=df['t2'].values[0]
@@ -1052,6 +1064,27 @@ def search_history_csv(patient_id,patient_time):
                     dict_total_element['Probility']=df['Probility'].values[0]
 
                     DishID_Stage_dic['Info']=dict_total_element
+                dict_other_info=dict()
+                if os.path.isfile(othersInfo_json_path):
+                    
+                    with open(othersInfo_json_path,'r') as json_file:
+                        othersInfo_dic = json.load(json_file)
+                        
+                        dict_other_info['cbo_PN']=othersInfo_dic['cbo_PN']
+                        dict_other_info['cbo_Loction']=othersInfo_dic['cbo_Loction']
+                        dict_other_info['rdo_Morphological']=othersInfo_dic['rdo_Morphological']
+                        dict_other_info['rdo_divisiontime']=othersInfo_dic['rdo_divisiontime']
+                        
+                else:
+                        dict_other_info['cbo_PN']=''
+                        dict_other_info['cbo_Loction']=''
+                        dict_other_info['rdo_Morphological']=''
+                        dict_other_info['rdo_divisiontime']=''
+                DishID_Stage_dic['OtherInfo']=dict_other_info
+
+
+
+
 
 
 
@@ -1106,6 +1139,7 @@ def search_history_csv(patient_id,patient_time):
                 DishID_Stage_dic['DishId']=dish_id
                 DishID_Stage_dic['Fragment']={}
                 DishID_Stage_dic['Info']={}
+                DishID_Stage_dic['OtherInfo']={}
                 
 
                 total_DishList.append(DishID_Stage_dic)

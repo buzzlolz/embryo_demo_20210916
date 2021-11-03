@@ -21,7 +21,7 @@ class SelectCellDish(QtWidgets.QPushButton):
         self.setDisabled(True)
         self.setText('Well' + str(wid))
         self.setStyleSheet("QPushButton {border: 1px solid rgb(190,190,190);background-color: rgb(190,190,190); border-radius: 30; font: bold 14;font-weight:bold;color: white;text-align: center;} QPushButton:pressed {border-style: inset;}") 
-    
+    #change status of board_info_check_change
     def ChangeBoardInfoCheckBool(self,board_info_check_change):
         self.board_info_check_change =board_info_check_change
 
@@ -39,10 +39,11 @@ class SelectCellDish(QtWidgets.QPushButton):
         '''       
         #Change tab to show video and picture
         if QMouseEvent.button() == QtCore.Qt.LeftButton:
-            print('self.board_info_check_change_bool in:',self.board_info_check_change)
+            # check after change board info press save info button or not
+            
             if not self.board_info_check_change:
                 QtWidgets.QMessageBox.warning(self,'error','press save')
-                print('check_change')
+                
             else:
                 if not self.selected:
                     return

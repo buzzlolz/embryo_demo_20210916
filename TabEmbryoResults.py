@@ -33,55 +33,36 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
 
 
-        # #infomation
-        # label_info = QtWidgets.QLabel('Information:')
-        # label_info.setFont(QtGui.QFont('Arial', 14))
-        # label_info.setFixedHeight(20)
-        #label_info.setGeometry(230, 160, 30, 30)
         
-        # self.edit_info = QtWidgets.QPlainTextEdit()
-        # #self.edit_info.setGeometry(260, 160, 30, 30)
-        # self.edit_info.setStyleSheet('background-color:white; font-size:16pt') 
-        # #self.edit_info.setAlignment(QtCore.Qt.AlignRight)
-        # self.edit_info.insertPlainText('Overall Scoring: 0\n')
-        # self.edit_info.insertPlainText('Event:\n')
-        # self.edit_info.setFixedSize(700, 170)
-        # self.edit_info.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        # self.edit_info.textChanged.connect(self.edit_info_changed)               
-        
-        # #Video frame
-        # label_video = QtWidgets.QLabel('Video:')
-        # label_video.setFont(QtGui.QFont('Arial', 12))
-        # label_video.setFixedHeight(20)
 
         self.table_pn = EmbryoPnTable(1, 5, ['pn_Fading'], self)
         self.table_pn.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        self.table_pn.setGeometry(800,10,502,87)   
+        self.table_pn.setGeometry(800,10,702,87)   
 
 
         #save sheet manual row information
         self.manual_info_save_Button = QtWidgets.QPushButton('Save Info', self)
         # self.playButton.setFixedSize(50, 40)
         # self.manual_info_save_Button.setStyleSheet('background-color:lightblue;border-radius: 5px;')   
-        self.manual_info_save_Button.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
+        self.manual_info_save_Button.setStyleSheet('QPushButton {background-color:#1991e0;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
             
         # self.manual_info_save_Button.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPlay))
         self.manual_info_save_Button.clicked.connect(lambda: self.EmbryoViewerInfoSave())
-        self.manual_info_save_Button.setGeometry(1600,30,100,40)
+        self.manual_info_save_Button.setGeometry(1540,30,170,40)
 
 
         self.frame_video = QtWidgets.QFrame(self)        
         self.frame_video.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_video.setFixedSize(QtCore.QSize(700, 600))  
+        # self.frame_video.setFixedSize(QtCore.QSize(700, 630))  
         self.frame_video.setStyleSheet('background-color:white;')
-        self.frame_video.setGeometry(10,10,700,600)
+        self.frame_video.setGeometry(50,10,700,630)
                
         self.player = QtMultimedia.QMediaPlayer(self.frame_video)
         
         self.viewer = QtMultimediaWidgets.QVideoWidget(self.frame_video)   
         #self.viewer.setMaximumSize(QtCore.QSize(600, 400))
         self.player.setVideoOutput(self.viewer)     
-        self.viewer.setGeometry(0,0,700,600)   
+        self.viewer.setGeometry(50,0,700,630)   
         
         # layout_video = QtWidgets.QGridLayout(self.frame_video)        
         # layout_video.addWidget(self.viewer, 0, 0, 1, 2)
@@ -91,7 +72,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.playButton.setStyleSheet('background-color:lightblue;border-radius: 5px;')       
         self.playButton.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPlay))
         self.playButton.clicked.connect(self.play)
-        self.playButton.setGeometry(10,650,50,40)
+        self.playButton.setGeometry(50,650,50,40)
 
 
         
@@ -105,7 +86,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.selector_fp.addItem(str(i + 1))
         self.selector_fp.setCurrentIndex(4) 
         self.selector_fp.currentIndexChanged.connect(lambda: self.initSource(self.patient_id, self.chamber_id, self.well_id))
-        self.selector_fp.setGeometry(70,650,30,30)
+        self.selector_fp.setGeometry(120,650,30,30)
 
 
         self.slider = QtWidgets.QSlider(self)        
@@ -116,7 +97,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.slider.valueChanged.connect(self.setPosition) 
         self.slider.setFocus()  #valueChanged[int].connect(self.changeValue)   
         self.slider.setFocusPolicy(QtCore.Qt.StrongFocus)  
-        self.slider.setGeometry(120,650,30,30)  
+        self.slider.setGeometry(170,660,30,30)  
        
         self.player.stateChanged.connect(self.mediaStateChanged)
         self.player.positionChanged.connect(self.positionChanged)
@@ -126,14 +107,6 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         
         
-        #Image show frame        
-        # label_table_left = QtWidgets.QLabel('Stage 1:')
-        # label_table_left.setFont(QtGui.QFont('Arial', 12))
-        # label_table_left.setFixedHeight(25)
-        # label_table_right = QtWidgets.QLabel('Stage 2:')
-        # label_table_right.setFont(QtGui.QFont('Arial', 12))
-        # label_table_right.setFixedHeight(25)
-        # self.table_img_left = EmbryoInfoTable(5, 4, ['2pn', '2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst'], self)
         self.table_img_left = EmbryoNewInfoTable(10, 7, ['2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst','Total Score'], self)
         
         # self.table_img_left.setFixedSize(QtCore.QSize(702, 635))   
@@ -144,7 +117,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_pn = QtWidgets.QLabel('PN :',self)
         label_combobox_pn.setFont(QtGui.QFont('Arial', 14))
         label_combobox_pn.setFixedHeight(20)
-        label_combobox_pn.setGeometry(10, 700, 150, 30)
+        label_combobox_pn.setGeometry(50, 730, 150, 30)
         # self.combobox_pn=QtWidgets.QComboBox(self)
         self.combobox_pn_choices = ['NPN', '1PN', '3PN', 'Poly-PN']
         # self.combobox_pn.addItems(combobox_pn_choices)
@@ -156,7 +129,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_pn_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_pn_choices[i],self))
 
         for i in range(4):
-             self.qradio_pn_choices[i].setGeometry(10+i*150, 720, 150, 30)
+             self.qradio_pn_choices[i].setGeometry(50+i*150, 750, 150, 30)
         
         
         self.qradio_pn_group = QtWidgets.QButtonGroup(self)
@@ -164,7 +137,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         for qradio in self.qradio_pn_choices:
             self.qradio_pn_group.addButton(qradio)
 
-        # self.qradio_pn_choices[0].setChecked(True)
+        
 
 
 
@@ -178,7 +151,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_location = QtWidgets.QLabel('Location:',self)
         label_combobox_location.setFont(QtGui.QFont('Arial', 14))
         label_combobox_location.setFixedHeight(20)
-        label_combobox_location.setGeometry(10, 760, 150, 20)
+        label_combobox_location.setGeometry(50, 790, 150, 20)
         self.combobox_location_choices = ['Central', 'Central/Side', 'Side']
         # self.combobox_pn.addItems(combobox_pn_choices)
         # self.combobox_pn.setGeometry(10, 800, 150, 30)
@@ -189,7 +162,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_location_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_location_choices[i],self))
 
         for i in range(3):
-             self.qradio_location_choices[i].setGeometry(10+i*150, 785, 150, 30)
+             self.qradio_location_choices[i].setGeometry(50+i*150, 815, 150, 30)
         
         
         self.qradio_location_group = QtWidgets.QButtonGroup(self)
@@ -205,7 +178,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_morphological = QtWidgets.QLabel('Morphological:',self)
         label_combobox_morphological.setFont(QtGui.QFont('Arial', 14))
         label_combobox_morphological.setFixedHeight(20)
-        label_combobox_morphological.setGeometry(10, 825, 180, 25)
+        label_combobox_morphological.setGeometry(50, 855, 180, 25)
 
 
         
@@ -218,19 +191,19 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_morphological_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_morphological_choices[i],self))
 
         for i in range(4):
-             self.qradio_morphological_choices[i].setGeometry(10+i*150, 855, 150, 30)
+             self.qradio_morphological_choices[i].setGeometry(50+i*150, 885, 150, 25)
         for i in range(4,len(self.combobox_morphological_choices)):
-             self.qradio_morphological_choices[i].setGeometry(10+(i-4)*150, 895, 150, 30)
+             self.qradio_morphological_choices[i].setGeometry(50+(i-4)*150, 915, 150, 25)
         
         #morphological option chekcbox buttons ------------------------
 
 
         
         #divisiontime option chekcbox buttons ------------------------
-        label_combobox_divisiontime = QtWidgets.QLabel('division_time :',self)
+        label_combobox_divisiontime = QtWidgets.QLabel('Division_time :',self)
         label_combobox_divisiontime.setFont(QtGui.QFont('Arial', 14))
         label_combobox_divisiontime.setFixedHeight(20)
-        label_combobox_divisiontime.setGeometry(800, 755, 180, 20)
+        label_combobox_divisiontime.setGeometry(800, 730, 180, 20)
 
 
         
@@ -243,9 +216,9 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_divisiontime_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_divisiontime_choices[i],self))
 
         for i in range(4):
-             self.qradio_divisiontime_choices[i].setGeometry(800+i*180, 780, 185, 20)
+             self.qradio_divisiontime_choices[i].setGeometry(800+i*180, 755, 185, 20)
         for i in range(4,len(self.combobox_divisiontime_choices)):
-             self.qradio_divisiontime_choices[i].setGeometry(800+(i-4)*180, 810, 180, 20)
+             self.qradio_divisiontime_choices[i].setGeometry(800+(i-4)*180, 795, 180, 20)
         
         #divisiontime option chekcbox buttons ------------------------
 
@@ -257,7 +230,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_ICM = QtWidgets.QLabel('ICM:',self)
         label_combobox_ICM.setFont(QtGui.QFont('Arial', 14))
         label_combobox_ICM.setFixedHeight(20)
-        label_combobox_ICM.setGeometry(800, 850, 150, 20)
+        label_combobox_ICM.setGeometry(800, 830, 150, 20)
         self.combobox_ICM_TE_choices = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-']
         # self.combobox_pn.addItems(combobox_pn_choices)
         # self.combobox_pn.setGeometry(10, 800, 150, 30)
@@ -268,7 +241,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_ICM_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_ICM_TE_choices[i],self))
 
         for i in range(len(self.combobox_ICM_TE_choices)):
-             self.qradio_ICM_choices[i].setGeometry(800+i*50, 880, 50, 30)
+             self.qradio_ICM_choices[i].setGeometry(800+i*50, 855, 50, 30)
         
         
         self.qradio_ICM_group = QtWidgets.QButtonGroup(self)
@@ -286,7 +259,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_TE = QtWidgets.QLabel('TE:',self)
         label_combobox_TE.setFont(QtGui.QFont('Arial', 14))
         label_combobox_TE.setFixedHeight(20)
-        label_combobox_TE.setGeometry(800, 915, 150, 20)
+        label_combobox_TE.setGeometry(800, 890, 150, 20)
         # combobox_ICM_TE_choices = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-']
         # self.combobox_pn.addItems(combobox_pn_choices)
         # self.combobox_pn.setGeometry(10, 800, 150, 30)
@@ -297,7 +270,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_TE_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_ICM_TE_choices[i],self))
 
         for i in range(len(self.combobox_ICM_TE_choices)):
-             self.qradio_TE_choices[i].setGeometry(800+i*50, 940, 50, 30)
+             self.qradio_TE_choices[i].setGeometry(800+i*50, 915, 50, 30)
         
         
         self.qradio_TE_group = QtWidgets.QButtonGroup(self)

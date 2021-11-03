@@ -139,7 +139,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         self.maunal_timeset_check = False
 
 
-        self.board_info_check_change_bool=False
+        self.board_info_check_change_bool=True
         self.board_patient_id_old = ''
         self.board_fertilization_time_old = ''
         self.board_offsettime_hour_old = ''
@@ -420,7 +420,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                        
         return widget_chamber, group_chamber   
 
-
+    #check borad info is change or not (if change have to press save info button)
     def BoardInfoCheckChagne(self,chamber_id):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
         listsMySelectCellDish = self.chambers[int(chamber_id) - 1].findChildren(SelectCellDish)
@@ -434,8 +434,9 @@ class TabSelectChamber(QtWidgets.QWidget):
         for i in range(len(listsMySelectCellDish)):
             listsMySelectCellDish[i].ChangeBoardInfoCheckBool(self.board_info_check_change_bool)
            
-        print('self.board_info_check_change_bool:',self.board_info_check_change_bool)    
+       
 
+    #save all board info to ini file
     def PatientBoardInfoSave(self,chamber_id):
         
         
@@ -444,7 +445,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         for i in range(len(listsMySelectCellDish)):
             listsMySelectCellDish[i].ChangeBoardInfoCheckBool(self.board_info_check_change_bool)
 
-        print('self.board_info_check_change_bool:',self.board_info_check_change_bool)    
+            
 
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
         pid = listsMyQLineEdit[0].text()
