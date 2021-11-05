@@ -394,7 +394,7 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
             write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
             print('alread write cham dish analy')
 
-            # combine_manual_system_division_time(chamber_id,dish_id)
+            combine_manual_system_division_time(chamber_id,dish_id)
 
 
     
@@ -586,7 +586,7 @@ def get_xlsx_predict_division_time(folder_name,chamber_id,dish_id):
     xlsx_predict_division_time_dic = {}
     dict_list_return=['pn','t2','t3','t4','t5','t6','t7','t8','morula','blas']
 
-    xlsx_predict_division_time_dic['Xlsx']=dict([(k,float('nan')) for k in dict_list_return])
+    # xlsx_predict_division_time_dic['Xlsx']=dict([(k,float('nan')) for k in dict_list_return])
     xlsx_predict_division_time_dic['Predict']=dict([(k,float('nan')) for k in dict_list_return])
     xlsx_predict_division_time_dic['Fragment']=dict([(k,float('nan')) for k in dict_list_return])
     xlsx_predict_division_time_dic['Cham_id']=str(chamber_id)
@@ -611,17 +611,20 @@ def get_xlsx_predict_division_time(folder_name,chamber_id,dish_id):
         write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
 
 
-        
-        xlsx_division_dic = search_embryologist_xlsx(folder_name,dish_id)
+        #get xlsx division time
+
+        # xlsx_division_dic = search_embryologist_xlsx(folder_name,dish_id)
+
         frag_dic = get_avg_fragment_percent(csv_path)
+        xlsx_predict_division_time_dic['Predict']=predict_division_dic
+        xlsx_predict_division_time_dic['Fragment']=frag_dic
+
 
         # print('predict_division_dic:',predict_division_dic)
         # print('xlsx_division_dic:',xlsx_division_dic)
 
-        xlsx_predict_division_time_dic['Xlsx']=xlsx_division_dic
-        xlsx_predict_division_time_dic['Predict']=predict_division_dic
-        xlsx_predict_division_time_dic['Fragment']=frag_dic
-
+        # xlsx_predict_division_time_dic['Xlsx']=xlsx_division_dic
+        
     # print( len(xlsx_predict_division_time_dic['Xlsx']))
     # print(xlsx_predict_division_time_dic)
 

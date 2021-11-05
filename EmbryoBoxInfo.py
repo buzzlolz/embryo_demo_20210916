@@ -157,8 +157,8 @@ class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
         super(EmbryoHistoryInfoTableBox, self).__init__(parent)
         self.well_id = well_id
         self.table = EmbryoHistoryInfoTable(well_id, self)  
-        self.table.setGeometry(0, (405+20)*self.well_id, 1200, 405)        
-        # self.setFixedSize(1580, 500)
+        self.table.setGeometry(0, 0, 1180, 405)        
+        self.setFixedSize(1180, 405)
         
     def SetItem(self, row, col, value, readonly):
         #print(row, col)
@@ -202,6 +202,14 @@ class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
         
     def SaveChangeItem(self):
         self.table.SaveChangeItem()
+
+    #Clear all text in table
+    def CleanAllText(self):
+        col_num=len(self.table.division_status)
+        row_num = len(self.table.wells_id)
+        for i in range(2,row_num+2):
+            for j in range(1,col_num+1):
+                self.SetItem(i,j,'',True)
       
    
         
@@ -275,6 +283,10 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         item_data.setFlags(QtCore.Qt.ItemIsEnabled)
         item_data.setBackground(QtGui.QColor(218,241,252))        
         self.setItem(0, 0, item_data)   
+
+
+        
+
         
         #Title
         for i in range(len(self.division_status)):                        
@@ -542,7 +554,7 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
                 #Analysis
                 item_data = QtWidgets.QTableWidgetItem(info)
                 item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-                item_data.setBackground(QtGui.QColor(241,252,218))
+                # item_data.setBackground(QtGui.QColor(241,252,218))
                 item_data.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(row*2+1,2+i, item_data)
 

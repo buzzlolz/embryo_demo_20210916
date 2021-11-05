@@ -149,19 +149,22 @@ class TabHistoryChamber(QtWidgets.QWidget):
         # self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         # self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         
-        # self.AddTableBox(self)
+        
         self.embryo_info_qframe = QtWidgets.QFrame(self)
         # self.embryo_info_qframe = QtWidgets.QFrame(self)        
         self.embryo_info_qframe.setFrameShape(QtWidgets.QFrame.StyledPanel)
         # self.embryo_info_qframe.setGeometry(10, 5, 1580, 60)
         self.embryo_info_qframe.setGeometry(QtCore.QRect(10, 70, 1580, 900))
-        self.embryo_info_1 = EmbryoHistoryInfoTableBox(0,self.embryo_info_qframe)
+        self.AddTableBox(self.embryo_info_qframe)
+        # self.AddTableBox(self.embryo_info_qframe)
+        # self.embryo_info_1 = EmbryoHistoryInfoTableBox(0,self.embryo_info_qframe)
 
-        self.embryo_info_2 = EmbryoHistoryInfoTableBox(1,self.embryo_info_qframe)
+        # self.embryo_info_2 = EmbryoHistoryInfoTableBox(1,self.embryo_info_qframe)
+        # # self.embryo_info_1.setGeometry(QtCore.QRect(10, 70, 1580, 900))
 
-        self.embryo_info_array = []
-        self.embryo_info_array.append(self.embryo_info_1)
-        self.embryo_info_array.append(self.embryo_info_2)
+        # self.embryo_info_array = []
+        # self.embryo_info_array.append(self.embryo_info_1)
+        # self.embryo_info_array.append(self.embryo_info_2)
 
 
 
@@ -241,16 +244,16 @@ class TabHistoryChamber(QtWidgets.QWidget):
 
 
     
-    # def AddTableBox(self, parent):
-    #     vert_lay = QtWidgets.QGridLayout(parent)         
-    #     self.embryo_info_array = []
-    #     for j in range(2):
+    def AddTableBox(self, parent):
+        vert_lay = QtWidgets.QGridLayout(parent)         
+        self.embryo_info_array = []
+        for j in range(2):
             
-    #             #if len(self.embryo_info_array) < self.well_number:
-    #             embryo_info = EmbryoHistoryInfoTableBox(len(self.embryo_info_array) + 1)                  
-    #             self.embryo_info_array.append(embryo_info)  
-    #             vert_lay.addWidget(embryo_info, j, 0 , 1, 1)              
-    #     vert_lay.setSpacing(1)
+                #if len(self.embryo_info_array) < self.well_number:
+                embryo_info = EmbryoHistoryInfoTableBox(j + 1)                  
+                self.embryo_info_array.append(embryo_info)  
+                vert_lay.addWidget(embryo_info, j, 0 , 1, 1)              
+        vert_lay.setSpacing(1)
         
     def SelectDate(self, item):        
         calendar = Calendar('history', item, self)
@@ -260,16 +263,21 @@ class TabHistoryChamber(QtWidgets.QWidget):
     def FileLoad(self, event):        
         # Set chamber id        
         chamber_ids = []
+        
        
         if len(self.selector_files.getCheckItem()) >2:
             QtWidgets.QMessageBox.warning(self,'error','select more than 2 item')
         else:
+
+            for tableclean in self.embryo_info_array:
+                tableclean.CleanAllText()
             for tabel_index,timelapse_id_time in enumerate(self.selector_files.getCheckItem()):
 
                 print(tabel_index)
                 timelapse_id = timelapse_id_time.split('->')[0]
                 fertilizationtime = timelapse_id_time.split('->')[1]
                 get_dic= search_history_csv(str(self.selector_pid.currentText()), timelapse_id,fertilizationtime)
+                # print('get dict:',get_dic)
                 self.InsertInfomationToTable(str(self.selector_pid.currentText()),timelapse_id,fertilizationtime ,tabel_index, get_dic)
                 
                 # self.InsertInfomationToTable(str(self.selector_pid.currentText()), str(self.selector_files.currentText()), get_dic)
@@ -331,20 +339,29 @@ class TabHistoryChamber(QtWidgets.QWidget):
             # self.selector_files_table2.addItem(m)  
                       
         
-    def InsertInfomationToTable(self, patient_id,timelapse_id, date,tabel_index, dict_msg):        
+    def InsertInfomationToTable(self, patient_id,timelapse_id, date,tabel_index, dict_msg):   
+
+
         #Clear all table
+
+        
+        
         table = self.embryo_info_array[tabel_index]
+        
         table.SetPidDate(patient_id,timelapse_id, date)
+        # table.CleanAllText()
         print('tabel index',tabel_index)
-        print('dict msg',dict_msg["DishList"][0].keys())
+        # print('dict msg',dict_msg["DishList"][0].keys())
         dish_number_max = 14
         
         for dish_number in range(dish_number_max+1):
             for dic_dishid in range(len(dict_msg["DishList"])):
+                # print('dict_msg["DishList"][dic_dishid]',dict_msg["DishList"][dic_dishid])
                 if dict_msg["DishList"][dic_dishid]['DishId']==str(dish_number):
                     
 
                     if dict_msg["DishList"][dic_dishid]['Info']!={}:
+                        print(dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'])
                         self.set_embryo_table_item(table, dish_number+1, 1,dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'] )
                         self.set_embryo_table_item(table, dish_number+1, 2,dict_msg["DishList"][dic_dishid]['Info']['t2'] )
                         self.set_embryo_table_item(table, dish_number+1, 3,dict_msg["DishList"][dic_dishid]['Info']['t3'] )
@@ -464,7 +481,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         #     self.set_embryo_table_item(embryo_tables[0], 13, 2, str(text))
                     
                     
-    def set_embryo_table_item(self, table, row, col, value, readonly=True):
+    def set_embryo_table_item(self, table, row, col, value, readonly=False):
         if str(value).lower() != 'nan':
             table.SetItem(row, col, value, readonly)        
         

@@ -114,10 +114,19 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.table_img_left.setGeometry(800,109,702,583)
 
         #pn option radio buttons -------------------
-        label_combobox_pn = QtWidgets.QLabel('PN :',self)
-        label_combobox_pn.setFont(QtGui.QFont('Arial', 14))
+
+        self.qframe_pn= QtWidgets.QFrame(self)      
+        self.qframe_pn.setGeometry(45, 710, 605, 65)
+        self.qframe_pn.setFrameShape(QtWidgets.QFrame.Box) 
+        
+        self.qframe_pn.setFrameShadow(QtWidgets.QFrame.Sunken) 
+
+
+
+        label_combobox_pn = QtWidgets.QLabel('PN :',self.qframe_pn)
+        label_combobox_pn.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_pn.setFixedHeight(20)
-        label_combobox_pn.setGeometry(50, 730, 150, 30)
+        label_combobox_pn.setGeometry(5, 5, 150, 25)
         # self.combobox_pn=QtWidgets.QComboBox(self)
         self.combobox_pn_choices = ['NPN', '1PN', '3PN', 'Poly-PN']
         # self.combobox_pn.addItems(combobox_pn_choices)
@@ -126,10 +135,11 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.qradio_pn_choices = []
 
         for i in range(len(self.combobox_pn_choices)):
-            self.qradio_pn_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_pn_choices[i],self))
+            self.qradio_pn_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_pn_choices[i],self.qframe_pn))
 
         for i in range(4):
-             self.qradio_pn_choices[i].setGeometry(50+i*150, 750, 150, 30)
+             self.qradio_pn_choices[i].setGeometry(5+i*150, 30, 130, 30)
+             self.qradio_pn_choices[i].setStyleSheet('font-size:18px;')
         
         
         self.qradio_pn_group = QtWidgets.QButtonGroup(self)
@@ -148,10 +158,16 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         #location option radio buttons ------------------------
 
-        label_combobox_location = QtWidgets.QLabel('Location:',self)
-        label_combobox_location.setFont(QtGui.QFont('Arial', 14))
+        self.qframe_location= QtWidgets.QFrame(self)      
+        self.qframe_location.setGeometry(45, 780, 605, 65)
+        self.qframe_location.setFrameShape(QtWidgets.QFrame.Box) 
+        
+        self.qframe_location.setFrameShadow(QtWidgets.QFrame.Sunken) 
+
+        label_combobox_location = QtWidgets.QLabel('Location:',self.qframe_location)
+        label_combobox_location.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_location.setFixedHeight(20)
-        label_combobox_location.setGeometry(50, 790, 150, 20)
+        label_combobox_location.setGeometry(5, 5, 150, 20)
         self.combobox_location_choices = ['Central', 'Central/Side', 'Side']
         # self.combobox_pn.addItems(combobox_pn_choices)
         # self.combobox_pn.setGeometry(10, 800, 150, 30)
@@ -159,10 +175,11 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.qradio_location_choices = []
 
         for i in range(len(self.combobox_location_choices)):
-            self.qradio_location_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_location_choices[i],self))
+            self.qradio_location_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_location_choices[i],self.qframe_location))
 
         for i in range(3):
-             self.qradio_location_choices[i].setGeometry(50+i*150, 815, 150, 30)
+             self.qradio_location_choices[i].setGeometry(5+i*150, 30, 150, 30)
+             self.qradio_location_choices[i].setStyleSheet('font-size:18px;')
         
         
         self.qradio_location_group = QtWidgets.QButtonGroup(self)
@@ -175,10 +192,16 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
 
         #morphological option chekcbox buttons ------------------------
-        label_combobox_morphological = QtWidgets.QLabel('Morphological:',self)
-        label_combobox_morphological.setFont(QtGui.QFont('Arial', 14))
+
+        self.qframe_morphological= QtWidgets.QFrame(self)      
+        self.qframe_morphological.setGeometry(45, 850, 605, 95)
+        self.qframe_morphological.setFrameShape(QtWidgets.QFrame.Box) 
+        self.qframe_morphological.setFrameShadow(QtWidgets.QFrame.Sunken) 
+
+        label_combobox_morphological = QtWidgets.QLabel('Morphological:',self.qframe_morphological)
+        label_combobox_morphological.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_morphological.setFixedHeight(20)
-        label_combobox_morphological.setGeometry(50, 855, 180, 25)
+        label_combobox_morphological.setGeometry(5, 5, 180, 25)
 
 
         
@@ -188,22 +211,32 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.qradio_morphological_choices = []
 
         for i in range(len(self.combobox_morphological_choices)):
-            self.qradio_morphological_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_morphological_choices[i],self))
+            self.qradio_morphological_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_morphological_choices[i],self.qframe_morphological))
 
         for i in range(4):
-             self.qradio_morphological_choices[i].setGeometry(50+i*150, 885, 150, 25)
+             self.qradio_morphological_choices[i].setGeometry(5+i*150, 35, 125, 25)
+             self.qradio_morphological_choices[i].setStyleSheet('font-size:18px;')
         for i in range(4,len(self.combobox_morphological_choices)):
-             self.qradio_morphological_choices[i].setGeometry(50+(i-4)*150, 915, 150, 25)
+             self.qradio_morphological_choices[i].setGeometry(5+(i-4)*150, 65, 125, 25)
+             self.qradio_morphological_choices[i].setStyleSheet('font-size:18px;')
         
         #morphological option chekcbox buttons ------------------------
 
 
         
         #divisiontime option chekcbox buttons ------------------------
-        label_combobox_divisiontime = QtWidgets.QLabel('Division_time :',self)
-        label_combobox_divisiontime.setFont(QtGui.QFont('Arial', 14))
+
+        self.qframe_divisiontime= QtWidgets.QFrame(self)      
+        self.qframe_divisiontime.setGeometry(795, 710, 780, 85)
+        self.qframe_divisiontime.setFrameShape(QtWidgets.QFrame.Box) 
+        self.qframe_divisiontime.setFrameShadow(QtWidgets.QFrame.Sunken) 
+
+
+
+        label_combobox_divisiontime = QtWidgets.QLabel('Division_time :',self.qframe_divisiontime)
+        label_combobox_divisiontime.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_divisiontime.setFixedHeight(20)
-        label_combobox_divisiontime.setGeometry(800, 730, 180, 20)
+        label_combobox_divisiontime.setGeometry(5, 5, 180, 20)
 
 
         
@@ -213,12 +246,14 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.qradio_divisiontime_choices = []
 
         for i in range(len(self.combobox_divisiontime_choices)):
-            self.qradio_divisiontime_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_divisiontime_choices[i],self))
+            self.qradio_divisiontime_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_divisiontime_choices[i],self.qframe_divisiontime))
 
         for i in range(4):
-             self.qradio_divisiontime_choices[i].setGeometry(800+i*180, 755, 185, 20)
+             self.qradio_divisiontime_choices[i].setGeometry(5+i*180, 30, 220, 20)
+             self.qradio_divisiontime_choices[i].setStyleSheet('font-size:18px;')
         for i in range(4,len(self.combobox_divisiontime_choices)):
-             self.qradio_divisiontime_choices[i].setGeometry(800+(i-4)*180, 795, 180, 20)
+             self.qradio_divisiontime_choices[i].setGeometry(5+(i-4)*180, 60, 180, 20)
+             self.qradio_divisiontime_choices[i].setStyleSheet('font-size:18px;')
         
         #divisiontime option chekcbox buttons ------------------------
 
@@ -227,10 +262,15 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         #ICM option radio buttons ------------------------
 
-        label_combobox_ICM = QtWidgets.QLabel('ICM:',self)
-        label_combobox_ICM.setFont(QtGui.QFont('Arial', 14))
+        self.qframe_ICM= QtWidgets.QFrame(self)      
+        self.qframe_ICM.setGeometry(795, 810, 460, 75)
+        self.qframe_ICM.setFrameShape(QtWidgets.QFrame.Box) 
+        self.qframe_ICM.setFrameShadow(QtWidgets.QFrame.Sunken) 
+
+        label_combobox_ICM = QtWidgets.QLabel('ICM:',self.qframe_ICM)
+        label_combobox_ICM.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_ICM.setFixedHeight(20)
-        label_combobox_ICM.setGeometry(800, 830, 150, 20)
+        label_combobox_ICM.setGeometry(5, 5, 150, 20)
         self.combobox_ICM_TE_choices = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-']
         # self.combobox_pn.addItems(combobox_pn_choices)
         # self.combobox_pn.setGeometry(10, 800, 150, 30)
@@ -238,10 +278,12 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.qradio_ICM_choices = []
 
         for i in range(len(self.combobox_ICM_TE_choices)):
-            self.qradio_ICM_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_ICM_TE_choices[i],self))
+            self.qradio_ICM_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_ICM_TE_choices[i],self.qframe_ICM))
 
         for i in range(len(self.combobox_ICM_TE_choices)):
-             self.qradio_ICM_choices[i].setGeometry(800+i*50, 855, 50, 30)
+            
+            self.qradio_ICM_choices[i].setGeometry(5+i*50, 30, 50, 30)
+            self.qradio_ICM_choices[i].setStyleSheet('font-size:18px;')
         
         
         self.qradio_ICM_group = QtWidgets.QButtonGroup(self)
@@ -256,10 +298,16 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         #TE option radio buttons ------------------------
 
-        label_combobox_TE = QtWidgets.QLabel('TE:',self)
-        label_combobox_TE.setFont(QtGui.QFont('Arial', 14))
+
+        self.qframe_TE= QtWidgets.QFrame(self)      
+        self.qframe_TE.setGeometry(795, 895, 460, 75)
+        self.qframe_TE.setFrameShape(QtWidgets.QFrame.Box) 
+        self.qframe_TE.setFrameShadow(QtWidgets.QFrame.Sunken) 
+
+        label_combobox_TE = QtWidgets.QLabel('TE:',self.qframe_TE)
+        label_combobox_TE.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_TE.setFixedHeight(20)
-        label_combobox_TE.setGeometry(800, 890, 150, 20)
+        label_combobox_TE.setGeometry(5, 5, 150, 20)
         # combobox_ICM_TE_choices = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-']
         # self.combobox_pn.addItems(combobox_pn_choices)
         # self.combobox_pn.setGeometry(10, 800, 150, 30)
@@ -267,10 +315,11 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.qradio_TE_choices = []
 
         for i in range(len(self.combobox_ICM_TE_choices)):
-            self.qradio_TE_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_ICM_TE_choices[i],self))
+            self.qradio_TE_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_ICM_TE_choices[i],self.qframe_TE))
 
         for i in range(len(self.combobox_ICM_TE_choices)):
-             self.qradio_TE_choices[i].setGeometry(800+i*50, 915, 50, 30)
+             self.qradio_TE_choices[i].setGeometry(5+i*50, 30, 50, 30)
+             self.qradio_TE_choices[i].setStyleSheet('font-size:18px;')
         
         
         self.qradio_TE_group = QtWidgets.QButtonGroup(self)
