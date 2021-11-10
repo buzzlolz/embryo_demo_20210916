@@ -269,8 +269,13 @@ class TabHistoryChamber(QtWidgets.QWidget):
             QtWidgets.QMessageBox.warning(self,'error','select more than 2 item')
         else:
 
+
+
+            #Clear all table
             for tableclean in self.embryo_info_array:
                 tableclean.CleanAllText()
+
+                
             for tabel_index,timelapse_id_time in enumerate(self.selector_files.getCheckItem()):
 
                 print(tabel_index)
@@ -342,7 +347,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
     def InsertInfomationToTable(self, patient_id,timelapse_id, date,tabel_index, dict_msg):   
 
 
-        #Clear all table
+        
 
         
         

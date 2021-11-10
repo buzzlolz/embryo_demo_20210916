@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5 import QtMultimedia, QtMultimediaWidgets
         
 #from PlotCanvas import PlotCanvas
-from EmbryoBoxInfo import EmbryoImageLabel, EmbryoInfoTable,EmbryoNewInfoTable,EmbryoPnTable
+from EmbryoBoxInfo import EmbryoImageLabel, EmbryoInfoTable,EmbryoNewInfoTable,EmbryoPnTable,EmbryoBlasTable,EmbryoTotalScoreTable
 from Ui_Function import * 
 
 
@@ -26,6 +26,9 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.patient_id = ''
         self.chamber_id = ''
         self.well_id = ''
+
+        self.divisionTime_avg_success=[25.67,36.4,39.02,51.17,55.64,59.21,67.63,90.86,112.6]
+        self.divisionTime_avg_false = [27.16,38.09,41.67,55.14,58.05,62.21,71.81,93.52,112.24]
                  
         self.initUI()
               
@@ -106,12 +109,20 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
 
         
-        
-        self.table_img_left = EmbryoNewInfoTable(10, 7, ['2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell', 'Morula', 'Blastocyst','Total Score'], self)
-        
-        # self.table_img_left.setFixedSize(QtCore.QSize(702, 635))   
+        # t2-t8 table
+        self.table_img_left = EmbryoNewInfoTable(7, 7, ['2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell'], self)
         self.table_img_left.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        self.table_img_left.setGeometry(800,109,702,583)
+        self.table_img_left.setGeometry(800,109,702,418)
+
+        # morula blas table
+        self.table_blas_info = EmbryoBlasTable(2, 4, ['Morula','Blas'], self)
+        self.table_blas_info.setFocusPolicy(QtCore.Qt.ClickFocus) 
+        self.table_blas_info.setGeometry(800,530,702,143)
+
+        # total score table
+        self.table_total_score_info = EmbryoTotalScoreTable(1, 2, self)
+        self.table_total_score_info.setFocusPolicy(QtCore.Qt.ClickFocus) 
+        self.table_total_score_info.setGeometry(1540,310,202,94)
 
         #pn option radio buttons -------------------
 
@@ -127,18 +138,17 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_pn.setFont(QtGui.QFont('Arial', 14,QtGui.QFont.Bold))
         label_combobox_pn.setFixedHeight(20)
         label_combobox_pn.setGeometry(5, 5, 150, 25)
-        # self.combobox_pn=QtWidgets.QComboBox(self)
-        self.combobox_pn_choices = ['NPN', '1PN', '3PN', 'Poly-PN']
-        # self.combobox_pn.addItems(combobox_pn_choices)
-        # self.combobox_pn.setGeometry(10, 800, 150, 30)
+
+        self.combobox_pn_choices = ['NPN', '1PN','2PN', '3PN', 'Poly-PN']
+        
 
         self.qradio_pn_choices = []
 
         for i in range(len(self.combobox_pn_choices)):
             self.qradio_pn_choices.append(QtWidgets.QRadioButton('%s' %self.combobox_pn_choices[i],self.qframe_pn))
 
-        for i in range(4):
-             self.qradio_pn_choices[i].setGeometry(5+i*150, 30, 130, 30)
+        for i in range(5):
+             self.qradio_pn_choices[i].setGeometry(5+i*120, 30, 100, 30)
              self.qradio_pn_choices[i].setStyleSheet('font-size:18px;')
         
         
@@ -169,8 +179,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         label_combobox_location.setFixedHeight(20)
         label_combobox_location.setGeometry(5, 5, 150, 20)
         self.combobox_location_choices = ['Central', 'Central/Side', 'Side']
-        # self.combobox_pn.addItems(combobox_pn_choices)
-        # self.combobox_pn.setGeometry(10, 800, 150, 30)
+        
 
         self.qradio_location_choices = []
 
@@ -400,8 +409,9 @@ class TabEmbryoResults(QtWidgets.QWidget):
         dic_manual_info['t6']=str(self.table_img_left.item(10, 2).text())
         dic_manual_info['t7']=str(self.table_img_left.item(12, 2).text())
         dic_manual_info['t8']=str(self.table_img_left.item(14, 2).text())
-        dic_manual_info['Morula']=str(self.table_img_left.item(16, 2).text())
-        dic_manual_info['Blas']=str(self.table_img_left.item(18, 2).text())
+        dic_manual_info['Morula']=str(self.table_blas_info.item(2, 2).text())
+        dic_manual_info['Blas']=str(self.table_blas_info.item(4, 2).text())
+        print('dic',dic_manual_info)
         write_table_manual_info_csv(self.chamber_id,self.well_id,dic_manual_info)
 
 
@@ -447,6 +457,47 @@ class TabEmbryoResults(QtWidgets.QWidget):
         write_EmbryoViewer_combobox_qradio_info(self.chamber_id,self.well_id,save_pn,save_location,save_morphological,save_divisiontime,save_ICM,save_TE)
         
 
+        #update table info(div score ,sub score)
+        
+        
+        for i in range(7):
+            div_score=''
+           
+            div_time =self.table_img_left.item(i*2+2, 2).text()
+            if div_time!='':
+
+                interval_time_suc_false = abs(self.divisionTime_avg_false[i]-self.divisionTime_avg_success[i])
+                print('interval time',interval_time_suc_false)
+                if abs(float(div_time)-self.divisionTime_avg_success[i])> interval_time_suc_false:
+                    div_score = 0
+                    print('div_score',div_score)
+                else:
+                    print('div_score r',div_score)
+                    div_score= round((1-(abs(float(div_time)-self.divisionTime_avg_success[i] )/interval_time_suc_false))*100,2)
+                # div_score = round(float(div_time)/2,2)
+                item_data = QtWidgets.QTableWidgetItem(str(div_score))
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.table_img_left.setItem(i*2+2, 3, item_data)
+
+        for i in range(2):
+
+            div_time =self.table_blas_info.item(i*2+2, 2).text()
+            if div_time!='':
+                div_score = round(float(div_time)/2,2)
+                item_data = QtWidgets.QTableWidgetItem(str(div_score))
+                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.table_blas_info.setItem(i*2+2, 3, item_data)
+
+        #update pn table-manual pn number
+        pn_label_list= ['NPN','1PN','2PN','3PN','Poly-PN'] 
+        if save_pn != '':
+            pn_number = pn_label_list.index(save_pn)
+            item_data_PN = QtWidgets.QTableWidgetItem(str(pn_number))
+            item_data_PN.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data_PN.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.table_pn.setItem(2, 4, item_data_PN)
 
 
 
@@ -583,14 +634,28 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
             if 't' + str(index) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(index)]) != 'nan' and str(dict_msg["Predict"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(index)]):
                 time = str(int(float((dict_msg["Predict"]['t' + str(index)])+offset_time_to_hours) * 100.0) / 100.0)
-                time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
+                interval_time_suc_false = abs(self.divisionTime_avg_false[index-2]-self.divisionTime_avg_success[index-2])
+                time_score=''
+                print('interval time',interval_time_suc_false)
+                if abs(float(time)-self.divisionTime_avg_success[index-2])> interval_time_suc_false:
+                    time_score = 0
+                    print('div_score',time_score)
+                else:
+                    print('div_score r',time_score)
+                    time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index-2] )/interval_time_suc_false))*100,2)
+                    # div_score = round(float(div_time)/2,2)
+                # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
                 total_score_time_frag=total_score_time_frag +time_score
                 
             
             if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(index)]):  
-                frag = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(index)]))    
-                frag_score = frag/2
+                frag=(round(float(dict_msg["Fragment"]['t' + str(index)]),2))
+                frag_score = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(index)]))    
+
+                # frag_score = frag/2
                 total_score_time_frag = total_score_time_frag+ frag_score
+                total_score_time_frag =round(total_score_time_frag/2,2)
+
 
             label_l_analysis = EmbryoImageLabel(150, 150, [str(time), str(time_score), str(frag), str(frag_score), str(total_score_time_frag)])
 
@@ -600,27 +665,27 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         #morula blas table
     
-        for index in range(9,11):
+        for index in range(2):
             time = ''
             time_score=''
             frag=''
             frag_score=''
             total_score_time_frag=0
-            if index == 9:
+            if index == 0:
                 if "morula" in dict_msg["Predict"] and str(dict_msg["Predict"]["morula"]) != 'nan' and str(dict_msg["Predict"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["morula"]):     
                     time = str(int(float(dict_msg["Predict"]['morula']+offset_time_to_hours) * 100.0) / 100.0)  
                     time_score = (int(dict_msg["Predict"]['morula'] * 100.0) / 100.0)/2
-                    
-            if index == 10:
+                      
+            if index == 1:
                 if "blas" in dict_msg["Predict"] and str(dict_msg["Predict"]["blas"]) != 'nan' and str(dict_msg["Predict"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["blas"]):                                       
                     time = str(int(float(dict_msg["Predict"]['blas']+offset_time_to_hours) * 100.0) / 100.0)  
                     time_score = (int(dict_msg["Predict"]['blas'] * 100.0) / 100.0)/2
                 
             
-            label_l_analysis_blas = EmbryoImageLabel(150, 150, [str(time), str(time_score), str(frag), str(frag_score), str(total_score_time_frag)])
+            label_l_analysis_blas = EmbryoImageLabel(150, 150, [str(time), str(time_score)])
 
 
-            self.table_img_left.AddSystemRow(index-2, label_l_analysis_blas)
+            self.table_blas_info.AddSystemRow(index, label_l_analysis_blas)
                              
         
 
@@ -644,6 +709,8 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         
         self.table_pn.AddManualRow( label_l_analysis_pn)
+
+
 
 
 
@@ -672,7 +739,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         #morula blas table
     
-        for index in range(9,11):
+        for index in range(2):
             time = ''
             time_score=''
             frag=''
@@ -689,10 +756,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
                     time_score = (int(float(dict_manual_msg["Predict"]['Blas']) * 100.0) / 100.0)/2
                 
             
-            label_l_analysis_blas = EmbryoImageLabel(150, 150, [str(time), str(time_score), str(frag), str(frag_score), str(total_score_time_frag)])
+            label_l_analysis_blas = EmbryoImageLabel(150, 150, [str(time), str(time_score)])
 
 
-            self.table_img_left.AddManualRow(index-2, label_l_analysis_blas)
+            self.table_blas_info.AddManualRow(index, label_l_analysis_blas)
                              
         
         dic_cbo_rdo_button_info = read_EmbryoViewer_combobox_qradio_info(chamber_id,dish_id)
@@ -729,7 +796,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
     
 
 
-        # radiobutton checkvox set values 
+        # radiobutton checkbox set values 
         if dic_cbo_rdo_button_info['cbo_PN']!='':
             cbo_PN_index=self.combobox_pn_choices.index(dic_cbo_rdo_button_info['cbo_PN'])
             self.qradio_pn_choices[cbo_PN_index].setChecked(True)
@@ -769,7 +836,16 @@ class TabEmbryoResults(QtWidgets.QWidget):
             cbo_TE_index=self.combobox_ICM_TE_choices.index(dic_cbo_rdo_button_info['cbo_TE'])
             self.qradio_TE_choices[cbo_TE_index].setChecked(True)
        
-            
+
+        #write pn number into pn table
+        pn_label_list= ['NPN','1PN','2PN','3PN','Poly-PN'] 
+        if dic_cbo_rdo_button_info['cbo_PN'] != '':
+            pn_number = pn_label_list.index(dic_cbo_rdo_button_info['cbo_PN'])
+            item_data_PN = QtWidgets.QTableWidgetItem(str(pn_number))
+            item_data_PN.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data_PN.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.table_pn.setItem(2, 4, item_data_PN)
+        
         
 
      

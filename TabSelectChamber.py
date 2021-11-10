@@ -112,17 +112,19 @@ class ExportDialog(QtWidgets.QDialog):
 
 class ExportThread(QtCore.QThread):
     finished = QtCore.pyqtSignal(str, str)
-    def __init__(self, patient_id,timelapse_id, chamber_id, date, age , parent=None):
+    def __init__(self, patient_id,timelapse_id, chamber_id, date, age , offset_time , parent=None):
         super(ExportThread, self).__init__(parent=parent)  
         self.patient_id = patient_id
         self.timelapse_id = timelapse_id
         self.chamber_id = chamber_id 
         self.date = date
         self.age = age
+        self.offset_time = offset_time
         self.parent = parent
         
     def run(self):       
-        move_select_cham_dish_folder(self.patient_id,self.timelapse_id, self.date, self.age , int(self.chamber_id))
+        # add_offset_time2analy_csv(self.patient_id,self.timelapse_id, self.offset_time, int(self.chamber_id))
+        move_select_cham_dish_folder(self.patient_id,self.timelapse_id, self.date, self.age ,self.offset_time, int(self.chamber_id))
         clear_cham_dish_data_csv(int(self.chamber_id))
         if self.parent != None:
             self.parent.export_dialog.close()
@@ -914,11 +916,28 @@ class TabSelectChamber(QtWidgets.QWidget):
             timelapse_id = str(listsMyQLineEdit[1].text())
 
             date = str(listsMyQLineEdit[2].text())
+            hour = listsMyQLineEdit[4].text()
+            minute=listsMyQLineEdit[5].text()
+            second=listsMyQLineEdit[6].text()
+
+
+           
+            if hour =='':
+                hour='0'
+            if minute =='':
+                minute='0'
+            if second =='':
+                second='0'
+
+            offset_time_to_hours = int(hour)+round(int(minute)/60,2)+round(int(second)/3600,2)
+            
+            
+            
             age = str(listsMyQLineEdit[7].text())
             # if pid != '' and date != '':
                 #move_select_cham_dish_folder(pid, date, int(chamber_id))
                 #clear_cham_dish_data_csv(int(chamber_id))
-            export_thread = ExportThread(pid,timelapse_id, chamber_id, date,age, self)
+            export_thread = ExportThread(pid,timelapse_id, chamber_id, date,age,offset_time_to_hours, self)
             export_thread.start()
             self.export_dialog.exec_()
 

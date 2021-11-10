@@ -71,14 +71,14 @@ def normalize_classify_stage(cell_stage_list):
     return cell_stage_list
 
 
-def get_pn_max_number(pn_number_list):
-    # mask = np.unique(pn_number_list)
-    pn_number_list=pn_number_list[pn_number_list!=0]
+# def get_pn_max_number(pn_number_list):
+#     # mask = np.unique(pn_number_list)
+#     pn_number_list=pn_number_list[pn_number_list!=0]
     
-    max_pn_number = np.argmax(np.bincount(pn_number_list))
-    # print('dddddddddddddd:',dmax_pn_number)
+#     max_pn_number = np.argmax(np.bincount(pn_number_list))
+#     # print('dddddddddddddd:',dmax_pn_number)
 
-    return max_pn_number
+#     return max_pn_number
 
 #return  pn number
 def get_pn_number(csv_path):
@@ -112,17 +112,21 @@ def get_t2t8_dur_time(csv_path):
     df = df.sort_values(by='file_name')
     cell_stage_list = df['cell_stage'].values
     pn_number_list = (df['pn_number'].values)
-    # print(cell_stage_list)
+    
     dic_key = ['pn','t2','t3','t4','t5','t6','t7','t8','morula','blas','comp']
     class_list =['pn','2','3','4','5','6','7','8','morula','blas','comp']
     t2t8_dict=dict()
     save_t2t8_list = []
-    # print('csv path:',csv_path)
+    
 
     pn_number_list = pn_number_list[np.logical_not(np.isnan(pn_number_list))].astype(int)
-   
-    max_pn_number=get_pn_max_number(pn_number_list)
-    pn_start_index=np.where(pn_number_list!=0)[0][0]
+
+    #get pn division time
+    if len(set(pn_number_list))==1 and list(set(pn_number_list))[0]==0:
+        pn_start_index=0
+    
+    else:
+        pn_start_index=np.where(pn_number_list!=0)[0][0]
     
     
     
@@ -361,9 +365,33 @@ def write_patient_config( patient_his_folder,patient_id,timelapse_id,time,age,ch
             print('config write error')
                      
 
+def add_offset_time2analy_csv(analy_csv_path, offset_time):
+
+    print('offset time analy csv:',analy_csv_path)
+
+    if os.path.isfile(analy_csv_path):
+
+        df=pd.read_csv(analy_csv_path)
+
+        df['PN_Fading']=float(df['PN_Fading'].values[0])+offset_time
+        df['t2']=float(df['t2'].values[0])+offset_time
+        df['t3']=float(df['t3'].values[0])+offset_time
+        df['t4']=float(df['t4'].values[0])+offset_time
+        df['t5']=float(df['t5'].values[0])+offset_time
+        df['t6']=float(df['t6'].values[0])+offset_time
+        df['t7']=float(df['t7'].values[0])+offset_time
+        df['t8']=float(df['t8'].values[0])+offset_time
+        df['Morula']=float(df['Morula'].values[0])+offset_time
+        df['Blas']=float(df['Blas'].values[0])+offset_time
+        df['comp']=float(df['comp'].values[0])+offset_time
+        print('offset time df:',df)
+
+        df.to_csv(analy_csv_path,index=0)
+
+
 
 #move select chamber to history folder    
-def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age , chamber_id):
+def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age,offset_time , chamber_id):
     # history_dir = '/mnt/2ecae85e-98a6-47ff-8547-bd79e071bd91/history'
     patient_csv_folder='./patient_id_save/'
     ori_img_folder = './data/crop_img/'
@@ -386,12 +414,16 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
         dish_folder_path  =os.path.join(csv_cham_folder_path,dish_folder_name)
         dish_id= dish_folder_name.replace('dish','')
         csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'.csv'
+        analy_csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'_analy.csv'
         csv_path = os.path.join(dish_folder_path,csv_name)
+        analy_csv_path  = os.path.join(dish_folder_path,analy_csv_name)
         if os.path.isfile(csv_path):
             predict_division_dic=get_t2t8_dur_time(csv_path)
             print('out csv paht',csv_path)
 
             write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
+
+            add_offset_time2analy_csv(analy_csv_path,offset_time)
             print('alread write cham dish analy')
 
             combine_manual_system_division_time(chamber_id,dish_id)
@@ -652,8 +684,7 @@ def get_patient_offset_time_from_ini(patient_id):
                     offset_time = cfg.get('BoardPatientInfo','offsettime')
     return offset_time
         
-        
-
+ 
    
 
 
