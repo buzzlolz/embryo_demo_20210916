@@ -22877,3 +22877,145 @@
 2021-11-10 16:35:42,005 [INFO] UnixSocketServer:run: Socket recv={'chamber_id': '1', 'dish_id': '15', 'percentage': 100}
 2021-11-10 16:35:42,005 [INFO] UnixSocketClient:Send: Rsp={"response": "ok"}
 2021-11-10 16:35:42,006 [INFO] Chamber_inference_Class:run: Finish run chamber id=1
+2021-11-10 16:53:14,015 [INFO] UnixSocketServer:run: Starting up server
+2021-11-10 16:53:14,033 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-10 16:53:14,066 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-10 16:53:14,067 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-10 16:53:14,068 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-10 16:53:14,070 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-10 16:53:14,071 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-10 16:53:14,072 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 09:46:00,185 [WARNING] Chamber_inference_Class:run: Break analysis loop
+2021-11-11 09:46:01,549 [INFO] UnixSocketServer:run: Stop server
+2021-11-11 09:48:07,409 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 09:48:07,440 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 09:48:07,565 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 09:48:07,583 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 09:48:07,587 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 09:48:07,593 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 09:48:07,603 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 09:48:07,605 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:13:25,361 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 10:13:25,377 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:13:25,408 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 10:13:25,408 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 10:13:25,410 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 10:13:25,411 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 10:13:25,413 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 10:13:25,414 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:40:35,255 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 10:40:35,257 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:40:35,290 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 10:40:35,291 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 10:40:35,292 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 10:40:35,294 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 10:40:35,295 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 10:40:35,296 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:41:07,279 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 10:41:07,281 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:41:07,311 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 10:41:07,312 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 10:41:07,314 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 10:41:07,315 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 10:41:07,316 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 10:41:07,317 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:44:59,587 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 10:44:59,590 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 10:44:59,626 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 10:44:59,627 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 10:44:59,629 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 10:44:59,630 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 10:44:59,631 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 10:44:59,633 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:35:45,394 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 15:35:45,412 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:35:45,441 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 15:35:45,441 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 15:36:27,069 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 15:36:27,086 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:36:27,122 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 15:36:27,123 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 15:36:27,124 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 15:36:27,126 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 15:36:27,127 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 15:36:27,128 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:44:53,871 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 15:44:53,888 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:44:53,925 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 15:44:53,926 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 15:44:53,928 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 15:44:53,929 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 15:44:53,930 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 15:44:53,932 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:45:05,848 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 15:45:05,851 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:45:05,882 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 15:45:05,883 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 15:45:05,885 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 15:45:05,886 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 15:45:05,887 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 15:45:05,888 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:45:19,789 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 15:45:19,791 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 15:45:19,822 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 15:45:19,823 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 15:45:19,824 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 15:45:19,825 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 15:45:19,827 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 15:45:19,828 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:00:02,640 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:00:02,643 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:00:02,682 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:00:02,683 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:00:02,685 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:00:02,686 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:00:02,687 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:00:02,689 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:02:26,954 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:02:26,957 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:02:26,999 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:02:27,000 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:02:27,002 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:02:27,003 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:02:27,004 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:02:27,006 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:03:11,407 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:03:11,425 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:03:11,456 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:03:11,457 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:03:11,459 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:03:11,460 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:03:11,461 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:03:11,462 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:03:43,528 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:03:43,545 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:03:43,577 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:03:43,578 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:03:43,580 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:03:43,581 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:03:43,582 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:03:43,583 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:04:11,478 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:04:11,481 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:04:11,518 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:04:11,518 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:04:11,520 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:04:11,521 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:04:11,522 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:04:11,523 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:04:25,412 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:04:25,415 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:04:25,450 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:04:25,451 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:04:25,452 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:04:25,453 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:04:25,455 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:04:25,456 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:04:53,347 [INFO] UnixSocketServer:run: Starting up server
+2021-11-11 16:04:53,372 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini
+2021-11-11 16:04:53,409 [INFO] TabSelectChamber:ReadChamberConfig: Read file=./config/config_chamber.ini
+2021-11-11 16:04:53,409 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-13CD-1B51.ini
+2021-11-11 16:04:53,411 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1428-15A8.ini
+2021-11-11 16:04:53,412 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1320-6973.ini
+2021-11-11 16:04:53,413 [INFO] TabSelectChamber:ReadPatientConfig: Read file=./config/config_MTL-0245-1220-ADAC.ini
+2021-11-11 16:04:53,414 [INFO] TabMachineSelection:ReadMachineConfig: Read file=./config/config_machine.ini

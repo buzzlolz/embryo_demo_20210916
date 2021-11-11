@@ -261,7 +261,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         calendar.exec_()        
         
     def FileLoad(self, event):        
-        # Set chamber id        
+        # Set chamber id           
         chamber_ids = []
         
        
@@ -283,7 +283,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
                 fertilizationtime = timelapse_id_time.split('->')[1]
                 get_dic= search_history_csv(str(self.selector_pid.currentText()), timelapse_id,fertilizationtime)
                 # print('get dict:',get_dic)
-                self.InsertInfomationToTable(str(self.selector_pid.currentText()),timelapse_id,fertilizationtime ,tabel_index, get_dic)
+                self.InsertInfomationToTable(str(self.selector_pid.currentText()),timelapse_id,fertilizationtime ,timelapse_id_time,tabel_index, get_dic)
+                
+                
                 
                 # self.InsertInfomationToTable(str(self.selector_pid.currentText()), str(self.selector_files.currentText()), get_dic)
                 
@@ -344,7 +346,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
             # self.selector_files_table2.addItem(m)  
                       
         
-    def InsertInfomationToTable(self, patient_id,timelapse_id, date,tabel_index, dict_msg):   
+    def InsertInfomationToTable(self, patient_id,timelapse_id, date, timelapse_id_time ,tabel_index, dict_msg):   
 
 
         
@@ -352,6 +354,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
         
         
         table = self.embryo_info_array[tabel_index]
+
+        # get select timelapse->time name and put in title
+        table.SetItemTitle(0, 0, timelapse_id_time,readonly=True)
         
         table.SetPidDate(patient_id,timelapse_id, date)
         # table.CleanAllText()

@@ -169,6 +169,13 @@ class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
         if readonly:
             item_data.setFlags(QtCore.Qt.ItemIsEnabled)
         self.table.setItem(row, col, item_data)
+    def SetItemTitle(self, row, col, value, readonly):
+        item_data = QtWidgets.QTableWidgetItem(str(value))        
+        item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        item_data.setBackground(QtGui.QColor(218,241,252))
+        if readonly:
+            item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+        self.table.setItem(row, col, item_data)
         
     def SetIcmTe(self):     
         self.table.SetIcmTe()
@@ -278,7 +285,7 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         # header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
         # header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)    
         #Header
-        item_data = QtWidgets.QTableWidgetItem('Well ' + str(self.well_id))
+        item_data = QtWidgets.QTableWidgetItem('')
         item_data.setTextAlignment(QtCore.Qt.AlignHCenter)
         item_data.setFlags(QtCore.Qt.ItemIsEnabled)
         item_data.setBackground(QtGui.QColor(218,241,252))        
