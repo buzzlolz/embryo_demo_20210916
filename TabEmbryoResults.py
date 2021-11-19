@@ -215,7 +215,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         
 
-        self.combobox_morphological_choices = ['Refractile', 'Body', 'Central', 'Darkness','Abnormality','Large pb']
+        self.combobox_morphological_choices = ['Refractile Body', 'Central Darkness','Abnormality','Large pb']
          
         self.qradio_morphological_choices = []
 
@@ -223,10 +223,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_morphological_choices.append(QtWidgets.QCheckBox('%s' %self.combobox_morphological_choices[i],self.qframe_morphological))
 
         for i in range(4):
-             self.qradio_morphological_choices[i].setGeometry(5+i*150, 35, 125, 25)
+             self.qradio_morphological_choices[i].setGeometry(5+i*250, 35, 250, 25)
              self.qradio_morphological_choices[i].setStyleSheet('font-size:18px;')
-        for i in range(4,len(self.combobox_morphological_choices)):
-             self.qradio_morphological_choices[i].setGeometry(5+(i-4)*150, 65, 125, 25)
+        for i in range(2,len(self.combobox_morphological_choices)):
+             self.qradio_morphological_choices[i].setGeometry(5+(i-2)*250, 65, 250, 25)
              self.qradio_morphological_choices[i].setStyleSheet('font-size:18px;')
         
         #morphological option chekcbox buttons ------------------------
@@ -336,6 +336,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
         for qradio in self.qradio_TE_choices:
             self.qradio_TE_group.addButton(qradio)
 
+
+
+
+        
         #ICM  option radio buttons ------------------------
     
 
@@ -467,28 +471,67 @@ class TabEmbryoResults(QtWidgets.QWidget):
             if div_time!='':
 
                 interval_time_suc_false = abs(self.divisionTime_avg_false[i]-self.divisionTime_avg_success[i])
-                print('interval time',interval_time_suc_false)
+                # print('interval time',interval_time_suc_false)
                 if abs(float(div_time)-self.divisionTime_avg_success[i])> interval_time_suc_false:
                     div_score = 0
-                    print('div_score',div_score)
+                    # print('div_score',div_score)
                 else:
-                    print('div_score r',div_score)
+                    # print('div_score r',div_score)
                     div_score= round((1-(abs(float(div_time)-self.divisionTime_avg_success[i] )/interval_time_suc_false))*100,2)
                 # div_score = round(float(div_time)/2,2)
-                item_data = QtWidgets.QTableWidgetItem(str(div_score))
-                item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-                item_data.setFlags(QtCore.Qt.ItemIsEnabled)
-                self.table_img_left.setItem(i*2+2, 3, item_data)
+                item_data_div_score = QtWidgets.QTableWidgetItem(str(div_score))
+                item_data_div_score.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data_div_score.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.table_img_left.setItem(i*2+2, 3, item_data_div_score)
+            
+            frag_score = ''
+            frag_percent =self.table_img_left.item(i*2+2, 4).text()
+            if frag_percent!='':
+                frag_score = round(100-float(frag_percent),2)
+                item_data_frag_score = QtWidgets.QTableWidgetItem(str(frag_score))
+                item_data_frag_score.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+                item_data_frag_score.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.table_img_left.setItem(i*2+2, 5, item_data_frag_score)
 
+            print('div score',div_score)
+            print('frag score',frag_score)
+            sub_score = div_score
+
+            if sub_score=='':
+                print('sub_score 1 ',sub_score)
+                sub_score=frag_score
+            else:
+                if frag_score!='':
+                    sub_score=round((div_score+frag_score)/2,2)
+                    print('sub_score 2 ',sub_score)
+            print('sub_score end ',sub_score)
+            item_sub_score = QtWidgets.QTableWidgetItem(str(sub_score))
+            item_sub_score.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_sub_score.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.table_img_left.setItem(i*2+2, 6, item_sub_score)
+
+
+            
+                    
+
+           
         for i in range(2):
-
+            div_time_score=''
             div_time =self.table_blas_info.item(i*2+2, 2).text()
             if div_time!='':
-                div_score = round(float(div_time)/2,2)
-                item_data = QtWidgets.QTableWidgetItem(str(div_score))
+                if abs(float(div_time)-self.divisionTime_avg_success[i+7])> interval_time_suc_false:
+                    div_time_score = 0
+                else:
+                    div_time_score= round((1-(abs(float(div_time)-self.divisionTime_avg_success[i+7] )/interval_time_suc_false))*100,2)
+                   
+                item_data = QtWidgets.QTableWidgetItem(str(div_time_score))
                 item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
                 item_data.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.table_blas_info.setItem(i*2+2, 3, item_data)
+        
+
+        
+
 
         #update pn table-manual pn number
         pn_label_list= ['NPN','1PN','2PN','3PN','Poly-PN'] 
@@ -500,9 +543,87 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.table_pn.setItem(2, 4, item_data_PN)
 
 
+        # sub score in table(t2-t8) add to total score
+        #system
+
+        self.GetSystemManualAvgScore()
+        # total_score_system,total_score_manual=self.GetSystemManualAvgScore()
+        # item_total_score_system= QtWidgets.QTableWidgetItem(str(total_score_system))
+        # item_total_score_system.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        # item_total_score_system.setFlags(QtCore.Qt.ItemIsEnabled)
+        # self.table_total_score_info.setItem(1, 1, item_total_score_system)
+
+        # item_total_score_manual= QtWidgets.QTableWidgetItem(str(total_score_manual))
+        # item_total_score_manual.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        # item_total_score_manual.setFlags(QtCore.Qt.ItemIsEnabled)
+        # self.table_total_score_info.setItem(2, 1, item_total_score_manual)
 
 
+        
 
+        # total_score_system = []
+        # # if self.table_pn.item(2, 6).text()!='':
+
+
+        # for i in range (7):
+        #     if self.table_img_left.item(i*2+1, 6).text()!='':
+        #         total_score_system.append(float(self.table_img_left.item(i*2+1, 6).text()))
+        # total_score_manual = []
+        # for i in range (7):
+        #     if self.table_img_left.item(i*2+2, 6).text()!='':
+        #         total_score_manual.append(float(self.table_img_left.item(i*2+2, 6).text()))
+        
+        # total_score_system_avg = sum(total_score_system)/len(total_score_system)
+        # total_score_manual_avg = sum(total_score_manual)/len(total_score_manual)
+        # print('total_score_system_avg',total_score_system_avg)
+        # print('total_score_manual_avg',total_score_manual_avg)
+
+
+    def GetSystemManualAvgScore(self):
+
+        total_score_system_avg=''
+        total_score_manual_avg=''
+        
+        total_score_system = []
+        total_score_manual=[]
+        for i in range (7):
+            if self.table_img_left.item(i*2+1, 6).text()!='':
+                total_score_system.append(float(self.table_img_left.item(i*2+1, 6).text()))
+
+        for i in range(2):
+            if  self.table_blas_info.item(i*2+1, 3).text()!='':
+                total_score_system.append(float(self.table_blas_info.item(i*2+1, 3).text()))
+        total_score_manual = []
+        for i in range (7):
+            if self.table_img_left.item(i*2+2, 6).text()!='':
+                total_score_manual.append(float(self.table_img_left.item(i*2+2, 6).text()))
+        for i in range(2):
+            if  self.table_blas_info.item(i*2+2, 3).text()!='':
+                total_score_manual.append(float(self.table_blas_info.item(i*2+2, 3).text()))
+        
+
+
+        # print('total_score_system:',total_score_system)
+        # print('total_score_manual',total_score_manual)
+        if len(total_score_system)!=0:
+            total_score_system_avg = round(sum(total_score_system)/len(total_score_system),2)
+        if len(total_score_manual)!=0:
+            total_score_manual_avg = round(sum(total_score_manual)/len(total_score_manual),2)
+        # print('total_score_system_avg',total_score_system_avg)
+        # print('total_score_manual_avg',total_score_manual_avg)
+
+
+        item_total_score_system= QtWidgets.QTableWidgetItem(str(total_score_system_avg))
+        item_total_score_system.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        item_total_score_system.setFlags(QtCore.Qt.ItemIsEnabled)
+        self.table_total_score_info.setItem(1, 1, item_total_score_system)
+
+        item_total_score_manual= QtWidgets.QTableWidgetItem(str(total_score_manual_avg))
+        item_total_score_manual.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        item_total_score_manual.setFlags(QtCore.Qt.ItemIsEnabled)
+        self.table_total_score_info.setItem(2, 1, item_total_score_manual)
+
+        # return total_score_system_avg,total_score_manual_avg
 
 
     def keyPressEvent(self, event):    
@@ -540,7 +661,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.patient_id = str(pid)
         self.chamber_id = str(chid)
         self.well_id = str(wid)
-                
+                   
     def edit_info_changed(self):
         content = self.edit_info.toPlainText()
         lines = content.split('\n')
@@ -592,6 +713,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         dict_msg = get_xlsx_predict_division_time(patient_id, chamber_id, dish_id)# get system predict division time
 
         dict_manual_msg  = read_table_manual_info_csv(chamber_id, dish_id)
+        print('dict_manual_msg:',dict_manual_msg)
 
         offset_time = get_patient_offset_time_from_ini(patient_id)
         hour=0
@@ -611,7 +733,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         #PN table 
 
         pn_time='-'
-        pn_score='80'
+        pn_score=''
         pn_number=dict_msg["Pn_number"]
 
 
@@ -628,35 +750,41 @@ class TabEmbryoResults(QtWidgets.QWidget):
             time_score=''
             frag=''
             frag_score=''
-            total_score_time_frag=0
+            total_score_time_frag=''
             
 
 
-            if 't' + str(index) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(index)]) != 'nan' and str(dict_msg["Predict"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(index)]):
+            if 't' + str(index) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(index)]) != '' and str(dict_msg["Predict"]['t' + str(index)]) != 'nan' and str(dict_msg["Predict"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Predict"]['t' + str(index)]):
                 time = str(int(float((dict_msg["Predict"]['t' + str(index)])+offset_time_to_hours) * 100.0) / 100.0)
                 interval_time_suc_false = abs(self.divisionTime_avg_false[index-2]-self.divisionTime_avg_success[index-2])
                 time_score=''
-                print('interval time',interval_time_suc_false)
+                # print('interval time',interval_time_suc_false)
                 if abs(float(time)-self.divisionTime_avg_success[index-2])> interval_time_suc_false:
                     time_score = 0
-                    print('div_score',time_score)
+                    # print('div_score',time_score)
                 else:
-                    print('div_score r',time_score)
+                    # print('div_score r',time_score)
                     time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index-2] )/interval_time_suc_false))*100,2)
                     # div_score = round(float(div_time)/2,2)
                 # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
-                total_score_time_frag=total_score_time_frag +time_score
+                total_score_time_frag=time_score
                 
             
-            if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(index)]):  
-                frag=(round(float(dict_msg["Fragment"]['t' + str(index)]),2))
-                frag_score = 100 - (4 * math.ceil(dict_msg["Fragment"]['t' + str(index)]))    
+            if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(index)]) != '' and str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(index)]):  
+                frag=(round(4*(float(dict_msg["Fragment"]['t' + str(index)])),2))
+                frag_score = 100 - frag
 
                 # frag_score = frag/2
-                total_score_time_frag = total_score_time_frag+ frag_score
-                total_score_time_frag =round(total_score_time_frag/2,2)
 
+                if total_score_time_frag=='':
+                    print('Total score is 0')
+                    total_score_time_frag = frag_score
+                else:
+                    total_score_time_frag = total_score_time_frag+ frag_score
+                    total_score_time_frag =round(total_score_time_frag/2,2)
+                    print('Total score is divid 2')
 
+            print('total_score_time_frag:',total_score_time_frag)
             label_l_analysis = EmbryoImageLabel(150, 150, [str(time), str(time_score), str(frag), str(frag_score), str(total_score_time_frag)])
 
 
@@ -672,12 +800,12 @@ class TabEmbryoResults(QtWidgets.QWidget):
             frag_score=''
             total_score_time_frag=0
             if index == 0:
-                if "morula" in dict_msg["Predict"] and str(dict_msg["Predict"]["morula"]) != 'nan' and str(dict_msg["Predict"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["morula"]):     
+                if "morula" in dict_msg["Predict"] and str(dict_msg["Predict"]["morula"]) != '' and str(dict_msg["Predict"]["morula"]) != 'nan' and str(dict_msg["Predict"]["morula"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["morula"]):     
                     time = str(int(float(dict_msg["Predict"]['morula']+offset_time_to_hours) * 100.0) / 100.0)  
                     time_score = (int(dict_msg["Predict"]['morula'] * 100.0) / 100.0)/2
                       
             if index == 1:
-                if "blas" in dict_msg["Predict"] and str(dict_msg["Predict"]["blas"]) != 'nan' and str(dict_msg["Predict"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["blas"]):                                       
+                if "blas" in dict_msg["Predict"] and str(dict_msg["Predict"]["blas"]) != '' and str(dict_msg["Predict"]["blas"]) != 'nan' and str(dict_msg["Predict"]["blas"]) != 'NaN' and self.intTryParse(dict_msg["Predict"]["blas"]):                                       
                     time = str(int(float(dict_msg["Predict"]['blas']+offset_time_to_hours) * 100.0) / 100.0)  
                     time_score = (int(dict_msg["Predict"]['blas'] * 100.0) / 100.0)/2
                 
@@ -699,12 +827,12 @@ class TabEmbryoResults(QtWidgets.QWidget):
         #PN table 
 
         pn_time=''
-        pn_score='80'
+        pn_score=''
         pn_number=''
 
-
-        if "PN_Fading" in dict_manual_msg and str(dict_manual_msg["PN_Fading"]) != 'nan' and str(dict_manual_msg["PN_Fading"]) != 'NaN' and self.intTryParse(dict_manual_msg["PN_Fading"]):
-            pn_time = str(int(float(dict_manual_msg["PN_Fading"]) * 100.0) / 100.0)
+        print("dict_manual_msgdict_manual_msg PN_Fading:",dict_manual_msg["PN_Fading"])
+        if "PN_Fading" in dict_manual_msg and str(dict_manual_msg["PN_Fading"]) != '' and str(dict_manual_msg["PN_Fading"]) != 'nan' and str(dict_manual_msg["PN_Fading"]) != 'NaN' and self.intTryParse(float(dict_manual_msg["PN_Fading"])):
+            pn_time = int(float(dict_manual_msg["PN_Fading"]) * 100.0) / 100.0
         label_l_analysis_pn = EmbryoImageLabel(150, 150, [str(pn_time),str(pn_score),str(pn_number)])
 
         
@@ -720,14 +848,36 @@ class TabEmbryoResults(QtWidgets.QWidget):
             time_score=''
             frag=''
             frag_score=''
-            total_score_time_frag=0
+            total_score_time_frag=''
+            # print('t2',dict_manual_msg['t2'])
             
 
+            # print('self.intTryParse',self.intTryParse(dict_manual_msg['t' + str(index)]))
+            if 't' + str(index) in dict_manual_msg and str(dict_manual_msg['t' + str(index)]) != '' and str(dict_manual_msg['t' + str(index)]) != 'nan' and str(dict_manual_msg['t' + str(index)]) != 'NaN' and self.intTryParse(float(dict_manual_msg['t' + str(index)])):
+                time = round(float(dict_manual_msg['t' + str(index)]),2 )
+                interval_time_suc_false = abs(self.divisionTime_avg_false[index-2]-self.divisionTime_avg_success[index-2])
+                time_score=''
+                
+                if abs(float(time)-self.divisionTime_avg_success[index-2])> interval_time_suc_false:
+                    time_score = 0
+                   
+                else:
+                   
+                    time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index-2] )/interval_time_suc_false))*100,2)
+                    # div_score = round(float(div_time)/2,2)
+                # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
+                total_score_time_frag=time_score
+            if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg['Fragment']) != '' and   str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.intTryParse(dict_msg["Fragment"]['t' + str(index)]):  
+                frag=(round(4*(float(dict_msg["Fragment"]['t' + str(index)])),2))
+                frag_score = 100 - frag
 
-            if 't' + str(index) in dict_manual_msg and str(dict_manual_msg['t' + str(index)]) != 'nan' and str(dict_manual_msg['t' + str(index)]) != 'NaN' and self.intTryParse(dict_manual_msg['t' + str(index)]):
-                time = str(int(float(dict_manual_msg['t' + str(index)]) * 100.0) / 100.0)
-                time_score = (int(float(dict_manual_msg['t' + str(index)]) * 100.0) / 100.0)/2
-                total_score_time_frag=total_score_time_frag +time_score
+                # frag_score = frag/2
+                if total_score_time_frag=='':
+
+                    total_score_time_frag = frag_score
+                else:
+                    total_score_time_frag = total_score_time_frag+ frag_score
+                    total_score_time_frag =round(total_score_time_frag/2,2)
                 
             
             
@@ -738,28 +888,59 @@ class TabEmbryoResults(QtWidgets.QWidget):
         
 
         #morula blas table
-    
+
         for index in range(2):
             time = ''
             time_score=''
             frag=''
             frag_score=''
-            total_score_time_frag=0
-            if index == 9:
-                if "Morula" in dict_manual_msg and str(dict_manual_msg["Morula"]) != 'nan' and str(dict_manual_msg["Morula"]) != 'NaN' and self.intTryParse(dict_manual_msg["Morula"]):     
-                    time = str(int(float(dict_manual_msg['Morula']) * 100.0) / 100.0)  
-                    time_score = (int(float(dict_manual_msg['Morula']) * 100.0) / 100.0)/2
+            total_score_time_frag=''
+
+            
+            if index == 0:
+                if "Morula" in dict_manual_msg and str(dict_manual_msg["Morula"]) != '' and str(dict_manual_msg["Morula"]) != 'nan' and str(dict_manual_msg["Morula"]) != 'NaN' and self.intTryParse(float(dict_manual_msg["Morula"])):     
+                    # time = str(int(float(dict_manual_msg['Morula']) * 100.0) / 100.0)  
+                    # time_score = (int(float(dict_manual_msg['Morula']) * 100.0) / 100.0)/2
+                    time =round( float(dict_manual_msg["Morula"]) ,2)
+                    interval_time_suc_false = abs(self.divisionTime_avg_false[index+7]-self.divisionTime_avg_success[index+7])
+                    time_score=''
+                    # print('interval time',interval_time_suc_false)
+                    if abs(float(time)-self.divisionTime_avg_success[index+7])> interval_time_suc_false:
+                        time_score = 0
+                        # print('div_score',time_score)
+                    else:
+                        # print('div_score r',time_score)
+                        time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index+7] )/interval_time_suc_false))*100,2)
+                        # div_score = round(float(div_time)/2,2)
+                    # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
+                    # total_score_time_frag=total_score_time_frag +time_score
                     
-            if index == 10:
-                if "Blas" in dict_manual_msg and str(dict_manual_msg["Blas"]) != 'nan' and str(dict_manual_msg["Blas"]) != 'NaN' and self.intTryParse(dict_manual_msg["Blas"]):                                       
-                    time = str(int(float(dict_manual_msg["Predict"]["Blas"]) * 100.0) / 100.0)
-                    time_score = (int(float(dict_manual_msg["Predict"]['Blas']) * 100.0) / 100.0)/2
+            if index == 1:
+                if "Blas" in dict_manual_msg and str(dict_manual_msg["Blas"]) != '' and str(dict_manual_msg["Blas"]) != 'nan' and str(dict_manual_msg["Blas"]) != 'NaN' and self.intTryParse(float(dict_manual_msg["Blas"])):                                       
+                    # time = str(int(float(dict_manual_msg["Blas"]) * 100.0) / 100.0)
+                    # time_score = (int(float(dict_manual_msg['Blas']) * 100.0) / 100.0)/2
+                    time = round( float(dict_manual_msg["Blas"]) ,2)
+                    interval_time_suc_false = abs(self.divisionTime_avg_false[index+7]-self.divisionTime_avg_success[index+7])
+                    time_score=''
+                    # print('interval time',interval_time_suc_false)
+                    if abs(float(time)-self.divisionTime_avg_success[index+7])> interval_time_suc_false:
+                        time_score = 0
+                        # print('div_score',time_score)
+                    else:
+                        # print('div_score r',time_score)
+                        time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index+7] )/interval_time_suc_false))*100,2)
+                        # div_score = round(float(div_time)/2,2)
                 
             
             label_l_analysis_blas = EmbryoImageLabel(150, 150, [str(time), str(time_score)])
 
 
             self.table_blas_info.AddManualRow(index, label_l_analysis_blas)
+
+
+
+
+
                              
         
         dic_cbo_rdo_button_info = read_EmbryoViewer_combobox_qradio_info(chamber_id,dish_id)
@@ -846,7 +1027,30 @@ class TabEmbryoResults(QtWidgets.QWidget):
             item_data_PN.setFlags(QtCore.Qt.ItemIsEnabled)
             self.table_pn.setItem(2, 4, item_data_PN)
         
+
+
+        # sub score in table(t2-t8) add to total score
+        #system
+
         
+        self.GetSystemManualAvgScore()
+
+        # total_score_system = []
+        # # if self.table_pn.item(2, 6).text()!='':
+
+
+        # for i in range (7):
+        #     if self.table_img_left.item(i*2+1, 6).text()!='':
+        #         total_score_system.append(float(self.table_img_left.item(i*2+1, 6).text()))
+        # total_score_manual = []
+        # for i in range (7):
+        #     if self.table_img_left.item(i*2+2, 6).text()!='':
+        #         total_score_manual.append(float(self.table_img_left.item(i*2+2, 6).text()))
+        
+        # total_score_system_avg = sum(total_score_system)/len(total_score_system)
+        # total_score_manual_avg = sum(total_score_manual)/len(total_score_manual)
+        # print('total_score_system_avg',total_score_system_avg)
+        # print('total_score_manual_avg',total_score_manual_avg)
 
      
     # def LoadEmbryoData(self, patient_id, chamber_id, dish_id):

@@ -21,6 +21,8 @@ from ImportSqliteDialog import ImportSqliteDialog
 from Class_Extract_Sqlite import Extract_Sqlite
 from Chamber_inference_Class import Chamber_Inference
 
+import datetime
+
 
 # from DateWithTime import DateWithTime
 
@@ -138,15 +140,21 @@ class TabSelectChamber(QtWidgets.QWidget):
 
 
         self.mnt_history_path = './history/'
-        self.maunal_timeset_check = False
+        # self.maunal_timeset_check = False
 
 
         self.board_info_check_change_bool=True
+
         self.board_patient_id_old = ''
-        self.board_fertilization_time_old = ''
-        self.board_offsettime_hour_old = ''
-        self.board_offsettime_minute_old = ''
-        self.board_offsettime_second_old = ''
+        self.board_fertilization_date_old = ''
+        self.board_fertilization_hms_old = ''
+        self.board_tl_start_date = ''
+        self.board_tl_start_hms = ''
+        self.board_age_old=''
+
+        # self.board_offsettime_hour_old = ''
+        # self.board_offsettime_minute_old = ''
+        # self.board_offsettime_second_old = ''
         
         self.threads = []
         self.extract_thread = []
@@ -178,38 +186,38 @@ class TabSelectChamber(QtWidgets.QWidget):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
         return str(listsMyQLineEdit[1].text())    
 
-    def AddOnlineOfflineModeCheckbox(self):
+    # def AddOnlineOfflineModeCheckbox(self):
         
-        Mode_widget = QtWidgets.QWidget()
-        Mode_widget.setFixedSize(QtCore.QSize(800, 20))
-        # label_mode = QtWidgets.QLabel('Mode Select:', a)
-        # label_mode.setFont(QtGui.QFont('Arial', 12))
-        # label_mode.setGeometry(10, 0, 140, 10)
+    #     Mode_widget = QtWidgets.QWidget()
+    #     Mode_widget.setFixedSize(QtCore.QSize(800, 20))
+    #     # label_mode = QtWidgets.QLabel('Mode Select:', a)
+    #     # label_mode.setFont(QtGui.QFont('Arial', 12))
+    #     # label_mode.setGeometry(10, 0, 140, 10)
 
 
-        label_mode = QtWidgets.QLabel('Mode Select:', Mode_widget)
-        label_mode.setFont(QtGui.QFont('Arial', 12))
-        label_mode.setGeometry(0, 0, 140, 20) 
-
-        
-        qbutton_online = QtWidgets.QRadioButton('online',Mode_widget)
-        qbutton_online.setGeometry(150, 0, 150, 20)
-        qbutton_online.setFont(QtGui.QFont('Arial', 12)) 
-        qbutton_online.toggled.connect(lambda:self.ClickSetmanualCheckbox(False))
-
-        qbutton_offline = QtWidgets.QRadioButton('offline',Mode_widget)
-        qbutton_offline.setGeometry(300, 0, 150, 20) 
-        qbutton_offline.setFont(QtGui.QFont('Arial', 12))
-        qbutton_offline.toggled.connect(lambda:self.ClickSetmanualCheckbox(True))
-
+    #     label_mode = QtWidgets.QLabel('Mode Select:', Mode_widget)
+    #     label_mode.setFont(QtGui.QFont('Arial', 12))
+    #     label_mode.setGeometry(0, 0, 140, 20) 
 
         
+    #     qbutton_online = QtWidgets.QRadioButton('online',Mode_widget)
+    #     qbutton_online.setGeometry(150, 0, 150, 20)
+    #     qbutton_online.setFont(QtGui.QFont('Arial', 12)) 
+    #     qbutton_online.toggled.connect(lambda:self.ClickSetmanualCheckbox(False))
+
+    #     qbutton_offline = QtWidgets.QRadioButton('offline',Mode_widget)
+    #     qbutton_offline.setGeometry(300, 0, 150, 20) 
+    #     qbutton_offline.setFont(QtGui.QFont('Arial', 12))
+    #     qbutton_offline.toggled.connect(lambda:self.ClickSetmanualCheckbox(True))
 
 
-        qbuttongroup_mode = QtWidgets.QButtonGroup(Mode_widget)
-        qbuttongroup_mode.addButton(qbutton_online, 1)
-        qbuttongroup_mode.addButton(qbutton_offline, 2)
-        self.layout_chamber.addWidget(Mode_widget, 0, 0,1,3)
+        
+
+
+    #     qbuttongroup_mode = QtWidgets.QButtonGroup(Mode_widget)
+    #     qbuttongroup_mode.addButton(qbutton_online, 1)
+    #     qbuttongroup_mode.addButton(qbutton_offline, 2)
+    #     self.layout_chamber.addWidget(Mode_widget, 0, 0,1,3)
           
     def AddWells(self, chamber_number, well_number):
         #Clear
@@ -223,7 +231,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         self.edit_well_time = []   
         self.chambers = []
 
-        self.AddOnlineOfflineModeCheckbox()
+        # self.AddOnlineOfflineModeCheckbox()
         
 
 
@@ -281,7 +289,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         edit_patient_id = QtWidgets.QLineEdit(group_chamber)
         edit_patient_id.setGeometry(140, 50, 120, 35)
         edit_patient_id.setStyleSheet('background-color:white;')
-        edit_patient_id.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))
+        edit_patient_id.textChanged.connect(lambda: self.BoardInfoCheckChange(str(3*row + col + 1)))
 
         button_info_save = QtWidgets.QPushButton('Save Info', group_chamber)
         button_info_save.setGeometry(415, 20, 100, 30)
@@ -304,78 +312,119 @@ class TabSelectChamber(QtWidgets.QWidget):
         edit_fertilizationTime = QtWidgets.QLineEdit(group_chamber)
         edit_fertilizationTime.setGeometry(170, 135, 160, 35)
         edit_fertilizationTime.setStyleSheet('background-color:white;')  
-        edit_patient_id.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
+        edit_fertilizationTime.textChanged.connect(lambda: self.BoardInfoCheckChange(str(3*row + col + 1)))
+            
         #edit_fertilizationTime.setReadOnly(True)   
         
         button_import = QtWidgets.QPushButton('Import', group_chamber)
         button_import.setGeometry(415, 90, 100, 40)
         button_import.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_import.clicked.connect(lambda: self.ImportData(str(3*row + col + 1)))
+
+
+        qtime_fertilizationTime = QtWidgets.QTimeEdit(group_chamber)
+        qtime_fertilizationTime.setDisplayFormat('hh:mm:ss')
+        # setting geometry of the date edit
+        qtime_fertilizationTime.setGeometry(335, 135, 100, 35)
+        qtime_fertilizationTime.setVisible(True)
+        qtime_fertilizationTime.timeChanged.connect(lambda: self.BoardInfoCheckChange(str(3*row + col + 1)))
         
-        button_calendar = QtWidgets.QPushButton(group_chamber)
-        button_calendar.setGeometry(350, 135, 40, 35)
-        button_calendar.setStyleSheet('background-color:lightblue;')
-        button_calendar.setIcon(QtGui.QIcon('CalenderIcon.png'))
-        button_calendar.setIconSize(QtCore.QSize(130,130))
-        button_calendar.clicked.connect(lambda: self.SelectDate(str(3*row + col + 1),self.maunal_timeset_check))             
+        
+        button_fertilization_calendar = QtWidgets.QPushButton(group_chamber)
+        button_fertilization_calendar.setGeometry(500, 135, 40, 35)
+        button_fertilization_calendar.setStyleSheet('background-color:lightblue;')
+        button_fertilization_calendar.setIcon(QtGui.QIcon('CalenderIcon.png'))
+        button_fertilization_calendar.setIconSize(QtCore.QSize(130,130))
+        button_fertilization_calendar.clicked.connect(lambda: self.SelectDate(str(3*row + col + 1),'Fertilization'))             
+
+
+
+
+        label_TLStartTime = QtWidgets.QLabel('TL-Start Time:', group_chamber)
+        label_TLStartTime.setFont(QtGui.QFont('Arial', 12))
+        label_TLStartTime.setGeometry(10, 180, 160, 35)        
+        edit_TLStartTime = QtWidgets.QLineEdit(group_chamber)
+        edit_TLStartTime.setGeometry(170, 180, 160, 35)
+        edit_TLStartTime.setStyleSheet('background-color:white;')  
+        edit_TLStartTime.textChanged.connect(lambda: self.BoardInfoCheckChange(str(3*row + col + 1)))
+        
+        #edit_fertilizationTime.setReadOnly(True)   
+        
+        
+
+        qtime_TLStartTime  = QtWidgets.QTimeEdit(group_chamber)
+        qtime_TLStartTime.setDisplayFormat('hh:mm:ss')
+        # setting geometry of the date edit
+        qtime_TLStartTime.setGeometry(335, 180, 100, 35)
+        qtime_TLStartTime.setVisible(True)
+        qtime_TLStartTime.timeChanged.connect(lambda: self.BoardInfoCheckChange(str(3*row + col + 1)))
+        
+        
+        button_TLStartTime_calendar = QtWidgets.QPushButton(group_chamber)
+        button_TLStartTime_calendar.setGeometry(500, 180, 40, 35)
+        button_TLStartTime_calendar.setStyleSheet('background-color:lightblue;')
+        button_TLStartTime_calendar.setIcon(QtGui.QIcon('CalenderIcon.png'))
+        button_TLStartTime_calendar.setIconSize(QtCore.QSize(130,130))
+        button_TLStartTime_calendar.clicked.connect(lambda: self.SelectDate(str(3*row + col + 1),'TLStart'))             
+
 
 
         # checkbox_hourminsec_mode = QtWidgets.QCheckBox('set manual',group_chamber)
         # checkbox_hourminsec_mode.setGeometry(395,100,120,35)
         # checkbox_hourminsec_mode.stateChanged.connect(self.ClickSetmanualCheckbox)
                
-        label_durationTime = QtWidgets.QLabel('Duration Time:', group_chamber)
-        label_durationTime.setFont(QtGui.QFont('Arial', 12))
-        label_durationTime.setGeometry(10, 180, 140, 35)  
+        # label_durationTime = QtWidgets.QLabel('Duration Time:', group_chamber)
+        # label_durationTime.setFont(QtGui.QFont('Arial', 12))
+        # label_durationTime.setGeometry(10, 180, 140, 35)  
 
 
-        edit_wellDurationTime = QtWidgets.QLineEdit(group_chamber)
-        edit_wellDurationTime.setGeometry(150, 180, 90, 35)
-        edit_wellDurationTime.setStyleSheet('background-color:#b2fbe5;')         
-        edit_wellDurationTime.setText('000:00:00')
-        edit_wellDurationTime.setAlignment(QtCore.Qt.AlignRight)
-        edit_wellDurationTime.setReadOnly(True)
+        # edit_wellDurationTime = QtWidgets.QLineEdit(group_chamber)
+        # edit_wellDurationTime.setGeometry(150, 180, 90, 35)
+        # edit_wellDurationTime.setStyleSheet('background-color:#b2fbe5;')         
+        # edit_wellDurationTime.setText('000:00:00')
+        # edit_wellDurationTime.setAlignment(QtCore.Qt.AlignRight)
+        # edit_wellDurationTime.setReadOnly(True)
 
-        label_startTime= QtWidgets.QLabel('Offset Time:', group_chamber)
-        label_startTime.setFont(QtGui.QFont('Arial', 12))
-        label_startTime.setGeometry(10, 235, 100, 35)
+        # label_startTime= QtWidgets.QLabel('Offset Time:', group_chamber)
+        # label_startTime.setFont(QtGui.QFont('Arial', 12))
+        # label_startTime.setGeometry(10, 235, 100, 35)
 
 
 
         
 
-        qtime_startTime_hour = QtWidgets.QLineEdit(group_chamber)
-        qtime_startTime_hour.setGeometry(130, 235, 40, 30)
-        qtime_startTime_hour.setVisible(True)
-        qtime_startTime_hour.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
+        # qtime_startTime_hour = QtWidgets.QLineEdit(group_chamber)
+        # qtime_startTime_hour.setGeometry(130, 235, 40, 30)
+        # qtime_startTime_hour.setVisible(True)
+        # qtime_startTime_hour.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
         
 
-        label_startTime_hour= QtWidgets.QLabel('h', group_chamber)
-        label_startTime_hour.setFont(QtGui.QFont('Arial', 10))
-        label_startTime_hour.setGeometry(175, 235, 15, 35)
+        # label_startTime_hour= QtWidgets.QLabel('h', group_chamber)
+        # label_startTime_hour.setFont(QtGui.QFont('Arial', 10))
+        # label_startTime_hour.setGeometry(175, 235, 15, 35)
 
 
 
-        qtime_startTime_min = QtWidgets.QLineEdit(group_chamber)
-        qtime_startTime_min.setGeometry(195, 235, 40, 30)
-        qtime_startTime_min.setVisible(True)
-        qtime_startTime_min.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
+        # qtime_startTime_min = QtWidgets.QLineEdit(group_chamber)
+        # qtime_startTime_min.setGeometry(195, 235, 40, 30)
+        # qtime_startTime_min.setVisible(True)
+        # qtime_startTime_min.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
         
 
-        label_startTime_hour= QtWidgets.QLabel('m', group_chamber)
-        label_startTime_hour.setFont(QtGui.QFont('Arial', 10))
-        label_startTime_hour.setGeometry(240, 235, 15, 35)
+        # label_startTime_hour= QtWidgets.QLabel('m', group_chamber)
+        # label_startTime_hour.setFont(QtGui.QFont('Arial', 10))
+        # label_startTime_hour.setGeometry(240, 235, 15, 35)
 
 
-        qtime_startTime_second = QtWidgets.QLineEdit(group_chamber)
-        qtime_startTime_second.setGeometry(260, 235, 40, 30)
-        qtime_startTime_second.setVisible(True)
-        qtime_startTime_second.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
+        # qtime_startTime_second = QtWidgets.QLineEdit(group_chamber)
+        # qtime_startTime_second.setGeometry(260, 235, 40, 30)
+        # qtime_startTime_second.setVisible(True)
+        # qtime_startTime_second.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
         
 
-        label_startTime_hour= QtWidgets.QLabel('s', group_chamber)
-        label_startTime_hour.setFont(QtGui.QFont('Arial', 10))
-        label_startTime_hour.setGeometry(305, 235, 20, 35)
+        # label_startTime_hour= QtWidgets.QLabel('s', group_chamber)
+        # label_startTime_hour.setFont(QtGui.QFont('Arial', 10))
+        # label_startTime_hour.setGeometry(305, 235, 20, 35)
         
         # qbuttongroup_mode.setGeometry(160, 195, 140, 35) 
 
@@ -387,7 +436,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         edit_age = QtWidgets.QLineEdit(group_chamber)
         edit_age.setGeometry(480, 235, 45, 35)
         edit_age.setStyleSheet('background-color:white;')  
-        edit_age.textChanged.connect(lambda: self.BoardInfoCheckChagne(str(3*row + col + 1)))        
+        edit_age.textChanged.connect(lambda: self.BoardInfoCheckChange(str(3*row + col + 1)))        
         
         
         
@@ -400,13 +449,13 @@ class TabSelectChamber(QtWidgets.QWidget):
         # button_test.clicked.connect(lambda: self.test(str(3*row + col + 1)))
         
         button_start = QtWidgets.QPushButton('Start', group_chamber)
-        button_start.setGeometry(245, 180, 100, 40)
+        button_start.setGeometry(5, 230, 100, 40)
         button_start.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_start.setDisabled(True)
         button_start.clicked.connect(lambda: self.Start(str(3*row + col + 1)))
         
         button_export = QtWidgets.QPushButton('Export', group_chamber)
-        button_export.setGeometry(350, 180, 100, 40)
+        button_export.setGeometry(120, 230, 100, 40)
         button_export.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
         button_export.setDisabled(True)
         button_export.clicked.connect(lambda:  self.SaveToHistory(str(3*row + col + 1)))  
@@ -423,11 +472,11 @@ class TabSelectChamber(QtWidgets.QWidget):
         return widget_chamber, group_chamber   
 
     #check borad info is change or not (if change have to press save info button)
-    def BoardInfoCheckChagne(self,chamber_id):
+    def BoardInfoCheckChange(self,chamber_id):
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
         listsMySelectCellDish = self.chambers[int(chamber_id) - 1].findChildren(SelectCellDish)
         
-        if  self.board_patient_id_old==listsMyQLineEdit[0].text() and self.board_patient_id_old==listsMyQLineEdit[1].text() and self.board_fertilization_time_old==listsMyQLineEdit[2].text()  and self.board_offsettime_hour_old==listsMyQLineEdit[4].text() and self.board_offsettime_minute_old==listsMyQLineEdit[5].text() and self.board_offsettime_second_old==listsMyQLineEdit[6].text():
+        if  self.board_patient_id_old==listsMyQLineEdit[0].text()  and self.board_fertilization_date_old==listsMyQLineEdit[2].text()  and self.board_fertilization_hms_old==listsMyQLineEdit[3].text() and self.board_tl_start_date==listsMyQLineEdit[4].text() and self.board_tl_start_hms==listsMyQLineEdit[5].text() and self.board_age_old == listsMyQLineEdit[6].text() :
             self.board_info_check_change_bool=True
             
             
@@ -453,28 +502,58 @@ class TabSelectChamber(QtWidgets.QWidget):
         pid = listsMyQLineEdit[0].text()
         timelapseid = listsMyQLineEdit[1].text()
         
-        fertilization_time = listsMyQLineEdit[2].text()
-        hour = listsMyQLineEdit[4].text()
-        minute=listsMyQLineEdit[5].text()
-        second=listsMyQLineEdit[6].text()
+        fertilization_date = listsMyQLineEdit[2].text()
+        
+
+        fertilization_hms = listsMyQLineEdit[3].text()
+        tl_start_date = listsMyQLineEdit[4].text()
+        tl_start_hms = listsMyQLineEdit[5].text()
+        age = listsMyQLineEdit[6].text()
+        offset_time = '0:0:0'
+        if fertilization_date!='' and tl_start_date!='':
+            begin_time = datetime.datetime.strptime(fertilization_date+'_'+fertilization_hms,'%Y%m%d_%H:%M:%S')
+            end_time = datetime.datetime.strptime(tl_start_date+'_'+tl_start_hms,'%Y%m%d_%H:%M:%S')
+            
+            offset_time = end_time - begin_time
+            # offset_time_str=str(offset_time)
+
+            #offset_time  to hours(no days)
+            if str(offset_time).find('day')!=-1:
+
+                offset_time_str = str(offset_time).split(',')[1].lstrip()
+                offset_time_hour = int(offset_time_str.split(':')[0])+int(offset_time.days)*24
+                offset_time = str(offset_time_hour)+':'+offset_time_str.split(':')[1]+':'+offset_time_str.split(':')[2]
+                print('offset_time_new:',offset_time)
+            # print('offset_time_new:',offset_time_new)
+            
+        
+        # hour = listsMyQLineEdit[4].text()
+        # minute=listsMyQLineEdit[5].text()
+        # second=listsMyQLineEdit[6].text()
+
+
 
 
         self.board_patient_id_old = pid
-        self.board_fertilization_time_old = fertilization_time
-        self.board_offsettime_hour_old = hour
-        self.board_offsettime_minute_old = minute
-        self.board_offsettime_second_old = second
+        self.board_fertilization_date_old = fertilization_date
+        self.board_fertilization_hms_old = fertilization_hms
+        self.board_tl_start_date = tl_start_date
+        self.board_tl_start_hms = tl_start_hms
+        self.board_age_old = age
+        # self.board_offsettime_hour_old = hour
+        # self.board_offsettime_minute_old = minute
+        # self.board_offsettime_second_old = second
 
-        if hour =='':
-            hour='0'
-        if minute =='':
-            minute='0'
-        if second =='':
-            second='0'
+        # if hour =='':
+        #     hour='0'
+        # if minute =='':
+        #     minute='0'
+        # if second =='':
+        #     second='0'
 
-        offset_time = hour + ':' + minute+':' + second
+        # offset_time = hour + ':' + minute+':' + second
         
-        age = listsMyQLineEdit[7].text()
+        
 
         path = './config/config_' + str(timelapseid) + '.ini'
         self.logger.info('Read file=' + path)
@@ -486,11 +565,14 @@ class TabSelectChamber(QtWidgets.QWidget):
                 cfg.add_section('DishInfo')
                 cfg.add_section('DecisionInfo')
                 cfg.add_section('BoardPatientInfo')
-                cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
-                cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
-                cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
-                cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
-                cfg.set('BoardPatientInfo','Age',str(age))
+                cfg.set('BoardPatientInfo', 'patientid',str(pid) )                
+                cfg.set('BoardPatientInfo','timelapseid',str(timelapseid))
+                cfg.set('BoardPatientInfo','fertilizationdate',str(fertilization_date))
+                cfg.set('BoardPatientInfo','fertilizationhms',str(fertilization_hms))
+                cfg.set('BoardPatientInfo','tlstartdate',str(tl_start_date))
+                cfg.set('BoardPatientInfo','tlstarthms',str(tl_start_hms))
+                cfg.set('BoardPatientInfo','offsettime',str(offset_time))
+                cfg.set('BoardPatientInfo','age',str(age))
                 with io.open(path, 'w') as f:
                     cfg.write(f)
 
@@ -506,11 +588,14 @@ class TabSelectChamber(QtWidgets.QWidget):
             cfg.read(path)
             if not cfg.has_section('BoardPatientInfo'):
                 cfg.add_section('BoardPatientInfo')
-            cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
-            cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
-            cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
-            cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
-            cfg.set('BoardPatientInfo','Age',str(age))
+            cfg.set('BoardPatientInfo', 'patientid',str(pid) )                
+            cfg.set('BoardPatientInfo','timelapseid',str(timelapseid))
+            cfg.set('BoardPatientInfo','fertilizationdate',str(fertilization_date))
+            cfg.set('BoardPatientInfo','fertilizationhms',str(fertilization_hms))
+            cfg.set('BoardPatientInfo','tlstartdate',str(tl_start_date))
+            cfg.set('BoardPatientInfo','tlstarthms',str(tl_start_hms))
+            cfg.set('BoardPatientInfo','offsettime',str(offset_time))
+            cfg.set('BoardPatientInfo','age',str(age))
             with io.open(path, 'r+') as f:
                     cfg.write(f)
 
@@ -518,11 +603,11 @@ class TabSelectChamber(QtWidgets.QWidget):
                      
 
 
-    def  ClickSetmanualCheckbox(self,bool_show):
-        for i in range(6):
-            listsMyQButton=self.chambers[i].findChildren(QtWidgets.QTimeEdit)
-            for j in range(len(listsMyQButton)):
-                listsMyQButton[j].setEnabled(bool_show)
+    # def  ClickSetmanualCheckbox(self,bool_show):
+    #     for i in range(6):
+    #         listsMyQButton=self.chambers[i].findChildren(QtWidgets.QTimeEdit)
+    #         for j in range(len(listsMyQButton)):
+    #             listsMyQButton[j].setEnabled(bool_show)
 
     # def ImportData(self, cid):
     #     listsMyQButton = self.chambers[int(cid) - 1].findChildren(QtWidgets.QPushButton)
@@ -539,11 +624,11 @@ class TabSelectChamber(QtWidgets.QWidget):
         # for j in range(len(listsMyQLineEdit)):
         #     listsMyQLineEdit[j].setDisabled(set)
         listsMyQLineEdit[1].setDisabled(set)
-        listsMyQLineEdit[3].setDisabled(set)
+        # listsMyQLineEdit[4].setDisabled(set)
            
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton) 
         for j in range(len(listsMyQButton)):
-            if j != 1 and j != 2:
+            if  j!= 0 and j != 1 and j != 2 and j != 3:
                 listsMyQButton[j].setDisabled(set)
                 
         listsMySelectCellDish = self.chambers[int(chamber_id) - 1].findChildren(SelectCellDish)
@@ -551,14 +636,14 @@ class TabSelectChamber(QtWidgets.QWidget):
             listsMySelectCellDish[j].setDisabled(set)
 
     #Calendar diagon
-    def SelectDate(self, chamber_id,timeset_checkbox_bool):
+    def SelectDate(self, chamber_id,button_name):
         # status=''
         # if timeset_checkbox_bool:
         #     status='manual set'
         # else:
         #     status='select'
-        status='select'
-        calendar = Calendar(status, chamber_id,self)
+        
+        calendar = Calendar(button_name, chamber_id,self)
         calendar.show()
         calendar.exec_()    
         
@@ -623,31 +708,42 @@ class TabSelectChamber(QtWidgets.QWidget):
         
         print('chamber_settings:',chamber_settings)
         for cid, pid in chamber_settings.items():
+
+            #Read well setting
+            patient_setting, decision_setting, timestamp , patientid,fertilizationdate,fertilizationhms,tlstartdate,tlstarthms , offsettime, age= self.ReadPatientConfig(pid)
+            
             listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
+            
+            listsMyQLineEdit[0].setText(patientid)
             listsMyQLineEdit[1].setText(pid)
+            listsMyQLineEdit[2].setText(fertilizationdate)
+            listsMyQLineEdit[3].setText(fertilizationhms)
+            listsMyQLineEdit[4].setText(tlstartdate)
+            listsMyQLineEdit[5].setText(tlstarthms)
+            listsMyQLineEdit[6].setText(age)
             # listsMyQLineEdit[2].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
             
             listsMyQButton = self.chambers[int(cid) - 1].findChildren(QtWidgets.QPushButton) 
             listsMyQButton[1].setText('Clear')                     
-            listsMyQButton[3].setDisabled(False)        
+            listsMyQButton[4].setDisabled(False)        
            
-            #Read well setting
-            patient_setting, decision_setting, duration, timestamp , patientid, fertilizationtime, offsettime, age= self.ReadPatientConfig(pid)
             
             #board info fill in    
-            if offsettime!='':
-                hour = offsettime.split(':')[0]
-                minute = offsettime.split(':')[1]
-                second = offsettime.split(':')[2]
-                listsMyQLineEdit[4].setText(hour)
-                listsMyQLineEdit[5].setText(minute)
-                listsMyQLineEdit[6].setText(second)
+            # if offsettime!='':
+            #     hour = offsettime.split(':')[0]
+            #     minute = offsettime.split(':')[1]
+            #     second = offsettime.split(':')[2]
+            #     listsMyQLineEdit[4].setText(hour)
+            #     listsMyQLineEdit[5].setText(minute)
+            #     listsMyQLineEdit[6].setText(second)
             
-            listsMyQLineEdit[0].setText(patientid)
-            listsMyQLineEdit[2].setText(fertilizationtime)
+           
+            
+            
+
 
             
-            listsMyQLineEdit[7].setText(age)
+            # listsMyQLineEdit[7].setText(age)
 
 
 
@@ -662,13 +758,13 @@ class TabSelectChamber(QtWidgets.QWidget):
                                     self.chamber_wells[int(pcid) - 1][j].setEnable('t')
                                 if str(j + 1) in decision_setting['freeze']:
                                     self.chamber_wells[int(pcid) - 1][j].setEnable('f')
-                #duration
-                total_time_offset = int(time.time()) - int(timestamp)                  
-                duration = self.cal_time_offset(duration, total_time_offset)                               
+            #     #duration
+            #     total_time_offset = int(time.time()) - int(timestamp)                  
+            #     duration = self.cal_time_offset(duration, total_time_offset)                               
               
                 
 
-                listsMyQLineEdit[3].setText('000:00:00')                
+                # listsMyQLineEdit[3].setText('000:00:00')                
                 
                    
         print('read end')           
@@ -710,7 +806,7 @@ class TabSelectChamber(QtWidgets.QWidget):
             cfg = RawConfigParser()   
             cfg.read(path)
             well_results = {}
-            duration = ''
+            # duration = ''
             timestamp = ''
             patientid = ''
             fertilizationtime = ''
@@ -727,8 +823,8 @@ class TabSelectChamber(QtWidgets.QWidget):
                     print('not found dish')
                 
                 #Set time
-                if 'duration' in  [item[0] for item in cfg.items('DishInfo')]:
-                    duration = cfg.get('DishInfo','duration')
+                # if 'duration' in  [item[0] for item in cfg.items('DishInfo')]:
+                #     duration = cfg.get('DishInfo','duration')
                 if 'timestamp' in  [item[0] for item in cfg.items('DishInfo')]:
                     timestamp = cfg.get('DishInfo','timestamp')
             
@@ -750,17 +846,25 @@ class TabSelectChamber(QtWidgets.QWidget):
             for i in range(len(cfg.items('BoardPatientInfo'))):
                 if 'patientid' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
                     patientid = cfg.get('BoardPatientInfo','patientid')
-                if 'fertilizationtime' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
-                    fertilizationtime = cfg.get('BoardPatientInfo','fertilizationtime')
+                if 'fertilizationdate' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    fertilizationdate = cfg.get('BoardPatientInfo','fertilizationdate')
+                if 'fertilizationhms' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    fertilizationhms = cfg.get('BoardPatientInfo','fertilizationhms')
+                if 'tlstartdate' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    tlstartdate= cfg.get('BoardPatientInfo','tlstartdate')
+                if 'tlstarthms' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
+                    tlstarthms= cfg.get('BoardPatientInfo','tlstarthms')
                 if 'offsettime' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
                     offsettime = cfg.get('BoardPatientInfo','offsettime')
                 if 'age' in  [item[0] for item in cfg.items('BoardPatientInfo')]:
                     age = cfg.get('BoardPatientInfo','age')
             
-            return well_results, decision_results, duration, timestamp,patientid,fertilizationtime,offsettime,age
+            # return well_results, decision_results, duration, timestamp,patientid,fertilizationtime,tlstarttime,offsettime,age
+            return well_results, decision_results, timestamp,patientid,fertilizationdate,fertilizationhms,tlstartdate,tlstarthms,offsettime,age
+        
         except:
             print('error:' + str(sys.exc_info()[1]))
-            return {},{},'', '' , '', '', '', ''         
+            return {},{},'', '' , '', '', '', '','',''       
         print('read p end')
         
     #write config file        
@@ -790,24 +894,36 @@ class TabSelectChamber(QtWidgets.QWidget):
         path = './config/config_' + timelapse_id + '.ini'
         self.logger.info('Read file=' + path)
         listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
+        
+
+
         pid = listsMyQLineEdit[0].text()
         timelapseid = listsMyQLineEdit[1].text()
         
-        fertilization_time = listsMyQLineEdit[2].text()
+        fertilization_date = listsMyQLineEdit[2].text()
+        
 
-        hour = listsMyQLineEdit[4].text()
-        minute=listsMyQLineEdit[5].text()
-        second=listsMyQLineEdit[6].text()
+        fertilization_hms = listsMyQLineEdit[3].text()
+        tl_start_date = listsMyQLineEdit[4].text()
+        tl_start_hms = listsMyQLineEdit[5].text()
+        age = listsMyQLineEdit[6].text()
+        offset_time = '0:0:0'
+        if fertilization_date!='' and tl_start_date!='':
+            begin_time = datetime.datetime.strptime(fertilization_date+'_'+fertilization_hms,'%Y%m%d_%H:%M:%S')
+            end_time = datetime.datetime.strptime(tl_start_date+'_'+tl_start_hms,'%Y%m%d_%H:%M:%S')
+            
+            offset_time = end_time - begin_time
+            # offset_time=str(offset_time)
 
-        if hour =='':
-            hour='0'
-        if minute =='':
-            minute='0'
-        if second =='':
-            second='0'
+            #offset_time  to hours(no days)
+            if str(offset_time).find('day')!=-1:
 
-        offset_time = hour + ':' + minute+':' + second
-        age = listsMyQLineEdit[7].text()
+                offset_time_str = str(offset_time).split(',')[1].lstrip()
+                offset_time_hour = int(offset_time_str.split(':')[0])+int(offset_time.days)*24
+                offset_time = str(offset_time_hour)+':'+offset_time_str.split(':')[1]+':'+offset_time_str.split(':')[2]
+                print('offset_time_new:',offset_time) 
+
+        
 
         if not os.path.exists(path):
             try:
@@ -819,7 +935,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                         cfg.set('DishInfo', 'chamber_' + str(i + 1), ','.join(dish_list)) 
                     else:
                         cfg.set('DishInfo', 'chamber_' + str(i + 1), '') 
-                cfg.set('DishInfo', 'duration', '000:00:00') 
+                # cfg.set('DishInfo', 'duration', '000:00:00') 
                 cfg.set('DishInfo', 'timestamp', str(int(time.time())))
                 cfg.add_section('DecisionInfo')
                 cfg.set('DecisionInfo', 'discard', '')
@@ -827,12 +943,14 @@ class TabSelectChamber(QtWidgets.QWidget):
                 cfg.set('DecisionInfo', 'freeze', '')
                 cfg.add_section('BoardPatientInfo')
                 
-                cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
-                cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
-                cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
-                cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
-                cfg.set('BoardPatientInfo','Age',str(age))
-                
+                cfg.set('BoardPatientInfo', 'patientid',str(pid) )                
+                cfg.set('BoardPatientInfo','timelapseid',str(timelapseid))
+                cfg.set('BoardPatientInfo','fertilizationdate',str(fertilization_date))
+                cfg.set('BoardPatientInfo','fertilizationhms',str(fertilization_hms))
+                cfg.set('BoardPatientInfo','tlstartdate',str(tl_start_date))
+                cfg.set('BoardPatientInfo','tlstarthms',str(tl_start_hms))
+                cfg.set('BoardPatientInfo','offsettime',str(offset_time))
+                cfg.set('BoardPatientInfo','age',str(age))
 
                 with io.open(path, 'w') as f:
                     cfg.write(f)
@@ -848,7 +966,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                     cfg.set('DishInfo', 'chamber_' + str(i + 1), '') 
             if not cfg.has_section('DishInfo'):
                 cfg.add_section('DishInfo')
-            cfg.set('DishInfo', 'duration', '000:00:00') 
+            # cfg.set('DishInfo', 'duration', '000:00:00') 
             cfg.set('DishInfo', 'timestamp', str(int(time.time())))
 
             if not cfg.has_section('DecisionInfo'):
@@ -860,21 +978,24 @@ class TabSelectChamber(QtWidgets.QWidget):
 
             if not cfg.has_section('BoardPatientInfo'):
                 cfg.add_section('BoardPatientInfo')
-            cfg.set('BoardPatientInfo', 'PatientId',str(pid) )                
-            cfg.set('BoardPatientInfo','TimelapseId',str(timelapseid))
-            cfg.set('BoardPatientInfo','FertilizationTime',str(fertilization_time))
-            cfg.set('BoardPatientInfo','OffsetTime',str(offset_time))
-            cfg.set('BoardPatientInfo','Age',str(age))
+            cfg.set('BoardPatientInfo', 'patientid',str(pid) )                
+            cfg.set('BoardPatientInfo','timelapseid',str(timelapseid))
+            cfg.set('BoardPatientInfo','fertilizationdate',str(fertilization_date))
+            cfg.set('BoardPatientInfo','fertilizationhms',str(fertilization_hms))
+            cfg.set('BoardPatientInfo','tlstartdate',str(tl_start_date))
+            cfg.set('BoardPatientInfo','tlstarthms',str(tl_start_hms))
+            cfg.set('BoardPatientInfo','offsettime',str(offset_time))
+            cfg.set('BoardPatientInfo','age',str(age))
             with io.open(path, 'w') as f:
                 cfg.write(f)
                      
               
     #write config file        
     def WritePatientTimeToConfig(self, cid, pid): 
-        listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
-        duration = str(listsMyQLineEdit[3].text())  
-        if duration == None:
-            return
+        # listsMyQLineEdit = self.chambers[int(cid) - 1].findChildren(QtWidgets.QLineEdit)
+        # duration = str(listsMyQLineEdit[3].text())  
+        # if duration == None:
+        #     return
         
         path = './config/config_' + pid + '.ini'
         self.logger.info('Read file=' + path)
@@ -885,11 +1006,11 @@ class TabSelectChamber(QtWidgets.QWidget):
         try:
             cfg = RawConfigParser()
             cfg.read(path)            
-            if 'duration' in  [item[0] for item in cfg.items('DishInfo')]:
-                cfg.set('DishInfo', 'duration', duration)
-            if duration != '000:00:00':
-                if 'timestamp' in  [item[0] for item in cfg.items('DishInfo')]:
-                    cfg.set('DishInfo', 'timestamp', str(int(time.time())))
+            # if 'duration' in  [item[0] for item in cfg.items('DishInfo')]:
+            #     cfg.set('DishInfo', 'duration', duration)
+            # if duration != '000:00:00':
+            #     if 'timestamp' in  [item[0] for item in cfg.items('DishInfo')]:
+            #         cfg.set('DishInfo', 'timestamp', str(int(time.time())))
             with io.open(path, 'w') as f:
                 cfg.write(f)
             print('succ save')
@@ -903,54 +1024,83 @@ class TabSelectChamber(QtWidgets.QWidget):
         if listsMyQLineEdit[0].text()=='':
             QtWidgets.QMessageBox.warning(self,'error','Patient_id empty')
         #age qline empty
-        elif listsMyQLineEdit[7].text()=='':
+        elif listsMyQLineEdit[6].text()=='':
             QtWidgets.QMessageBox.warning(self,'error','Age empty')
         elif str(listsMyQLineEdit[2].text())=='':
-            QtWidgets.QMessageBox.warning(self,'error','Fertilization time empty')
+            QtWidgets.QMessageBox.warning(self,'error','Fertilization date empty')
+        elif str(listsMyQLineEdit[4].text())=='':
+            QtWidgets.QMessageBox.warning(self,'error','TlStart date empty')
         else:
                 
             self.export_dialog = ExportDialog(self)       
             #Process data to history    
             
-            pid = str(listsMyQLineEdit[0].text())
-            timelapse_id = str(listsMyQLineEdit[1].text())
 
-            date = str(listsMyQLineEdit[2].text())
-            hour = listsMyQLineEdit[4].text()
-            minute=listsMyQLineEdit[5].text()
-            second=listsMyQLineEdit[6].text()
+            pid = listsMyQLineEdit[0].text()
+            timelapse_id = listsMyQLineEdit[1].text()
+            
+            fertilization_date = listsMyQLineEdit[2].text()
+            fertilization_hms = listsMyQLineEdit[3].text()
+            tl_start_date = listsMyQLineEdit[4].text()
+            tl_start_hms = listsMyQLineEdit[5].text()
+            age = listsMyQLineEdit[6].text()
+
+            offset_time = '0:0:0'
+            if fertilization_date!='' and tl_start_date!='':
+                begin_time = datetime.datetime.strptime(fertilization_date+'_'+fertilization_hms,'%Y%m%d_%H:%M:%S')
+                end_time = datetime.datetime.strptime(tl_start_date+'_'+tl_start_hms,'%Y%m%d_%H:%M:%S')
+                
+                offset_time = end_time - begin_time
+                # offset_time=str(offset_time)
+
+                #offset_time  to hours(no days)
+                if str(offset_time).find('day')!=-1:
+
+                    offset_time_str = str(offset_time).split(',')[1].lstrip()
+                    offset_time_hour = int(offset_time_str.split(':')[0])+int(offset_time.days)*24
+                    offset_time = str(offset_time_hour)+':'+offset_time_str.split(':')[1]+':'+offset_time_str.split(':')[2]
+                    print('offset_time_new:',offset_time)
+
+            fertilization_time = fertilization_date+'_'+fertilization_hms
+
+            # pid = listsMyQLineEdit[0].text()
+            # timelapse_id = listsMyQLineEdit[1].text()
+
+            # date = str(listsMyQLineEdit[2].text())
+            # hour = listsMyQLineEdit[4].text()
+            # minute=listsMyQLineEdit[5].text()
+            # second=listsMyQLineEdit[6].text()
+            # age = str(listsMyQLineEdit[7].text())
 
 
            
-            if hour =='':
-                hour='0'
-            if minute =='':
-                minute='0'
-            if second =='':
-                second='0'
+            # if hour =='':
+            #     hour='0'
+            # if minute =='':
+            #     minute='0'
+            # if second =='':
+            #     second='0'
 
-            offset_time_to_hours = int(hour)+round(int(minute)/60,2)+round(int(second)/3600,2)
+
+            offset_time_to_hours = int(offset_time.split(':')[0])+round(int(offset_time.split(':')[1])/60,2)+round(int(offset_time.split(':')[2])/3600,2)
             
             
             
-            age = str(listsMyQLineEdit[7].text())
+            
             # if pid != '' and date != '':
                 #move_select_cham_dish_folder(pid, date, int(chamber_id))
                 #clear_cham_dish_data_csv(int(chamber_id))
-            export_thread = ExportThread(pid,timelapse_id, chamber_id, date,age,offset_time_to_hours, self)
+            export_thread = ExportThread(pid,timelapse_id, chamber_id, fertilization_time ,age,offset_time_to_hours, self)
             export_thread.start()
             self.export_dialog.exec_()
 
             #Clear element
             listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-            listsMyQLineEdit[0].setText('')
-            listsMyQLineEdit[1].setText('')
-            listsMyQLineEdit[2].setText('')
-            listsMyQLineEdit[3].setText('000:00:00')
-            listsMyQLineEdit[4].setText('')
-            listsMyQLineEdit[5].setText('')
-            listsMyQLineEdit[6].setText('')
-            listsMyQLineEdit[7].setText('')
+            for i in range(6):
+
+                listsMyQLineEdit[i].setText('')
+            
+            
 
             
             listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)      
@@ -963,13 +1113,13 @@ class TabSelectChamber(QtWidgets.QWidget):
                 self.chamber_wells[int(chamber_id) - 1][i].setEnable('c')  
                 
             #pid config       
-            path = './config/config_' + pid + '.ini'        
+            path = './config/config_' + timelapse_id + '.ini'        
             self.WriteChamberConfig(chamber_id, '')
             if os.path.isfile(path):
                 os.remove(path)
             
     def Start(self, chamber_id):
-        self.StartTimeCount(chamber_id)
+        # self.StartTimeCount(chamber_id)
         self.StartAnalysis(chamber_id) 
         
     def StartTimeCount(self, chamber_id):    
@@ -983,7 +1133,7 @@ class TabSelectChamber(QtWidgets.QWidget):
             cth.start()
             self.threads.append(cth)  
         
-        listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)
+        # listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)
         #listsMyQButton[0].setDisabled(True)
         #listsMyQButton[2].setDisabled(True)
         
@@ -994,26 +1144,26 @@ class TabSelectChamber(QtWidgets.QWidget):
         print('StartAnalysis')
         self.analysis_embryo.PutChamberID(chamber_id)
         
-    def cal_time_offset(self, duration, offset):        
-        if duration == '000:00:00':
-            return '000:00:00'        
+    # def cal_time_offset(self, duration, offset):        
+    #     if duration == '000:00:00':
+    #         return '000:00:00'        
             
-        time = str(duration).split(':')
-        hr = int(time[0])
-        mins = int(time[1])
-        sec = int(time[2])
-        new_mins = mins
-        new_sec = sec        
-        while offset > 0:
-            new_sec += 1
-            if new_sec >= 60:
-                new_sec = 0            
-                new_mins = new_mins + 1
-            if new_mins >=60:
-                new_mins = 0
-                hr += 1            
-            offset = offset - 1
-        return str(hr).zfill(3) + ':' + str(new_mins).zfill(2) + ':' + str(new_sec).zfill(2)
+    #     time = str(duration).split(':')
+    #     hr = int(time[0])
+    #     mins = int(time[1])
+    #     sec = int(time[2])
+    #     new_mins = mins
+    #     new_sec = sec        
+    #     while offset > 0:
+    #         new_sec += 1
+    #         if new_sec >= 60:
+    #             new_sec = 0            
+    #             new_mins = new_mins + 1
+    #         if new_mins >=60:
+    #             new_mins = 0
+    #             hr += 1            
+    #         offset = offset - 1
+    #     return str(hr).zfill(3) + ':' + str(new_mins).zfill(2) + ':' + str(new_sec).zfill(2)
         
     def GetCurrentPatientIDs(self):
         pids_history = []
@@ -1059,7 +1209,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         thread.start()             
         self.extract_thread.append(thread)
         
-        self.StartTimeCount(chamber_id)  
+        # self.StartTimeCount(chamber_id)  
      
     #Finish extract sqlite    
     def excute_extract_sqlite(self, patient_id, chamber_id):       
@@ -1084,8 +1234,8 @@ class TabSelectChamber(QtWidgets.QWidget):
                
         self.DisableOrEnableAllElementByChamberID(chamber_id, False)    
         #duration
-        listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)        
-        listsMyQLineEdit[2].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
+        # listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)        
+        # listsMyQLineEdit[2].setText(datetime.strftime(datetime.now(), '%Y%m%d_%H%M%S'))
         #listsMyQLineEdit[2].setText('000:00:00')
         
         #Remove extract thread       
@@ -1144,12 +1294,14 @@ class TabSelectChamber(QtWidgets.QWidget):
         print('chid' + str(chamber_id))            
         #Gui element
         listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        patient_id = str(listsMyQLineEdit[1].text())       
-        listsMyQLineEdit[0].setText('')
-        listsMyQLineEdit[1].setText('')
-        listsMyQLineEdit[2].setText('')
-        # print('listsMyQLineEdit[3]')
-        listsMyQLineEdit[3].setText('000:00:00')
+        patient_id = str(listsMyQLineEdit[1].text()) 
+        for i in range(6):
+            listsMyQLineEdit[i].setText('')      
+        # listsMyQLineEdit[0].setText('')
+        # listsMyQLineEdit[1].setText('')
+        # listsMyQLineEdit[2].setText('')
+        # # print('listsMyQLineEdit[3]')
+        # listsMyQLineEdit[3].setText('000:00:00')
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton)      
         listsMyQButton[1].setText('Import')
         
@@ -1179,8 +1331,8 @@ class TabSelectChamber(QtWidgets.QWidget):
         listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton) 
         #listsMyQButton[0].setDisabled(False)
         
-        listsMyQButton[3].setDisabled(True)
-        listsMyQButton[4].setDisabled(False)
+        listsMyQButton[4].setDisabled(True)
+        listsMyQButton[5].setDisabled(False)
         
         #Stop time counter
         for th in self.threads:

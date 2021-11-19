@@ -47,7 +47,7 @@ class Chamber_Inference(QtCore.QThread):
         self.current_analysis_chamber_id = 0
         
         # self.load_models()
-
+# 
         # global cell_mask_model 
         # global yolo_ini
         # global frag_model

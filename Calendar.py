@@ -89,12 +89,12 @@ from PyQt5.QtWidgets import QTimeEdit,QLabel
 
 
 class Calendar(QtWidgets.QDialog):
-    def __init__(self, tab, item=None, parent=None):
+    def __init__(self, button_name, item=None, parent=None):
         super(Calendar, self).__init__(parent=parent)
 
         
         self.parent = parent
-        self.tab = tab        
+        self.button_name = button_name        
         self.item = item
         self.currentMonth = datetime.now().month
         self.currentYear = datetime.now().year
@@ -128,15 +128,17 @@ class Calendar(QtWidgets.QDialog):
     def printDateInfo(self, qDate):
         
         date = '{0}{1}{2}'.format(qDate.year(), str(qDate.month()).zfill(2), str(qDate.day()).zfill(2))
-        
+        listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
 
         # date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
-        if self.tab == 'select':            
-            date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
-            listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
+        if self.button_name == 'Fertilization':            
+            
+            
             listsMyQLineEdit[2].setText(date)
             
-            print (date)
+            # print (date)
+        elif self.button_name == 'TLStart':
+            listsMyQLineEdit[4].setText(date)
         # if self.tab == 'manual set':
         #     time_get = self.w.final_time
         #     print(time_get)
@@ -144,9 +146,9 @@ class Calendar(QtWidgets.QDialog):
         #     listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
         #     listsMyQLineEdit[1].setText(date)
 
+        
 
-
-        if self.tab == 'history':
+        if self.button_name == 'history':
             date = date + '_' + datetime.strftime(datetime.now(), '%H%M%S')
             if self.item == 'start':
                 self.parent.edit_startTime.setText(date + ' 00:00:00')

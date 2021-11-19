@@ -542,7 +542,7 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
                 item_data_empty= QtWidgets.QTableWidgetItem('')
                 # item_data.setBackground(QtGui.QColor(245, 198, 240))
                 item_data_empty.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-                if not (a in manual_row_index and b==2):
+                if not (a in manual_row_index and (b==2 or b==4)):
                     item_data_empty.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(a, b, item_data_empty) 
 
@@ -567,11 +567,11 @@ class EmbryoNewInfoTable(QtWidgets.QTableWidget):
         # print('embryo_label_anaylsis info:',embryo_label_anaylsis.infos)           
 
         for i, info in enumerate(embryo_label_anaylsis.infos):
-                
+                # print('RRRRRRRr',i,info)
                 #Analysis
                 item_data = QtWidgets.QTableWidgetItem(info)
                 item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
-                if not i+2==2:
+                if not (i+2==2 or i+2==4):
                     item_data.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(row*2+2,2+i, item_data)
                
