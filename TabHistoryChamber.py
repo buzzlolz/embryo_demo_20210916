@@ -10,7 +10,7 @@ from configparser import RawConfigParser
 from Calendar import Calendar
 from PyQt5 import QtCore, QtWidgets, QtGui 
 from PyQt5 import QtMultimedia, QtMultimediaWidgets
-from EmbryoBoxInfo import EmbryoHistoryInfoTableBox
+from EmbryoBoxInfo import EmbryoHistoryInfoTableBox,EmbryoHistoryInfoTable
 from Ui_Function import * 
 
 
@@ -77,35 +77,35 @@ class TabHistoryChamber(QtWidgets.QWidget):
         self.selector_pid.setGeometry(85, 10, 310, 40)         
         self.selector_pid.currentIndexChanged.connect(lambda: self.selector_files.clear())       
         
-        label_startTime = QtWidgets.QLabel('Start Time:', self.frame_setting)
-        label_startTime.setFont(QtGui.QFont('Arial', 12))
-        label_startTime.setGeometry(400, 10, 100, 40)
-        self.edit_startTime = QtWidgets.QLineEdit(self.frame_setting)
-        self.edit_startTime.setGeometry(480, 10, 200, 40)
-        self.edit_startTime.setStyleSheet('background-color:white;')  
-        self.edit_startTime.setText('2020/01/01 00:00:00')
+        # label_startTime = QtWidgets.QLabel('Start Time:', self.frame_setting)
+        # label_startTime.setFont(QtGui.QFont('Arial', 12))
+        # label_startTime.setGeometry(400, 10, 100, 40)
+        # self.edit_startTime = QtWidgets.QLineEdit(self.frame_setting)
+        # self.edit_startTime.setGeometry(480, 10, 200, 40)
+        # self.edit_startTime.setStyleSheet('background-color:white;')  
+        # self.edit_startTime.setText('2020/01/01 00:00:00')
         
-        self.button_calendar_start = QtWidgets.QPushButton(self.frame_setting)
-        self.button_calendar_start.setGeometry(655, 10, 50, 40)
-        self.button_calendar_start.setStyleSheet('background-color:lightblue;')
-        self.button_calendar_start.setIcon(QtGui.QIcon('CalenderIcon.png'))
-        self.button_calendar_start.setIconSize(QtCore.QSize(130,130))
-        self.button_calendar_start.clicked.connect(lambda: self.SelectDate('start'))
+        # self.button_calendar_start = QtWidgets.QPushButton(self.frame_setting)
+        # self.button_calendar_start.setGeometry(655, 10, 50, 40)
+        # self.button_calendar_start.setStyleSheet('background-color:lightblue;')
+        # self.button_calendar_start.setIcon(QtGui.QIcon('CalenderIcon.png'))
+        # self.button_calendar_start.setIconSize(QtCore.QSize(130,130))
+        # self.button_calendar_start.clicked.connect(lambda: self.SelectDate('start'))
         
-        label_endTime = QtWidgets.QLabel('End Time:', self.frame_setting)
-        label_endTime.setFont(QtGui.QFont('Arial', 12))
-        label_endTime.setGeometry(720, 10, 100, 40)
-        self.edit_endTime = QtWidgets.QLineEdit(self.frame_setting)
-        self.edit_endTime.setGeometry(820, 10, 200, 40)
-        self.edit_endTime.setStyleSheet('background-color:white;')  
-        self.edit_endTime.setText('2020/12/31 24:00:00')
+        # label_endTime = QtWidgets.QLabel('End Time:', self.frame_setting)
+        # label_endTime.setFont(QtGui.QFont('Arial', 12))
+        # label_endTime.setGeometry(720, 10, 100, 40)
+        # self.edit_endTime = QtWidgets.QLineEdit(self.frame_setting)
+        # self.edit_endTime.setGeometry(820, 10, 200, 40)
+        # self.edit_endTime.setStyleSheet('background-color:white;')  
+        # self.edit_endTime.setText('2020/12/31 24:00:00')
         
-        self.button_calendar_end = QtWidgets.QPushButton(self.frame_setting)
-        self.button_calendar_end.setGeometry(1025, 10, 50, 40)
-        self.button_calendar_end.setStyleSheet('background-color:lightblue;')
-        self.button_calendar_end.setIcon(QtGui.QIcon('CalenderIcon.png'))
-        self.button_calendar_end.setIconSize(QtCore.QSize(130,130))
-        self.button_calendar_end.clicked.connect(lambda: self.SelectDate('end'))
+        # self.button_calendar_end = QtWidgets.QPushButton(self.frame_setting)
+        # self.button_calendar_end.setGeometry(1025, 10, 50, 40)
+        # self.button_calendar_end.setStyleSheet('background-color:lightblue;')
+        # self.button_calendar_end.setIcon(QtGui.QIcon('CalenderIcon.png'))
+        # self.button_calendar_end.setIconSize(QtCore.QSize(130,130))
+        # self.button_calendar_end.clicked.connect(lambda: self.SelectDate('end'))
         
         self.button_search = QtWidgets.QPushButton('Search', self.frame_setting)
         self.button_search.setGeometry(1080, 10, 100, 40)
@@ -154,7 +154,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         # self.embryo_info_qframe = QtWidgets.QFrame(self)        
         self.embryo_info_qframe.setFrameShape(QtWidgets.QFrame.StyledPanel)
         # self.embryo_info_qframe.setGeometry(10, 5, 1580, 60)
-        self.embryo_info_qframe.setGeometry(QtCore.QRect(10, 70, 1580, 900))
+        self.embryo_info_qframe.setGeometry(QtCore.QRect(10, 70, 1910, 900))
         self.AddTableBox(self.embryo_info_qframe)
         # self.AddTableBox(self.embryo_info_qframe)
         # self.embryo_info_1 = EmbryoHistoryInfoTableBox(0,self.embryo_info_qframe)
@@ -245,15 +245,23 @@ class TabHistoryChamber(QtWidgets.QWidget):
 
     
     def AddTableBox(self, parent):
-        vert_lay = QtWidgets.QGridLayout(parent)         
         self.embryo_info_array = []
-        for j in range(2):
+        for i in range(2):
             
-                #if len(self.embryo_info_array) < self.well_number:
-                embryo_info = EmbryoHistoryInfoTableBox(j + 1)                  
-                self.embryo_info_array.append(embryo_info)  
-                vert_lay.addWidget(embryo_info, j, 0 , 1, 1)              
-        vert_lay.setSpacing(1)
+
+            self.table = EmbryoHistoryInfoTable(i, parent)  
+            self.table.setGeometry(0, i*400+5, 1910, 400)
+            self.embryo_info_array.append(self.table)         
+
+        # vert_lay = QtWidgets.QGridLayout(parent)         
+        # self.embryo_info_array = []
+        # for j in range(2):
+            
+        #         #if len(self.embryo_info_array) < self.well_number:
+        #         embryo_info = EmbryoHistoryInfoTableBox(j + 1)                  
+        #         self.embryo_info_array.append(embryo_info)  
+        #         vert_lay.addWidget(embryo_info, j, 0 , 1, 1)              
+        # vert_lay.setSpacing(1)
         
     def SelectDate(self, item):        
         calendar = Calendar('history', item, self)
@@ -349,8 +357,12 @@ class TabHistoryChamber(QtWidgets.QWidget):
     def InsertInfomationToTable(self, patient_id,timelapse_id, date, timelapse_id_time ,tabel_index, dict_msg):   
 
 
-        
+        morphological_choices = ['Refractile Body', 'Central Darkness','Abnormality','Large pb']
+        morphological_simple_choices=['RB','CD','ABN','Lpb']
+        divisiontime_choices = ['Asymmetry', 'Multinucleation', 'Reverse Cleavage', 'Direct Uneven Cleavage','Vacuolated','Chaos']
+        divisiontime_simple_choices=['As','Mul','RC','DUC','Va','Ch']    
 
+        pgs_combobox_choices=['True','False']
         
         
         table = self.embryo_info_array[tabel_index]
@@ -363,28 +375,69 @@ class TabHistoryChamber(QtWidgets.QWidget):
         print('tabel index',tabel_index)
         # print('dict msg',dict_msg["DishList"][0].keys())
         dish_number_max = 14
+
+        #get score rank list
+        rank_list = []
+        rank_index_list = []
+        for dish_number in range(1,dish_number_max+1):
+            for dic_dishid in range(len(dict_msg["DishList"])):
+                if dict_msg["DishList"][dic_dishid]['DishId']==str(dish_number):
+                    if dict_msg["DishList"][dic_dishid]['OtherInfo']!={}:
+                        if dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'] !='':
+
+                            rank_list.append(float(dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'] ))
+                        else:
+                            rank_list.append(-1)
+                    else:
+                        rank_list.append(-1)
         
-        for dish_number in range(dish_number_max+1):
+        rank_index_list=sorted(range(len(rank_list)),key=lambda k:rank_list[k],reverse=True)
+        rank_index_list = [i+1 for i in rank_index_list ]
+
+
+        #put info into table
+        for dish_number in range(1,dish_number_max+1):
             for dic_dishid in range(len(dict_msg["DishList"])):
                 # print('dict_msg["DishList"][dic_dishid]',dict_msg["DishList"][dic_dishid])
                 if dict_msg["DishList"][dic_dishid]['DishId']==str(dish_number):
                     
-
-                    if dict_msg["DishList"][dic_dishid]['Info']!={}:
-                        print(dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'])
-                        self.set_embryo_table_item(table, dish_number+1, 1,dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'] )
-                        self.set_embryo_table_item(table, dish_number+1, 2,dict_msg["DishList"][dic_dishid]['Info']['t2'] )
-                        self.set_embryo_table_item(table, dish_number+1, 3,dict_msg["DishList"][dic_dishid]['Info']['t3'] )
-                        self.set_embryo_table_item(table, dish_number+1, 4,dict_msg["DishList"][dic_dishid]['Info']['t4'] )
-                        self.set_embryo_table_item(table, dish_number+1, 5,dict_msg["DishList"][dic_dishid]['Info']['t5'] )
-                        self.set_embryo_table_item(table, dish_number+1, 6,dict_msg["DishList"][dic_dishid]['Info']['t6'] )
-                        self.set_embryo_table_item(table, dish_number+1, 7,dict_msg["DishList"][dic_dishid]['Info']['t7'] )
-                        self.set_embryo_table_item(table, dish_number+1, 8,dict_msg["DishList"][dic_dishid]['Info']['t8'] )
-                        self.set_embryo_table_item(table, dish_number+1, 9,dict_msg["DishList"][dic_dishid]['Info']['Morula'] )
-                        self.set_embryo_table_item(table, dish_number+1, 10,dict_msg["DishList"][dic_dishid]['Info']['Blas'] )
                     
+                    # each stage division time fill in table
+                    if dict_msg["DishList"][dic_dishid]['Info']!={}:
+                        
+                        # print(dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'])
+                        self.set_embryo_table_item(table, dish_number+1, 3,dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'] )
+                        self.set_embryo_table_item(table, dish_number+1, 4,dict_msg["DishList"][dic_dishid]['Info']['t2'] )
+                        self.set_embryo_table_item(table, dish_number+1, 5,dict_msg["DishList"][dic_dishid]['Info']['t3'] )
+                        self.set_embryo_table_item(table, dish_number+1, 6,dict_msg["DishList"][dic_dishid]['Info']['t4'] )
+                        self.set_embryo_table_item(table, dish_number+1, 7,dict_msg["DishList"][dic_dishid]['Info']['t5'] )
+                        self.set_embryo_table_item(table, dish_number+1, 8,dict_msg["DishList"][dic_dishid]['Info']['t6'] )
+                        self.set_embryo_table_item(table, dish_number+1, 9,dict_msg["DishList"][dic_dishid]['Info']['t7'] )
+                        self.set_embryo_table_item(table, dish_number+1, 10,dict_msg["DishList"][dic_dishid]['Info']['t8'] )
+                        self.set_embryo_table_item(table, dish_number+1, 11,dict_msg["DishList"][dic_dishid]['Info']['Morula'] )
+                        self.set_embryo_table_item(table, dish_number+1, 12,dict_msg["DishList"][dic_dishid]['Info']['Blas'] )
 
+                        self.set_embryo_table_item(table, dish_number+1, 19,'', readonly=False)
+                        table.SetPgsChoices(pgs_combobox_choices,dish_number)
+                        
 
+                    if dict_msg["DishList"][dic_dishid]['OtherInfo']!={}:
+
+                        self.set_embryo_table_item(table, dish_number+1, 14,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_Loction'] )
+                        self.set_embryo_table_item(table, dish_number+1, 13,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_PN'] )
+                        
+                        morpho_simple = self.ListItemAbbreviation(morphological_choices,dict_msg["DishList"][dic_dishid]['OtherInfo']['rdo_Morphological'],morphological_simple_choices)
+
+                        self.set_embryo_table_item(table, dish_number+1, 15, morpho_simple)
+                        divisiontime_simple = self.ListItemAbbreviation(divisiontime_choices,dict_msg["DishList"][dic_dishid]['OtherInfo']['rdo_DivisionTime'],divisiontime_simple_choices)
+                        self.set_embryo_table_item(table, dish_number+1, 16,divisiontime_simple )
+                        self.set_embryo_table_item(table, dish_number+1, 17,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_ICM'] )
+                        self.set_embryo_table_item(table, dish_number+1, 18,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_TE'] )
+                        self.set_embryo_table_item(table, dish_number+1, 1,dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'] )
+                        if dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score']!='':
+                            self.set_embryo_table_item(table, dish_number+1,2,rank_index_list[dish_number-1])
+            
+                        
 
         # for dish_info in dict_msg["DishList"]:
         #     print(dish_info)
@@ -490,7 +543,18 @@ class TabHistoryChamber(QtWidgets.QWidget):
         #     print(text)
         #     self.set_embryo_table_item(embryo_tables[0], 13, 2, str(text))
                     
-                    
+    def ListItemAbbreviation(self,combobox_list,ori_list,abbreviation_list):
+        output_str = ''
+        if ori_list!=0:
+            for i in range(len(ori_list)):
+                abbre=abbreviation_list[combobox_list.index(ori_list[i])]
+                output_str =output_str+abbre+','
+
+            return output_str
+
+        else:
+            return ''
+    
     def set_embryo_table_item(self, table, row, col, value, readonly=False):
         if str(value).lower() != 'nan':
             table.SetItem(row, col, value, readonly)        

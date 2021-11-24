@@ -18,6 +18,12 @@ import keras.backend as K
 import keras.layers as KL
 import keras.models as KM
 
+import tensorflow
+import keras
+config = tensorflow.ConfigProto()
+config.inter_op_parallelism_threads = 1
+keras.backend.set_session(tensorflow.Session(config=config))
+
 
 class ParallelModel(KM.Model):
     """Subclasses the standard Keras Model and adds multi-GPU support.

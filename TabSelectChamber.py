@@ -1081,8 +1081,17 @@ class TabSelectChamber(QtWidgets.QWidget):
             # if second =='':
             #     second='0'
 
-
-            offset_time_to_hours = int(offset_time.split(':')[0])+round(int(offset_time.split(':')[1])/60,2)+round(int(offset_time.split(':')[2])/3600,2)
+            offset_time = get_patient_offset_time_from_ini(timelapse_id)
+            hour=0
+            minute=0
+            second=0
+            if offset_time!='':
+                hour,minute,second = int(offset_time.split(':')[0]),int(offset_time.split(':')[1]),int(offset_time.split(':')[2])
+            print('hour minute second',hour,minute,second)
+            
+            # total_score = 0
+            offset_time_to_hours = hour+round(minute/60,2)+round(second/3600,2)
+            # offset_time_to_hours = int(offset_time.split(':')[0])+round(int(offset_time.split(':')[1])/60,2)+round(int(offset_time.split(':')[2])/3600,2)
             
             
             
@@ -1142,6 +1151,13 @@ class TabSelectChamber(QtWidgets.QWidget):
         
     def StartAnalysis(self, chamber_id):     
         print('StartAnalysis')
+        listsMyQButton = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QPushButton) 
+        #listsMyQButton[0].setDisabled(False)
+        
+        listsMyQButton[4].setDisabled(True)
+        listsMyQButton[5].setDisabled(True)
+        
+        # self.DisableOrEnableAllElementByChamberID(chamber_id, True)
         self.analysis_embryo.PutChamberID(chamber_id)
         
     # def cal_time_offset(self, duration, offset):        

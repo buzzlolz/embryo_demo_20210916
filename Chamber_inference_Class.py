@@ -33,6 +33,11 @@ import queue
 import tensorflow as tf
 logging.basicConfig(level=logging.DEBUG)
 
+import tensorflow
+config = tensorflow.ConfigProto()
+config.inter_op_parallelism_threads = 1
+keras.backend.set_session(tensorflow.Session(config=config))
+
 class Chamber_Inference(QtCore.QThread):
     finished = QtCore.pyqtSignal(int)
     def __init__(self, socket_client, logger, parent=None):        

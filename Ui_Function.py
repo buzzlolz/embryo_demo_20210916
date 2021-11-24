@@ -568,8 +568,8 @@ def combine_manual_system_division_time(chamber_id,dish_id):
         with open(manual_division_time_jsonpath ) as f:
             manual_divsion_time=json.load(f)
         for key in dic_key:
-            if manual_divsion_time[key]!='':
-                df_system_division_time[key]=manual_divsion_time[key]
+            if manual_divsion_time['Div_Time'][key]!='':
+                df_system_division_time[key]=manual_divsion_time['Div_Time'][key]
     df_system_division_time.to_csv(combine_csv,index=0)
             
 
@@ -704,6 +704,9 @@ def read_analy_csv_icm_te(cham_id, dish_id):
 def write_table_manual_info_csv(cham_id,dish_id,dic_manual_info):
     
     json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
+    
+
+
     with open(json_path,'w') as f:
         json.dump(dic_manual_info, f)
     
@@ -724,25 +727,30 @@ def write_table_manual_info_csv(cham_id,dish_id,dic_manual_info):
 
 #embryo viewer read table manual info
 def read_table_manual_info_csv(cham_id,dish_id):
-    
-    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
-    dic_rtn = {
-        'PN_Fading':'',
-        't2':'',
-        't3':'',
-        't4':'',
-        't5':'',
-        't6':'',
-        't7':'',
-        't8':'',
-        'Morula':'',
-        'Blas':'',
-        
+    dic_manual_info = {
+    'Div_Time':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+    ,'Frag_Percent':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+    ,'Combobox':{'cbo_PN':'','cbo_Loction':'','rdo_Morphological':'','rdo_DivisionTime':'','cbo_ICM':'','cbo_TE':''}
+    ,'Total_score':''
     }
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
+    # dic_rtn = {
+    #     'PN_Fading':'',
+    #     't2':'',
+    #     't3':'',
+    #     't4':'',
+    #     't5':'',
+    #     't6':'',
+    #     't7':'',
+    #     't8':'',
+    #     'Morula':'',
+    #     'Blas':'',
+        
+    # }
 
     if not os.path.isfile(json_path):
         
-        return dic_rtn
+        return dic_manual_info
     else:
         output_dic={}
         with open(json_path, 'r') as f:
@@ -771,24 +779,43 @@ def read_table_manual_info_csv(cham_id,dish_id):
 
 def write_EmbryoViewer_combobox_qradio_info(cham_id,dish_id,save_pn,save_location,save_morphological,save_divisiontime,save_ICM,save_TE):
     
-    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_othersinfo.json'
-    dic = {
-        'cbo_PN':[],
-        'cbo_Loction':[],
-        'rdo_Morphological':[],
-        'rdo_divisiontime':[],
-        'cbo_ICM':[],
-        'cbo_TE':[]
- 
-    }
-    dic['cbo_PN']=save_pn
-    dic['cbo_Loction']=save_location
-    dic['rdo_Morphological']=save_morphological
-    dic['rdo_divisiontime']=save_divisiontime
-    dic['cbo_ICM']=save_ICM
-    dic['cbo_TE']=save_TE
-    with open(json_path, 'w') as f:
-        json.dump(dic, f)
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
+    
+
+    if os.path.isfile(json_path):
+        with open(json_path) as f:
+            ori_dic = json.load(f)
+
+            dic = {
+                'cbo_PN':[],
+                'cbo_Loction':[],
+                'rdo_Morphological':[],
+                'rdo_DivisionTime':[],
+                'cbo_ICM':[],
+                'cbo_TE':[]
+        
+            }
+            dic['cbo_PN']=save_pn
+            dic['cbo_Loction']=save_location
+            dic['rdo_Morphological']=save_morphological
+            dic['rdo_DivisionTime']=save_divisiontime
+            dic['cbo_ICM']=save_ICM
+            dic['cbo_TE']=save_TE
+
+            ori_dic['Combobox']=dic
+
+            print('ori_dic',ori_dic)
+            with open(json_path, 'w') as f:
+                json.dump(ori_dic, f)
+    else:
+        dic_manual_info = {
+        'Div_Time':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+        ,'Frag_Percent':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+        ,'Combobox':{'cbo_PN':'','cbo_Loction':'','rdo_Morphological':'','rdo_DivisionTime':'','cbo_ICM':'','cbo_TE':''}
+        }
+        with open(json_path, 'w') as f:
+                json.dump(dic_manual_info, f)
+
 
     # df = pd.DataFrame(dic)
     # df=df.append({'cbo_PN':save_pn,"cbo_Loction":save_location,'rdo_Morphological':save_morphological,'rdo_divisiontime':save_divisiontime,'cbo_ICM':save_ICM,'cbo_TE':save_TE},ignore_index=True)
@@ -798,25 +825,32 @@ def write_EmbryoViewer_combobox_qradio_info(cham_id,dish_id,save_pn,save_locatio
 
 def read_EmbryoViewer_combobox_qradio_info(cham_id,dish_id):
     
-    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_othersinfo.json'
+    json_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_manualinfo.json'
     dic = {
         'cbo_PN':'',
         'cbo_Loction':'',
         'rdo_Morphological':'',
-        'rdo_divisiontime':'',
+        'rdo_DivisionTime':'',
         'cbo_ICM':'',
         'cbo_TE':''
  
     }
     if not os.path.isfile(json_path):
-        return dic
+        # dic_manual_info = {
+        # 'Div_Time':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+        # ,'Frag_Percent':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+        # ,'Combobox':{'cbo_PN':'','cbo_Loction':'','rdo_Morphological':'','rdo_DivisionTime':'','cbo_ICM':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+        # }
+        return  dic 
+
     
     else:
         output_dic={}
         with open(json_path, 'r', encoding='utf-8') as f:
             output_dic = json.load(f)
+            output_dic_combobox=output_dic['Combobox']
         # print(output)
-        return output_dic
+        return output_dic_combobox
 
     # if os.path.isfile(csv_path):
     #     df = pd.read_csv(csv_path)
@@ -1075,7 +1109,8 @@ def search_history_csv(patient_id,timelapse_id,fertilizationTime):
                 analy_csv_name=chamber+'_'+dish_name+'_combine.csv'
                 analy_csv_path=os.path.join(dish_dir,analy_csv_name)
 
-                othersInfo_json_path  =os.path.join(dish_dir, chamber+'_'+dish_name+'_othersinfo.json')
+                othersInfo_json_path  =os.path.join(dish_dir, chamber+'_'+dish_name+'_manualinfo.json')
+                print('otherinfojson path:',othersInfo_json_path)
                 if os.path.isfile(analy_csv_path):
                     df=pd.read_csv(analy_csv_path)
                     DishID_Stage_dic['DishId']=dish_id
@@ -1092,10 +1127,10 @@ def search_history_csv(patient_id,timelapse_id,fertilizationTime):
                     dict_total_element['Blas']=df['Blas'].values[0]
                     dict_total_element['comp']=df['comp'].values[0]
                     dict_total_element['PN_Fading']=df['PN_Fading'].values[0]
-                    dict_total_element['ICM']=df['ICM'].values[0]
-                    dict_total_element['TE']=df['TE'].values[0]
+                    # dict_total_element['ICM']=df['ICM'].values[0]
+                    # dict_total_element['TE']=df['TE'].values[0]
                     dict_total_element['PGS']=df['PGS'].values[0]
-                    dict_total_element['Probility']=df['Probility'].values[0]
+                    # dict_total_element['Probility']=df['Probility'].values[0]
 
                     DishID_Stage_dic['Info']=dict_total_element
                 dict_other_info=dict()
@@ -1104,16 +1139,23 @@ def search_history_csv(patient_id,timelapse_id,fertilizationTime):
                     with open(othersInfo_json_path,'r') as json_file:
                         othersInfo_dic = json.load(json_file)
                         
-                        dict_other_info['cbo_PN']=othersInfo_dic['cbo_PN']
-                        dict_other_info['cbo_Loction']=othersInfo_dic['cbo_Loction']
-                        dict_other_info['rdo_Morphological']=othersInfo_dic['rdo_Morphological']
-                        dict_other_info['rdo_divisiontime']=othersInfo_dic['rdo_divisiontime']
+                        dict_other_info['cbo_PN']=othersInfo_dic['Combobox']['cbo_PN']
+                        dict_other_info['cbo_Loction']=othersInfo_dic['Combobox']['cbo_Loction']
+                        dict_other_info['rdo_Morphological']=othersInfo_dic['Combobox']['rdo_Morphological']
+                        dict_other_info['rdo_DivisionTime']=othersInfo_dic['Combobox']['rdo_DivisionTime']
+                        dict_other_info['cbo_ICM']=othersInfo_dic['Combobox']['cbo_ICM']
+                        dict_other_info['cbo_TE']=othersInfo_dic['Combobox']['cbo_TE']
+                        dict_other_info['Total_Score']=othersInfo_dic['Total_Score']
+
                         
                 else:
                         dict_other_info['cbo_PN']=''
                         dict_other_info['cbo_Loction']=''
                         dict_other_info['rdo_Morphological']=''
-                        dict_other_info['rdo_divisiontime']=''
+                        dict_other_info['rdo_DivisionTime']=''
+                        dict_other_info['cbo_ICM']=''
+                        dict_other_info['cbo_TE']=''
+                        dict_other_info['Total_Score']=''
                 DishID_Stage_dic['OtherInfo']=dict_other_info
 
 
@@ -1479,7 +1521,7 @@ def xgboost_inf_write_blas_morula_pnfading(patient_id,timelapse_id, fertilizatio
     #     dish_list =os.listdir(chamber_dir)
     #     for dish_folder in dish_list:
     #         dish_path =os.path.join(chamber_dir,dish_folder)
-    print('chamber_id dish_id',chamber_id,dish_id)
+    # print('chamber_id dish_id',chamber_id,dish_id)
     csv_analy = [x for x in os.listdir(dish_path) if x.find('analy')!=-1]
     if len(csv_analy)!=0:
         csv_analy = csv_analy[0]

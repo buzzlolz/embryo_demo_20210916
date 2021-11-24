@@ -153,12 +153,12 @@ class EmbryoInfoTable(QtWidgets.QTableWidget):
 
       
 class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
-    def __init__(self, well_id, parent=None):
+    def __init__(self, well_id,x,y,width,height, parent=None):
         super(EmbryoHistoryInfoTableBox, self).__init__(parent)
         self.well_id = well_id
         self.table = EmbryoHistoryInfoTable(well_id, self)  
-        self.table.setGeometry(0, 0, 1180, 405)        
-        self.setFixedSize(1180, 405)
+        self.table.setGeometry(x, y, width, height)        
+        # self.setFixedSize(1180, 405)
         
     def SetItem(self, row, col, value, readonly):
         #print(row, col)
@@ -179,6 +179,14 @@ class EmbryoHistoryInfoTableBox(QtWidgets.QWidget):
         
     def SetIcmTe(self):     
         self.table.SetIcmTe()
+
+    def SetPgsChoices(self,combobox_list,dish_number):
+        combo = QtWidgets.QComboBox()
+        for t in combobox_list:
+            combo.addItem(t)
+        
+        self.table.setCellWidget(dish_number+1,19,combo)
+        
         
     def setDecision(self, result, prob):        
         try:
@@ -226,7 +234,7 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         self.wells_id = ['well %s'%str(i) for i in range(1,15)]
         
         #self.cell_names = ['2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',]
-        self.division_status = ['PN_Fading', '2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',  'Morula', 'Blastocyst', 'ICM','TE', 'Event', 'Final score','PGS']        
+        self.division_status = ['Final score','rank','PN_Fading', '2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',  'Morula', 'Blastocyst','PNnum' ,'Location','Morphological','Division Time','ICM','TE', 'PGS']        
         self.decisions = ['', 'Transfer', 'Discard', 'Freeze']
         self.dec_bcolors = ['white','lightgreen', '#ff968a', '#abdee6']
         self.pgs = ['', 'Mosaicism', 'Aneuploidy', 'Euploidy']
@@ -276,6 +284,7 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         # self.setSpan(len(self.division_status) + 1, 2, 1, 3)        
         
         self.initContent()
+        
         #self.cellChanged.connect(self.CellClicked)
         
 
@@ -298,7 +307,15 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         #Title
         for i in range(len(self.division_status)):                        
             
-            self.setColumnWidth(i, 70) 
+            
+            if i==1 or i ==3 or i==12 : 
+                self.setColumnWidth(i, 100) 
+            elif i== 14:
+                self.setColumnWidth(i, 120) 
+            elif i==15 or i==16: 
+                self.setColumnWidth(i, 200) 
+            else:
+                self.setColumnWidth(i, 40) 
             item_data = QtWidgets.QTableWidgetItem(self.division_status[i])
             item_data.setTextAlignment(QtCore.Qt.AlignHCenter)
             item_data.setFlags(QtCore.Qt.ItemIsEnabled)
@@ -315,6 +332,11 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
                 item_data_empty.setTextAlignment(QtCore.Qt.AlignHCenter)    
                 item_data_empty.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.setItem(r + 2, c+1, item_data_empty)
+        
+
+
+
+        
         # #Blas. icm te
         # frameWidget = QtWidgets.QWidget()               
         # self.selector_icm = QtWidgets.QComboBox(frameWidget)                                 
@@ -452,7 +474,76 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         color = self.dec_bcolors[self.selector_pgs.currentIndex()]       
         self.selector_pgs.setStyleSheet("background-color:{};selection-background-color: darkblue".format(color)) 
         write_his_status_pgs(self.patient_id, self.patient_time, self.well_id, status=None, pgs=str(self.selector_pgs.currentText()))
+
+
+
+
+    #add top that function----------------------- 
+    def SetItem(self, row, col, value, readonly):
+        #print(row, col)
+        #print('set=' + str(value))
+        item_data = QtWidgets.QTableWidgetItem(str(value))        
+        item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        # item_data.setBackground(QtGui.QColor(218,241,252))
+        if readonly:
+            item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+        self.setItem(row, col, item_data)
+    def SetItemTitle(self, row, col, value, readonly):
+        item_data = QtWidgets.QTableWidgetItem(str(value))        
+        item_data.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+        item_data.setBackground(QtGui.QColor(218,241,252))
+        if readonly:
+            item_data.setFlags(QtCore.Qt.ItemIsEnabled)
+        self.setItem(row, col, item_data)
         
+    def SetIcmTe(self):     
+        self.SetIcmTe()
+
+    def SetPgsChoices(self,combobox_list,dish_number):
+        combo = QtWidgets.QComboBox()
+        for t in combobox_list:
+            combo.addItem(t)
+        
+        self.setCellWidget(dish_number+1,19,combo)
+        
+        
+    def setDecision(self, result, prob):        
+        try:
+            idxs = [i for i,d in enumerate(self.table.decisions) if d.lower() == result.lower()]
+            if idxs != []:
+                self.selector_decision.setCurrentIndex(idxs[0])
+            if str(prob) != '' and str(prob).lower() != 'nan':      
+                self.label_decision_prob.setText(str(int(float(prob) * 100)) + '%')
+        except:
+            self.selector_decision.setCurrentIndex(0)
+            
+    def setPGS(self, result):        
+        try:
+            idxs = [i for i,d in enumerate(self.table.pgs) if d.lower() == result.lower()]           
+            if idxs != []:
+                self.selector_pgs.setCurrentIndex(idxs[0])                
+        except:
+            self.selector_pgs.setCurrentIndex(0)
+            
+    def SetPidDate(self, patient_id, timelapse_id, patient_time):
+        self.patient_id = patient_id
+        self.timelapse_id = timelapse_id
+
+        self.patient_time = patient_time
+        
+    def SetChamberID(self, chamber_id):
+        self.chamber_id = int(chamber_id)
+        
+    def SaveChangeItem(self):
+        self.SaveChangeItem()
+
+    #Clear all text in table
+    def CleanAllText(self):
+        col_num=len(self.division_status)
+        row_num = len(self.wells_id)
+        for i in range(2,row_num+2):
+            for j in range(1,col_num+1):
+                self.SetItem(i,j,'',True) 
         
             
 
@@ -678,8 +769,11 @@ class EmbryoPnTable(QtWidgets.QTableWidget):
     def AddRow(self, pn_time, pn_score,pn_number):   
 
         item_data_pn_time=QtWidgets.QTableWidgetItem(pn_time)
+        item_data_pn_time.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
         item_data_pn_score=QtWidgets.QTableWidgetItem(pn_score)
+        item_data_pn_score.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
         item_data_pn_number=QtWidgets.QTableWidgetItem(pn_number)
+        item_data_pn_number.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
         item_data_pn_time.setFlags(QtCore.Qt.ItemIsEnabled)
         item_data_pn_score.setFlags(QtCore.Qt.ItemIsEnabled)
         item_data_pn_number.setFlags(QtCore.Qt.ItemIsEnabled)
