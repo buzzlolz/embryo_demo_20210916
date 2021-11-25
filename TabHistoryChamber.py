@@ -372,7 +372,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         
         table.SetPidDate(patient_id,timelapse_id, date)
         # table.CleanAllText()
-        print('tabel index',tabel_index)
+        # print('tabel index',tabel_index)
         # print('dict msg',dict_msg["DishList"][0].keys())
         dish_number_max = 14
 
@@ -441,9 +441,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
                         self.set_embryo_table_item(table, dish_number+1, 1,dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'] )
                         if dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score']!='':
                             # self.set_embryo_table_item(table, dish_number+1,2,rank_index_list[dish_number-1])
-                            print(dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'])
-                            print('dic dishid',dish_number)
-                            print('dic',dic_rank[str(dish_number)])
+                            # print(dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'])
+                            # print('dic dishid',dish_number)
+                            # print('dic',dic_rank[str(dish_number)])
                             self.set_embryo_table_item(table, dish_number+1,2,dic_rank[str(dish_number)]+1)
             
                         
