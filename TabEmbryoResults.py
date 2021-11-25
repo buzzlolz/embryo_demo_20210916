@@ -810,7 +810,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
                 
             if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg["Fragment"]['t' + str(index)]) != '' and str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.floatTryParse(dict_msg["Fragment"]['t' + str(index)]):  
                 frag=(round(4*(float(dict_msg["Fragment"]['t' + str(index)])),2))
-                frag_score = 100 - frag
+                frag_score = round(100 - frag,2)
 
                 # frag_score = frag/2
 
@@ -927,7 +927,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
                 
                 frag=(round(float(dict_manual_msg["Frag_Percent"]['t' + str(index)]),2))
                 # print('ict_manual_msg["Frag_Percent"]',frag)
-                frag_score = 100 - frag
+                frag_score = round(100 - frag,2)
                 if frag_score<0:
                     frag_score=0
 
@@ -941,7 +941,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             else:
                 if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg['Fragment']) != '' and   str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.floatTryParse(dict_msg["Fragment"]['t' + str(index)]):  
                     frag=(round(4*(float(dict_msg["Fragment"]['t' + str(index)])),2))
-                    frag_score = 100 - frag
+                    frag_score = round(100 - frag,2)
 
                     # frag_score = frag/2
                     if total_score_time_frag=='':

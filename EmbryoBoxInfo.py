@@ -326,8 +326,8 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
             item_data.setTextAlignment(QtCore.Qt.AlignHCenter)    
             item_data.setFlags(QtCore.Qt.ItemIsEnabled)
             self.setItem(i + 2, 0, item_data)
-        for r in range(len(self.division_status)):    
-            for c in range(len(self.wells_id)): 
+        for r in range(len(self.wells_id)):    
+            for c in range(len(self.division_status)): 
                 item_data_empty =QtWidgets.QTableWidgetItem()
                 item_data_empty.setTextAlignment(QtCore.Qt.AlignHCenter)    
                 item_data_empty.setFlags(QtCore.Qt.ItemIsEnabled)
@@ -539,11 +539,15 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
 
     #Clear all text in table
     def CleanAllText(self):
+        
         col_num=len(self.division_status)
+        
         row_num = len(self.wells_id)
         for i in range(2,row_num+2):
             for j in range(1,col_num+1):
                 self.SetItem(i,j,'',True) 
+            #remove pgs column
+            self.removeCellWidget(i,19)
         
             
 

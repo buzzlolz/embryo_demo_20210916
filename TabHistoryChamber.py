@@ -391,10 +391,15 @@ class TabHistoryChamber(QtWidgets.QWidget):
                     else:
                         rank_list.append(-1)
         
+        
         rank_index_list=sorted(range(len(rank_list)),key=lambda k:rank_list[k],reverse=True)
         rank_index_list = [i+1 for i in rank_index_list ]
+        
+        dic_rank = {}
+        for i in rank_index_list:
+            dic_rank[str(i)]=rank_index_list.index(i)
 
-
+        
         #put info into table
         for dish_number in range(1,dish_number_max+1):
             for dic_dishid in range(len(dict_msg["DishList"])):
@@ -435,7 +440,11 @@ class TabHistoryChamber(QtWidgets.QWidget):
                         self.set_embryo_table_item(table, dish_number+1, 18,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_TE'] )
                         self.set_embryo_table_item(table, dish_number+1, 1,dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'] )
                         if dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score']!='':
-                            self.set_embryo_table_item(table, dish_number+1,2,rank_index_list[dish_number-1])
+                            # self.set_embryo_table_item(table, dish_number+1,2,rank_index_list[dish_number-1])
+                            print(dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'])
+                            print('dic dishid',dish_number)
+                            print('dic',dic_rank[str(dish_number)])
+                            self.set_embryo_table_item(table, dish_number+1,2,dic_rank[str(dish_number)]+1)
             
                         
 
@@ -555,7 +564,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         else:
             return ''
     
-    def set_embryo_table_item(self, table, row, col, value, readonly=False):
+    def set_embryo_table_item(self, table, row, col, value, readonly=True):
         if str(value).lower() != 'nan':
             table.SetItem(row, col, value, readonly)        
         

@@ -1110,7 +1110,7 @@ def search_history_csv(patient_id,timelapse_id,fertilizationTime):
                 analy_csv_path=os.path.join(dish_dir,analy_csv_name)
 
                 othersInfo_json_path  =os.path.join(dish_dir, chamber+'_'+dish_name+'_manualinfo.json')
-                print('otherinfojson path:',othersInfo_json_path)
+                # print('otherinfojson path:',othersInfo_json_path)
                 if os.path.isfile(analy_csv_path):
                     df=pd.read_csv(analy_csv_path)
                     DishID_Stage_dic['DishId']=dish_id
