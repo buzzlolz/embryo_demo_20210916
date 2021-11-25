@@ -249,7 +249,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         history_dirs = os.listdir(self.mnt_history_path)  
         # print('history dir = ',history_dirs)      
         for dd in history_dirs:
-            if os.path.isdir(self.mnt_history_path + dd):
+            if os.path.isdir(os.path.join(self.mnt_history_path , dd)):
                 pids_history.append(dd)
                 
         self.selector_pid.clear()
