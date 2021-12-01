@@ -74,10 +74,10 @@ class EmbryoInfoTable(QtWidgets.QTableWidget):
             for i, info in enumerate(embryo_label_anaylsis.infos):                
                 if 'ICM' in info or 'TE' in info: 
                     widget = QtWidgets.QWidget() 
-                    print(info)
+                    # print(info)
                     #Analysis
                     if 'ICM' in info:  
-                        print('b=' + info)
+                        # print('b=' + info)
                         self.selector_icm = QtWidgets.QComboBox(widget)                                 
                         self.selector_icm.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue") 
                         self.selector_icm.setGeometry(20, 5, 50, 30)   
@@ -1076,5 +1076,78 @@ class EmbryoTotalScoreTable(QtWidgets.QTableWidget):
   
 
 
+
+
+class EmbryoSelectDishTable(QtWidgets.QTableWidget):
+    def __init__(self, row, column, parent=None):
+        super(EmbryoSelectDishTable, self).__init__(row +1, column, parent)        
+        self.setStyleSheet('background-color:white; font-size: 12pt;')         
+        self.verticalScrollBar().setStyleSheet("QScrollBar:vertical {Background-color:lightgray;}")          
+        self.verticalHeader().setVisible(False)
+        self.horizontalHeader().setVisible(False)
+        # self.labels = labels
+        self.column_labels = ['Select Dish']
+         
+        # self.well_id_now = well_id_now
+
+        self.row = row
+        self.column = column
+         
+        
+      
+
+
+        #title (Total Score)
+        for i in range(len(self.column_labels)):
+
+            item_data_title = QtWidgets.QTableWidgetItem(self.column_labels[i])
+            item_data_title.setBackground(QtGui.QColor(171, 222, 230))
+            item_data_title.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
+            item_data_title.setFlags(QtCore.Qt.ItemIsEnabled)
+            self.setItem(0, 0, item_data_title)
+        self.setSpan(0, 0, 1, 2)
+
+    
+        for r in range(column):    
+            for c in range(row): 
+                item_data_empty =QtWidgets.QTableWidgetItem(str(r*7+c+1))
+                item_data_empty.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)    
+                item_data_empty.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(c+1 , r, item_data_empty)
+          
+
+        for i in range(len(self.column_labels)+1):
+            self.setColumnWidth(i,60)
+
+       
+    def initWellSelectTable(self,transfer_wellid_list,well_id_nowpage):
+        # print('transfer_wellid_list',transfer_wellid_list)
+        # 
+        for r in range(self.column):
+           for c in range(self.row):
+                well_id = str(r*7+c+1)
+                
+                item_data_dish =QtWidgets.QTableWidgetItem(well_id)
+                item_data_dish.setTextAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)   
+                item_data_dish.setFont(QtGui.QFont("song", 15, QtGui.QFont.Bold))
+                item_data_dish.setForeground(QtGui.QColor(255,255,255))
+
+                
+                
+                if str(well_id_nowpage) == str(well_id):
+                    
+                    item_data_dish.setBackground(QtGui.QColor(235, 96, 128))
+                
+                elif well_id in transfer_wellid_list:
+                    item_data_dish.setBackground(QtGui.QColor(81, 167, 237))
+                else:
+                    item_data_dish.setBackground(QtGui.QColor(179, 179, 175))
+                    item_data_dish.setFlags(QtCore.Qt.ItemIsEnabled)
+                
+                item_data_dish.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.setItem(c+1 , r, item_data_dish)
+
+
+    
 
 

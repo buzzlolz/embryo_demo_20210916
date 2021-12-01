@@ -28,6 +28,13 @@ sql_data_path ='/home/n200/D-slot/20201221_ivf_data/'
 #----------------------------------------------Others    (or call by function)------------------------------------------
 
 
+def floatTryParse(value):
+        try:
+            float(value)
+            return True
+        except ValueError:
+            return False
+
 
 #return dic_key=['2pn','2','3','4','5','6','7','8','blas'] and each stage fragment percent
 
@@ -117,17 +124,22 @@ def get_t2t8_dur_time(csv_path):
     class_list =['pn','2','3','4','5','6','7','8','morula','blas','comp']
     t2t8_dict=dict()
     save_t2t8_list = []
-    
+    # print('pn_number_list',pn_number_list)
 
     pn_number_list = pn_number_list[np.logical_not(np.isnan(pn_number_list))].astype(int)
+    # print('pn_number_list',pn_number_list)
 
     #get pn division time
-    if len(set(pn_number_list))==1 and list(set(pn_number_list))[0]==0:
+
+    if len(pn_number_list)==0:
         pn_start_index=0
-    
     else:
-        pn_start_index=np.where(pn_number_list!=0)[0][0]
-    
+        if len(set(pn_number_list))==1 and list(set(pn_number_list))[0]==0:
+            pn_start_index=0
+        
+        else:
+            pn_start_index=np.where(pn_number_list!=0)[0][0]
+        
     
     
 
@@ -343,6 +355,134 @@ def write_analy_csv_t2_t8(cham_id,dish_id,t2t8_time_dic):
 
 #----------------------------------------------Chamber select page use-----------------------------------------
 
+# def write_video_depend_offsettime(timelapse_id,chamber_id,offset_time):
+#     fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+#     fps=6
+    
+    
+#     video_path = './video/'
+    
+#     video_timelapse_path = os.path.join(video_path,timelapse_id)
+#     if not os.path.isdir(video_timelapse_path):
+#         os.mkdir(video_timelapse_path)
+#     video_cham_path = os.path.join(video_timelapse_path,'cham'+str(chamber_id))
+#     if not os.path.isdir(video_cham_path):
+#         os.mkdir(video_cham_path)
+#     data_ori_img_path = os.path.join('./data/ori_img/','cham'+str(chamber_id))
+#     data_dish_name_list = os.listdir(data_ori_img_path)
+#     for dish_f in data_dish_name_list:
+#         data_dish_img_path = os.path.join(data_ori_img_path,dish_f)
+#         data_img_list = os.listdir(data_dish_img_path)
+#         if len(data_img_list)!=0:
+#             video_dish_path=os.path.join(video_cham_path,dish_f)
+#             if not os.path.isdir(video_dish_path):
+#                 os.mkdir(video_dish_path)
+#             video_name = timelapse_id+'_cham'+str(chamber_id)+'_'+
+#             videoWriter = cv2.VideoWriter(save_video_path,fourcc,fps,(900,900))
+#             for img_name in data_img_list:
+
+                
+def write_system_info_total_score(chamber_id,dish_id,offset_time_to_hours):
+
+    csv_path = './csv/cham'+str(chamber_id)+'/dish'+str(dish_id)+'/cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'.csv'
+    json_system_info_path = './csv/cham'+str(chamber_id)+'/dish'+str(dish_id)+'/cham'+str(chamber_id)+'_'+'dish'+str(dish_id)+'_systeminfo.json'
+    divisionTime_avg_success=[25.67,36.4,39.02,51.17,55.64,59.21,67.63,90.86,112.6]
+    divisionTime_avg_false = [27.16,38.09,41.67,55.14,58.05,62.21,71.81,93.52,112.24]
+
+    dic_system_info = {
+    'Div_Time':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+    ,'Frag_Percent':{'PN_Fading':'','t2':'','t3':'','t4':'','t5':'','t6':'','t7':'','t8':'','Morula':'','Blas':''}
+    ,'Total_Score':''
+    }
+
+
+    if os.path.isfile(csv_path):
+    
+        div_time_dic = get_t2t8_dur_time(csv_path)
+
+        dic_system_info['Div_Time']['PN_Fading']=div_time_dic['pn']
+        dic_system_info['Div_Time']['t2']=div_time_dic['t2']
+        dic_system_info['Div_Time']['t3']=div_time_dic['t3']
+        dic_system_info['Div_Time']['t4']=div_time_dic['t4']
+        dic_system_info['Div_Time']['t5']=div_time_dic['t5']
+        dic_system_info['Div_Time']['t6']=div_time_dic['t6']
+        dic_system_info['Div_Time']['t7']=div_time_dic['t7']
+        dic_system_info['Div_Time']['t8']=div_time_dic['t8']
+        dic_system_info['Div_Time']['Morula']=div_time_dic['morula']
+        dic_system_info['Div_Time']['Blas']=div_time_dic['blas']
+
+
+
+        frag_dic = get_avg_fragment_percent(csv_path)
+
+        dic_system_info['Frag_Percent']['PN_Fading']=frag_dic['pn']
+        dic_system_info['Frag_Percent']['t2']=frag_dic['t2']
+        dic_system_info['Frag_Percent']['t3']=frag_dic['t3']
+        dic_system_info['Frag_Percent']['t4']=frag_dic['t4']
+        dic_system_info['Frag_Percent']['t5']=frag_dic['t5']
+        dic_system_info['Frag_Percent']['t6']=frag_dic['t6']
+        dic_system_info['Frag_Percent']['t7']=frag_dic['t7']
+        dic_system_info['Frag_Percent']['t8']=frag_dic['t8']
+        dic_system_info['Frag_Percent']['Morula']=frag_dic['morula']
+        dic_system_info['Frag_Percent']['Blas']=frag_dic['blas']
+
+        total_score_time_frag_list=[]
+        for index in range(2,9):
+            time = ''
+            time_score=''
+            frag=''
+            frag_score=''
+            total_score_time_frag=''
+            
+
+
+            if 't' + str(index) in dic_system_info["Div_Time"] and str(dic_system_info["Div_Time"]['t' + str(index)]) != '' and str(dic_system_info["Div_Time"]['t' + str(index)]) != 'nan' and str(dic_system_info["Div_Time"]['t' + str(index)]) != 'NaN' and floatTryParse(dic_system_info["Div_Time"]['t' + str(index)]):
+                time = str(int(float((dic_system_info["Div_Time"]['t' + str(index)])+offset_time_to_hours) * 100.0) / 100.0)
+                interval_time_suc_false = abs(divisionTime_avg_false[index-2]-divisionTime_avg_success[index-2])
+                time_score=''
+                # print('interval time',interval_time_suc_false)
+                if abs(float(time)-divisionTime_avg_success[index-2])> interval_time_suc_false:
+                    time_score = 0
+                    # print('div_score',time_score)
+                else:
+                    # print('div_score r',time_score)
+                    time_score= round((1-(abs(float(time)-divisionTime_avg_success[index-2] )/interval_time_suc_false))*100,2)
+                    # div_score = round(float(div_time)/2,2)
+                # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
+                total_score_time_frag=time_score
+                
+                
+            if 't' + str(index) in dic_system_info["Frag_Percent"] and str(dic_system_info["Frag_Percent"]['t' + str(index)]) != '' and str(dic_system_info["Frag_Percent"]['t' + str(index)]) != 'nan' and str(dic_system_info["Frag_Percent"]['t' + str(index)]) != 'NaN' and floatTryParse(dic_system_info["Frag_Percent"]['t' + str(index)]):  
+                frag=(round(4*(float(dic_system_info["Frag_Percent"]['t' + str(index)])),2))
+                frag_score = round(100 - frag,2)
+
+                # frag_score = frag/2
+
+                if total_score_time_frag=='':
+                    # print('Total score is 0')
+                    total_score_time_frag = frag_score
+                else:
+                    total_score_time_frag = total_score_time_frag+ frag_score
+                    total_score_time_frag =round(total_score_time_frag/2,2)
+            print('total_score_time_frag',total_score_time_frag)
+            if total_score_time_frag!='':
+                total_score_time_frag_list.append(total_score_time_frag)
+
+        if len(total_score_time_frag_list)==0: 
+            dic_system_info['Total_Score']=''
+        else:
+            dic_system_info['Total_Score']=str(round(sum(total_score_time_frag_list)/len(total_score_time_frag_list),2))
+
+        with open(json_system_info_path, "w") as outfile:
+            json.dump(dic_system_info, outfile)  
+
+
+
+
+
+    
+
+
 
 def write_patient_config( patient_his_folder,patient_id,timelapse_id,time,age,chamber_id): 
     path = os.path.join(patient_his_folder,'config_'+timelapse_id+'_'+time+'.ini')
@@ -397,6 +537,9 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
     ori_img_folder = './data/crop_img/'
     csv_dir='./csv/'
 
+    
+    
+
 
 
     
@@ -418,8 +561,11 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
         csv_path = os.path.join(dish_folder_path,csv_name)
         analy_csv_path  = os.path.join(dish_folder_path,analy_csv_name)
         if os.path.isfile(csv_path):
+
+            write_system_info_total_score(chamber_id,dish_id,offset_time)
+
             predict_division_dic=get_t2t8_dur_time(csv_path)
-            print('out csv paht',csv_path)
+            print('out csv path',csv_path)
 
             write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
 
@@ -1110,6 +1256,7 @@ def search_history_csv(patient_id,timelapse_id,fertilizationTime):
                 analy_csv_path=os.path.join(dish_dir,analy_csv_name)
 
                 othersInfo_json_path  =os.path.join(dish_dir, chamber+'_'+dish_name+'_manualinfo.json')
+                systemInfo_json_path =os.path.join(dish_dir, chamber+'_'+dish_name+'_systeminfo.json')
                 # print('otherinfojson path:',othersInfo_json_path)
                 if os.path.isfile(analy_csv_path):
                     df=pd.read_csv(analy_csv_path)
@@ -1155,7 +1302,12 @@ def search_history_csv(patient_id,timelapse_id,fertilizationTime):
                         dict_other_info['rdo_DivisionTime']=''
                         dict_other_info['cbo_ICM']=''
                         dict_other_info['cbo_TE']=''
-                        dict_other_info['Total_Score']=''
+                        if os.path.isfile(systemInfo_json_path):
+                             with open(systemInfo_json_path,'r') as systemInfo_json_file:
+                                systemInfo_dic = json.load(systemInfo_json_file)
+                                dict_other_info['Total_Score']=systemInfo_dic['Total_Score']
+                        else:
+                            dict_other_info['Total_Score']=''
                 DishID_Stage_dic['OtherInfo']=dict_other_info
 
 
@@ -2164,4 +2316,5 @@ if __name__ == '__main__':
     # r = get_pn_number(paht)
     # print(r)
 
-    combine_manual_system_division_time(1,2)
+    # combine_manual_system_division_time(1,2)
+    get_t2t8_dur_time('/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham5/dish12/cham5_dish12.csv')

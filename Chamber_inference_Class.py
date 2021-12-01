@@ -632,9 +632,9 @@ class Chamber_Inference(QtCore.QThread):
 
         
 
-            print(filename_dic)  
-            print(stage_dic)   
-            print(precent_dic)
+            # print(filename_dic)  
+            # print(stage_dic)   
+            # print(precent_dic)
         return dict_key,each_img_list,each_stage_list,each_precent_list
 
 

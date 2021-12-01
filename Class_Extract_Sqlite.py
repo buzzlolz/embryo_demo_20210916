@@ -256,7 +256,7 @@ class Extract_Sqlite():
                                 # roiImg.save(save_img_path)
 
                                 roiImg_video=cv2.resize(roiImg_,(900,900))
-                                cv2.putText(roiImg_video,str(format(count_frame/6, '.2f'))+'hr' , (650, 820), cv2.FONT_HERSHEY_SIMPLEX,2, (0, 0, 255), 3, cv2.LINE_AA)
+                                # cv2.putText(roiImg_video,str(format(count_frame/6, '.2f'))+'hr' , (650, 820), cv2.FONT_HERSHEY_SIMPLEX,2, (0, 0, 255), 3, cv2.LINE_AA)
 
                                 videoWriter.write(roiImg_video)
                                 

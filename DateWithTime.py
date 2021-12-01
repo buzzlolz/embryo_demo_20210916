@@ -45,7 +45,7 @@ class DateWithTime(QtWidgets.QDialog):
         if self.tab == 'select':            
             listsMyQLineEdit = self.parent.chambers[int(self.item) - 1].findChildren(QtWidgets.QLineEdit)
             listsMyQLineEdit[2].setText(date)
-            print (date)
+            # print (date)
         if self.tab == 'history':
             if self.item == 'start':
                 self.parent.edit_startTime.setText(date + ' 00:00:00')

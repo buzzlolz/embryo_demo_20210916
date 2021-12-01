@@ -23,6 +23,8 @@ from Chamber_inference_Class import Chamber_Inference
 
 import datetime
 
+import shutil
+
 
 # from DateWithTime import DateWithTime
 
@@ -1275,6 +1277,10 @@ class TabSelectChamber(QtWidgets.QWidget):
         self.ClearChamber(chamber_id)        
         
     def ClearChamber(self, chamber_id):
+
+        listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
+        timelapse_id = str(listsMyQLineEdit[1].text()) 
+
         dish_dirs = os.listdir('./data/ori_img/cham' + str(chamber_id))
         for dd in dish_dirs:            
             if os.path.isdir('./data/ori_img/cham' + str(chamber_id) + '/' + dd):
@@ -1299,7 +1305,11 @@ class TabSelectChamber(QtWidgets.QWidget):
                 for f in files:
                     os.remove('./csv/cham' + str(chamber_id) + '/' + dd + '/' + f)
                     print (f)
-                    
+        video_path = './video/'
+        video_timelapse_id = os.path.join(video_path,timelapse_id)
+        if os.path.isdir(video_timelapse_id):
+            shutil.rmtree(video_timelapse_id)
+
         #Stop count
         for th in self.threads:
             print ('th=' + str(th.chamber_id))
@@ -1309,8 +1319,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                      
         print('chid' + str(chamber_id))            
         #Gui element
-        listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-        patient_id = str(listsMyQLineEdit[1].text()) 
+        
         for i in range(6):
             listsMyQLineEdit[i].setText('')      
         # listsMyQLineEdit[0].setText('')
@@ -1329,7 +1338,7 @@ class TabSelectChamber(QtWidgets.QWidget):
             
         #Clear config         
         self.WriteChamberConfig(chamber_id, '')
-        path = './config/config_' + patient_id + '.ini'
+        path = './config/config_' + timelapse_id + '.ini'
         print('remove=' + path)
         if os.path.isfile(path):
             print('remove ok=' + path)

@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5 import QtMultimedia, QtMultimediaWidgets
         
 #from PlotCanvas import PlotCanvas
-from EmbryoBoxInfo import EmbryoImageLabel, EmbryoInfoTable,EmbryoNewInfoTable,EmbryoPnTable,EmbryoBlasTable,EmbryoTotalScoreTable
+from EmbryoBoxInfo import EmbryoImageLabel,EmbryoNewInfoTable,EmbryoPnTable,EmbryoBlasTable,EmbryoTotalScoreTable,EmbryoSelectDishTable
 from Ui_Function import * 
 
 
@@ -26,6 +26,8 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.patient_id = ''
         self.chamber_id = ''
         self.well_id = ''
+
+        # self.well_number = 14
 
         self.divisionTime_avg_success=[25.67,36.4,39.02,51.17,55.64,59.21,67.63,90.86,112.6]
         self.divisionTime_avg_false = [27.16,38.09,41.67,55.14,58.05,62.21,71.81,93.52,112.24]
@@ -102,12 +104,22 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.slider.setFocusPolicy(QtCore.Qt.StrongFocus)  
         self.slider.setGeometry(170,660,30,30)  
        
+        self.player.setNotifyInterval(int(1000/6))
         self.player.stateChanged.connect(self.mediaStateChanged)
         self.player.positionChanged.connect(self.positionChanged)
         self.player.durationChanged.connect(self.durationChanged)
         self.player.error.connect(self.handleError)     
 
 
+        
+
+        self.video_time_show = QtWidgets.QLabel(self)        
+        self.video_time_show.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.video_time_show.setFont(QtGui.QFont('Arial', 16))
+        # self.frame_video.setFixedSize(QtCore.QSize(700, 630))  
+        self.video_time_show.setStyleSheet('background-color:white;')
+        self.video_time_show.setGeometry(650,600,100,40)
+        
         
         # t2-t8 table
         self.table_img_left = EmbryoNewInfoTable(7, 7, ['2cell', '3cell', '4cell', '5cell','6cell', '7cell', '8cell'], self)
@@ -119,10 +131,21 @@ class TabEmbryoResults(QtWidgets.QWidget):
         self.table_blas_info.setFocusPolicy(QtCore.Qt.ClickFocus) 
         self.table_blas_info.setGeometry(800,530,702,143)
 
+
+        #know which dish select table 
+        self.table_dish_selected = EmbryoSelectDishTable(7,2,self)
+        self.table_dish_selected.setFocusPolicy(QtCore.Qt.ClickFocus) 
+        self.table_dish_selected.setGeometry(1540,250,122,242)
+        self.table_dish_selected.doubleClicked.connect(self.DoubleClickSelectWell)
+
+
         # total score table
         self.table_total_score_info = EmbryoTotalScoreTable(1, 2, self)
         self.table_total_score_info.setFocusPolicy(QtCore.Qt.ClickFocus) 
-        self.table_total_score_info.setGeometry(1540,310,202,94)
+        self.table_total_score_info.setGeometry(1540,530,202,92)
+
+
+
 
         #pn option radio buttons -------------------
 
@@ -399,6 +422,34 @@ class TabEmbryoResults(QtWidgets.QWidget):
         #layout.addWidget(self.table_img_right, 1, 6, 10, 2, QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
         # layout.addWidget(label_info, 8, 2, 1, 4, QtCore.Qt.AlignHCenter)
         # layout.addWidget(self.edit_info, 9, 2, 1, 4)
+
+    def ReadPatientTransferWell(self,timelapse_id):
+        path = './config/config_' +timelapse_id + '.ini'
+        # print('ini path',path)
+        self.logger.info('Read file=' + path)
+        if not os.path.exists(path):
+            print('Not found file=' + path) 
+            self.logger.error('Not found file=' + path)                               
+        else:
+            cfg = RawConfigParser()   
+            cfg.read(path)
+            # print('cfgcfg.items',cfg.items('DecisionInfo'))
+            
+            #Show results        
+            transfer_well_list = []
+            for i in range(len(cfg.items('DecisionInfo'))):
+                
+                if 'transfer' in [item[0] for item in cfg.items('DecisionInfo')]:
+                    settings = cfg.get('DecisionInfo','transfer')                    
+                    transfer_well_list = settings.split(',')
+            return transfer_well_list
+                
+
+    def DoubleClickSelectWell(self):
+        row = self.table_dish_selected.currentIndex().row()
+        column = self.table_dish_selected.currentIndex().column()
+        print(row, column)
+        self.initSource( self.patient_id, self.chamber_id, int(column*7+row))
     
 
     def EmbryoViewerInfoSave(self):
@@ -672,6 +723,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
             position = self.position_val + 1000/6
         self.positionChanged(position)
         self.setPosition(position)
+
+    
+
+
        
     #Search file to show    
     def initSelector(self):
@@ -685,21 +740,38 @@ class TabEmbryoResults(QtWidgets.QWidget):
     #Set video source    
     def initSource(self, pid, chid, wid):
         self.LoadEmbryoDataPnNew(pid, chid, wid)
+
+        #get transfer well id list which have embryo
+        transfer_wellid_list =self.ReadPatientTransferWell(pid)
+        self.table_dish_selected.initWellSelectTable(transfer_wellid_list,wid)
+
+
+
+
+
         #img_to_video(chid, wid)
         
         path = os.path.abspath(load_video_path_with_7fp(pid, chid, wid, int(str(self.selector_fp.currentText())) - 1))
-        #path = os.path.abspath('./video/MTL-0245-11FD-1774/cham1/dish10/MTL-0245-11FD-1774_cham1_dish10_FP0.avi')
         
         if not path:
             return
         self.playButton.setEnabled(True)
-        #print(path)
+
         self.player.setMedia(QtMultimedia.QMediaContent(QtCore.QUrl.fromLocalFile(path)))
         
         self.patient_id = str(pid)
         self.chamber_id = str(chid)
         self.well_id = str(wid)
-                   
+
+
+        self.offset_time = get_patient_offset_time_from_ini(self.patient_id)
+        hour=0
+        minute=0
+        second=0
+        if self.offset_time!='':
+            hour,minute,second = int(self.offset_time.split(':')[0]),int(self.offset_time.split(':')[1]),int(self.offset_time.split(':')[2])
+        # print('hour minute second',hour,minute,second)
+        self.offset_time_to_hours = hour+round(minute/60,2)+round(second/3600,2)
     def edit_info_changed(self):
         content = self.edit_info.toPlainText()
         lines = content.split('\n')
@@ -731,27 +803,39 @@ class TabEmbryoResults(QtWidgets.QWidget):
     
     #Video position                
     def positionChanged(self, position):
+        
+        # print('slider bar value:',position)
         self.slider.setValue(position)
         self.position_val = position
       
     def durationChanged(self, duration):
         self.slider.setRange(0, duration)    
-        self.slider.setTickInterval(1000/6)     
-        self.slider.setSingleStep(1000/6)   
+        self.slider.setTickInterval(round(1000/6,2))     
+        self.slider.setSingleStep(round(1000/6,2))   
 
     def setPosition(self, position):
-        self.player.setPosition(position)        
+        self.player.setPosition(position) 
 
+
+        
+        
+        
+        if self.offset_time_to_hours!='':
+
+            hr_set = round(float(position)/1000+self.offset_time_to_hours,2)
+        self.video_time_show.setText(str(hr_set) +' hr') 
+        
 
     def LoadEmbryoDataPnNew(self, patient_id, chamber_id, dish_id):
         print ('LoadEmbryoData')
+        # self.video_time_show.setText('')
         #_, filename_dic, timespend_dic, percent_dic = get_each_stage_result(chid, wid)
          
         #{'Xlsx': {'pn': 7.469999999999999, 't2': 9.629999999999999, 't3': 25.129999999999995, 't4': 26.129999999999995, 't5': 42.47, 't6': 44.129999999999995, 't7': 45.300000000000004, 't8': 51.300000000000004, 'morula': 83.46000000000001, 'blas': nan}, 'Predict': {'pn': 0.0, 't2': 5.83, 't3': 20.67, 't4': 22.33, 't5': nan, 't6': 33.0, 't7': 47.5, 't8': 48.33, 'morula': 76.17, 'blas': 79.17, 'comp': nan}, 'Fragment': {'pn': 0.5311904761904762, 't2': 1.1187142857142856, 't3': 3.8090625, 't4': 1.9507042253521132, 't5': 3.500714285714285, 't6': 1.88358024691358, 't7': 2.2823333333333333, 't8': 2.1847499999999997, 'morula': 1.927297297297297, 'blas': 2.9246296296296292}, 'Cham_id': '6', 'Dish_id': '5', 'Patient_id': 'MTL-0245-13A1-9874', 'Dict_key': ['pn', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 'morula', 'blas']}
         dict_msg = get_xlsx_predict_division_time(patient_id, chamber_id, dish_id)# get system predict division time
 
         dict_manual_msg  = read_table_manual_info_csv(chamber_id, dish_id)
-        print('dict_manual_msg:',dict_manual_msg)
+        # print('dict_manual_msg:',dict_manual_msg)
 
         offset_time = get_patient_offset_time_from_ini(patient_id)
         hour=0
@@ -759,7 +843,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         second=0
         if offset_time!='':
             hour,minute,second = int(offset_time.split(':')[0]),int(offset_time.split(':')[1]),int(offset_time.split(':')[2])
-        print('hour minute second',hour,minute,second)
+        # print('hour minute second',hour,minute,second)
         
         total_score = 0
         offset_time_to_hours = hour+round(minute/60,2)+round(second/3600,2)
@@ -920,6 +1004,23 @@ class TabEmbryoResults(QtWidgets.QWidget):
                     time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index-2] )/interval_time_suc_false))*100,2)
                    
                 total_score_time_frag=time_score
+            else:
+                if 't' + str(index) in dict_msg["Predict"] and str(dict_msg["Predict"]['t' + str(index)]) != '' and str(dict_msg["Predict"]['t' + str(index)]) != 'nan' and str(dict_msg["Predict"]['t' + str(index)]) != 'NaN' and self.floatTryParse(dict_msg["Predict"]['t' + str(index)]):
+                    time = str(int(float((dict_msg["Predict"]['t' + str(index)])+offset_time_to_hours) * 100.0) / 100.0)
+                    interval_time_suc_false = abs(self.divisionTime_avg_false[index-2]-self.divisionTime_avg_success[index-2])
+                    time_score=''
+                    # print('interval time',interval_time_suc_false)
+                    if abs(float(time)-self.divisionTime_avg_success[index-2])> interval_time_suc_false:
+                        time_score = 0
+                        # print('div_score',time_score)
+                    else:
+                        # print('div_score r',time_score)
+                        time_score= round((1-(abs(float(time)-self.divisionTime_avg_success[index-2] )/interval_time_suc_false))*100,2)
+                        # div_score = round(float(div_time)/2,2)
+                    # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
+                    total_score_time_frag=time_score
+                    
+
             # print(index,round(float(dict_manual_msg["Frag_Percent"]['t' + str(index)]),2))
             # print(index,self.floatTryParse(dict_manual_msg["Frag_Percent"]['t' + str(index)]))
             # print(float(dict_manual_msg["Frag_Percent"]['t' + str(index)]))
@@ -1049,7 +1150,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.qradio_TE_choices[i].setChecked(False)
         self.qradio_TE_group.setExclusive(True)
     
-
+ 
 
         # radiobutton checkbox set values 
         if dic_cbo_rdo_button_info['cbo_PN']!='':
