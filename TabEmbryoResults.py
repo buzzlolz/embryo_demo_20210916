@@ -31,7 +31,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
         self.divisionTime_avg_success=[25.67,36.4,39.02,51.17,55.64,59.21,67.63,90.86,112.6]
         self.divisionTime_avg_false = [27.16,38.09,41.67,55.14,58.05,62.21,71.81,93.52,112.24]
-                 
+        self.ReadScorePercentIniFile()
         self.initUI()
               
     def initUI(self):        
@@ -423,6 +423,34 @@ class TabEmbryoResults(QtWidgets.QWidget):
         # layout.addWidget(label_info, 8, 2, 1, 4, QtCore.Qt.AlignHCenter)
         # layout.addWidget(self.edit_info, 9, 2, 1, 4)
 
+    #get score percent of total ex (div : frag = 0.3:0.7) and which stage score use ex( t2 , t5 ,morula )
+    def ReadScorePercentIniFile(self):
+        path = './config/config_score_ratio.ini'
+        # print('ini path',path)
+        self.logger.info('Read file=' + path)
+        if not os.path.exists(path):
+            print('Not found file=' + path) 
+            self.logger.error('Not found file=' + path)                               
+        else:
+            cfg = RawConfigParser()   
+            cfg.read(path)
+
+            score_input_factor_list= []
+
+            score_input_factor=cfg.get('RatioInfo','factor')  
+            self.score_input_factor_list=score_input_factor.split(',')
+            self.score_division_percentage=round(float(cfg.get('RatioInfo','division_percentage')),2)
+            self.score_fragment_percentage=round(float(cfg.get('RatioInfo','fragment_percentage') ),2)
+
+            # print('score_input_factor:',score_input_factor,type(score_input_factor))
+            # print('score_division_percentage',score_division_percentage,type(score_division_percentage))
+            # print('score_fragment_percentage',score_fragment_percentage,type(score_fragment_percentage))            
+            # print('cfgcfg.items',cfg.items('DecisionInfo'))
+            
+            
+                
+
+    #get which dish have chamber list for dish select table
     def ReadPatientTransferWell(self,timelapse_id):
         path = './config/config_' +timelapse_id + '.ini'
         # print('ini path',path)
@@ -541,7 +569,9 @@ class TabEmbryoResults(QtWidgets.QWidget):
                 sub_score=frag_score
             else:
                 if frag_score!='':
-                    sub_score=round((div_score+frag_score)/2,2)
+
+                    # sub_score=round((div_score+frag_score)/2,2)
+                    sub_score = round(div_score*self.score_division_percentage+frag_score*self.score_fragment_percentage,2)
                     # print('sub_score 2 ',sub_score)
             
             item_sub_score = QtWidgets.QTableWidgetItem(str(sub_score))
@@ -669,26 +699,43 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
 
     def GetSystemManualAvgScore(self):
-
+        stage_list = ['t2','t3','t4','t5','t6','t7','t8','morula','blas']
+        score_input_factor_index = [stage_list.index(a) for a in self.score_input_factor_list]
+        # self.score_input_factor_list
         total_score_system_avg=''
         total_score_manual_avg=''
         
         total_score_system = []
         total_score_manual=[]
-        for i in range (7):
-            if self.table_img_left.item(i*2+1, 6).text()!='':
-                total_score_system.append(float(self.table_img_left.item(i*2+1, 6).text()))
 
-        for i in range(2):
-            if  self.table_blas_info.item(i*2+1, 3).text()!='':
-                total_score_system.append(float(self.table_blas_info.item(i*2+1, 3).text()))
-        total_score_manual = []
-        for i in range (7):
-            if self.table_img_left.item(i*2+2, 6).text()!='':
-                total_score_manual.append(float(self.table_img_left.item(i*2+2, 6).text()))
-        for i in range(2):
-            if  self.table_blas_info.item(i*2+2, 3).text()!='':
-                total_score_manual.append(float(self.table_blas_info.item(i*2+2, 3).text()))
+        for i in score_input_factor_index:
+            if i<7:
+                if self.table_img_left.item(i*2+1, 6).text()!='':
+                    total_score_system.append(float(self.table_img_left.item(i*2+1, 6).text()))
+                if self.table_img_left.item(i*2+2, 6).text()!='':
+                    total_score_manual.append(float(self.table_img_left.item(i*2+2, 6).text()))
+            else:
+                if  self.table_blas_info.item((i-7)*2+1, 3).text()!='':
+                    total_score_system.append(float(self.table_blas_info.item((i-7)*2+1, 3).text()))
+                if  self.table_blas_info.item((i-7)*2+2, 3).text()!='':
+                    total_score_manual.append(float(self.table_blas_info.item((i-7)*2+2, 3).text()))
+        
+        # total_score_manual = []
+
+        # for i in range (7):
+        #     if self.table_img_left.item(i*2+1, 6).text()!='':
+        #         total_score_system.append(float(self.table_img_left.item(i*2+1, 6).text()))
+
+        # for i in range(2):
+        #     if  self.table_blas_info.item(i*2+1, 3).text()!='':
+        #         total_score_system.append(float(self.table_blas_info.item(i*2+1, 3).text()))
+        # total_score_manual = []
+        # for i in range (7):
+        #     if self.table_img_left.item(i*2+2, 6).text()!='':
+        #         total_score_manual.append(float(self.table_img_left.item(i*2+2, 6).text()))
+        # for i in range(2):
+        #     if  self.table_blas_info.item(i*2+2, 3).text()!='':
+        #         total_score_manual.append(float(self.table_blas_info.item(i*2+2, 3).text()))
         
 
 
@@ -739,6 +786,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         
     #Set video source    
     def initSource(self, pid, chid, wid):
+        self.ReadScorePercentIniFile()
         self.LoadEmbryoDataPnNew(pid, chid, wid)
 
         #get transfer well id list which have embryo
@@ -902,8 +950,9 @@ class TabEmbryoResults(QtWidgets.QWidget):
                     # print('Total score is 0')
                     total_score_time_frag = frag_score
                 else:
-                    total_score_time_frag = total_score_time_frag+ frag_score
-                    total_score_time_frag =round(total_score_time_frag/2,2)
+                    # total_score_time_frag = total_score_time_frag+ frag_score
+                    # total_score_time_frag =round(total_score_time_frag/2,2)
+                    total_score_time_frag=round(time_score*self.score_division_percentage+frag_score*self.score_fragment_percentage,2)
                     # print('Total score is divid 2')
 
             # print('total_score_time_frag:',total_score_time_frag)
@@ -1036,8 +1085,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
                    
                     total_score_time_frag = frag_score
                 else:
-                    total_score_time_frag = total_score_time_frag+ frag_score
-                    total_score_time_frag =round(total_score_time_frag/2,2)
+                    total_score_time_frag=round(time_score*self.score_division_percentage+frag_score*self.score_fragment_percentage,2)
+                    
+                    # total_score_time_frag = total_score_time_frag+ frag_score
+                    # total_score_time_frag =round(total_score_time_frag/2,2)
                     
             else:
                 if 't' + str(index) in dict_msg["Fragment"] and str(dict_msg['Fragment']) != '' and   str(dict_msg["Fragment"]['t' + str(index)]) != 'nan' and str(dict_msg["Fragment"]['t' + str(index)]) != 'NaN' and self.floatTryParse(dict_msg["Fragment"]['t' + str(index)]):  
@@ -1049,8 +1100,10 @@ class TabEmbryoResults(QtWidgets.QWidget):
 
                         total_score_time_frag = frag_score
                     else:
-                        total_score_time_frag = total_score_time_frag+ frag_score
-                        total_score_time_frag =round(total_score_time_frag/2,2)
+                        total_score_time_frag=round(time_score*self.score_division_percentage+frag_score*self.score_fragment_percentage,2)
+                    
+                        # total_score_time_frag = total_score_time_frag+ frag_score
+                        # total_score_time_frag =round(total_score_time_frag/2,2)
                     
             
             
