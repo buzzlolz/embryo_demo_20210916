@@ -243,7 +243,7 @@ def img_inference_frag(frag_model,img_path):
     #                             class_names, r['scores'])
     percentage = visualize.frag_percentage_count(image,r['rois'], r['masks'], r['class_ids'], r['scores'],
                                 class_names)
-    print ("precentage:",percentage)
+    # print ("precentage:",percentage)
     return percentage
     
 
@@ -276,11 +276,11 @@ def img_inference_cell(mask_model,img_path):
     all_d_time=all_d_time+d_time
 
 
-    print("duration time:",all_d_time/1)
+    # print("duration time:",all_d_time/1)
         
     b=datetime.now() 
     # Visualize results
-    print("shijian",(b-a).seconds)
+    # print("shijian",(b-a).seconds)
     r = results[0]
     # print(r)
     # print(r['masks'])

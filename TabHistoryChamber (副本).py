@@ -198,18 +198,18 @@ class TabHistoryChamber(QtWidgets.QWidget):
     def FileLoad(self, event):        
         # Set chamber id        
         chamber_ids = []
-        print(self.selector_files.getCheckItem())  
-        print(self.selector_files.getCheckItem()[1])  
+        # print(self.selector_files.getCheckItem())  
+        # print(self.selector_files.getCheckItem()[1])  
         if len(self.selector_files.getCheckItem()) >2:
             QtWidgets.QMessageBox.warning(self,'error','select more than 2 item')
         else:
             for ind,timelapse_id_time in enumerate(self.selector_files.getCheckItem()):
 
-                print(ind)
+                # print(ind)
                 timelapse_id = timelapse_id_time.split('->')[0]
                 fertilizationtime = timelapse_id_time.split('->')[1]
                 get_dic= search_history_csv(str(self.selector_pid.currentText()), timelapse_id,fertilizationtime)
-                print('analy other info csv json:',get_dic)
+                # print('analy other info csv json:',get_dic)
                 self.InsertInfomationToTable(str(self.selector_pid.currentText()), str(self.selector_files.currentText()), get_dic)
                 
         
@@ -280,10 +280,10 @@ class TabHistoryChamber(QtWidgets.QWidget):
             
         total_score = 0
         #{'DishList': [{'DishId': '8', 'Fragment': {}, 'Info': {}}, {'DishId': 2, 'Info': {'Status': 'Discard', 't2': nan, 't3': 9.67, 't4': 11.0, 't5': 18.0, 't6': 20.5, 't7': nan, 't8': 20.83, 'Morula': nan, 'Blas': 21.83, 'comp': nan, 'PN_Fading': 0.0, 'ICM': nan, 'TE': nan, 'PGS': nan, 'Probility': 0.88088155}, 'Fragment': {'pn': 1.5880851063829784, 't2': 3.1957142857142857, 't3': 3.301904761904763, 't4': 3.3818181818181823, 't5': 4.46, 't6': 4.185238095238096, 't7': 3.469166666666667, 't8': 7.082189781021898, 'morula': 8.13, 'blas': 10.843580786026202}}
-        print(dict_msg)
-        print(dict_msg.keys())
-        print(dict_msg["DishList"][0].keys())
-        print(dict_msg["DishList"][0]['Info'])
+        # print(dict_msg)
+        # print(dict_msg.keys())
+        # print(dict_msg["DishList"][0].keys())
+        # print(dict_msg["DishList"][0]['Info'])
         # print(dict_msg['DishList']['Info'])
         coll_probs = [(dish_info["DishId"], dish_info["Info"]["Probility"]) for dish_info in dict_msg["DishList"] if "Probility" in dish_info["Info"] and dish_info["Info"]["Probility"] != ''] 
         coll_probs.sort(key=lambda tup: tup[1], reverse=True)            
@@ -331,7 +331,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
                 
             #molura, blas.,             
             if "Info" in dish_info and dish_info["Info"] != {}:
-                print (dish_info)
+                # print (dish_info)
                 self.set_embryo_table_item(embryo_tables[0], 10, 2, str(dish_info["Info"]["Morula"]))
                 self.set_embryo_table_item(embryo_tables[0], 11, 2, str(dish_info["Info"]["Blas"]))                   
                 self.set_embryo_table_item(embryo_tables[0], 2, 2, str(dish_info["Info"]["PN_Fading"]))  
@@ -366,8 +366,8 @@ class TabHistoryChamber(QtWidgets.QWidget):
             if os.path.exists(file_path):
                 with open(file_path, 'r') as f:
                     text = f.read() 
-            print (file_path)
-            print(text)
+            # print (file_path)
+            # print(text)
             self.set_embryo_table_item(embryo_tables[0], 13, 2, str(text))
                     
                     

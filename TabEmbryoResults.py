@@ -476,7 +476,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
     def DoubleClickSelectWell(self):
         row = self.table_dish_selected.currentIndex().row()
         column = self.table_dish_selected.currentIndex().column()
-        print(row, column)
+        # print(row, column)
         self.initSource( self.patient_id, self.chamber_id, int(column*7+row))
     
 

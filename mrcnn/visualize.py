@@ -35,7 +35,7 @@ from mrcnn import utils
 def count_cell_area(radius):
     s=math.pi*radius*radius
     print("circle mask",int(s))
-    return int(s)
+    # return int(s)
 
 
 
@@ -207,7 +207,7 @@ def random_colors(N, bright=True):
 def apply_mask(image, mask, color, alpha=0.5):
     """Apply the given mask to the image.
     """
-    print("mask:",mask)
+    # print("mask:",mask)
     for c in range(3):
         
         image[:, :, c] = np.where(mask == 1,

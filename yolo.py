@@ -108,7 +108,7 @@ class YOLO(object):
         if self.model_image_size != (None, None):
             assert self.model_image_size[0]%32 == 0, 'Multiples of 32 required'
             assert self.model_image_size[1]%32 == 0, 'Multiples of 32 required'
-            print (image)
+            # print (image)
             boxed_image = letterbox_image(image, tuple(reversed(self.model_image_size)))
         else:
             new_image_size = (image.width - (image.width % 32),
@@ -116,7 +116,7 @@ class YOLO(object):
             boxed_image = letterbox_image(image, new_image_size)
         image_data = np.array(boxed_image, dtype='float32')
 
-        print(image_data.shape)
+        # print(image_data.shape)
         image_data /= 255.
         image_data = np.expand_dims(image_data, 0)  # Add batch dimension.
 
@@ -157,18 +157,18 @@ class YOLO(object):
             # left_=left
             # bottom_=bottom
             # right_=right
-            print("in yolo boundary",label, (left, top), (right, bottom))
+            # print("in yolo boundary",label, (left, top), (right, bottom))
             centerX = int((left+right)/2)
             centerY = int((bottom+top)/2)
             minus_num=max(image.size[1]/4,image.size[0]/4)
-            print('minux num:',minus_num)
+            # print('minux num:',minus_num)
 
             n_top = max(centerY-int(minus_num),0)
             
             n_bottom= min(centerY+int(minus_num),image.size[1])
             n_left= max(centerX-int(minus_num),0)
             n_right= min(centerX+int(minus_num),image.size[0])
-            print('yolo tblr:',n_top,n_bottom,n_left,n_right)
+            # print('yolo tblr:',n_top,n_bottom,n_left,n_right)
 
             
             image_crop = image.crop((n_left, n_top,n_right, n_bottom))
@@ -186,7 +186,7 @@ class YOLO(object):
             
 
         end = timer()
-        print(end - start)
+        # print(end - start)
         return image_crop,n_top,n_left,n_bottom,n_right
 
 
@@ -199,7 +199,7 @@ class YOLO(object):
         if self.model_image_size != (None, None):
             assert self.model_image_size[0]%32 == 0, 'Multiples of 32 required'
             assert self.model_image_size[1]%32 == 0, 'Multiples of 32 required'
-            print (image)
+            # print (image)
             boxed_image = letterbox_image(image, tuple(reversed(self.model_image_size)))
         else:
             new_image_size = (image.width - (image.width % 32),
@@ -207,7 +207,7 @@ class YOLO(object):
             boxed_image = letterbox_image(image, new_image_size)
         image_data = np.array(boxed_image, dtype='float32')
 
-        print(image_data.shape)
+        # print(image_data.shape)
         image_data /= 255.
         image_data = np.expand_dims(image_data, 0)  # Add batch dimension.
 
@@ -246,7 +246,7 @@ class YOLO(object):
             # left_=left
             # bottom_=bottom
             # right_=right
-            print("in yolo boundary",label, (left, top), (right, bottom))
+            # print("in yolo boundary",label, (left, top), (right, bottom))
             
             image_crop = image.crop((left, top,right, bottom))
             
@@ -263,7 +263,7 @@ class YOLO(object):
             
 
         end = timer()
-        print(end - start)
+        # print(end - start)
         return image_crop,top,left,bottom,right
 
     def close_session(self):

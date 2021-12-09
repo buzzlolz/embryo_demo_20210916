@@ -45,6 +45,8 @@ class Extract_Sqlite():
             os.mkdir('./data/crop_img')
         if not Path('./history/').exists():
             os.mkdir('./history/')
+        if not Path('./excel_output/').exists():
+            os.mkdir('./excel_output/')
         
 
 

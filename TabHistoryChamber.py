@@ -58,6 +58,8 @@ class TabHistoryChamber(QtWidgets.QWidget):
         self.selChamber_tab = widget_selChamber
         self.init()
         self.mnt_history_path = './history/'
+
+        self.excel_output_path = './excel_output/'
         self.tableload_timelapse_id=[]
 
 
@@ -123,7 +125,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         self.button_save = QtWidgets.QPushButton('Save', self)
         self.button_save.setGeometry(1700, 10, 80, 40)
         self.button_save.setStyleSheet('QPushButton {background-color:lightblue;border-radius: 20px;}  QPushButton:hover{color:black;background:bisque;} QPushButton:pressed {background:lightcoral}')
-        self.button_save.clicked.connect(self.SaveTableChangeToFile)
+        self.button_save.clicked.connect(self.WriteTableInfoToCsv)
         # self.button_save.setDisabled(True)
         
 
@@ -241,9 +243,58 @@ class TabHistoryChamber(QtWidgets.QWidget):
         # self.player.positionChanged.connect(self.positionChanged)
         # self.player.durationChanged.connect(self.durationChanged)
         # self.player.error.connect(self.handleError)     
-
-
     
+
+    def ReadTableInfoFromCsv(self,table,patient_id,timelapse_id_time,tabel_index):
+        csv_table_title_path = os.path.join(self.excel_output_path,patient_id +'_'+timelapse_id_time+'.csv')
+        # print('csv_table_title_path',csv_table_title_path)
+        if os.path.isfile(csv_table_title_path):
+            df = pd.read_csv(csv_table_title_path)
+            # print(df)
+            for i in range(2,15):
+                
+                if df.iloc[i][19] is not None:
+                    # print('df item',df.iloc[i][19])
+                    # print('i',i)
+                    if table.cellWidget(i, 20) is not None:
+                        
+                        table.cellWidget(i, 20).setCurrentText(str(df.iloc[i][19]))
+
+
+
+    def WriteTableInfoToCsv(self):
+        
+        for i in range(len(self.embryo_info_array)):
+            table = self.embryo_info_array[i]
+
+            table_title_name = table.item(0,0).text()
+            if table_title_name!='':
+                csv_table_title_path = os.path.join(self.excel_output_path,self.selector_pid.currentText() +'_'+table_title_name+'.csv')
+                with open(csv_table_title_path, 'w') as stream:                  # 'w'
+                    writer = csv.writer(stream, lineterminator='\n')          # + , lineterminator='\n'
+                    for row in range(table.rowCount()):
+                        rowdata = []
+                        for column in range(table.columnCount()):
+                            if   column ==20 and row !=1:
+                                # test=table.item(row,column)
+                                if table.cellWidget(row, column) is not None:
+                                    test = table.cellWidget(row, column).currentText()
+                                    # print(test)
+                                    item =test
+                                    rowdata.append(item)
+                            else:
+                                
+                                item = table.item(row, column)
+                                if item is not None:
+            #                        rowdata.append(unicode(item.text()).encode('utf8'))
+                                    rowdata.append(item.text())                   # +
+                                    # prisnt('rowdata',item.text(),row,column)
+                                else:
+                                    rowdata.append('')
+                                
+
+                        writer.writerow(rowdata)
+
     def AddTableBox(self, parent):
         self.embryo_info_array = []
         for i in range(2):
@@ -262,6 +313,27 @@ class TabHistoryChamber(QtWidgets.QWidget):
         #         self.embryo_info_array.append(embryo_info)  
         #         vert_lay.addWidget(embryo_info, j, 0 , 1, 1)              
         # vert_lay.setSpacing(1)
+    
+    def ReadAgeFromIni(self,pid):
+        ini_dir_path = os.path.join(self.mnt_history_path,pid)
+        # print('ini_dir_path',ini_dir_path)
+
+        for filename in os.listdir(ini_dir_path):
+            # print('filename',filename)
+            if filename.endswith('.ini'):
+                ini_path = os.path.join(ini_dir_path,filename)
+                # print('ini_path',ini_path)
+                self.logger.info('Read file=' + ini_path)
+                # if not os.path.exists(path):
+                cfg = RawConfigParser()  
+                # if os.path.exists(ini_path):
+                cfg.read(ini_path)   
+                age = cfg.get('PitentInfo','age') 
+                return age
+            # else:
+            #     return ''
+
+            
         
     def SelectDate(self, item):        
         calendar = Calendar('history', item, self)
@@ -286,7 +358,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
                 
             for tabel_index,timelapse_id_time in enumerate(self.selector_files.getCheckItem()):
 
-                print(tabel_index)
+                # print(tabel_index)
                 timelapse_id = timelapse_id_time.split('->')[0]
                 fertilizationtime = timelapse_id_time.split('->')[1]
                 get_dic= search_history_csv(str(self.selector_pid.currentText()), timelapse_id,fertilizationtime)
@@ -353,7 +425,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
             # self.selector_files_table1.addItem(m)  
             # self.selector_files_table2.addItem(m)  
                       
-        
+    # search select info file and insert to table
     def InsertInfomationToTable(self, patient_id,timelapse_id, date, timelapse_id_time ,tabel_index, dict_msg):   
 
 
@@ -362,7 +434,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         divisiontime_choices = ['Asymmetry', 'Multinucleation', 'Reverse Cleavage', 'Direct Uneven Cleavage','Vacuolated','Chaos']
         divisiontime_simple_choices=['As','Mul','RC','DUC','Va','Ch']    
 
-        pgs_combobox_choices=['True','False']
+        pgs_combobox_choices=['Euploid','Aneuploid','Low Mosaic','High Mosaic']
         
         
         table = self.embryo_info_array[tabel_index]
@@ -399,6 +471,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         for i in rank_index_list:
             dic_rank[str(i)]=rank_index_list.index(i)
 
+        age = self.ReadAgeFromIni(patient_id)
         
         #put info into table
         for dish_number in range(1,dish_number_max+1):
@@ -411,34 +484,35 @@ class TabHistoryChamber(QtWidgets.QWidget):
                     if dict_msg["DishList"][dic_dishid]['Info']!={}:
                         
                         # print(dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'])
-                        self.set_embryo_table_item(table, dish_number+1, 3,dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'] )
-                        self.set_embryo_table_item(table, dish_number+1, 4,dict_msg["DishList"][dic_dishid]['Info']['t2'] )
-                        self.set_embryo_table_item(table, dish_number+1, 5,dict_msg["DishList"][dic_dishid]['Info']['t3'] )
-                        self.set_embryo_table_item(table, dish_number+1, 6,dict_msg["DishList"][dic_dishid]['Info']['t4'] )
-                        self.set_embryo_table_item(table, dish_number+1, 7,dict_msg["DishList"][dic_dishid]['Info']['t5'] )
-                        self.set_embryo_table_item(table, dish_number+1, 8,dict_msg["DishList"][dic_dishid]['Info']['t6'] )
-                        self.set_embryo_table_item(table, dish_number+1, 9,dict_msg["DishList"][dic_dishid]['Info']['t7'] )
-                        self.set_embryo_table_item(table, dish_number+1, 10,dict_msg["DishList"][dic_dishid]['Info']['t8'] )
-                        self.set_embryo_table_item(table, dish_number+1, 11,dict_msg["DishList"][dic_dishid]['Info']['Morula'] )
-                        self.set_embryo_table_item(table, dish_number+1, 12,dict_msg["DishList"][dic_dishid]['Info']['Blas'] )
-
-                        self.set_embryo_table_item(table, dish_number+1, 19,'', readonly=False)
+                        self.set_embryo_table_item(table, dish_number+1, 4,dict_msg["DishList"][dic_dishid]['Info']['PN_Fading'] )
+                        self.set_embryo_table_item(table, dish_number+1, 5,dict_msg["DishList"][dic_dishid]['Info']['t2'] )
+                        self.set_embryo_table_item(table, dish_number+1, 6,dict_msg["DishList"][dic_dishid]['Info']['t3'] )
+                        self.set_embryo_table_item(table, dish_number+1, 7,dict_msg["DishList"][dic_dishid]['Info']['t4'] )
+                        self.set_embryo_table_item(table, dish_number+1, 8,dict_msg["DishList"][dic_dishid]['Info']['t5'] )
+                        self.set_embryo_table_item(table, dish_number+1, 9,dict_msg["DishList"][dic_dishid]['Info']['t6'] )
+                        self.set_embryo_table_item(table, dish_number+1, 10,dict_msg["DishList"][dic_dishid]['Info']['t7'] )
+                        self.set_embryo_table_item(table, dish_number+1, 11,dict_msg["DishList"][dic_dishid]['Info']['t8'] )
+                        self.set_embryo_table_item(table, dish_number+1, 12,dict_msg["DishList"][dic_dishid]['Info']['Morula'] )
+                        self.set_embryo_table_item(table, dish_number+1, 13,dict_msg["DishList"][dic_dishid]['Info']['Blas'] )
+                        # print('dish number',dish_number)
+                        self.set_embryo_table_item(table, dish_number+1, 20,'', readonly=False)
                         table.SetPgsChoices(pgs_combobox_choices,dish_number)
                         
 
                     if dict_msg["DishList"][dic_dishid]['OtherInfo']!={}:
 
-                        self.set_embryo_table_item(table, dish_number+1, 14,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_Loction'] )
-                        self.set_embryo_table_item(table, dish_number+1, 13,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_PN'] )
+                        self.set_embryo_table_item(table, dish_number+1, 15,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_Loction'] )
+                        self.set_embryo_table_item(table, dish_number+1, 14,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_PN'] )
                         
                         morpho_simple = self.ListItemAbbreviation(morphological_choices,dict_msg["DishList"][dic_dishid]['OtherInfo']['rdo_Morphological'],morphological_simple_choices)
 
-                        self.set_embryo_table_item(table, dish_number+1, 15, morpho_simple)
+                        self.set_embryo_table_item(table, dish_number+1, 16, morpho_simple)
                         divisiontime_simple = self.ListItemAbbreviation(divisiontime_choices,dict_msg["DishList"][dic_dishid]['OtherInfo']['rdo_DivisionTime'],divisiontime_simple_choices)
-                        self.set_embryo_table_item(table, dish_number+1, 16,divisiontime_simple )
-                        self.set_embryo_table_item(table, dish_number+1, 17,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_ICM'] )
-                        self.set_embryo_table_item(table, dish_number+1, 18,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_TE'] )
+                        self.set_embryo_table_item(table, dish_number+1, 17,divisiontime_simple )
+                        self.set_embryo_table_item(table, dish_number+1, 18,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_ICM'] )
+                        self.set_embryo_table_item(table, dish_number+1, 19,dict_msg["DishList"][dic_dishid]['OtherInfo']['cbo_TE'] )
                         self.set_embryo_table_item(table, dish_number+1, 1,dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'] )
+                        self.set_embryo_table_item(table, dish_number+1, 3,age )
                         if dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score']!='':
                             # self.set_embryo_table_item(table, dish_number+1,2,rank_index_list[dish_number-1])
                             # print(dict_msg["DishList"][dic_dishid]['OtherInfo']['Total_Score'])
@@ -446,112 +520,9 @@ class TabHistoryChamber(QtWidgets.QWidget):
                             # print('dic',dic_rank[str(dish_number)])
                             self.set_embryo_table_item(table, dish_number+1,2,dic_rank[str(dish_number)]+1)
             
-                        
+        self.ReadTableInfoFromCsv(table,patient_id,timelapse_id_time,tabel_index)              
 
-        # for dish_info in dict_msg["DishList"]:
-        #     print(dish_info)
-        #     if dish_info['Info']!={}:
-        #         print('dish_infoRRRRRRRRR')
-
-        # for table in self.embryo_info_array:
-        #     table.SetPidDate(patient_id, date)
-        #     for i in range(12):
-        #         self.set_embryo_table_item(table, i + 2, 2, '')
-        #         self.set_embryo_table_item(table, i + 2, 4, '')
-        #     #self.set_embryo_table_item(table, 14, 2, '')
-            
-        # total_score = 0
-        # #{'DishList': [{'DishId': '8', 'Fragment': {}, 'Info': {}}, {'DishId': 2, 'Info': {'Status': 'Discard', 't2': nan, 't3': 9.67, 't4': 11.0, 't5': 18.0, 't6': 20.5, 't7': nan, 't8': 20.83, 'Morula': nan, 'Blas': 21.83, 'comp': nan, 'PN_Fading': 0.0, 'ICM': nan, 'TE': nan, 'PGS': nan, 'Probility': 0.88088155}, 'Fragment': {'pn': 1.5880851063829784, 't2': 3.1957142857142857, 't3': 3.301904761904763, 't4': 3.3818181818181823, 't5': 4.46, 't6': 4.185238095238096, 't7': 3.469166666666667, 't8': 7.082189781021898, 'morula': 8.13, 'blas': 10.843580786026202}}
-        # print(dict_msg)
-        # print(dict_msg.keys())
-        # print(dict_msg["DishList"][0].keys())
-        # print(dict_msg["DishList"][0]['Info'])
-        # # print(dict_msg['DishList']['Info'])
-        # coll_probs = [(dish_info["DishId"], dish_info["Info"]["Probility"]) for dish_info in dict_msg["DishList"] if "Probility" in dish_info["Info"] and dish_info["Info"]["Probility"] != ''] 
-        # coll_probs.sort(key=lambda tup: tup[1], reverse=True)            
         
-        # for dish_info in dict_msg["DishList"]:    
-        #     embryo_tables = [table for table in self.embryo_info_array if int(dish_info["DishId"]) == table.well_id]
-        #     if embryo_tables == []:
-        #         continue
-        #     total_score = 0
-        #     count = 0
-        #     #print(dish_info)
-        #     #t2-t8
-        #     for i in range(7):            
-        #         #Insert division time
-        #         if "Info" in dish_info and 't' + str(i + 2) in dish_info["Info"]:                    
-        #             time = str(dish_info["Info"]['t' + str(i + 2)])
-        #             self.set_embryo_table_item(embryo_tables[0], i + 3, 2, time)
-        #             #print('t' + str(i + 2), embryo_tables[0].well_id, time)
-                 
-        #         #Insert score
-        #         if "Fragment" in dish_info and 't' + str(i + 2) in dish_info["Fragment"]:
-        #             try:
-        #                 value = int(100 - (4 * (math.ceil(dish_info["Fragment"]['t' + str(i + 2)] * 100) / 100)))
-        #                 if value < 0:
-        #                     value = 0 
-        #                 self.set_embryo_table_item(embryo_tables[0], i + 3, 4, str(value), True)
-        #                 count += 1
-        #                 total_score = total_score + value
-        #             except:
-        #                 self.set_embryo_table_item(embryo_tables[0], i + 3, 4, '', True)                                                 
-            
-        #     #Final score                 
-        #     if total_score > 0:
-        #         average_score = str(int((float(total_score) / float(count)) * 100) / 100)
-        #         # self.set_embryo_table_item(embryo_tables[0], 14, 2, average_score, True) #1230 change 
-        #     if "Probility" in dish_info["Info"]:
-        #         orders = [i+1 for i,e in enumerate(coll_probs) if e[0] == dish_info["DishId"]]
-        #         if orders != []:    
-        #             content =  str(int(100 * dish_info["Info"]["Probility"])) + ' (' + str(orders[0]) + '/' + str(len(coll_probs)) + ')'
-        #         else:
-        #             content =  str(int(100 * dish_info["Info"]["Probility"]))                       
-        #         self.set_embryo_table_item(embryo_tables[0], 14, 2, content, True)
-        #     else:
-        #         self.set_embryo_table_item(embryo_tables[0], 14, 2, '', True)
-                
-        #     #molura, blas.,             
-        #     if "Info" in dish_info and dish_info["Info"] != {}:
-        #         print (dish_info)
-        #         self.set_embryo_table_item(embryo_tables[0], 10, 2, str(dish_info["Info"]["Morula"]))
-        #         self.set_embryo_table_item(embryo_tables[0], 11, 2, str(dish_info["Info"]["Blas"]))                   
-        #         self.set_embryo_table_item(embryo_tables[0], 2, 2, str(dish_info["Info"]["PN_Fading"]))  
-        #     #Molura score
-        #     if "Fragment" in dish_info and 'morula' in dish_info["Fragment"]:
-        #         try:
-        #             value = int(100 - (4 * (math.ceil(dish_info["Fragment"]['morula'] * 100) / 100)))
-        #             if value < 0:
-        #                 value = 0 
-        #             self.set_embryo_table_item(embryo_tables[0], 10, 4, str(value), True)
-        #         except:
-        #             self.set_embryo_table_item(embryo_tables[0], 10, 4, '', True)    
-        #     #pn score
-        #     if "Fragment" in dish_info and 'pn' in dish_info["Fragment"]:
-        #         try:
-        #             value = int(100 - (4 * (math.ceil(dish_info["Fragment"]['pn'] * 100) / 100)))
-        #             if value < 0:
-        #                 value = 0 
-        #             self.set_embryo_table_item(embryo_tables[0], 2, 4, str(value), True)
-        #         except:
-        #             self.set_embryo_table_item(embryo_tables[0], 2, 4, '', True)    
-              
-        #     #Icm, te, decision, pgs
-        #     embryo_tables[0].SetIcmTe()
-        #     if "Info" in dish_info and dish_info["Info"] != {}:
-        #         embryo_tables[0].setDecision(dish_info["Info"]["Status"],  dish_info["Info"]["Probility"])
-        #         embryo_tables[0].setPGS(dish_info["Info"]["PGS"])                      
-                    
-        #     #Read event file
-        #     file_path = './' + 'event_info_' + patient_id + '_' + str(embryo_tables[0].well_id) + '.txt'
-        #     text = ''
-        #     if os.path.exists(file_path):
-        #         with open(file_path, 'r') as f:
-        #             text = f.read() 
-        #     print (file_path)
-        #     print(text)
-        #     self.set_embryo_table_item(embryo_tables[0], 13, 2, str(text))
-                    
     def ListItemAbbreviation(self,combobox_list,ori_list,abbreviation_list):
         output_str = ''
         if ori_list!=0:

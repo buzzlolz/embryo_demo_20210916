@@ -234,10 +234,10 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         self.wells_id = ['well %s'%str(i) for i in range(1,15)]
         
         #self.cell_names = ['2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',]
-        self.division_status = ['Final score','rank','PN_Fading', '2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',  'Morula', 'Blastocyst','PNnum' ,'Location','Morphological','Division Time','ICM','TE', 'PGS']        
+        self.division_status = ['Final score','rank','Age','PN_Fading', '2cell', '3cell', '4cell', '5cell', '6cell', '7cell', '8cell',  'Morula', 'Blastocyst','PNnum' ,'Location','Morphological','Division Time','ICM','TE', 'PGS']        
         self.decisions = ['', 'Transfer', 'Discard', 'Freeze']
         self.dec_bcolors = ['white','lightgreen', '#ff968a', '#abdee6']
-        self.pgs = ['', 'Mosaicism', 'Aneuploidy', 'Euploidy']
+        self.pgs = ['Euploid','Aneuploid','Low Mosaic','High Mosaic']
         super(EmbryoHistoryInfoTable, self).__init__(len(self.wells_id) + 2, len(self.division_status), parent)        
         
         self.setStyleSheet('background-color:white; font-size: 13pt;')         
@@ -308,14 +308,14 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         for i in range(len(self.division_status)):                        
             
             
-            if i==1 or i ==3 or i==12 : 
+            if i==1 or i ==4 or i==13 : 
                 self.setColumnWidth(i, 100) 
-            elif i== 14:
+            elif i== 15:
                 self.setColumnWidth(i, 120) 
-            elif i==15 or i==16: 
-                self.setColumnWidth(i, 200) 
+            elif i==16 or i==17: 
+                self.setColumnWidth(i, 180) 
             else:
-                self.setColumnWidth(i, 40) 
+                self.setColumnWidth(i, 35) 
             item_data = QtWidgets.QTableWidgetItem(self.division_status[i])
             item_data.setTextAlignment(QtCore.Qt.AlignHCenter)
             item_data.setFlags(QtCore.Qt.ItemIsEnabled)
@@ -427,7 +427,7 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         for r in range(len(self.division_status) - 2):
             
             key = str(self.item(r + 2, 0).text())
-            print(r + 2, key)
+            # print(r + 2, key)
             if key == '2cell':
                 t2 = str(self.item(r + 2, 2).text())
             if key == '3cell':
@@ -501,10 +501,11 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
 
     def SetPgsChoices(self,combobox_list,dish_number):
         combo = QtWidgets.QComboBox()
+        combo.setStyleSheet("background-color:white;selection-background-color: darkblue")
         for t in combobox_list:
             combo.addItem(t)
         
-        self.setCellWidget(dish_number+1,19,combo)
+        self.setCellWidget(dish_number+1,20,combo)
         
         
     def setDecision(self, result, prob):        
@@ -543,11 +544,14 @@ class EmbryoHistoryInfoTable(QtWidgets.QTableWidget):
         col_num=len(self.division_status)
         
         row_num = len(self.wells_id)
+        
+        
+        self.SetItemTitle(0,0,'',True)
         for i in range(2,row_num+2):
             for j in range(1,col_num+1):
                 self.SetItem(i,j,'',True) 
             #remove pgs column
-            self.removeCellWidget(i,19)
+            self.removeCellWidget(i,20)
         
             
 

@@ -211,6 +211,8 @@ class Chamber_Inference(QtCore.QThread):
         if not Path('./history/').exists():
             os.mkdir('./history/')
         
+        if not Path('./excel_output/').exists():
+            os.mkdir('./excel_output/')
 
 
 

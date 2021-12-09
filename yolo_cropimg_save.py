@@ -63,7 +63,7 @@ for dirPath, dirNames, fileNames in os.walk(folder_path):
     # print(img_path)
             # img_path=os.path.join(folder_path,img_name)
             
-            print('img path yolo:',img_path)
+            # print('img path yolo:',img_path)
             img = cv2.imread(str(img_path))
             #cv2.imshow('test',img)
             #cv2.waitKey(0)
@@ -73,7 +73,7 @@ for dirPath, dirNames, fileNames in os.walk(folder_path):
                 img= cv2.resize(img,(300,300))
             image_yolo = Image.fromarray(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
             crop_img=emb_yolo_crop(yolo_ini,image_yolo)
-            print("img yolo path:",img_path)
+            # print("img yolo path:",img_path)
         #         # print("RRRRRRRR img_path :",img_path)
         #         t2= time.time()
         #         print("time ----yolocrop--------:",t2-t1)

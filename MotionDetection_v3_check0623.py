@@ -32,7 +32,7 @@ def detect_scipy_find_peaks(x,y):
     plt.plot(lowess[:, 1])
     plt.plot(peaks, lowess[:, 1][peaks], "o")
     plt.plot(inv_peaks, lowess[:, 1][inv_peaks], "o")
-    print(inv_peaks)
+    # print(inv_peaks)
 
     plt.show()
 
@@ -63,8 +63,8 @@ def show_peaks_location(l_point,peaks,inv_peaks,video_name):
         peaks.remove(-1)
     while -1 in inv_peaks:
         inv_peaks.remove(-1)
-    print(peaks)
-    print(len(l_point))
+    # print(peaks)
+    # print(len(l_point))
     for i in peaks:
         new_list_peaks.append(l_point[i])
     for i in inv_peaks:
@@ -87,13 +87,13 @@ def detect_slope(l_point,slope_thd,frame_num,window_size):
     min_point=min(l_point)
     max_point = max(l_point)
     np_l_point=np.array(l_point)
-    print("del:",max_point-min_point)
+    # print("del:",max_point-min_point)
     #print("max:",max_point)
     if max_point-min_point>slope_thd:
 
-        print("min:",min_point,np.argmin(np_l_point)+frame_num)
-        print("max:",max_point,np.argmax(np_l_point)+frame_num)
-        print("RRRRRRRRRRRRRRRRRR")
+        # print("min:",min_point,np.argmin(np_l_point)+frame_num)
+        # print("max:",max_point,np.argmax(np_l_point)+frame_num)
+        # print("RRRRRRRRRRRRRRRRRR")
         if np.argmax(np_l_point)>np.argmin(np_l_point):
             return (np.argmax(np_l_point)+frame_num-window_size),(np.argmin(np_l_point)+frame_num-window_size)
        
@@ -120,7 +120,7 @@ def detect_peaks(emb_count):
     plt.plot(lowess[:, 1])
     plt.plot(peaks, lowess[:, 1][peaks], "o")
     plt.plot(inv_peaks, lowess[:, 1][inv_peaks], "x")
-    print(inv_peaks)
+    # print(inv_peaks)
     return(inv_peaks)
 
 
@@ -219,8 +219,8 @@ if __name__ == "__main__":
             top, left, bottom, right=emb_location(frame)
             CenterX = (left+right)/2
             CenterY = (top+bottom)/2
-            print("x : {x}   y: {y}".format(x=CenterX,y=CenterY))
-            print("left-right : {x} ".format(x=right-left))
+            # print("x : {x}   y: {y}".format(x=CenterX,y=CenterY))
+            # print("left-right : {x} ".format(x=right-left))
 
             if frameNum!=0:
                 if abs(pre_x -CenterX)>30 or abs(pre_y -CenterY)>30:
@@ -285,7 +285,7 @@ if __name__ == "__main__":
                 emb_loc_total_pt.append(var)
                 if frameNum%window_size==0:   # peak detect slope
                    peak_point,inv_peak_point=detect_slope(emb_pt_list,75,frameNum,window_size)
-                   print(inv_peak_point)
+                #    print(inv_peak_point)
                    emb_pt_list.clear()
                    if peak_point not in peaks_list:
                        peaks_list.append(peak_point)

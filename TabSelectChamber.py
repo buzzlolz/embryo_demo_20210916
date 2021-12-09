@@ -666,7 +666,7 @@ class TabSelectChamber(QtWidgets.QWidget):
             
     def ProcessUnixsocketMsg(self, query):
         if "check_isboundary" in query:
-            print(query)
+            # print(query)
             self.UpdateWellStatus(query)
         if "percentage" in query and "dish_id" not in query:
             self.UpdateExtractProgressive(query)
@@ -675,7 +675,7 @@ class TabSelectChamber(QtWidgets.QWidget):
             
     def UpdateWellStatus(self, query):
         #{"chamber_id":'3' , "dish_id":'1',"check_isboundary":True} 
-        print(query)        
+        # print(query)        
         chamber_id = query["chamber_id"]
         well_id = query["dish_id"]
         isboundary = query["check_isboundary"]
@@ -1061,7 +1061,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                     offset_time_str = str(offset_time).split(',')[1].lstrip()
                     offset_time_hour = int(offset_time_str.split(':')[0])+int(offset_time.days)*24
                     offset_time = str(offset_time_hour)+':'+offset_time_str.split(':')[1]+':'+offset_time_str.split(':')[2]
-                    print('offset_time_new:',offset_time)
+                    # print('offset_time_new:',offset_time)
 
             fertilization_time = fertilization_date+'_'+fertilization_hms
 
@@ -1107,7 +1107,7 @@ class TabSelectChamber(QtWidgets.QWidget):
 
             #Clear element
             listsMyQLineEdit = self.chambers[int(chamber_id) - 1].findChildren(QtWidgets.QLineEdit)
-            for i in range(6):
+            for i in range(7):
 
                 listsMyQLineEdit[i].setText('')
             
@@ -1209,8 +1209,8 @@ class TabSelectChamber(QtWidgets.QWidget):
     
     #Dialog call    
     def CallExtractSqlite(self, patient_id, chamber_id):
-        print(patient_id)
-        print(chamber_id)
+        # print(patient_id)
+        # print(chamber_id)
         if str(patient_id) == '':
             return           
             
@@ -1236,7 +1236,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         well_ids = []        
         dish_dirs = os.listdir('./data/ori_img/cham' + str(chamber_id))
         for dd in dish_dirs:
-            print (dd)
+            # print (dd)
             if os.path.isdir('./data/ori_img/cham' + str(chamber_id) + '/' + dd):
                 files = os.listdir('./data/ori_img/cham' + str(chamber_id) + '/' + dd)                
                 if len(files) > 0:
@@ -1287,7 +1287,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                 files = os.listdir('./data/ori_img/cham' + str(chamber_id) + '/' + dd)                 
                 for f in files:
                     os.remove('./data/ori_img/cham' + str(chamber_id) + '/' + dd + '/' + f)
-                    print (f)
+                    # print (f)
 
         dish_dirs = os.listdir('./data/crop_img/cham' + str(chamber_id))
         for dd in dish_dirs:            
@@ -1295,7 +1295,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                 files = os.listdir('./data/crop_img/cham' + str(chamber_id) + '/' + dd)                 
                 for f in files:
                     os.remove('./data/crop_img/cham' + str(chamber_id) + '/' + dd + '/' + f)
-                    print (f)        
+                    # print (f)        
                     
         dish_dirs = os.listdir('./csv/cham' + str(chamber_id))
         for dd in dish_dirs:            
@@ -1304,7 +1304,7 @@ class TabSelectChamber(QtWidgets.QWidget):
                               
                 for f in files:
                     os.remove('./csv/cham' + str(chamber_id) + '/' + dd + '/' + f)
-                    print (f)
+                    # print (f)
         video_path = './video/'
         video_timelapse_id = os.path.join(video_path,timelapse_id)
         if os.path.isdir(video_timelapse_id):
@@ -1320,7 +1320,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         print('chid' + str(chamber_id))            
         #Gui element
         
-        for i in range(6):
+        for i in range(7):
             listsMyQLineEdit[i].setText('')      
         # listsMyQLineEdit[0].setText('')
         # listsMyQLineEdit[1].setText('')

@@ -208,7 +208,7 @@ def get_t2t8_dur_time(csv_path):
 def write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic):
     csv_path ='./csv/cham'+str(cham_id)+'/dish'+str(dish_id)+'/'+'cham'+str(cham_id)+'_'+'dish'+str(dish_id)+'_analy.csv'
     # if os.path.exists(csv_path):
-    print('ana csv dir',csv_path)
+    # print('ana csv dir',csv_path)
     # df=pd.read_csv(csv_path)
 
     if os.path.exists(csv_path):
@@ -255,7 +255,7 @@ def write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic):
                 
 
             }
-        print(t2t8_time_dic)
+        # print(t2t8_time_dic)
         # dic['chamber'].append(cham_id)
         # dic['dish'].append(dish_id)
         # dic['t2'].append(t2t8_time_list[0])
@@ -269,7 +269,7 @@ def write_analy_csv_t2t8(cham_id,dish_id,t2t8_time_dic):
         df = pd.DataFrame(dic)
         df=df.append({'chamber':cham_id,"dish":dish_id,'PN_Fading':t2t8_time_dic['pn'],'t2':t2t8_time_dic['t2'],'t3':t2t8_time_dic['t3'],'t4':t2t8_time_dic['t4'],'t5':t2t8_time_dic['t5'],'t6':t2t8_time_dic['t6'],'t7':t2t8_time_dic['t7'],'t8':t2t8_time_dic['t8'],'Morula':t2t8_time_dic['morula'],'Blas':t2t8_time_dic['blas']},ignore_index=True)
         # df['PGS']=pgs
-        print(df)
+        # print(df)
         df.to_csv(csv_path,index=0)
 
 
@@ -395,6 +395,37 @@ def write_system_info_total_score(chamber_id,dish_id,offset_time_to_hours):
     ,'Total_Score':''
     }
 
+    path = './config/config_score_ratio.ini'
+    # print('ini path',path)
+    # self.logger.info('Read file=' + path)
+    if not os.path.exists(path):
+        print('Not found file=' + path) 
+        save_total_score_factor=['t2','t3','t4','t5','t6','t7','t8','morula','blas']
+        cfg = RawConfigParser()   
+        cfg.read(path)           
+        if not cfg.has_section('RatioInfo'):
+            cfg.add_section('RatioInfo')
+        
+        cfg.set('RatioInfo','division_percentage' ,str(0.5))  
+        cfg.set('RatioInfo','fragment_percentage' ,str(0.5))  
+        cfg.set('RatioInfo','factor' ,','.join(save_total_score_factor))  
+        with io.open(path, 'w') as f:
+            cfg.write(f)
+        # self.logger.error('Not found file=' + path)                               
+    else:
+        cfg = RawConfigParser()   
+        cfg.read(path)
+
+        score_input_factor_list= []
+
+        score_input_factor=cfg.get('RatioInfo','factor')  
+        score_input_factor_list=score_input_factor.split(',')
+        score_division_percentage=round(float(cfg.get('RatioInfo','division_percentage')),2)
+        score_fragment_percentage=round(float(cfg.get('RatioInfo','fragment_percentage') ),2)
+        stage_list = ['t2','t3','t4','t5','t6','t7','t8','morula','blas']
+        score_input_factor_index = [stage_list.index(a) for a in score_input_factor_list]
+        # self.score_input_factor_list
+        
 
     if os.path.isfile(csv_path):
     
@@ -462,16 +493,77 @@ def write_system_info_total_score(chamber_id,dish_id,offset_time_to_hours):
                     # print('Total score is 0')
                     total_score_time_frag = frag_score
                 else:
-                    total_score_time_frag = total_score_time_frag+ frag_score
-                    total_score_time_frag =round(total_score_time_frag/2,2)
-            print('total_score_time_frag',total_score_time_frag)
-            if total_score_time_frag!='':
-                total_score_time_frag_list.append(total_score_time_frag)
+                    total_score_time_frag=round(time_score*score_division_percentage+frag_score*score_fragment_percentage,2)
+                    
+                    # total_score_time_frag = total_score_time_frag+ frag_score
+                    # total_score_time_frag =round(total_score_time_frag/2,2)
+            # print('total_score_time_frag',total_score_time_frag)
+            # if total_score_time_frag!='':
+            total_score_time_frag_list.append(total_score_time_frag)
+        
 
+        for index in range(2):
+            time = ''
+            time_score=''
+            frag=''
+            frag_score=''
+            total_score_time_frag=''
+
+            
+            if index == 0:
+                if "Morula" in dic_system_info['Div_Time'] and str(dic_system_info['Div_Time']["Morula"]) != '' and str(dic_system_info['Div_Time']["Morula"]) != 'nan' and str(dic_system_info['Div_Time']["Morula"]) != 'NaN' and floatTryParse(float(dic_system_info['Div_Time']["Morula"])):     
+                    # time = str(int(float(dict_manual_msg['Morula']) * 100.0) / 100.0)  
+                    # time_score = (int(float(dict_manual_msg['Morula']) * 100.0) / 100.0)/2
+                    time =round( float(dic_system_info['Div_Time']["Morula"]) ,2)
+                    interval_time_suc_false = abs(divisionTime_avg_false[index+7]-divisionTime_avg_success[index+7])
+                    time_score=''
+                    # print('interval time',interval_time_suc_false)
+                    if abs(float(time)-divisionTime_avg_success[index+7])> interval_time_suc_false:
+                        time_score = 0
+                        # print('div_score',time_score)
+                    else:
+                        # print('div_score r',time_score)
+                        time_score= round((1-(abs(float(time)-divisionTime_avg_success[index+7] )/interval_time_suc_false))*100,2)
+                        # div_score = round(float(div_time)/2,2)
+                    # time_score = (int(float(dict_msg["Predict"]['t' + str(index)]) * 100.0) / 100.0)/2
+                    # total_score_time_frag=total_score_time_frag +time_score
+                    
+            if index == 1:
+                if "Blas" in dic_system_info['Div_Time'] and str(dic_system_info['Div_Time']["Blas"]) != '' and str(dic_system_info['Div_Time']["Blas"]) != 'nan' and str(dic_system_info['Div_Time']["Blas"]) != 'NaN' and floatTryParse(float(dic_system_info['Div_Time']["Blas"])):                                       
+                    # time = str(int(float(dict_manual_msg["Blas"]) * 100.0) / 100.0)
+                    # time_score = (int(float(dict_manual_msg['Blas']) * 100.0) / 100.0)/2
+                    time = round( float(dic_system_info['Div_Time']["Blas"]) ,2)
+                    interval_time_suc_false = abs(divisionTime_avg_false[index+7]-divisionTime_avg_success[index+7])
+                    # print('interval_time_suc_false',interval_time_suc_false)
+                    time_score=''
+                    # print('interval time',interval_time_suc_false)
+                    if abs(float(time)-divisionTime_avg_success[index+7])> interval_time_suc_false:
+                        time_score = 0
+                        # print('div_score',time_score)
+                    else:
+                        # print('div_score r',time_score)
+                        # print('abs(float(time)-self.divisionTime_avg_success[index+7] )/interval_time_suc_false',abs(float(time)-self.divisionTime_avg_success[index+7] )/interval_time_suc_false)
+                        time_score= round((1-(abs(float(time)-divisionTime_avg_success[index+7] )/interval_time_suc_false))*100,2)
+                        # div_score = round(float(div_time)/2,2)
+            total_score_time_frag_list.append(time_score)
+        
+
+        temp_total_score=[]
         if len(total_score_time_frag_list)==0: 
             dic_system_info['Total_Score']=''
         else:
-            dic_system_info['Total_Score']=str(round(sum(total_score_time_frag_list)/len(total_score_time_frag_list),2))
+            stage_list = ['t2','t3','t4','t5','t6','t7','t8','morula','blas']
+            score_input_factor_index = [stage_list.index(a) for a in score_input_factor_list]
+            # print('total_score_time_frag_list',total_score_time_frag_list)
+            for i in score_input_factor_index:
+                if total_score_time_frag_list[i]!='':
+                    temp_total_score.append(total_score_time_frag_list[i])
+            if len(temp_total_score)!=0:
+                dic_system_info['Total_Score']=str(round(sum(temp_total_score)/len(temp_total_score),2))
+
+            else:
+                dic_system_info['Total_Score']=''
+
 
         with open(json_system_info_path, "w") as outfile:
             json.dump(dic_system_info, outfile)  
@@ -486,28 +578,30 @@ def write_system_info_total_score(chamber_id,dish_id,offset_time_to_hours):
 
 def write_patient_config( patient_his_folder,patient_id,timelapse_id,time,age,chamber_id): 
     path = os.path.join(patient_his_folder,'config_'+timelapse_id+'_'+time+'.ini')
-    # path = './config/config_' + pid + '.ini'
+    
     
     if not os.path.exists(path):
-        try:
+        # try:
         #if True:
-            cfg = RawConfigParser()
-            cfg.add_section('PitentInfo')
-            cfg.set('PitentInfo','PatientId',str(patient_id))
-            cfg.set('PitentInfo','TimelapseId',str(timelapse_id))
-            cfg.set('PitentInfo','FertilizationTime',str(time))
-            cfg.set('PitentInfo','ChamberId',str(chamber_id))
-            cfg.set('PitentInfo','Age',str(age))
-           
-            with io.open(path, 'w') as f:
-                cfg.write(f)
-        except:
-            print('config write error')
+        cfg = RawConfigParser()
+        # cfg.read(path)
+        cfg.add_section('PitentInfo')
+        
+        cfg.set('PitentInfo','PatientId',str(patient_id))
+        cfg.set('PitentInfo','TimelapseId',str(timelapse_id))
+        cfg.set('PitentInfo','FertilizationTime',str(time))
+        cfg.set('PitentInfo','ChamberId',str(chamber_id))
+        cfg.set('PitentInfo','Age',str(age))
+        
+        with io.open(path, 'w') as f:
+            cfg.write(f)
+        # except:
+        #     print('config write error')
                      
 
 def add_offset_time2analy_csv(analy_csv_path, offset_time):
 
-    print('offset time analy csv:',analy_csv_path)
+    # print('offset time analy csv:',analy_csv_path)
 
     if os.path.isfile(analy_csv_path):
 
@@ -524,7 +618,7 @@ def add_offset_time2analy_csv(analy_csv_path, offset_time):
         df['Morula']=float(df['Morula'].values[0])+offset_time
         df['Blas']=float(df['Blas'].values[0])+offset_time
         df['comp']=float(df['comp'].values[0])+offset_time
-        print('offset time df:',df)
+        # print('offset time df:',df)
 
         df.to_csv(analy_csv_path,index=0)
 
@@ -565,12 +659,12 @@ def move_select_cham_dish_folder(patient_id,timelapse_id, fertilizationtime, age
             write_system_info_total_score(chamber_id,dish_id,offset_time)
 
             predict_division_dic=get_t2t8_dur_time(csv_path)
-            print('out csv path',csv_path)
+            # print('out csv path',csv_path)
 
             write_analy_csv_t2_t8(chamber_id,dish_id,predict_division_dic)
 
             add_offset_time2analy_csv(analy_csv_path,offset_time)
-            print('alread write cham dish analy')
+            # print('alread write cham dish analy')
 
             combine_manual_system_division_time(chamber_id,dish_id)
 
@@ -732,7 +826,7 @@ def combine_manual_system_division_time(chamber_id,dish_id):
 def load_video_path_with_7fp(patient_id,chamber_id,dish_id,fp_id):
     video_path=''
     video_folder_path = './video/'+str(patient_id)+'/cham'+str(chamber_id)+'/dish'+str(dish_id)
-    print('video folder path',video_folder_path)
+    # print('video folder path',video_folder_path)
     if os.path.isdir(video_folder_path):
         video_list = os.listdir(video_folder_path)
         if len(video_list)!=0:
@@ -745,7 +839,7 @@ def load_video_path_with_7fp(patient_id,chamber_id,dish_id,fp_id):
 
     # path = os.path.abspath('./video/cham'+str(chamber_id)+'_'+'dish'+str(well_id)+'.avi')
     #path = os.path.abspath('./video/video2.mp4')
-    print(video_path)
+    # print(video_path)
     return video_path
 
 
@@ -950,7 +1044,7 @@ def write_EmbryoViewer_combobox_qradio_info(cham_id,dish_id,save_pn,save_locatio
 
             ori_dic['Combobox']=dic
 
-            print('ori_dic',ori_dic)
+            # print('ori_dic',ori_dic)
             with open(json_path, 'w') as f:
                 json.dump(ori_dic, f)
     else:
@@ -1033,7 +1127,7 @@ def write_analy_csv_icm_te(cham_id,dish_id,icm=None,te=None):
             df['ICM']=icm
         if te!=None:
             df['TE']=te
-        print(df)
+        # print(df)
         
 
         df.to_csv(csv_path,index=0)
@@ -1067,7 +1161,7 @@ def write_analy_csv_icm_te(cham_id,dish_id,icm=None,te=None):
         df = pd.DataFrame(dic)
         df=df.append({'chamber':cham_id,"dish":dish_id,'ICM':icm,'TE':te},ignore_index=True)
         # df['PGS']=pgs
-        print(df)
+        # print(df)
         df.to_csv(csv_path,index=0)
 
 
@@ -1090,11 +1184,11 @@ def write_embryo_viewer_timecsv(chamber_id,dish_id,status=None,t2=None,t3=None,t
     dish_dir = os.path.join(cham_dir,'dish'+str(dish_id))
     timecsv_name = 'cham'+str(chamber_id)+'_dish'+str(dish_id)+'_analy.csv'
     timecsv_path =os.path.join(dish_dir,timecsv_name)
-    print('analy_csv:',timecsv_path)
+    # print('analy_csv:',timecsv_path)
     if os.path.isfile(timecsv_path):
-        print('exist')
+        # print('exist')
         df = pd.read_csv(timecsv_path)
-        print(df)
+        # print(df)
         df['Status']=status
         df['t2']=t2
         df['t3']=t3
@@ -1113,7 +1207,7 @@ def write_embryo_viewer_timecsv(chamber_id,dish_id,status=None,t2=None,t3=None,t
         df['PGS']=pgs
         df['Probility']=prob
 
-        print(df)
+        # print(df)
                     
 
         df.to_csv(timecsv_path,index=0)
@@ -1155,7 +1249,7 @@ def write_embryo_viewer_timecsv(chamber_id,dish_id,status=None,t2=None,t3=None,t
 
         df=df.append({"dish":dish_id,'Status':status,'t2':t2,'t3':t3,'t4':t4,'t5':t5,'t6':t6,'t7':t7,'t8':t8,'Morula':morula,'Blas':blas,'comp':comp,'PN_Fading':pn_fading,'ICM':icm,'TE':te,'PGS':pgs},ignore_index=True)
         # df['PGS']=pgs
-        print(df)
+        # print(df)
         df.to_csv(timecsv_path,index=0)
 
 
@@ -1401,7 +1495,7 @@ def write_his_status_pgs(patient_id,patient_time,dish_id,status=None,pgs=None):
         # dish_list =os.listdir(chamber_dir)
         dish_path =os.path.join(chamber_dir,'dish'+str(dish_id))
         csv_analy = [x for x in os.listdir(dish_path) if x.find('analy')!=-1]
-        print(csv_analy)
+        # print(csv_analy)
         if len(csv_analy)!=0:
             csv_analy = csv_analy[0]
             csv_analy_path =os.path.join(dish_path,csv_analy)
@@ -1413,7 +1507,7 @@ def write_his_status_pgs(patient_id,patient_time,dish_id,status=None,pgs=None):
                     df['Status']=status
                 if pgs!=None:
                     df['PGS']=pgs
-                print(df)
+                # print(df)
             
 
                 df.to_csv(csv_analy_path,index=0)
@@ -1447,7 +1541,7 @@ def write_his_status_pgs(patient_id,patient_time,dish_id,status=None,pgs=None):
                 df = pd.DataFrame(dic)
                 df=df.append({'chamber':cham_id,"dish":dish_id,'Status':status,'PGS':pgs},ignore_index=True)
                 # df['PGS']=pgs
-                print(df)
+                # print(df)
                 df.to_csv(csv_analy_path,index=0)
 
 
@@ -1476,7 +1570,7 @@ def write_his_all_element(patient_id,patient_time,dish_id,status=None,t2=None,t3
             dish_path =os.path.join(chamber_dir,'dish'+str(dish_id))
             if os.path.isdir(dish_path):
                 csv_analy = [x for x in os.listdir(dish_path) if x.find('analy')!=-1]
-                print(csv_analy)
+                # print(csv_analy)
                 if len(csv_analy)!=0:
                     csv_analy = csv_analy[0]
                     csv_analy_path =os.path.join(dish_path,csv_analy)
@@ -1503,7 +1597,7 @@ def write_his_all_element(patient_id,patient_time,dish_id,status=None,t2=None,t3
                         
                         # if pgs!=None:
                         #     df['PGS']=pgs
-                        print(df)
+                        # print(df)
                     
 
                         df.to_csv(csv_analy_path,index=0)
@@ -1682,7 +1776,7 @@ def xgboost_inf_write_blas_morula_pnfading(patient_id,timelapse_id, fertilizatio
             # df=pd.read_csv(csv_analy_path)
 
             dataset = pd.read_csv(csv_analy_path)
-            print(dataset)
+            # print(dataset)
             # print(dataset['t2'])
             # print(dataset[['t2','t3','t4','t5','t6','t7','t8','Morula','Blas','comp','PN_Fading']])
             
@@ -1713,13 +1807,13 @@ def xgboost_inf_write_blas_morula_pnfading(patient_id,timelapse_id, fertilizatio
             # print(x_test)
             test_predictions = model.predict(x_test)[0]
             test_pre_prob = model.predict_proba(x_test)[0]
-            print(test_pre_prob)
+            # print(test_pre_prob)
             dataset['Status']=test_predictions
             dataset['Probility']=test_pre_prob[1]
             # print('test probility transfer:',test_pre_prob[1])
             dataset.to_csv(csv_analy_path,index=0)
             # print(test_pre_prob)
-            print(test_predictions)
+            # print(test_predictions)
 
 
 
@@ -2317,4 +2411,5 @@ if __name__ == '__main__':
     # print(r)
 
     # combine_manual_system_division_time(1,2)
-    get_t2t8_dur_time('/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham5/dish12/cham5_dish12.csv')
+    # get_t2t8_dur_time('/home/n200/D-slot/20210916_embryo_system_demo_version/csv/cham5/dish12/cham5_dish12.csv')
+    write_patient_config('./history/t1/','t1','MTL-0245-13CD-1B51_20211207','04:00:00','20',1)

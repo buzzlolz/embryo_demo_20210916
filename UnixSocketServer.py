@@ -40,7 +40,7 @@ class UnixSocketServer(QtCore.QThread):
                 connection, client_addr = self.sock.accept()                
                 data = connection.recv(1024)               
                 query = json.loads(data.decode())
-                print (str(query))
+                # print (str(query))
                 self.logger.info('Socket recv=' + str(query))
                 #Response
                 rsp ={"response":"ok"}               
