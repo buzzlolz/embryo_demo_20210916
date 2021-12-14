@@ -23,6 +23,8 @@ from Chamber_inference_Class import Chamber_Inference
 
 import datetime
 
+
+from ReadSqlDataHistoryPath  import ReadSqlInfoPath
 import shutil
 
 
@@ -80,7 +82,8 @@ class ExtractSqliteThread(QtCore.QThread):
         self.client = client
         self.b_stop = False
         
-        dir_path = '/home/n200/D-slot/20201221_ivf_data/'         
+        # dir_path = '/home/n200/D-slot/20201221_ivf_data/' 
+        dir_path,_ = ReadSqlInfoPath()
         self.extract_sqlite = Extract_Sqlite(dir_path + self.patient_id, self.chamber_id, self.client)
                 
     def run(self):       
@@ -140,8 +143,8 @@ class TabSelectChamber(QtWidgets.QWidget):
         self.main_widget = main_widget
         self.logger = logger
 
-
-        self.mnt_history_path = './history/'
+        
+        _,self.mnt_history_path = ReadSqlInfoPath()
         # self.maunal_timeset_check = False
 
 
@@ -1339,7 +1342,7 @@ class TabSelectChamber(QtWidgets.QWidget):
         #Clear config         
         self.WriteChamberConfig(chamber_id, '')
         path = './config/config_' + timelapse_id + '.ini'
-        print('remove=' + path)
+        # print('remove=' + path)
         if os.path.isfile(path):
             print('remove ok=' + path)
             os.remove(path)

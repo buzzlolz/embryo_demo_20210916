@@ -9,6 +9,7 @@ import os, sys, time, json, glob
 from Logger import Logger 
 import logging   
 from PyQt5 import QtCore, QtWidgets, QtGui 
+from ReadSqlDataHistoryPath  import ReadSqlInfoPath
 
        
 class ImportSqliteDialog(QtWidgets.QDialog):
@@ -16,8 +17,8 @@ class ImportSqliteDialog(QtWidgets.QDialog):
         super(ImportSqliteDialog, self).__init__(parent=parent)        
         self.setWindowTitle('Import data')
         self.setStyleSheet("QWidget{background-color:#ddf5c2;}")     
-        self.mnt_sqlite_path = '/home/n200/D-slot/20201221_ivf_data/'   
-        
+        # self.mnt_sqlite_path = '/home/n200/D-slot/20201221_ivf_data/'   
+        self.mnt_sqlite_path,_ = ReadSqlInfoPath()
         self.parent = main_parent
         self.setGeometry(500, 200, 600, 200)
         self.cid = ''

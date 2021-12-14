@@ -441,7 +441,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
             self.score_input_factor_list=score_input_factor.split(',')
             self.score_division_percentage=round(float(cfg.get('RatioInfo','division_percentage')),2)
             self.score_fragment_percentage=round(float(cfg.get('RatioInfo','fragment_percentage') ),2)
-
+     
             # print('score_input_factor:',score_input_factor,type(score_input_factor))
             # print('score_division_percentage',score_division_percentage,type(score_division_percentage))
             # print('score_fragment_percentage',score_fragment_percentage,type(score_fragment_percentage))            
@@ -455,7 +455,7 @@ class TabEmbryoResults(QtWidgets.QWidget):
         path = './config/config_' +timelapse_id + '.ini'
         # print('ini path',path)
         self.logger.info('Read file=' + path)
-        if not os.path.exists(path):
+        if not os.path.exists(path): 
             print('Not found file=' + path) 
             self.logger.error('Not found file=' + path)                               
         else:

@@ -34,8 +34,8 @@ from mrcnn import utils
 
 def count_cell_area(radius):
     s=math.pi*radius*radius
-    print("circle mask",int(s))
-    # return int(s)
+    # print("circle mask",int(s))
+    return int(s)
 
 
 
@@ -117,10 +117,14 @@ def frag_percentage_count(image,  boxes, masks, class_ids, scores, class_names, 
 
     fragment_area = len((np.where(masked_image[:,:,0]!=0))[1])
     # print("fragment_area",fragment_area)
-
-    frag_percentage = round(fragment_area/cell_area,4)*100
+    # print('cell_area',cell_area)
+    
+    if fragment_area is not None:
+        frag_percentage = round(fragment_area/cell_area,4)*100
     # print("mask pre area:",len(fragment_area[1]))
-    print("precentage of frag:{percent} %".format(percent=frag_percentage))
+    else:
+        frag_percentage=0
+    # print("precentage of frag:{percent} %".format(percent=frag_percentage))
     
     return frag_percentage
     

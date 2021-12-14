@@ -12,14 +12,17 @@ import logging
 import copy
 import sqlite3
 from configparser import RawConfigParser
+from ReadSqlDataHistoryPath  import ReadSqlInfoPath
 import io
 import json
 
 logging.basicConfig(level=logging.WARNING)
 
-history_dir = './history'
-sql_data_path ='/home/n200/D-slot/20201221_ivf_data/'  
+sql_data_path,history_dir = ReadSqlInfoPath()
 
+
+# sql_data_path ='/home/n200/D-slot/20201221_ivf_data/'  
+# history_dir = './history'
 
 
 

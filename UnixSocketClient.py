@@ -31,7 +31,7 @@ class UnixSocketClient:
             rsp = sock.recv(1024).decode()           
             self.logger.info('Rsp=' + str(rsp))
             if rsp != '':
-                print(str(rsp))
+                # print(str(rsp))
                 rsp_data = json.loads(str(rsp))                           
         except:           
             print('[ERROR]Unix socket send error msg=' +  str(sys.exc_info()[1]))
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     socket_client = UnixSocketClient('bind_test', logger)    
     msg = {"chamber_id":'3',"dish_id":'2',"check_isboundary":True}     
     rsp = socket_client.Send(msg)  
-    print ('Rsp message:' + str(rsp))  
+    # print ('Rsp message:' + str(rsp))  
 
 
 

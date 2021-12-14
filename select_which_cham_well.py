@@ -2,6 +2,8 @@ import csv
 import os
 import pandas as pd
 from pathlib import Path
+
+from ReadSqlDataHistoryPath  import ReadSqlInfoPath
 import shutil
 # patient_folder = './patient_id_save/'
 
@@ -47,7 +49,9 @@ def make_empty_folder(patient_his_folder):
                     os.mkdir(dish_folder_path)
 
 def move_select_cham_dish_folder(patient_id,time):
-    his_folder_path = './history/'
+    
+
+    _,his_folder_path= ReadSqlInfoPath()
     patient_csv_folder='./patient_id_save/'
     ori_img_folder = './data/crop_img/'
     # img_dir = './data/crop_img/'
@@ -78,7 +82,7 @@ def move_select_cham_dish_folder(patient_id,time):
 
     
     ori_chamber_path = os.path.join(ori_img_folder,"cham"+str(chamber_id))
-    print(' ori_chamber_path:',ori_chamber_path)
+    # print(' ori_chamber_path:',ori_chamber_path)
     backup_path = os.path.join(patient_his_time_folder,"cham"+str(chamber_id))
     shutil.copytree(ori_chamber_path,backup_path)
 

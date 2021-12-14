@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5 import QtMultimedia, QtMultimediaWidgets
 from EmbryoBoxInfo import EmbryoHistoryInfoTableBox,EmbryoHistoryInfoTable
 from Ui_Function import * 
+from ReadSqlDataHistoryPath  import ReadSqlInfoPath
 
 
 class CombobCheckBox(QtWidgets.QComboBox):
@@ -57,7 +58,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         self.well_number = int(machine_infos[0][2])        
         self.selChamber_tab = widget_selChamber
         self.init()
-        self.mnt_history_path = './history/'
+        _,self.mnt_history_path = ReadSqlInfoPath()
 
         self.excel_output_path = './excel_output/'
         self.tableload_timelapse_id=[]
@@ -79,35 +80,7 @@ class TabHistoryChamber(QtWidgets.QWidget):
         self.selector_pid.setGeometry(85, 10, 310, 40)         
         self.selector_pid.currentIndexChanged.connect(lambda: self.selector_files.clear())       
         
-        # label_startTime = QtWidgets.QLabel('Start Time:', self.frame_setting)
-        # label_startTime.setFont(QtGui.QFont('Arial', 12))
-        # label_startTime.setGeometry(400, 10, 100, 40)
-        # self.edit_startTime = QtWidgets.QLineEdit(self.frame_setting)
-        # self.edit_startTime.setGeometry(480, 10, 200, 40)
-        # self.edit_startTime.setStyleSheet('background-color:white;')  
-        # self.edit_startTime.setText('2020/01/01 00:00:00')
-        
-        # self.button_calendar_start = QtWidgets.QPushButton(self.frame_setting)
-        # self.button_calendar_start.setGeometry(655, 10, 50, 40)
-        # self.button_calendar_start.setStyleSheet('background-color:lightblue;')
-        # self.button_calendar_start.setIcon(QtGui.QIcon('CalenderIcon.png'))
-        # self.button_calendar_start.setIconSize(QtCore.QSize(130,130))
-        # self.button_calendar_start.clicked.connect(lambda: self.SelectDate('start'))
-        
-        # label_endTime = QtWidgets.QLabel('End Time:', self.frame_setting)
-        # label_endTime.setFont(QtGui.QFont('Arial', 12))
-        # label_endTime.setGeometry(720, 10, 100, 40)
-        # self.edit_endTime = QtWidgets.QLineEdit(self.frame_setting)
-        # self.edit_endTime.setGeometry(820, 10, 200, 40)
-        # self.edit_endTime.setStyleSheet('background-color:white;')  
-        # self.edit_endTime.setText('2020/12/31 24:00:00')
-        
-        # self.button_calendar_end = QtWidgets.QPushButton(self.frame_setting)
-        # self.button_calendar_end.setGeometry(1025, 10, 50, 40)
-        # self.button_calendar_end.setStyleSheet('background-color:lightblue;')
-        # self.button_calendar_end.setIcon(QtGui.QIcon('CalenderIcon.png'))
-        # self.button_calendar_end.setIconSize(QtCore.QSize(130,130))
-        # self.button_calendar_end.clicked.connect(lambda: self.SelectDate('end'))
+       
         
         self.button_search = QtWidgets.QPushButton('Search', self.frame_setting)
         self.button_search.setGeometry(1080, 10, 100, 40)
@@ -137,20 +110,6 @@ class TabHistoryChamber(QtWidgets.QWidget):
 
 
         
-        #Chamber scroll area
-        # self.groupBox = QtWidgets.QGroupBox(self)
-        # self.groupBox.setGeometry(QtCore.QRect(10, 70, 1580, 900))
-        # self.groupBox.setObjectName("groupBox")
-        # self.scrollArea = QtWidgets.QScrollArea(self.groupBox)
-        # self.scrollArea.move(0, 0)
-        # self.scrollArea.setFixedWidth(1580)
-        # self.scrollArea.setMinimumHeight(900)
-        # self.scrollArea.setWidgetResizable(True)
-        # self.scrollArea.setObjectName("scrollArea")
-        # self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        # self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        # self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        
         
         self.embryo_info_qframe = QtWidgets.QFrame(self)
         # self.embryo_info_qframe = QtWidgets.QFrame(self)        
@@ -158,111 +117,46 @@ class TabHistoryChamber(QtWidgets.QWidget):
         # self.embryo_info_qframe.setGeometry(10, 5, 1580, 60)
         self.embryo_info_qframe.setGeometry(QtCore.QRect(10, 70, 1910, 900))
         self.AddTableBox(self.embryo_info_qframe)
-        # self.AddTableBox(self.embryo_info_qframe)
-        # self.embryo_info_1 = EmbryoHistoryInfoTableBox(0,self.embryo_info_qframe)
-
-        # self.embryo_info_2 = EmbryoHistoryInfoTableBox(1,self.embryo_info_qframe)
-        # # self.embryo_info_1.setGeometry(QtCore.QRect(10, 70, 1580, 900))
-
-        # self.embryo_info_array = []
-        # self.embryo_info_array.append(self.embryo_info_1)
-        # self.embryo_info_array.append(self.embryo_info_2)
-
-
-
-        # label_select_file1 = QtWidgets.QLabel('Select file:', self.embryo_info_qframe)
-        # label_select_file1.setFont(QtGui.QFont('Arial', 12))
-        # label_select_file1.setGeometry(1230, 160, 100, 35)
-
-        # self.selector_files_table1 = QtWidgets.QComboBox(self.embryo_info_qframe)         
-        # self.selector_files_table1.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue")           
-        # self.selector_files_table1.setGeometry(1230, 200, 300, 40) 
-        # # self.selector_files_table1.view().pressed.connect(self.FileLoad)
-
-        # label_select_file2 = QtWidgets.QLabel('Select file:', self.embryo_info_qframe)
-        # label_select_file2.setFont(QtGui.QFont('Arial', 12))
-        # label_select_file2.setGeometry(1230, 560, 100, 35)
-
-        # self.selector_files_table2 = QtWidgets.QComboBox(self.embryo_info_qframe)         
-        # self.selector_files_table2.setStyleSheet("background-color:#55cbcd;selection-background-color: darkblue")           
-        # self.selector_files_table2.setGeometry(1230, 600, 300, 40) 
-        # # self.selector_files_table2.view().pressed.connect(self.FileLoad)
-
-
-
-        #video player part ----------------------------------------------------------------------
-        # self.frame_video = QtWidgets.QFrame(self)        
-        # self.frame_video.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        # self.frame_video.setFixedSize(QtCore.QSize(400, 400))  
-        # self.frame_video.setStyleSheet('background-color:white;')
-        # self.frame_video.setGeometry(1200,500,400,400)
-               
-        # self.player = QtMultimedia.QMediaPlayer(self.frame_video)
         
-        # self.viewer = QtMultimediaWidgets.QVideoWidget(self.frame_video)   
-        # #self.viewer.setMaximumSize(QtCore.QSize(600, 400))
-        # self.player.setVideoOutput(self.viewer)     
-        # self.viewer.setGeometry(1200,300,400,400)   
-        
-        # # layout_video = QtWidgets.QGridLayout(self.frame_video)        
-        # # layout_video.addWidget(self.viewer, 0, 0, 1, 2)
-       
-        # self.playButton = QtWidgets.QPushButton(self)
-        # # self.playButton.setFixedSize(50, 40)
-        # self.playButton.setStyleSheet('background-color:lightblue;border-radius: 5px;')       
-        # self.playButton.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPlay))
-        # self.playButton.clicked.connect(self.play)
-        # self.playButton.setGeometry(1200,700,50,40)
-
-
-        
-
-          
-        
-        # self.selector_fp = QtWidgets.QComboBox(self)   
-        # self.selector_fp.setFixedSize(40, 40)      
-        # self.selector_fp.setStyleSheet("background-color:white;selection-background-color: darkblue")           
-        # for i in range(7):
-        #     self.selector_fp.addItem(str(i + 1))
-        # self.selector_fp.setCurrentIndex(4) 
-        # self.selector_fp.currentIndexChanged.connect(lambda: self.initSource(self.patient_id, self.chamber_id, self.well_id))
-        # self.selector_fp.setGeometry(1270,650,30,30)
-
-
-        # self.slider = QtWidgets.QSlider(self)        
-        # self.slider.setOrientation(QtCore.Qt.Horizontal)
-        # self.slider.setObjectName("horizontalSlider")
-        # self.slider.setFixedWidth(580)        
-        # self.slider.sliderMoved.connect(self.setPosition) 
-        # self.slider.valueChanged.connect(self.setPosition) 
-        # self.slider.setFocus()  #valueChanged[int].connect(self.changeValue)   
-        # self.slider.setFocusPolicy(QtCore.Qt.StrongFocus)  
-        # self.slider.setGeometry(1320,650,30,30)  
-       
-        # self.player.stateChanged.connect(self.mediaStateChanged)
-        # self.player.positionChanged.connect(self.positionChanged)
-        # self.player.durationChanged.connect(self.durationChanged)
-        # self.player.error.connect(self.handleError)     
     
 
     def ReadTableInfoFromCsv(self,table,patient_id,timelapse_id_time,tabel_index):
         csv_table_title_path = os.path.join(self.excel_output_path,patient_id +'_'+timelapse_id_time+'.csv')
         # print('csv_table_title_path',csv_table_title_path)
         if os.path.isfile(csv_table_title_path):
-            df = pd.read_csv(csv_table_title_path)
+            df = pd.read_csv(csv_table_title_path, encoding='utf-8-sig')
             # print(df)
-            for i in range(2,15):
+            # print(df['PGS'])
+            # print(df['Command'])
+            # print(df.iloc[1][20])
+
+            # if {'Command'}.issubset(df.columns):
+            #     print('Command',df['Command'])
+            if 'PGS' in df:
+                # print(df['PGS'])
+                for i in range(14):
+                    if table.cellWidget(i+2, 20) is not None:
+                        # print(table.cellWidget(i+2, 20))
+                        # print(str(df['PGS'].values[i]),i)
+                        table.cellWidget(i+2, 20).setCurrentText(str(df['PGS'].values[i]))
+
+
                 
-                if df.iloc[i][19] is not None:
-                    # print('df item',df.iloc[i][19])
-                    # print('i',i)
-                    if table.cellWidget(i, 20) is not None:
-                        
-                        table.cellWidget(i, 20).setCurrentText(str(df.iloc[i][19]))
+                # for i in range(2,14):
+
+                    
+                #     if df.iloc[i][20] is not None:
+                #         print('df item',df.iloc[i][20])
+                #         print('i',i)
+                #         if table.cellWidget(i+1, 20) is not None:
+                            
+                #             table.cellWidget(i+1, 20).setCurrentText(str(df.iloc[i][20]))
 
 
 
     def WriteTableInfoToCsv(self):
+        
+        Command_temp_list = []
         
         for i in range(len(self.embryo_info_array)):
             table = self.embryo_info_array[i]
@@ -270,30 +164,73 @@ class TabHistoryChamber(QtWidgets.QWidget):
             table_title_name = table.item(0,0).text()
             if table_title_name!='':
                 csv_table_title_path = os.path.join(self.excel_output_path,self.selector_pid.currentText() +'_'+table_title_name+'.csv')
-                with open(csv_table_title_path, 'w') as stream:                  # 'w'
-                    writer = csv.writer(stream, lineterminator='\n')          # + , lineterminator='\n'
-                    for row in range(table.rowCount()):
-                        rowdata = []
-                        for column in range(table.columnCount()):
-                            if   column ==20 and row !=1:
-                                # test=table.item(row,column)
-                                if table.cellWidget(row, column) is not None:
-                                    test = table.cellWidget(row, column).currentText()
-                                    # print(test)
-                                    item =test
-                                    rowdata.append(item)
-                            else:
+
+                #read csv command line items
+                if os.path.exists(csv_table_title_path):
+               
+                    df_csv = pd.read_csv(csv_table_title_path, encoding='utf-8-sig')
+                    if {'Command'}.issubset(df_csv.columns):
+                        Command_temp_list=df_csv['Command'].values.tolist()
+                        
+                
+            
+                data_pd = pd.DataFrame(columns=['Well id','Final score','rank','Age','PN_Fading','2cell','3cell','4cell','5cell','6cell','7cell','8cell','Morula','Blastocyst','PNnum','Location','Morphological','Division','Time','ICM','TE','PGS','Command'],index=list(range(14)))
+                for row in range(2,table.rowCount()):
+                    for column in range(table.columnCount()):
+                        if column==20:
+                            
+                            if table.cellWidget(row, column) is not None:
+                                data_pd.iloc[row-2, column+1] = table.cellWidget(row, column).currentText()
+                        else:
+                            
+                            data_pd.iloc[row-2, column] = table.item(row, column).text()
+                if len(Command_temp_list)!=0:
+                    
+                    data_pd['Command']=Command_temp_list
+                    
+                data_pd.to_csv(csv_table_title_path,index=False,encoding='utf_8_sig')
+
+
+
+                       
+            #     with open(csv_table_title_path, 'w',encoding='gb2312') as stream:                  # 'w'
+            #         writer = csv.writer(stream, lineterminator='\n')          # + , lineterminator='\n'
+            #         for row in range(1,table.rowCount()):
+            #             print('table row count',table.rowCount())
+            #             rowdata = []
+            #             for column in range(1,table.columnCount()):
+            #                 if   column ==20 and row !=1:
+            #                     # test=table.item(row,column)
+            #                     if table.cellWidget(row, column) is not None:
+            #                         test = table.cellWidget(row, column).currentText()
+            #                         # print(test)
+            #                         item =test
+            #                         rowdata.append(item)
+            #                 else:
                                 
-                                item = table.item(row, column)
-                                if item is not None:
-            #                        rowdata.append(unicode(item.text()).encode('utf8'))
-                                    rowdata.append(item.text())                   # +
-                                    # prisnt('rowdata',item.text(),row,column)
-                                else:
-                                    rowdata.append('')
+            #                     item = table.item(row, column)
+            #                     if item is not None:
+            # #                       rowdata.append(unicode(item.text()).encode('utf8'))
+            #                         rowdata.append(item.text())                   # +
+            #                         # print('rowdata',item.text(),row,column)
+            #                     else:
+            #                         rowdata.append('')
+
+            #             if len(Command_temp_list)!=0:
+                            
+            #                 if row ==1:
+            #                     rowdata.append('Command')
+            #                 else:
+
+            #                     print(Command_temp_list[row-2])
+            #                     rowdata.append(Command_temp_list[row-2])
+            #             else:
+            #                 if row==1:
+            #                     rowdata.append('Command') 
+                                    
                                 
 
-                        writer.writerow(rowdata)
+            #             writer.writerow(rowdata)
 
     def AddTableBox(self, parent):
         self.embryo_info_array = []
