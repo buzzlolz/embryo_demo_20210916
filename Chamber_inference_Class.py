@@ -51,7 +51,7 @@ class Chamber_Inference(QtCore.QThread):
         self.cancel_chamber_ids = []
         self.current_analysis_chamber_id = 0
         
-        # self.load_models()
+        self.load_models()
 # 
         # global cell_mask_model 
         # global yolo_ini

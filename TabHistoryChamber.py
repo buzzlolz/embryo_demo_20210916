@@ -488,76 +488,76 @@ class TabHistoryChamber(QtWidgets.QWidget):
 
 #video player function use part --------------------------------------------------------
 
-    def keyPressEvent(self, event):    
-        position = self.position_val
-        if event.key() == QtCore.Qt.Key_Left:
-            position = self.position_val - 1000/6
-        if event.key() == QtCore.Qt.Key_Right:
-            position = self.position_val + 1000/6
-        self.positionChanged(position)
-        self.setPosition(position)
+    # def keyPressEvent(self, event):    
+    #     position = self.position_val
+    #     if event.key() == QtCore.Qt.Key_Left:
+    #         position = self.position_val - 1000/6
+    #     if event.key() == QtCore.Qt.Key_Right:
+    #         position = self.position_val + 1000/6
+    #     self.positionChanged(position)
+    #     self.setPosition(position)
        
-    #Search file to show    
-    def initSelector(self):
-        #self.logger.info(self.Directory + pid)        
-        folders = [f for f in os.listdir('./') if os.path.isdir(f)]
-        folders.sort()                 
-        self.selector_folder.clear()
-        for f in folders:
-            self.selector_folder.addItem(f)        
+    # #Search file to show    
+    # def initSelector(self):
+    #     #self.logger.info(self.Directory + pid)        
+    #     folders = [f for f in os.listdir('./') if os.path.isdir(f)]
+    #     folders.sort()                 
+    #     self.selector_folder.clear()
+    #     for f in folders:
+    #         self.selector_folder.addItem(f)        
         
-    #Set video source    
-    def initSource(self, pid, chid, wid):
-        self.LoadEmbryoDataPnNew(pid, chid, wid)
-        #img_to_video(chid, wid)
+    # #Set video source    
+    # def initSource(self, pid, chid, wid):
+    #     self.LoadEmbryoDataPnNew(pid, chid, wid)
+    #     #img_to_video(chid, wid)
         
-        path = os.path.abspath(load_video_path_with_7fp(pid, chid, wid, int(str(self.selector_fp.currentText())) - 1))
-        #path = os.path.abspath('./video/MTL-0245-11FD-1774/cham1/dish10/MTL-0245-11FD-1774_cham1_dish10_FP0.avi')
+    #     path = os.path.abspath(load_video_path_with_7fp(pid, chid, wid, int(str(self.selector_fp.currentText())) - 1))
+    #     #path = os.path.abspath('./video/MTL-0245-11FD-1774/cham1/dish10/MTL-0245-11FD-1774_cham1_dish10_FP0.avi')
         
-        if not path:
-            return
-        self.playButton.setEnabled(True)
-        #print(path)
-        self.player.setMedia(QtMultimedia.QMediaContent(QtCore.QUrl.fromLocalFile(path)))
+    #     if not path:
+    #         return
+    #     self.playButton.setEnabled(True)
+    #     #print(path)
+    #     self.player.setMedia(QtMultimedia.QMediaContent(QtCore.QUrl.fromLocalFile(path)))
         
-        self.patient_id = str(pid)
-        self.chamber_id = str(chid)
-        self.well_id = str(wid)
+    #     self.patient_id = str(pid)
+    #     self.chamber_id = str(chid)
+    #     self.well_id = str(wid)
         
 
 
     
-    #Play video
-    def play(self):               
-        if self.player.state() == QtMultimedia.QMediaPlayer.PlayingState:
-            self.player.pause()
-        else:
-            self.player.play()
+    # #Play video
+    # def play(self):               
+    #     if self.player.state() == QtMultimedia.QMediaPlayer.PlayingState:
+    #         self.player.pause()
+    #     else:
+    #         self.player.play()
             
-    def mediaStateChanged(self, state):        
-        if self.player.state() == QtMultimedia.QMediaPlayer.PlayingState:
-            self.playButton.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPause))            
-        else:
-            self.playButton.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPlay))
+    # def mediaStateChanged(self, state):        
+    #     if self.player.state() == QtMultimedia.QMediaPlayer.PlayingState:
+    #         self.playButton.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPause))            
+    #     else:
+    #         self.playButton.setIcon(self.style().standardIcon(QtWidgets.QStyle.SP_MediaPlay))
     
-    #Video position                
-    def positionChanged(self, position):
-        self.slider.setValue(position)
-        self.position_val = position
+    # #Video position                
+    # def positionChanged(self, position):
+    #     self.slider.setValue(position)
+    #     self.position_val = position
       
-    def durationChanged(self, duration):
-        self.slider.setRange(0, duration)    
-        self.slider.setTickInterval(1000/6)     
-        self.slider.setSingleStep(1000/6)   
+    # def durationChanged(self, duration):
+    #     self.slider.setRange(0, duration)    
+    #     self.slider.setTickInterval(1000/6)     
+    #     self.slider.setSingleStep(1000/6)   
 
-    def setPosition(self, position):
-        self.player.setPosition(position)            
+    # def setPosition(self, position):
+    #     self.player.setPosition(position)            
                 
     
-    def handleError(self):
-        #self.playButton.setEnabled(False)
-        #self.errorLabel.setText("Error: " + self.player.errorString())
-        print("Error: " + self.player.errorString())    
+    # def handleError(self):
+    #     #self.playButton.setEnabled(False)
+    #     #self.errorLabel.setText("Error: " + self.player.errorString())
+    #     print("Error: " + self.player.errorString())    
     
                     
         
