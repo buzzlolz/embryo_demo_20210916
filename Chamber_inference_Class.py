@@ -59,6 +59,7 @@ class Chamber_Inference(QtCore.QThread):
 
         # global sqlite_model
 
+    #Chamber setect page start inference
     def run(self):
         print('Inference start')
         while not self.b_stop:
@@ -87,6 +88,7 @@ class Chamber_Inference(QtCore.QThread):
         print('Break analysis loop')    
         self.logger.warning('Break analysis loop')
 
+    #stop processing
     def StopAnalysisChamberID(self, chamber_id):
         #Current run
         if str(self.current_analysis_chamber_id) == str(chamber_id):
@@ -122,6 +124,7 @@ class Chamber_Inference(QtCore.QThread):
     #     net = load_model('./model_data/20201102_incv3_sqlite_013-0.036.hdf5',compile=False)
     #     return net
 
+    #load stage(pn~blas) classification model
     def load_stage_pn_morula_blas_model(self):
         # net = load_model('./model_data/20201212_inception_stage1-8.hdf5',compile=False)
         net = load_model('./model_data/20210111_stage_pn_morula_blas.hdf5',compile=False)
@@ -133,7 +136,7 @@ class Chamber_Inference(QtCore.QThread):
     
 
 
-
+    # stage(pn~blas) classification model inference
     def predict_sqlitemodel_bak(self,model, img):
         """Run model prediction on image
         Args:
@@ -157,27 +160,27 @@ class Chamber_Inference(QtCore.QThread):
         return pred_label
 
 
-    def predict_sqlitemodel(self,model, img):
-        """Run model prediction on image
-        Args:
-            model: keras model
-            img: PIL format image
-            target_size: (w,h) tuple
-        Returns:
-            list of predicted labels and their probabilities
-        """
+    # def predict_sqlitemodel(self,model, img):
+    #     """Run model prediction on image
+    #     Args:
+    #         model: keras model
+    #         img: PIL format image
+    #         target_size: (w,h) tuple
+    #     Returns:
+    #         list of predicted labels and their probabilities
+    #     """
     
 
-        #   x = image.img_to_array(img)
-        img = np.expand_dims(img, axis=0)
-        img = preprocess_input(img)
-        preds = model.predict(img)
-        ayay=np.array(preds[0])
-        return str(np.argmax(ayay)+1)
+    #     #   x = image.img_to_array(img)
+    #     img = np.expand_dims(img, axis=0)
+    #     img = preprocess_input(img)
+    #     preds = model.predict(img)
+    #     ayay=np.array(preds[0])
+    #     return str(np.argmax(ayay)+1)
 
 
 
-
+    # stage(pn~blas) classification model inference and return result
     def sqlite_cell_classification_getcell(self,net,img_path):
 
         # net = sqlite_model
@@ -194,7 +197,7 @@ class Chamber_Inference(QtCore.QThread):
 
 
 
-
+    #env empty folder check and create 
     def check_env_folder(self):
         
         if not Path("./csv").exists():
@@ -257,13 +260,13 @@ class Chamber_Inference(QtCore.QThread):
         return dish_path_list
         
 
-
+    #detect embryo position and return img and bbox position
     def emb_yolo_crop(self,yolo_ini,image):
         img,top,left,bottom,right=yolo_ini.detect_image_with_stable_bbox(image)
         return img,top,left,bottom,right
         # cv2.waitKey(10)
 
-
+    #check embryo position is out of boundary or not
     def check_emb_isboundary(self,yolo_shape,top,left,bottom,right):
         CenterX = (left+right)/2
         CenterY = (top+bottom)/2
@@ -289,6 +292,7 @@ class Chamber_Inference(QtCore.QThread):
             #frame = cv2.resize(frame,(300,300))
             yield frame
 
+
     def read_dir_img_list(self,image_dir):
         for img_path in Path(image_dir).glob("*.*"):
             yield img_path
@@ -310,7 +314,8 @@ class Chamber_Inference(QtCore.QThread):
                 img= cv2.resize(img,(300,300))
         
                 yield img,img_path
-
+    
+    # img need to do list return img and path
     def read_img_from_list(self,img_list,folder_path):
 
 
@@ -342,7 +347,7 @@ class Chamber_Inference(QtCore.QThread):
     #             else :
     #                 writer.writerow([filename,str(status)])
 
-
+    #load csv list and check img already do or not 
     def check_undo_img_csv(self,filename,csv_path):
         
 
@@ -372,66 +377,70 @@ class Chamber_Inference(QtCore.QThread):
             df = pd.DataFrame(dic)
             df=df.append({'file_name':filename,"check":'F'},ignore_index=True)
             df.to_csv(csv_path,index=0)
-
-    def emb_status_csvwrite(self,img_path,status,csv_path):
-        filename = os.path.basename(img_path)
-
-
-
-
-
-        # filename = str(filename).split('\\')[-1]
-        # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
-        # print("csv_path:",csv_path)
-        # filename = str(img_path).split('/')[-1]
-
-        if os.path.exists(csv_path):
-            df=pd.read_csv(csv_path)
-            
-
-            
-            df.loc[df['file_name'].values==str(filename),'status']=status
-            # print("filename:",filename)
-
-            df.to_csv(csv_path,index=0)
-
-    def cell_stage_csvwrite(self,img_path,cell_stage,csv_path):
-        # filename = str(filename).split('\\')[-1]
-        filename = os.path.basename(img_path)
-        # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
-        # # print("csv_path:",csv_path)
-        # filename = str(img_path).split('/')[-1]
-
-        if os.path.exists(csv_path):
-            df=pd.read_csv(csv_path)
-            
-
-            
-            df.loc[df['file_name'].values==str(filename),'cell_stage']=cell_stage
-            # print("filename:",filename)
-
-            df.to_csv(csv_path,index=0)
-
-    def frag_percentage_csvwrite(self,img_path,frag_percentage,csv_path):
-        # # filename = str(filename).split('\\')[-1]
-        # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
-        # # print("csv_path:",csv_path)
-        # filename = str(img_path).split('/')[-1]
-
-        filename = os.path.basename(img_path)
-
-        if os.path.exists(csv_path):
-            df=pd.read_csv(csv_path)
-            
-
-            
-            df.loc[df['file_name'].values==str(filename),'frag_percentage']=str(frag_percentage)
-
-            # print("frag_precentage :",frag_percentage)
-            # print("filename:",filename)
-
-            df.to_csv(csv_path,index=0)
     
+
+    
+    # def emb_status_csvwrite(self,img_path,status,csv_path):
+    #     filename = os.path.basename(img_path)
+
+
+
+
+
+    #     # filename = str(filename).split('\\')[-1]
+    #     # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
+    #     # print("csv_path:",csv_path)
+    #     # filename = str(img_path).split('/')[-1]
+
+    #     if os.path.exists(csv_path):
+    #         df=pd.read_csv(csv_path)
+            
+
+            
+    #         df.loc[df['file_name'].values==str(filename),'status']=status
+    #         # print("filename:",filename)
+
+    #         df.to_csv(csv_path,index=0)
+
+    # def cell_stage_csvwrite(self,img_path,cell_stage,csv_path):
+    #     # filename = str(filename).split('\\')[-1]
+    #     filename = os.path.basename(img_path)
+    #     # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
+    #     # # print("csv_path:",csv_path)
+    #     # filename = str(img_path).split('/')[-1]
+
+    #     if os.path.exists(csv_path):
+    #         df=pd.read_csv(csv_path)
+            
+
+            
+    #         df.loc[df['file_name'].values==str(filename),'cell_stage']=cell_stage
+    #         # print("filename:",filename)
+
+    #         df.to_csv(csv_path,index=0)
+
+    # def frag_percentage_csvwrite(self,img_path,frag_percentage,csv_path):
+    #     # # filename = str(filename).split('\\')[-1]
+    #     # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
+    #     # # print("csv_path:",csv_path)
+    #     # filename = str(img_path).split('/')[-1]
+
+    #     filename = os.path.basename(img_path)
+
+    #     if os.path.exists(csv_path):
+    #         df=pd.read_csv(csv_path)
+            
+
+            
+    #         df.loc[df['file_name'].values==str(filename),'frag_percentage']=str(frag_percentage)
+
+    #         # print("frag_precentage :",frag_percentage)
+    #         # print("filename:",filename)
+
+    #         df.to_csv(csv_path,index=0)
+    
+
+    #after model predict , write back result to csv
     def predict_result_csvwrite(self,img_path,cell_stage,frag_percentage,pn_number,csv_path):
         # # filename = str(filename).split('\\')[-1]
         # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
@@ -455,7 +464,7 @@ class Chamber_Inference(QtCore.QThread):
 
 
     
-   
+    # read csv and get undo img list
     def get_undo_img_list(self,csv_path):
         img_list = []
         # csv_path = str(Path(csv_dir)/folder_name)+'.csv'
@@ -472,7 +481,7 @@ class Chamber_Inference(QtCore.QThread):
             # print("img_list",img_list)
             return img_list
             
-
+    #resize img and write 
     def crop_img_write(self,crop_img,crop_img_path):
 
         crop_img=cv2.cvtColor(np.array(crop_img),cv2.COLOR_RGB2BGR)
@@ -498,21 +507,21 @@ class Chamber_Inference(QtCore.QThread):
 
 
 
-    def stage_res_to_csv(self,filename,stage):
+    # def stage_res_to_csv(self,filename,stage):
         
-        df=pd.read_csv("./csv_record/test.csv",encoding='utf-8')
-        df.stage[df['file_name'].values==str(filename)]=stage
-        # print(df)
-        df.to_csv("./csv_record/test.csv",index=0)
+    #     df=pd.read_csv("./csv_record/test.csv",encoding='utf-8')
+    #     df.stage[df['file_name'].values==str(filename)]=stage
+    #     # print(df)
+    #     df.to_csv("./csv_record/test.csv",index=0)
 
 
 
-    def get_emb_res_img(self,img_dir):
-        img_name_list = []
-        img_dir=Path(img_dir)
-        for img_path in img_dir.glob('*.*'):
-            img_name_list.append(str(img_path))
-        return img_name_list
+    # def get_emb_res_img(self,img_dir):
+    #     img_name_list = []
+    #     img_dir=Path(img_dir)
+    #     for img_path in img_dir.glob('*.*'):
+    #         img_name_list.append(str(img_path))
+    #     return img_name_list
 
 
 
@@ -585,59 +594,59 @@ class Chamber_Inference(QtCore.QThread):
 
 
 
+    
+    # def get_each_stage_result(self,chamber_id,well_id):
 
-    def get_each_stage_result(self,chamber_id,well_id):
 
+    #     stage_dic=dict()
+    #     precent_dic=dict()
+    #     filename_dic=dict()
+    #     dict_key=['2pn','2','3','4','5','6','7','8','blas']
 
-        stage_dic=dict()
-        precent_dic=dict()
-        filename_dic=dict()
-        dict_key=['2pn','2','3','4','5','6','7','8','blas']
+    #     csv_dir = './csv/'
+    #     img_dir = './data/crop_img/'
+    #     folder_path ='cham'+str(chamber_id)+'/dish'+str(well_id)
+    #     csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(well_id)+'.csv'
 
-        csv_dir = './csv/'
-        img_dir = './data/crop_img/'
-        folder_path ='cham'+str(chamber_id)+'/dish'+str(well_id)
-        csv_name = 'cham'+str(chamber_id)+'_'+'dish'+str(well_id)+'.csv'
+    #     csv_path = os.path.join(csv_dir,folder_path)
+    #     csv_path = os.path.join(csv_path,csv_name)
+    #     # print("get stage csv path:",csv_path)
+    #     img_folder_dir= os.path.join(img_dir,folder_path)
+    #     each_stage_list=[]
+    #     each_img_list=[]
+    #     each_precent_list=[]
 
-        csv_path = os.path.join(csv_dir,folder_path)
-        csv_path = os.path.join(csv_path,csv_name)
-        # print("get stage csv path:",csv_path)
-        img_folder_dir= os.path.join(img_dir,folder_path)
-        each_stage_list=[]
-        each_img_list=[]
-        each_precent_list=[]
-
-        if os.path.isfile(csv_path):
-            # csv_path =Path( Path("./csv/")/(str(emb_folder_sel)+'.csv'))
-            df = pd.read_csv(str(csv_path),encoding='utf-8')
+    #     if os.path.isfile(csv_path):
+    #         # csv_path =Path( Path("./csv/")/(str(emb_folder_sel)+'.csv'))
+    #         df = pd.read_csv(str(csv_path),encoding='utf-8')
             
-            # img_dir = str(Path('./data/crop_img/')/str(emb_folder_sel))
+    #         # img_dir = str(Path('./data/crop_img/')/str(emb_folder_sel))
 
-            temp=[]
-            for i in range(8):
-                lenth=len(df.file_name[df['cell_stage']==i+1].values)
-                if lenth!=0:
-                    select_img = df.file_name[df['cell_stage']==i+1].values[random.randint(0,lenth-1)]
-                    # print("df.file_name[df['cell_stage']==i+1].values[random.randint(0,lenth-1)]:",df.file_name[df['cell_stage']==i+1].values[random.randint(0,lenth-1)])
-                    img_path = os.path.join(img_folder_dir,select_img)
-                    # new_img_path = str(Path(img_dir)/select_img)
-                    percentage = df.frag_percentage[df['file_name']==str(select_img)].values[0]
-                    stage = df.cell_stage[df['file_name']==str(select_img)].values[0]
-                    each_img_list.append(img_path)
-                    each_precent_list.append(str(percentage))
-                    each_stage_list.append(stage)
+    #         temp=[]
+    #         for i in range(8):
+    #             lenth=len(df.file_name[df['cell_stage']==i+1].values)
+    #             if lenth!=0:
+    #                 select_img = df.file_name[df['cell_stage']==i+1].values[random.randint(0,lenth-1)]
+    #                 # print("df.file_name[df['cell_stage']==i+1].values[random.randint(0,lenth-1)]:",df.file_name[df['cell_stage']==i+1].values[random.randint(0,lenth-1)])
+    #                 img_path = os.path.join(img_folder_dir,select_img)
+    #                 # new_img_path = str(Path(img_dir)/select_img)
+    #                 percentage = df.frag_percentage[df['file_name']==str(select_img)].values[0]
+    #                 stage = df.cell_stage[df['file_name']==str(select_img)].values[0]
+    #                 each_img_list.append(img_path)
+    #                 each_precent_list.append(str(percentage))
+    #                 each_stage_list.append(stage)
                     
-                    filename_dic[dict_key[i]]=img_path
-                    stage_dic[dict_key[i]]=stage
-                    precent_dic[dict_key[i]]=percentage
+    #                 filename_dic[dict_key[i]]=img_path
+    #                 stage_dic[dict_key[i]]=stage
+    #                 precent_dic[dict_key[i]]=percentage
                     
 
         
 
-            # print(filename_dic)  
-            # print(stage_dic)   
-            # print(precent_dic)
-        return dict_key,each_img_list,each_stage_list,each_precent_list
+    #         # print(filename_dic)  
+    #         # print(stage_dic)   
+    #         # print(precent_dic)
+    #     return dict_key,each_img_list,each_stage_list,each_precent_list
 
 
     # def img_to_video_bak(self,chamber_id,well_id):
@@ -719,7 +728,7 @@ class Chamber_Inference(QtCore.QThread):
     #                 videoWriter.write(img)
     #         videoWriter.release()
 
-
+    # send now each dish embryo Program processing progress
     def send_cham_dish_percent_socket(self, chamber_id, dish_id,schedule_percentage):
           
         msg = {"chamber_id":chamber_id, "dish_id":dish_id,'percentage':schedule_percentage}        
@@ -739,24 +748,24 @@ class Chamber_Inference(QtCore.QThread):
 
 
 
+    # #check 
+    # def make_queue_list_boundary_status(self,image_dir):
 
-    def make_queue_list_boundary_status(self,image_dir):
+    #     queue_list= []
 
-        queue_list= []
+    #     chamber_list = os.listdir(image_dir)
+    #     for chamber_folder in chamber_list:
 
-        chamber_list = os.listdir(image_dir)
-        for chamber_folder in chamber_list:
-
-            chamber_path = os.path.join(image_dir,chamber_folder)
-            dish_list = os.listdir(chamber_path)
-            for dish_folder in dish_list:
-                queue_list.append(chamber_folder+'_'+dish_folder)
+    #         chamber_path = os.path.join(image_dir,chamber_folder)
+    #         dish_list = os.listdir(chamber_path)
+    #         for dish_folder in dish_list:
+    #             queue_list.append(chamber_folder+'_'+dish_folder)
         
 
-        return queue_list
+    #     return queue_list
 
 
-
+    #load all models 
     def load_models(self):
         
 
@@ -793,7 +802,7 @@ class Chamber_Inference(QtCore.QThread):
         
         
 
-
+    # inference main part
     def one_chamber_run(self,cham_id):
 
 
@@ -813,13 +822,13 @@ class Chamber_Inference(QtCore.QThread):
         # crop_folder_path = './data/crop_img/'
         csv_dir='./csv/'
         
-        queue_make_list =self.make_queue_list_boundary_status(image_dir)
+        # queue_make_list =self.make_queue_list_boundary_status(image_dir)
         # print('queue_make_list:',queue_make_list)
         
-        record_emb_outboundary_status =[]
+        # record_emb_outboundary_status =[]
 
-        for i in range(len(queue_make_list)):
-            record_emb_outboundary_status.append(queue.Queue(3))
+        # for i in range(len(queue_make_list)):
+        #     record_emb_outboundary_status.append(queue.Queue(3))
 
         
 
@@ -838,9 +847,9 @@ class Chamber_Inference(QtCore.QThread):
 
         # for dish_folder_name in dish_folder_list:
         #     dish_folder_path_list.append(os.path.join(img_folder_path,dish_folder_name))
-        # print('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR')
+        #
         print(logging.debug('dish_folder_path_list: %s'%(dish_folder_path_list)))
-        # print('dish_folder_path_list',dish_folder_path_list)
+        
 
         
         
@@ -848,8 +857,8 @@ class Chamber_Inference(QtCore.QThread):
 
 
         for index,dish_folder_path in enumerate(dish_folder_path_list):
-            chamber_id = dish_folder_path[dish_folder_path.find('cham')+4:dish_folder_path.find('dish')-1]
-            dish_id = dish_folder_path[dish_folder_path.find('dish')+4:]
+            chamber_id = dish_folder_path[dish_folder_path.find('cham')+4:dish_folder_path.find('dish')-1]#from path get cham_id
+            dish_id = dish_folder_path[dish_folder_path.find('dish')+4:]#from path get dish_id
 
 
             #add stop 
@@ -869,9 +878,10 @@ class Chamber_Inference(QtCore.QThread):
                 logging.debug('folder_path : %s'%(dish_folder_path))
                 
                 # print('folder_path',dish_folder_path)
-                image_path_genereator = self.read_dir_img_list(dish_folder_path)
+                image_path_genereator = self.read_dir_img_list(dish_folder_path)#read select cham dish folder imgs
                 csv_path=''
                 
+                #write total img in folders name into  csv
                 for img_path in image_path_genereator:
                     # print('img_path',img_path)
                     image_name =os.path.basename(img_path)
@@ -885,7 +895,7 @@ class Chamber_Inference(QtCore.QThread):
                     
 
                 
-                img_list_todo = self.get_undo_img_list(csv_path)
+                img_list_todo = self.get_undo_img_list(csv_path)#get undo img list 
                 # print('img_list_todo',img_list_todo)
                 logging.debug("list to do : %s"%(img_list_todo))
                 
@@ -903,6 +913,9 @@ class Chamber_Inference(QtCore.QThread):
                 #         chamber_well_path = dish_folder_path.replace(image_dir,'')
                 #         video_thread  = threading.Thread(target=self.img_to_video(chamber_well_path))
                 #         video_thread.start()
+
+
+                #read img and put into generator
                 yolo_img_generator=self.read_img_from_list(img_list_todo,dish_folder_path)
                 out_boundary_send=False
                 status=''
@@ -916,58 +929,29 @@ class Chamber_Inference(QtCore.QThread):
 
 
                         image_yolo = Image.fromarray(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
-                        crop_img,top,left,bottom,right=self.emb_yolo_crop(self.yolo_ini,image_yolo)
+                        crop_img,top,left,bottom,right=self.emb_yolo_crop(self.yolo_ini,image_yolo)# detect embryo place an return ifno(img,bbox)
 
-
-                        # #check outof boundary number is bigger than 3
-                        # t1=time.time()
-                        # out_boundary_check=check_emb_isboundary(image_yolo.size,top,left,bottom,right)
-                        # if record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].full():
-                        #     record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].get()
-                        #     record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].put(out_boundary_check)
-                        # else:
-                        #     record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].put(out_boundary_check)
-                        # # print(list(record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].queue))
-                        # previous_queue= list(record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].queue)
-
-                        # # if False in previous_queue:
-                        # #     out_boundary_send=False
-                        # print('previous_queue',previous_queue)
-
-                        # if record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].full() and False not in previous_queue and status!=True:
-                        #     print("need to transmission------------------------")
-                        #     status=True
-                        #     # out_boundary_send=True
-                        #     socket_thread=threading.Thread(target=send_socket(chamber_id,dish_id,True))
-                        #     socket_thread.start()
-                        # if record_emb_outboundary_status[int(chamber_id)*15+int(dish_id)-1].full() and True not in previous_queue and status!=False:
-                        #     # out_boundary_send=False
-                        #     print('normal-------------------------------')
-                        #     status=False
-                        #     socket_thread=threading.Thread(target=send_socket(chamber_id,dish_id,False))
-                        #     socket_thread.start()
-                        # t2=time.time()
-                        # print('time q spend:',t2-t1)
 
                         
 
-                        # print("img yolo path:",img_path)
-                        # print('yolo box:',top,left,bottom,right)
-
                         crop_img_path = img_path.replace(image_dir,crop_image_dir)
-                        self.crop_img_write(crop_img,crop_img_path)
+                        self.crop_img_write(crop_img,crop_img_path)#write crop embryo img
+                        
 
+
+                        #cell stage classification(cnn)
                         with self.graph_list[0].as_default():
                             
             
                             cell_number=self.sqlite_cell_classification_getcell(self.sqlite_model,crop_img_path)
                             # self.cell_stage_csvwrite(crop_img_path,cell_number,csv_path)
-
+                        #fragment percent get (mask rcnn)
                         with self.graph_list[1].as_default():
     
                             frag_percentage=img_inference_frag(self.frag_model,crop_img_path)
                             # self.frag_percentage_csvwrite(crop_img_path,frag_percentage,csv_path)
                         
+                        #pn detect(mask rcnn)
                         with self.graph_list[2].as_default():
                             if cell_number=='pn':
                                 pn_number=img_inference_pn_count(self.pn_count_model,img_path)
@@ -976,18 +960,19 @@ class Chamber_Inference(QtCore.QThread):
 
                             # self.frag_percentage_csvwrite(crop_img_path,frag_percentage,csv_path)
                             print(pn_number)
-                        self.predict_result_csvwrite(crop_img_path,cell_number,frag_percentage,pn_number,csv_path)
+                        
+                        self.predict_result_csvwrite(crop_img_path,cell_number,frag_percentage,pn_number,csv_path) #write all result back to csv
 
                         schedule_percentage+=each_img_schedule_percent
                         # print('schedule percent:',schedule_percentage)
                         logging.debug('schedule percent: %s'%(schedule_percentage))
 
-
+                        #send Processing progress to ui 
                         if img_count%10==0:
                             socket_thread=threading.Thread(target=self.send_cham_dish_percent_socket(cham_id, dish_id,int(schedule_percentage)))
                             socket_thread.start()
                         img_count+=1
-                        
+                     
             if not self.o_stop:
                 socket_thread=threading.Thread(target=self.send_cham_dish_percent_socket(cham_id, dish_id,100))
                 socket_thread.start()
